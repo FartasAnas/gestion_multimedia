@@ -1,0 +1,18 @@
+<div class="loginLayout">
+  <div class="login-form">
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)"  >
+      <img src="assets/logo.svg" alt="" class="form-logo">
+      <p class="form-title">Bienvenue sur votre espace<br> de gestion de contenue multimédia !</p>
+      <label for="email" class="form-label">E-mail</label>
+      <input id="email" type="email" name="email" [(ngModel)]="loginObject.email" [ngClass]="emailNotValid()" required />
+      <label for="password" class="form-label" >Mot de passe</label>
+      <input id="password" type="password" name="password" [(ngModel)]="loginObject.password"  required/>
+      <button type="submit" class="btn-form-empty" [ngClass]="isDisabled()"  [disabled]="isDisabled()['btn-form-empty']">Je me connecte</button>
+      <p class="forgot-password" >Mot de passe oublié ?</p>
+    </form>
+  </div>
+  <div class="login-image">
+    <div class="login-image-content">
+    </div>
+  </div>
+</div>

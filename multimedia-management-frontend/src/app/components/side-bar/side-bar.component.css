@@ -1,0 +1,91 @@
+
+.sidebarLayout{
+  width: 211px;
+  height: 100vh;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.sidebarHeader{
+  box-sizing: border-box;
+  width: 211px;
+  min-height: 112px!important;
+  border-bottom: 1px solid #ECEFF1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar-logo{
+  width:115px;
+  height: 40px;
+
+}
+.sidebarFooter{
+  display: flex;
+  box-sizing: border-box;
+  position: absolute;
+  width: 211px;
+  height: 56px;
+  bottom: 0px;
+  border-top: 1px solid #ECEFF1;
+  justify-content: center;
+  background-color: white;
+}
+.sidebarFooter-user{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.sidebar-userLogo{
+  width: 24px;
+  height: 24px;
+  border-radius: 20px;
+}
+.sidebar-username{
+  width: 121px;
+  height: 20px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.1px;
+  color: #0B2866;
+}
+.sidebar-arrowLine{
+  width: 16px;
+  height: 13.71px;
+}
+.sidebarBody{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  overflow: scroll;
+  padding: 24px 24px 8px;
+  margin-bottom: 55px;
+  overflow-x: hidden;
+}
+
+.sidebarBody::-webkit-scrollbar{
+  width: 0.5em;
+}
+.sidebarBody-title{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0B2866;
+  align-self: flex-start;
+  padding-top: 8px;
+}
+.sidebarFooter-user:hover{
+  cursor: pointer;
+}

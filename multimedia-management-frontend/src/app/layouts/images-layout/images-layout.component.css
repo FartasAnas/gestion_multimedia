@@ -1,0 +1,18 @@
+.imageLayout{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 72px 50px;
+  overflow: hidden;
+}
+.imageLayout-Title-text{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+  display: flex;
+  align-items: center;
+  color: #0B2866;
+}

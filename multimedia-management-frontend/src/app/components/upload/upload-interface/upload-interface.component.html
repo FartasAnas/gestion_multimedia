@@ -1,0 +1,45 @@
+<!--<div class="uploadInterface-bg"-->
+<!--     [ngClass]="{'showInterface':showInterface,'uploaded':selectedFiles.length!==0}">-->
+<div class="uploadInterface-bg showInterface" >
+  <div class="uploadInterface">
+    <div class="uploadInterface-header">
+      <p class="uploadInterface-header-title">{{text}}</p>
+      <div class="closeInterface-icon" (click)="handelCloseInterfaceClick()">
+        <img src="assets/XIcon.svg" class="svg-icon" >
+      </div>
+    </div>
+    <div class="uploadInterfaceStepper">
+        <div class="uploadInterfaceStep step1">
+          <img src="assets/currentStepIcon.svg">
+          <p class="step1-text">Importer le fichier</p>
+        </div>
+        <div class="uploadInterfaceStep step2">
+          <img src="assets/IncompleteStepIcon.svg">
+          <p class="step2-text">Ajouter les informations liées au fichier</p>
+        </div>
+    </div>
+    <div class="uploadInterface-Body" (click)="uploadFile()">
+      <img src="assets/FileArrowDown.svg">
+        <div class="uploadInterfaceBody-txt">
+          <span class="uploadInterfaceBody-txt1">
+            <span class="uploadInterfaceBody-txt1-1">Cliquez pour télécharger</span>
+            <input type="file" class="upload-input" (change)="handleUploadInput($event)" #uploadInput multiple/>
+            <span class="uploadInterfaceBody-txt1-2"> ou faites glisser et déposez.</span>
+          </span>
+          <span class="uploadInterfaceBody-txt2">
+            <span>Taille de fichier maximale 50 Mo.</span>
+          </span>
+        </div>
+    </div>
+    <div class="uploadInterface-footer">
+      <button class="uploadInterfaceFooter-btn cancelBtn" (click)="handelCloseInterfaceClick()">
+        <img src="assets/Close.svg">
+        <p class="uploadInterfaceFooter-txt cancelTxt">Annuler</p>
+      </button>
+      <button class="uploadInterfaceFooter-btn nextBtn">
+        <p class="uploadInterfaceFooter-txt nextTxt" >Suivant</p>
+        <img src="assets/TrailingIcon.svg">
+      </button>
+    </div>
+  </div>
+</div>
