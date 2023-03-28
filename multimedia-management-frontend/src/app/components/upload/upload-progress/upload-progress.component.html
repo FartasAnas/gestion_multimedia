@@ -1,1 +1,17 @@
-<p>upload-progress works!</p>
+<div class="uploadProgress" *ngIf="fileContent">
+  <div class="uploadProgress-fileIcon">
+    <img src="assets/FileIcon.svg">
+  </div>
+  <div class="uploadProgress-content">
+    <div class="uploadProgress-content-head">
+      <div class="uploadProgress-txt">
+        <p class="uploadProgress-txt filename" *ngIf="fileContent.file">{{fileContent.file.name}}</p>
+        <p class="uploadProgress-txt filesize" *ngIf="fileContent.file">{{getFileSize(fileContent.file.size)}}</p>
+      </div>
+      <div class="uploadProgress-closeIcon" (click)="handleRemoveFile()">
+        <img src="assets/XIcon.svg">
+      </div>
+    </div>
+    <div class="uploadProgress-progressBar"></div>
+  </div>
+</div>

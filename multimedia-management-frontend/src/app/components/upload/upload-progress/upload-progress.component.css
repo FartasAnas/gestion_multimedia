@@ -1,0 +1,57 @@
+.uploadProgress{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 20px;
+  width: 532px;
+  background: #FFFFFF;
+  border: 1px solid #ECEFF1;
+  border-radius: 12px;
+}
+.uploadProgress-fileIcon{
+  height: 40px;
+  width: 40px;
+}
+.uploadProgress-content{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.uploadProgress-content-head{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.uploadProgress-txt{
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter';
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: -0.1px;
+  font-weight: 500;
+}
+.filename{
+  font-size: 14px;
+  color: #0B2866;
+}
+.filesize{
+  font-size: 12px;
+  color: #8D9CAD;
+}
+.uploadProgress-progressBar{
+  display: flex;
+  flex-direction: row;
+}
+.uploadProgress-closeIcon:hover{
+  cursor: pointer;
+}
+/*.uploadProgress-closeIcon{*/
+/*  height: 20px;*/
+/*  width: 20px;*/
+/*}*/
+/*.uploadProgress-content img{*/
+/*  object-fit: cover;*/
+/*}*/

@@ -1,4 +1,5 @@
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import FileInput from "../../../entities/FileInput";
 
 @Component({
   selector: 'app-upload-interface',
@@ -10,9 +11,10 @@ export class UploadInterfaceComponent {
     @Input() text?:String
     @Output() closeUploadEvent=new EventEmitter<boolean>();
     @ViewChild('uploadInput') uploadInput?:ElementRef<HTMLInputElement>;
-    selectedFiles: File[] = [];
+    selectedFiles: FileInput[] = [];
 
   handelCloseInterfaceClick() {
+    console.log(this.selectedFiles.length)
     this.showInterface = false;
     this.closeUploadEvent.emit(this.showInterface);
     this.selectedFiles=[]
@@ -29,10 +31,18 @@ export class UploadInterfaceComponent {
     if (files) {
       Array.from(files).forEach(file => {
         if (file.size <= 50 * 1024 * 1024) { // exclude files larger than 50MB
-          this.selectedFiles.push(file);
+          const fileObject: FileInput = {
+            file: file,
+            fileUrl: URL.createObjectURL(file)
+          };
+          this.selectedFiles.push(fileObject);
         }
       });
       console.log(this.selectedFiles);
     }
+  }
+
+  handleRemoveFile(fileInput: FileInput) {
+    this.selectedFiles = this.selectedFiles.filter(file => file !== fileInput);
   }
 }

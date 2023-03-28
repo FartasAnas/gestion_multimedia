@@ -32,4 +32,7 @@ public class User {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles=new ArrayList<>();
+
+//    @OneToMany(fetch = FetchType.EAGER)
+//    private Collection<File> files=new ArrayList<>();
 }

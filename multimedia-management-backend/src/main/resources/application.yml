@@ -1,0 +1,6 @@
+#indh:
+#  minio:
+#    url: ${MINIO_URL_PORT:http://localhost:9000}
+#    bucket: ${MINIO_BUCKET:ompic}
+#    user: ${MINIO_SECRET_KEY:minioadmin}
+#    secret: ${MINIO_ACCESS_KEY:minioadmin}

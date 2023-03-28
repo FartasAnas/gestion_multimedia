@@ -1,6 +1,6 @@
-<!--<div class="uploadInterface-bg"-->
-<!--     [ngClass]="{'showInterface':showInterface,'uploaded':selectedFiles.length!==0}">-->
-<div class="uploadInterface-bg showInterface" >
+<div class="uploadInterface-bg"
+     [ngClass]="{'showInterface':showInterface,'uploaded':selectedFiles.length!==0}">
+<!--<div class="uploadInterface-bg showInterface" >-->
   <div class="uploadInterface">
     <div class="uploadInterface-header">
       <p class="uploadInterface-header-title">{{text}}</p>
@@ -31,6 +31,9 @@
           </span>
         </div>
     </div>
+    <div *ngFor="let file of selectedFiles">
+      <app-upload-progress [fileContent]="file" (removeFile)="handleRemoveFile($event)"></app-upload-progress>
+    </div>
     <div class="uploadInterface-footer">
       <button class="uploadInterfaceFooter-btn cancelBtn" (click)="handelCloseInterfaceClick()">
         <img src="assets/Close.svg">
@@ -41,5 +44,6 @@
         <img src="assets/TrailingIcon.svg">
       </button>
     </div>
+
   </div>
 </div>
