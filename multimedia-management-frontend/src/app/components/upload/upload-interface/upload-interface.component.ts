@@ -13,17 +13,19 @@ export class UploadInterfaceComponent {
   @Input() showInterface?:boolean
   @Input() text?:String
   @Output() closeUploadEvent=new EventEmitter<boolean>();
-  @ViewChild (UploadInterfaceStep1Component) childComponent?: UploadInterfaceStep1Component;
+  @ViewChild (UploadInterfaceStep1Component) step1Component?: UploadInterfaceStep1Component;
 
-  fileObject:FileObject={
-    createdBy:"fartasanas",
+  fileObjectInitialValue:FileObject={
+    createdBy:"",
     fileName:"",
-    description:"From Front",
-    type:"IMAGE",
+    description:"",
+    type:"",
     version:"VF",
     state:"PUBLISHED"
   }
+  fileObject:FileObject={ ...this.fileObjectInitialValue };
   selectedFile?: FileInput | undefined;
+  currentStep:String="Step1"
   constructor(private fileService:FileService) {
   }
 
@@ -31,21 +33,19 @@ export class UploadInterfaceComponent {
     this.showInterface = false;
     this.closeUploadEvent.emit(this.showInterface);
     this.selectedFile=undefined
-    this.childComponent?.clearInputValue()
+    this.currentStep="Step1"
+    this.step1Component?.clearInputValue()
+    this.fileObject={ ...this.fileObjectInitialValue };
   }
   handleFileEvent(fileInput: FileInput) {
     this.selectedFile=fileInput;
   }
-  handleRemoveFile(fileInput: FileInput) {
-    this.selectedFile = undefined;
-  }
-
   handleUploadFile() {
-    console.log("Uploading......",this.selectedFile)
     if(this.selectedFile?.file){
       this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
         data=>{
           console.log(data)
+          this.handelCloseInterfaceClick()
         },
         error => {
           console.error('Login error:', error.status);
@@ -53,7 +53,11 @@ export class UploadInterfaceComponent {
       )
     }
   }
+  handleSwitchStep(): void {
+    this.currentStep = this.currentStep === "Step1" ? "Step2" : "Step1";
+  }
 
-
-
+  handleFileObjectChange(newFileObject: FileObject) {
+    this.fileObject=newFileObject;
+  }
 }

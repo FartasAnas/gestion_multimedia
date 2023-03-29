@@ -1,6 +1,6 @@
 <div class="uploadInterface-bg"
      [ngClass]="{'showInterface':showInterface,'uploaded':selectedFile}">
-  <!--<div class="uploadInterface-bg showInterface" >-->
+<!--  <div class="uploadInterface-bg showInterface uploaded" >-->
   <div class="uploadInterface">
     <div class="uploadInterface-header">
       <p class="uploadInterface-header-title">{{text}}</p>
@@ -8,15 +8,30 @@
         <img src="assets/XIcon.svg" class="svg-icon" >
       </div>
     </div>
-    <app-upload-interface-step1 [selectedFile]="selectedFile" (fileEvent)="handleFileEvent($event)"></app-upload-interface-step1>
+    <div *ngIf="currentStep=='Step1'">
+      <app-upload-interface-step1 [selectedFile]="selectedFile" (fileEvent)="handleFileEvent($event)"></app-upload-interface-step1>
+    </div>
+    <div *ngIf="currentStep=='Step2'">
+      <app-upload-interface-step2 [fileObject]="fileObject" (fileObjectChange)="handleFileObjectChange($event)"></app-upload-interface-step2>
+    </div>
+
+
     <div class="uploadInterface-footer">
       <button class="uploadInterfaceFooter-btn cancelBtn" (click)="handelCloseInterfaceClick()">
         <img src="assets/Close.svg">
         <p class="uploadInterfaceFooter-txt cancelTxt">Annuler</p>
       </button>
-      <button class="uploadInterfaceFooter-btn nextBtn" (click)="handleUploadFile()">
-        <p class="uploadInterfaceFooter-txt nextTxt">Suivant</p>
+      <button class="uploadInterfaceFooter-btn" (click)="handleSwitchStep()" [ngClass]="{'disabled':!selectedFile}"  [disabled]="!selectedFile" *ngIf="currentStep=='Step1'">
+        <p class="uploadInterfaceFooter-txt">Suivant</p>
         <img src="assets/TrailingIcon.svg">
+      </button>
+      <button class="uploadInterfaceFooter-btn" (click)="handleSwitchStep()" *ngIf="currentStep=='Step2'">
+        <img src="assets/ArrowLeft.svg">
+        <p class="uploadInterfaceFooter-txt">Précédent</p>
+      </button>
+      <button class="uploadInterfaceFooter-btn" [ngClass]="{'disabled':!(fileObject.state!=='' && fileObject.version!=='')}"  (click)="handleUploadFile()" [disabled]="!(fileObject.state!=='' && fileObject.version!=='')" *ngIf="currentStep=='Step2'">
+        <img src="assets/Check.svg">
+        <p class="uploadInterfaceFooter-txt">Enregistrer</p>
       </button>
     </div>
   </div>
