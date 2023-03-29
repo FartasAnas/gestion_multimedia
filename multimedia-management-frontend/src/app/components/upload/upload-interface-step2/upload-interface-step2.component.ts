@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import FileObject from "../../../entities/FileObject";
 
 @Component({
   selector: 'app-upload-interface-step2',
@@ -6,12 +7,14 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrls: ['./upload-interface-step2.component.css']
 })
 export class UploadInterfaceStep2Component {
-  @Input() showInterface?:boolean
-  @Input() text?:String
-  @Output() closeUploadEvent=new EventEmitter<boolean>();
-
-  handelCloseInterfaceClick() {
-    this.showInterface = false;
-    this.closeUploadEvent.emit(this.showInterface);
+  @Input() fileObject:FileObject={
+    createdBy:"",
+    fileName:"",
+    description:"",
+    type:"",
+    version:"",
+    state:""
   }
+  @Output() fileObjectChange = new EventEmitter<FileObject>();
+
 }

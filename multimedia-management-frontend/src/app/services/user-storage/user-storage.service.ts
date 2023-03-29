@@ -14,7 +14,13 @@ export class UserStorageService {
     window.sessionStorage.setItem(USER_KEY,JSON.stringify(user))
   }
   public getUser(): any {
-    return sessionStorage.getItem(USER_KEY)
+    const user = sessionStorage.getItem(USER_KEY);
+    if (!user) {
+      return null;
+    }
+    return {
+      ...JSON.parse(user),
+    };
   }
   public signOut(): void {
     window.sessionStorage.clear();

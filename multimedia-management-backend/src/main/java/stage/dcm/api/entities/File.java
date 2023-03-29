@@ -33,8 +33,8 @@ public class File {
 
     private String description;
 
-    private FileType type;
-
+//    private FileType type;
+    private String type;
     private FileVersion version;
 
     private FileState state;

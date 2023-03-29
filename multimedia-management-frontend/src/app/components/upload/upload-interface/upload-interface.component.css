@@ -109,19 +109,16 @@
   justify-content: center;
   align-items: center;
   padding: 8px;
-  width: 104px;
   height: 40px;
   box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
   border-radius: 5px;
   gap: 8px;
-}
-.cancelBtn{
-  background: #FFFFFF;
-  border: 1px solid #105DFB;
-}
-.nextBtn{
   background: #ECEFF1;
   border: 1px solid #ECEFF1;
+}
+.cancelBtn{
+  background: #FFFFFF!important;
+  border: 1px solid #105DFB!important;
 }
 .uploadInterfaceFooter-txt{
   font-family: 'Inter';
@@ -129,16 +126,17 @@
   font-size: 14px;
   line-height: 20px;
   letter-spacing: -0.1px;
+  color: #FFFFFF;
 }
 .cancelTxt{
   color: #105DFB;
 }
-.nextTxt{
+.disabled .uploadInterfaceFooter-txt{
   color: #8D9CAD;
 }
 .cancelBtn:hover,
-.nextBtn:hover .uploaded{
-  background: #1650CF;
+.uploaded .uploadInterfaceFooter-btn:hover {
+  background: #1650CF!important;
   cursor: pointer;
 }
 .cancelBtn:hover .uploadInterfaceFooter-txt{
@@ -149,9 +147,7 @@
   display: flex;
 }
 
-.uploaded .nextBtn{
+.uploaded .uploadInterfaceFooter-btn:not(.disabled){
   background: #105DFB;
-}
-.uploaded .nextTxt{
-  color: #FFFFFF;
+  color: #8D9CAD!important;
 }
