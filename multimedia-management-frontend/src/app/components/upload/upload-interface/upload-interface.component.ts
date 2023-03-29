@@ -1,7 +1,8 @@
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import FileObject from "../../../entities/FileObject";
 import FileInput from "../../../entities/FileInput";
 import {FileService} from "../../../services/file/file.service";
-import FileObject from "../../../entities/FileObject";
+import {UploadInterfaceStep1Component} from "../upload-interface-step1/upload-interface-step1.component";
 
 @Component({
   selector: 'app-upload-interface',
@@ -9,66 +10,50 @@ import FileObject from "../../../entities/FileObject";
   styleUrls: ['./upload-interface.component.css']
 })
 export class UploadInterfaceComponent {
-    @Input() showInterface?:boolean
-    @Input() text?:String
-    @Output() closeUploadEvent=new EventEmitter<boolean>();
-    @ViewChild('uploadInput') uploadInput?:ElementRef<HTMLInputElement>;
+  @Input() showInterface?:boolean
+  @Input() text?:String
+  @Output() closeUploadEvent=new EventEmitter<boolean>();
+  @ViewChild (UploadInterfaceStep1Component) childComponent?: UploadInterfaceStep1Component;
 
-    fileObject:FileObject={
-      createdBy:"fartasanas",
-      fileName:"",
-      description:"From Front",
-      type:"IMAGE",
-      version:"VF",
-      state:"PUBLISHED"
-    }
-    selectedFile?: FileInput | undefined;
-    constructor(private fileService:FileService) {
-    }
+  fileObject:FileObject={
+    createdBy:"fartasanas",
+    fileName:"",
+    description:"From Front",
+    type:"IMAGE",
+    version:"VF",
+    state:"PUBLISHED"
+  }
+  selectedFile?: FileInput | undefined;
+  constructor(private fileService:FileService) {
+  }
 
-    handelCloseInterfaceClick() {
-      this.showInterface = false;
-      this.closeUploadEvent.emit(this.showInterface);
-      this.selectedFile=undefined
-      if (this.uploadInput) {
-        this.uploadInput.nativeElement.value = '';
-      }
-    }
+  handelCloseInterfaceClick() {
+    this.showInterface = false;
+    this.closeUploadEvent.emit(this.showInterface);
+    this.selectedFile=undefined
+    this.childComponent?.clearInputValue()
+  }
+  handleFileEvent(fileInput: FileInput) {
+    this.selectedFile=fileInput;
+  }
+  handleRemoveFile(fileInput: FileInput) {
+    this.selectedFile = undefined;
+  }
 
-    uploadFile() {
-      this.uploadInput?.nativeElement.click()
-    }
-
-    handleUploadInput(event: Event) {
-      const inputElement = event.target as HTMLInputElement;
-      const files = inputElement.files;
-      if (files && files.length > 0) {
-        const file = files[0];
-        if (file.size <= 50 * 1024 * 1024) { // exclude files larger than 50MB
-          this.selectedFile = {
-            file: file,
-            fileUrl: URL.createObjectURL(file)
-          };
+  handleUploadFile() {
+    console.log("Uploading......",this.selectedFile)
+    if(this.selectedFile?.file){
+      this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
+        data=>{
+          console.log(data)
+        },
+        error => {
+          console.error('Login error:', error.status);
         }
-        console.log(this.selectedFile);
-      }
+      )
     }
+  }
 
-    handleRemoveFile(fileInput: FileInput) {
-      this.selectedFile = undefined;
-    }
 
-    handleUploadFile() {
-      if(this.selectedFile?.file){
-        console.log("Uploading.....")
-        this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
-          data=>{
-            console.log(data)
-          },
-          error => {
-            console.error('Login error:', error.status);
-          }
-        )
-      }
-    }
+
 }

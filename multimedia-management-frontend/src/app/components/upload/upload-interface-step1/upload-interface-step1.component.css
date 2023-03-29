@@ -1,0 +1,115 @@
+.uploadInterfaceStep1{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.uploadInterfaceStepper{
+  display: flex;
+  flex-direction: row;
+}
+.uploadInterfaceStep {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  gap: 10px;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.step1 {
+  width: 197px;
+  background: #D7E3FC;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.step2 {
+  width: 335px;
+  background: #ECEFF1;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.step1-text{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.1px;
+  color: #105DFB;
+}
+.step2-text{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.1px;
+  color: #8D9CAD;
+}
+.uploadInterface-Body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 46px 98px;
+  gap: 10px;
+  width: 532px;
+  height: 194px;
+  background: #FFFFFF;
+  border: 1px dashed #C6CED6;
+  border-radius: 12px;
+}
+.uploadInterface-Body:hover:not(.uploaded .uploadInterface-Body){
+  border: 1px dashed #105DFB;
+  background: #EBF1FD;
+  cursor: pointer;
+}
+
+.uploadInterfaceBody-txt {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+}
+.uploadInterfaceBody-txt1 {
+  width: 355px;
+  font-size: 14px;
+  font-family: Inter;
+  font-weight: 400;
+  letter-spacing: -0.1px;
+  line-height: 20px;
+  text-decoration: none;
+}
+.uploadInterfaceBody-txt1-1 {
+  color: #105DFB;
+  text-decoration: UNDERLINE;
+}
+.uploadInterfaceBody-txt1-2 {
+  color: #0B2866;
+}
+.uploadInterfaceBody-txt2 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.1px;
+  color: #8D9CAD;
+}
+.upload-input{
+  display: none;
+}
+.uploaded .uploadInterfaceBody-txt1-1,
+.uploaded .uploadInterfaceBody-txt1-2 {
+  color: #8D9CAD;
+}

@@ -1,6 +1,6 @@
 <div class="uploadInterface-bg"
      [ngClass]="{'showInterface':showInterface,'uploaded':selectedFile}">
-<!--<div class="uploadInterface-bg showInterface" >-->
+  <!--<div class="uploadInterface-bg showInterface" >-->
   <div class="uploadInterface">
     <div class="uploadInterface-header">
       <p class="uploadInterface-header-title">{{text}}</p>
@@ -8,32 +8,7 @@
         <img src="assets/XIcon.svg" class="svg-icon" >
       </div>
     </div>
-    <div class="uploadInterfaceStepper">
-        <div class="uploadInterfaceStep step1">
-          <img src="../../../../assets/CurrentStepIcon.png">
-          <p class="step1-text">Importer le fichier</p>
-        </div>
-        <div class="uploadInterfaceStep step2">
-          <img src="assets/IncompleteStepIcon.svg">
-          <p class="step2-text">Ajouter les informations liées au fichier</p>
-        </div>
-    </div>
-    <div class="uploadInterface-Body" (click)="uploadFile()">
-      <img src="assets/FileArrowDown.svg">
-        <div class="uploadInterfaceBody-txt">
-          <span class="uploadInterfaceBody-txt1">
-            <span class="uploadInterfaceBody-txt1-1">Cliquez pour télécharger</span>
-            <input type="file" class="upload-input" (change)="handleUploadInput($event)" #uploadInput/>
-            <span class="uploadInterfaceBody-txt1-2"> ou faites glisser et déposez.</span>
-          </span>
-          <span class="uploadInterfaceBody-txt2">
-            <span>Taille de fichier maximale 50 Mo.</span>
-          </span>
-        </div>
-    </div>
-    <div *ngIf="selectedFile">
-      <app-upload-progress [fileContent]="selectedFile" (removeFile)="handleRemoveFile($event)"></app-upload-progress>
-    </div>
+    <app-upload-interface-step1 [selectedFile]="selectedFile" (fileEvent)="handleFileEvent($event)"></app-upload-interface-step1>
     <div class="uploadInterface-footer">
       <button class="uploadInterfaceFooter-btn cancelBtn" (click)="handelCloseInterfaceClick()">
         <img src="assets/Close.svg">
@@ -44,6 +19,5 @@
         <img src="assets/TrailingIcon.svg">
       </button>
     </div>
-
   </div>
 </div>

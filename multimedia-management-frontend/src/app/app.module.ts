@@ -12,8 +12,10 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { SidebarButtonComponent } from './components/sidebar-button/sidebar-button.component';
 import { ImagesLayoutComponent } from './layouts/images-layout/images-layout.component';
 import { UploadBtnComponent } from './components/upload/upload-btn/upload-btn.component';
-import { UploadInterfaceComponent } from './components/upload/upload-interface/upload-interface.component';
+import { UploadInterfaceStep1Component } from './components/upload/upload-interface-step1/upload-interface-step1.component';
 import { UploadProgressComponent } from './components/upload/upload-progress/upload-progress.component';
+import { UploadInterfaceStep2Component } from './components/upload/upload-interface-step2/upload-interface-step2.component';
+import { UploadInterfaceComponent } from './components/upload/upload-interface/upload-interface.component';
 
 
 @NgModule({
@@ -26,8 +28,10 @@ import { UploadProgressComponent } from './components/upload/upload-progress/upl
     SidebarButtonComponent,
     ImagesLayoutComponent,
     UploadBtnComponent,
-    UploadInterfaceComponent,
-    UploadProgressComponent
+    UploadInterfaceStep1Component,
+    UploadProgressComponent,
+    UploadInterfaceStep2Component,
+    UploadInterfaceComponent
   ],
   imports: [
     BrowserModule,
