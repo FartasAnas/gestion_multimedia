@@ -15,6 +15,8 @@ import stage.dcm.api.servicesImp.FileServices;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -25,12 +27,14 @@ public class FileServicesImp implements FileServices {
     private final UserRepository userRepository;
 
     @Override
-    public File saveFile(File file, MultipartFile multipartFile) throws NotFoundException {
+    public File saveFile(File file, MultipartFile multipartFiles) throws NotFoundException {
+        Random random = new Random();
         file.setUser(userRepository.findByUsername(file.getCreatedBy()));
         if(file.getUser()!=null) {
-            String fullPath = String.join("/", file.getUser().getId().toString(), file.getId().toString(), file.getType().toString(), file.getFileName());
+            file.setId(Math.abs(random.nextLong()) % 1000000000000000L);
+            String fullPath = String.join("/", file.getUser().getUsername(), file.getType().toString(),file.getId().toString(), file.getFileName());
             try {
-                minioService.upload(fullPath, multipartFile.getInputStream());
+                minioService.upload(fullPath, multipartFiles.getInputStream());
                 file.setFilepath(fullPath);
                 return fileRepository.save(file);
             } catch (IOException | MinioException e) {
@@ -38,13 +42,13 @@ public class FileServicesImp implements FileServices {
             }
         }
         else {
-            throw new NotFoundException("user not found");
+            throw new NotFoundException("User not found");
         }
     }
 
     @Override
-    public File getFileById(Long id) {
-        return fileRepository.findById(id).orElse(null);
+    public File getFileById(Long id) throws NotFoundException {
+        return fileRepository.findById(id).orElseThrow(() -> new NotFoundException("User was not found"));
     }
 
     @Override
@@ -58,7 +62,7 @@ public class FileServicesImp implements FileServices {
     }
 
     @Override
-    public File updateFile(Long id, File file) {
+    public File updateFile(Long id, File file) throws NotFoundException {
         File fileToUpdate=getFileById(id);
         fileToUpdate.setFileName( file.getFileName()!=null ? file.getFileName() : fileToUpdate.getFileName() );
         fileToUpdate.setCreationDate( file.getCreationDate()!=null ? file.getCreationDate() : fileToUpdate.getCreationDate() );
@@ -70,7 +74,7 @@ public class FileServicesImp implements FileServices {
     }
 
     @Override
-    public void deleteFile(Long id) {
+    public void deleteFile(Long id) throws NotFoundException {
         File file=getFileById(id);
         try {
             if(file!=null){

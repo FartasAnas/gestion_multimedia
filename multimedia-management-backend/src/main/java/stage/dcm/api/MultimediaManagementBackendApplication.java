@@ -33,7 +33,7 @@ public class MultimediaManagementBackendApplication {
 						.allowedOrigins("http://172.16.16.244:4200","http://localhost:4200","http://192.168.0.106:4200")
 						.allowedMethods("*")
 						.allowedHeaders("*")
-						.exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
+						.exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "Access-Control-Allow-Headers", "Access-Control-Allow-Methods")
 						.allowCredentials(true);
 			}
 		};

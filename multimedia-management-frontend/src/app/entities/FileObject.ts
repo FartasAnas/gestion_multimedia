@@ -1,8 +1,6 @@
-import User from "./User";
-
 export default interface FileObject {
-  createdBy:User;
-  fileName:String;
+  createdBy?:String;
+  fileName?:String;
   description:String;
   type:String;
   version:String;

@@ -155,7 +155,8 @@
 .nextTxt{
   color: #8D9CAD;
 }
-.cancelBtn:hover{
+.cancelBtn:hover,
+.nextBtn:hover .uploaded{
   background: #1650CF;
   cursor: pointer;
 }

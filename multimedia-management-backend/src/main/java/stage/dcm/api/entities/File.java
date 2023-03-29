@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 import stage.dcm.api.enums.FileState;
 import stage.dcm.api.enums.FileType;
 import stage.dcm.api.enums.FileVersion;
@@ -16,7 +17,7 @@ import java.util.Date;
 @Entity @Data @Table(name = "file")
 @NoArgsConstructor @AllArgsConstructor
 public class File {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
 
     private String createdBy;

@@ -15,6 +15,7 @@ import { UploadBtnComponent } from './components/upload/upload-btn/upload-btn.co
 import { UploadInterfaceComponent } from './components/upload/upload-interface/upload-interface.component';
 import { UploadProgressComponent } from './components/upload/upload-progress/upload-progress.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,5 +1,5 @@
 <div class="uploadInterface-bg"
-     [ngClass]="{'showInterface':showInterface,'uploaded':selectedFiles.length!==0}">
+     [ngClass]="{'showInterface':showInterface,'uploaded':selectedFile}">
 <!--<div class="uploadInterface-bg showInterface" >-->
   <div class="uploadInterface">
     <div class="uploadInterface-header">
@@ -10,7 +10,7 @@
     </div>
     <div class="uploadInterfaceStepper">
         <div class="uploadInterfaceStep step1">
-          <img src="assets/currentStepIcon.svg">
+          <img src="../../../../assets/CurrentStepIcon.png">
           <p class="step1-text">Importer le fichier</p>
         </div>
         <div class="uploadInterfaceStep step2">
@@ -23,7 +23,7 @@
         <div class="uploadInterfaceBody-txt">
           <span class="uploadInterfaceBody-txt1">
             <span class="uploadInterfaceBody-txt1-1">Cliquez pour télécharger</span>
-            <input type="file" class="upload-input" (change)="handleUploadInput($event)" #uploadInput multiple/>
+            <input type="file" class="upload-input" (change)="handleUploadInput($event)" #uploadInput/>
             <span class="uploadInterfaceBody-txt1-2"> ou faites glisser et déposez.</span>
           </span>
           <span class="uploadInterfaceBody-txt2">
@@ -31,16 +31,16 @@
           </span>
         </div>
     </div>
-    <div *ngFor="let file of selectedFiles">
-      <app-upload-progress [fileContent]="file" (removeFile)="handleRemoveFile($event)"></app-upload-progress>
+    <div *ngIf="selectedFile">
+      <app-upload-progress [fileContent]="selectedFile" (removeFile)="handleRemoveFile($event)"></app-upload-progress>
     </div>
     <div class="uploadInterface-footer">
       <button class="uploadInterfaceFooter-btn cancelBtn" (click)="handelCloseInterfaceClick()">
         <img src="assets/Close.svg">
         <p class="uploadInterfaceFooter-txt cancelTxt">Annuler</p>
       </button>
-      <button class="uploadInterfaceFooter-btn nextBtn">
-        <p class="uploadInterfaceFooter-txt nextTxt" >Suivant</p>
+      <button class="uploadInterfaceFooter-btn nextBtn" (click)="handleUploadFile()">
+        <p class="uploadInterfaceFooter-txt nextTxt">Suivant</p>
         <img src="assets/TrailingIcon.svg">
       </button>
     </div>
