@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./images-layout.component.css']
 })
 export class ImagesLayoutComponent {
-
+  imageUrl = 'http://localhost:8100/files/download/967278519775726';
 }

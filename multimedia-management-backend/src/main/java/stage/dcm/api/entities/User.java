@@ -1,5 +1,6 @@
 package stage.dcm.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles=new ArrayList<>();
 
-//    @OneToMany(fetch = FetchType.EAGER)
-//    private Collection<File> files=new ArrayList<>();
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+    @JsonIncludeProperties(value = {"id","fileName","type","filepath"})
+    private Collection<File> files=new ArrayList<>();
 }

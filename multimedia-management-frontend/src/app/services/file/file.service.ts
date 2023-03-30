@@ -13,8 +13,8 @@ export class FileService {
   constructor(private http:HttpClient,private userStorageService:UserStorageService) { }
 
   saveFile(file: File, fileObject: FileObject): Observable<FileObject> {
+    console.log(fileObject)
     fileObject.fileName = file.name;
-    fileObject.type=file.type
     fileObject.createdBy=this.userStorageService.getUser().username;
     const headers = new HttpHeaders();
     const formData: FormData = new FormData();

@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
 import stage.dcm.api.enums.FileState;
 import stage.dcm.api.enums.FileType;
 import stage.dcm.api.enums.FileVersion;
@@ -22,7 +21,8 @@ public class File {
 
     private String createdBy;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     @JsonIncludeProperties(value = {"id","username","email"})
     private User user;
 
@@ -33,8 +33,8 @@ public class File {
 
     private String description;
 
-//    private FileType type;
-    private String type;
+    private FileType type;
+//    private String type;
     private FileVersion version;
 
     private FileState state;

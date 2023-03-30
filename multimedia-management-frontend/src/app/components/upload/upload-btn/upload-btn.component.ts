@@ -7,6 +7,7 @@ import {Component, Input} from '@angular/core';
 })
 export class UploadBtnComponent {
   @Input() text?:String
+  @Input() fileType?:String
   clicked:boolean=false
   handleClick() {
     this.clicked = !this.clicked;

@@ -1,35 +1,42 @@
 package stage.dcm.api.services;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ma.indh.minio.exception.MinioException;
 import ma.indh.minio.service.MinioService;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import stage.dcm.api.entities.File;
+import stage.dcm.api.entities.User;
 import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.repositories.FileRepository;
-import stage.dcm.api.repositories.UserRepository;
 import stage.dcm.api.servicesImp.FileServices;
 
 
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
-@RequiredArgsConstructor
+@RequiredArgsConstructor @Slf4j
 public class FileServicesImp implements FileServices {
     private final MinioService minioService;
     private final FileRepository fileRepository;
-    private final UserRepository userRepository;
+    private final UserServices userServices;
 
     @Override
     public File saveFile(File file, MultipartFile multipartFiles) throws NotFoundException {
         Random random = new Random();
-        file.setUser(userRepository.findByUsername(file.getCreatedBy()));
+        file.setUser(userServices.getUserByUsername(file.getCreatedBy()));
         if(file.getUser()!=null) {
             file.setId(Math.abs(random.nextLong()) % 1000000000000000L);
             String fullPath = String.join("/", file.getUser().getUsername(), file.getType().toString(),file.getId().toString(), file.getFileName());
@@ -49,6 +56,29 @@ public class FileServicesImp implements FileServices {
     @Override
     public File getFileById(Long id) throws NotFoundException {
         return fileRepository.findById(id).orElseThrow(() -> new NotFoundException("User was not found"));
+    }
+
+    @Override
+    public void getFileObject(Long id, HttpServletResponse response) throws NotFoundException, MinioException, IOException {
+        File fileDto= getFileById(id);
+        String path = fileDto.getFilepath();
+        InputStream inputStream = minioService.get(path);
+        response.addHeader("Content-disposition", "attachment;filename=" + fileDto.getFileName());
+        response.setContentType(URLConnection.guessContentTypeFromName(fileDto.getFileName()));
+        IOUtils.copy(inputStream, response.getOutputStream());
+        response.flushBuffer();
+    }
+
+    @Override
+    public Collection<File> getUserFilesByType(String username, String type) throws NotFoundException {
+        User userDto = userServices.getUserByUsername(username);
+        if (userDto != null) {
+            return userDto.getFiles().stream()
+                    .filter(file -> file.getType().toString().equals(type))
+                    .collect(Collectors.toList());
+        } else {
+            throw new NotFoundException("User Not Found");
+        }
     }
 
     @Override

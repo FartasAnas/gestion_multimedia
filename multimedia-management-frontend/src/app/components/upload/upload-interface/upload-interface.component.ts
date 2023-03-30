@@ -10,6 +10,7 @@ import {UploadInterfaceStep1Component} from "../upload-interface-step1/upload-in
   styleUrls: ['./upload-interface.component.css']
 })
 export class UploadInterfaceComponent {
+  @Input() fileType?:String
   @Input() showInterface?:boolean
   @Input() text?:String
   @Output() closeUploadEvent=new EventEmitter<boolean>();
@@ -19,6 +20,7 @@ export class UploadInterfaceComponent {
     createdBy:"",
     fileName:"",
     description:"",
+    // this line gives this error Type 'String | undefined' is not assignable to type 'String'.   Type 'undefined' is not assignable to type 'String'. fix it
     type:"",
     version:"VF",
     state:"PUBLISHED"
@@ -41,17 +43,17 @@ export class UploadInterfaceComponent {
     this.selectedFile=fileInput;
   }
   handleUploadFile() {
-    if(this.selectedFile?.file){
-      this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
-        data=>{
-          console.log(data)
-          this.handelCloseInterfaceClick()
-        },
-        error => {
-          console.error('Login error:', error.status);
-        }
-      )
-    }
+    if(this.selectedFile?.file && this.fileType){
+        this.fileObject.type = this.fileType
+        this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
+          data=>{
+            this.handelCloseInterfaceClick()
+          },
+          error => {
+            console.error('Upload error:', error);
+          }
+        )
+      }
   }
   handleSwitchStep(): void {
     this.currentStep = this.currentStep === "Step1" ? "Step2" : "Step1";
