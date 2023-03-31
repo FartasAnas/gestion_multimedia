@@ -2,7 +2,6 @@ package stage.dcm.api.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,13 +11,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import stage.dcm.api.security.filters.CustomAuthenticationFilter;
 import stage.dcm.api.security.filters.CustomAuthorizationFilter;
-import stage.dcm.api.services.CustomUserDetailsService;
-import stage.dcm.api.services.UserServices;
+import stage.dcm.api.servicesImp.CustomUserDetailsService;
+import stage.dcm.api.servicesImp.UserServices;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 

@@ -1,4 +1,4 @@
-package stage.dcm.api.servicesImp;
+package stage.dcm.api.services;
 
 import ma.indh.minio.exception.MinioException;
 import org.springframework.web.multipart.MultipartFile;

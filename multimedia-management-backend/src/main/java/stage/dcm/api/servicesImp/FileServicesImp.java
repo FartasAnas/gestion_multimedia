@@ -1,4 +1,4 @@
-package stage.dcm.api.services;
+package stage.dcm.api.servicesImp;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,7 @@ import stage.dcm.api.entities.File;
 import stage.dcm.api.entities.User;
 import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.repositories.FileRepository;
-import stage.dcm.api.servicesImp.FileServices;
+import stage.dcm.api.services.FileServices;
 
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +19,6 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;

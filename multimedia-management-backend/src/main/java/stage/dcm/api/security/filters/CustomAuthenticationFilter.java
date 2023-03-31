@@ -13,7 +13,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import stage.dcm.api.services.UserServices;
+import stage.dcm.api.servicesImp.UserServices;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

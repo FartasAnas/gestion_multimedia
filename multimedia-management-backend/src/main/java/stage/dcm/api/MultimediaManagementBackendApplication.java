@@ -1,24 +1,18 @@
 package stage.dcm.api;
 
-import ma.indh.minio.service.MinioService;
-import ma.indh.minio.service.impl.MinioServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import stage.dcm.api.entities.Role;
 import stage.dcm.api.entities.User;
-import stage.dcm.api.services.RoleServices;
-import stage.dcm.api.services.UserServices;
+import stage.dcm.api.servicesImp.RoleServices;
+import stage.dcm.api.servicesImp.UserServices;
 
 import java.util.ArrayList;
 

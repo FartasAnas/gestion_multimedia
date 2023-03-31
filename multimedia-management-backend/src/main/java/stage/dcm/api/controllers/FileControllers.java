@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import stage.dcm.api.entities.File;
 import stage.dcm.api.exceptions.NotFoundException;
-import stage.dcm.api.servicesImp.FileServices;
+import stage.dcm.api.services.FileServices;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
