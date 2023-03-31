@@ -18,6 +18,7 @@ import { UploadInterfaceStep2Component } from './components/upload/upload-interf
 import { UploadInterfaceComponent } from './components/upload/upload-interface/upload-interface.component';
 import { ImageCardComponent } from './components/image-card/image-card.component';
 import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
+import { PageTitleComponent } from './components/page-title/page-title.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
     UploadInterfaceStep2Component,
     UploadInterfaceComponent,
     ImageCardComponent,
-    WebLayoutComponent
+    WebLayoutComponent,
+    PageTitleComponent
   ],
   imports: [
     BrowserModule,
