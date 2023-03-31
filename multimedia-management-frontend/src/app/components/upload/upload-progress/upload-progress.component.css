@@ -9,9 +9,11 @@
   border: 1px solid #ECEFF1;
   border-radius: 12px;
 }
-.uploadProgress-fileIcon{
+.uploadProgress-fileIcon img{
+  border-radius: 5px;
   height: 40px;
   width: 40px;
+  object-fit: cover;
 }
 .uploadProgress-content{
   display: flex;

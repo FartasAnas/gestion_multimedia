@@ -9,20 +9,20 @@ import FileInput from "../../../entities/FileInput";
 export class UploadInterfaceStep1Component {
   @Output() fileEvent=new EventEmitter<FileInput>();
   @ViewChild('uploadInput') uploadInput?:ElementRef<HTMLInputElement>;
-  @Input() selectedFile?: FileInput | undefined;
+  @Input() selectedFile?: FileInput;
 
-  handleUploadInput(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    const files = inputElement.files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      if (file.size <= 50 * 1024 * 1024) { // exclude files larger than 50MB
+  handleUploadInput(event: any) {
+    const file: File = event.target.files[0];
+    const reader = new FileReader();
+    if (file.size <= 50 * 1024 * 1024) {
+      reader.onload = (e: any) => {
         this.selectedFile = {
           file: file,
-          fileUrl: URL.createObjectURL(file)
+          fileUrl: file.type.startsWith('image/') ? e.target.result : null
         };
-        this.fileEvent.emit(this.selectedFile)
-      }
+      };
+      reader.readAsDataURL(file);
+      this.fileEvent.emit(this.selectedFile)
     }
   }
   handleRemoveFile(fileInput: FileInput) {

@@ -1,6 +1,7 @@
 <div class="uploadProgress" *ngIf="fileContent">
   <div class="uploadProgress-fileIcon">
-    <img src="assets/FileIcon.svg">
+    <img *ngIf="!fileContent.fileUrl" src="assets/FileIcon.svg">
+    <img *ngIf="fileContent.fileUrl" [src]="fileContent.fileUrl">
   </div>
   <div class="uploadProgress-content">
     <div class="uploadProgress-content-head">
