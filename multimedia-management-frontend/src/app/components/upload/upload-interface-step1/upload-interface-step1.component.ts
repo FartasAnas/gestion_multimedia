@@ -20,6 +20,7 @@ export class UploadInterfaceStep1Component {
           file: file,
           fileUrl: file.type.startsWith('image/') ? e.target.result : null
         };
+        this.fileEvent.emit(this.selectedFile)
       };
       reader.readAsDataURL(file);
       this.fileEvent.emit(this.selectedFile)
