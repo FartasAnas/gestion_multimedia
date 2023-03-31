@@ -18,8 +18,10 @@ export class HomePageComponent implements OnInit{
     if(this.userStorage.getUser()==null){
       this.route.navigate(['/'])
     }
-
     this.roles$=this.authenticationService.loadRoles()
+  }
+  getUsername():String{
+    return  this.userStorage.getUsername()
   }
 
 }

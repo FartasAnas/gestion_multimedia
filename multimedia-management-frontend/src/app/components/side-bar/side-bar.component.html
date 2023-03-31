@@ -3,7 +3,7 @@
     <img src="assets/logo.svg" alt="" class="sidebar-logo">
   </div>
   <div class="sidebarBody ">
-    <app-sidebar-button [content]="{name:'Accueil',icon:'assets/House.svg'}"></app-sidebar-button>
+    <app-sidebar-button [content]="{name:'Accueil',icon:'assets/House.svg',url:'home'}"></app-sidebar-button>
     <h1 class="sidebarBody-title">Librairie</h1>
     <app-sidebar-button [content]="{name:'Web',icon:'assets/Desktop.svg',url:'web'}" [hasChildren]="true" >
       <app-sidebar-button [content]="{name:'Images',icon:'assets/ImageSquare.svg',url:'web/images'}" [isChild]="true"></app-sidebar-button>

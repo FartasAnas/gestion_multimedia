@@ -1,4 +1,6 @@
 <div class="home-layout">
   <app-side-bar></app-side-bar>
+  <div class="home-layout-content">
+    <app-page-title [title]="'Bonjour, ' + (getUsername().valueOf() | titlecase) + ' !'"></app-page-title>
+  </div>
 </div>
-
