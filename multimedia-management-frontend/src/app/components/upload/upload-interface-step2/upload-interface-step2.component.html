@@ -15,14 +15,14 @@
         <span>Description</span>
         <span class="optional"> (facultatif)</span>
       </label>
-      <textarea id="description" name="description" class="contentForm-input" [(ngModel)]="fileObject.description" (ngModelChange)="fileObjectChange.emit(fileObject)"></textarea>
+      <textarea id="description" name="description" class="contentForm-input" *ngIf="fileObject" [(ngModel)]="fileObject.description" (ngModelChange)="fileObjectChange.emit(fileObject)"></textarea>
     </div>
     <div class="row-grp">
       <div class="input-group">
         <label class="contentForm-label" for="description">
           Version
         </label>
-        <select id="version" name="version" class="contentForm-input" [(ngModel)]="fileObject.version" (ngModelChange)="fileObjectChange.emit(fileObject)">
+        <select id="version" name="version" class="contentForm-input" *ngIf="fileObject" [(ngModel)]="fileObject.version" (ngModelChange)="fileObjectChange.emit(fileObject)">
           <option value="VF" selected >VF</option>
           <option value="VA">VA</option>
         </select>
@@ -31,7 +31,7 @@
         <label class="contentForm-label" for="description">
           Statut
         </label>
-        <select id="state" name="state" class="contentForm-input" [(ngModel)]="fileObject.state" (ngModelChange)="fileObjectChange.emit(fileObject)">
+        <select id="state" name="state" class="contentForm-input" *ngIf="fileObject" [(ngModel)]="fileObject.state" (ngModelChange)="fileObjectChange.emit(fileObject)">
           <option value="PUBLISHED" selected>Publié</option>
           <option value="PLANNED">Planifié</option>
           <option value="UNPUBLISHED">Non publié</option>

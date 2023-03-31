@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import stage.dcm.api.enums.FileCategory;
 import stage.dcm.api.enums.FileState;
 import stage.dcm.api.enums.FileType;
 import stage.dcm.api.enums.FileVersion;
@@ -33,11 +34,15 @@ public class File {
 
     private String description;
 
+    private String size;
+
     private FileType type;
 //    private String type;
     private FileVersion version;
 
     private FileState state;
+
+    private FileCategory category;
 
     private String filepath;
 

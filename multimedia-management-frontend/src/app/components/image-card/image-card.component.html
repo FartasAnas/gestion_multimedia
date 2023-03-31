@@ -1,0 +1,17 @@
+<div class="image-card" *ngIf="fileObject">
+  <div class="imageCard-image" *ngIf="hostname">
+    <img  [src]="'http://'+hostname+':8100/files/object/'+fileObject.id || ''">
+  </div>
+  <div class="image-card-info">
+    <div>
+      <p class="name-txt" >ID {{fileObject.id}}</p>
+      <div class="state-layout" *ngIf="fileObject.state" [ngClass]="fileObject.state.toLowerCase()">
+        <p>{{fileStateTranslate()}}</p>
+      </div>
+    </div>
+    <div>
+      <p class="supInfo-txt" *ngIf="fileObject.fileName" >{{fileObject.fileName.split(".")[1] | uppercase}} - {{fileObject.size}}</p>
+      <p class="supInfo-txt">{{fileObject.creationDate | date: 'dd/MM/yyyy'}} </p>
+    </div>
+  </div>
+</div>

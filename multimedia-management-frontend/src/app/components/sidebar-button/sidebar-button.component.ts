@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import SidebarBtnInput from "../../entities/SidebarBtnInput";
 import {Router} from "@angular/router";
 
@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   templateUrl: './sidebar-button.component.html',
   styleUrls: ['./sidebar-button.component.css']
 })
-export class SidebarButtonComponent {
+export class SidebarButtonComponent implements OnInit{
 
   clicked:boolean=false;
   @Input() content:SidebarBtnInput | undefined
@@ -23,9 +23,16 @@ export class SidebarButtonComponent {
 
   handleClass() {
     return {
-      'selected': this.clicked || (this.content?.url?.toLowerCase()==window.location.pathname),
+      'selected': this.clicked
+                  || ("/"+this.content?.url==window.location.pathname),
+                  // || (`"${window.location.pathname}" contains "${this.content?.url?.toLowerCase()}"`),
       'child': this.isChild,
       'hasChildren': this.hasChildren
+    }
+  }
+  ngOnInit(): void {
+    if(window.location.pathname.includes(this.content?.url as string)){
+      this.clicked=true
     }
   }
 }

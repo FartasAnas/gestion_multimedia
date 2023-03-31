@@ -5,8 +5,8 @@
   <div class="sidebarBody ">
     <app-sidebar-button [content]="{name:'Accueil',icon:'assets/House.svg'}"></app-sidebar-button>
     <h1 class="sidebarBody-title">Librairie</h1>
-    <app-sidebar-button [content]="{name:'Web',icon:'assets/Desktop.svg'}" [hasChildren]="true">
-      <app-sidebar-button [content]="{name:'Images',icon:'assets/ImageSquare.svg',url:'/home/web/images'}" [isChild]="true"></app-sidebar-button>
+    <app-sidebar-button [content]="{name:'Web',icon:'assets/Desktop.svg',url:'web'}" [hasChildren]="true" >
+      <app-sidebar-button [content]="{name:'Images',icon:'assets/ImageSquare.svg',url:'web/images'}" [isChild]="true"></app-sidebar-button>
       <app-sidebar-button [content]="{name:'Vidéos',icon:'assets/Video.svg'}" [isChild]="true"></app-sidebar-button>
       <app-sidebar-button [content]="{name:'Pictos',icon:'assets/Person.svg'}" [isChild]="true"></app-sidebar-button>
       <app-sidebar-button [content]="{name:'Documents',icon:'assets/FileDoc.svg'}" [isChild]="true"></app-sidebar-button>
@@ -23,7 +23,7 @@
   <div class="sidebarFooter">
     <div class="sidebarFooter-user" (click)="logOut()">
       <img src="assets/userLogo.svg" alt="" class="sidebar-userLogo">
-      <p class="sidebar-username">Hassania Mouachi</p>
+      <p class="sidebar-username">{{userStorage.getUsername()}}</p>
       <img src="assets/ArrowLineRight.svg" alt="" class="sidebar-arrowLine">
     </div>
   </div>

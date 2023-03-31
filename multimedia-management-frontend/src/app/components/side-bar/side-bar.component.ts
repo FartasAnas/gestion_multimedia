@@ -8,7 +8,7 @@ import {UserStorageService} from "../../services/user-storage/user-storage.servi
 })
 export class SideBarComponent {
 
-  constructor(private userStorage:UserStorageService) {
+  constructor(public userStorage:UserStorageService) {
   }
   logOut() {
     this.userStorage.signOut()

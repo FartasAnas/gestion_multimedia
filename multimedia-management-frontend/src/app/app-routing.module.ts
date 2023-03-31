@@ -3,15 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginLayoutComponent} from "./layouts/login-layout/login-layout.component";
 import {HomePageComponent} from "./layouts/home-page/home-page.component";
 import {ImagesLayoutComponent} from "./layouts/images-layout/images-layout.component";
+import {WebLayoutComponent} from "./layouts/web-layout/web-layout.component";
 
 const routes: Routes = [
   {path:'',component:LoginLayoutComponent},
   {path:"images",component:ImagesLayoutComponent},
+  {path:'home',component:HomePageComponent},
   {
-    path:'home',
-    component:HomePageComponent,
+    path:'web',
+    component:WebLayoutComponent,
     children:[
-      {path:"web/images",component:ImagesLayoutComponent}
+      {path:'images',component:ImagesLayoutComponent}
     ]
   }
 ];

@@ -16,6 +16,8 @@ import { UploadInterfaceStep1Component } from './components/upload/upload-interf
 import { UploadProgressComponent } from './components/upload/upload-progress/upload-progress.component';
 import { UploadInterfaceStep2Component } from './components/upload/upload-interface-step2/upload-interface-step2.component';
 import { UploadInterfaceComponent } from './components/upload/upload-interface/upload-interface.component';
+import { ImageCardComponent } from './components/image-card/image-card.component';
+import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { UploadInterfaceComponent } from './components/upload/upload-interface/u
     UploadInterfaceStep1Component,
     UploadProgressComponent,
     UploadInterfaceStep2Component,
-    UploadInterfaceComponent
+    UploadInterfaceComponent,
+    ImageCardComponent,
+    WebLayoutComponent
   ],
   imports: [
     BrowserModule,

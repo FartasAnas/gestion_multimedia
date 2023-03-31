@@ -5,8 +5,7 @@
     <img [src]="content.icon" alt="" class="sidebarBody-icon">
     <p class="sidebarBody-text">{{content.name}}</p>
   </div>
-<!--  <div *ngIf="hasChildren" class="child-menu" [ngClass]="{'unselected': !clicked}">-->
-    <div *ngIf="hasChildren" class="child-menu">
+  <div *ngIf="hasChildren" class="child-menu" [ngClass]="{'unselected': !this.clicked}">
     <ng-content></ng-content>
   </div>
 </div>

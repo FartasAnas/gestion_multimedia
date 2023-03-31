@@ -7,14 +7,7 @@ import FileObject from "../../../entities/FileObject";
   styleUrls: ['./upload-interface-step2.component.css']
 })
 export class UploadInterfaceStep2Component {
-  @Input() fileObject:FileObject={
-    createdBy:"",
-    fileName:"",
-    description:"",
-    type:"",
-    version:"",
-    state:""
-  }
+  @Input() fileObject?:FileObject
   @Output() fileObjectChange = new EventEmitter<FileObject>();
 
 }

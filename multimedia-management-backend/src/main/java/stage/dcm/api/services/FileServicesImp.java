@@ -38,10 +38,11 @@ public class FileServicesImp implements FileServices {
         Random random = new Random();
         file.setUser(userServices.getUserByUsername(file.getCreatedBy()));
         if(file.getUser()!=null) {
-            file.setId(Math.abs(random.nextLong()) % 1000000000000000L);
+            file.setId(Math.abs(random.nextLong()) % 10000000000L);
             String fullPath = String.join("/", file.getUser().getUsername(), file.getType().toString(),file.getId().toString(), file.getFileName());
             try {
                 minioService.upload(fullPath, multipartFiles.getInputStream());
+                file.setSize(formatFileSize(multipartFiles.getSize()));
                 file.setFilepath(fullPath);
                 return fileRepository.save(file);
             } catch (IOException | MinioException e) {
@@ -114,5 +115,18 @@ public class FileServicesImp implements FileServices {
         }catch (Exception e) {
             throw new IllegalStateException("The file cannot be remove", e);
         }
+    }
+
+    public String formatFileSize(long size) {
+        String[] units = {"B", "KB", "MB", "GB", "TB"};
+        int index = 0;
+        double formattedSize = size;
+
+        while (formattedSize >= 1024 && index < units.length - 1) {
+            formattedSize /= 1024;
+            index++;
+        }
+
+        return String.format("%.2f %s", formattedSize, units[index]);
     }
 }

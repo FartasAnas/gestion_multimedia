@@ -25,4 +25,11 @@ export class UserStorageService {
   public signOut(): void {
     window.sessionStorage.clear();
   }
+  public getUsername():String{
+    const user = sessionStorage.getItem(USER_KEY);
+    if (user) {
+      return JSON.parse(user).username;
+    }
+    return ""
+  }
 }

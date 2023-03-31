@@ -1,7 +1,16 @@
 <div class="imageLayout">
-  <div class="imageLayout-Title">
-    <p class="imageLayout-Title-text">Web / Images</p>
+  <div class="imageLayout-header">
+    <div class="imageLayout-Title">
+      <p class="imageLayout-Title-text">Web / Images</p>
+    </div>
+    <app-upload-btn (fileUploaded)="onFileUploaded()" text="Importer un fichier" fileType="IMAGE"></app-upload-btn>
   </div>
-  <img [src]="imageUrl">
-  <app-upload-btn text="Importer un ficher" fileType="IMAGE"></app-upload-btn>
+  <div class="imageLayout-Body">
+    <div class="imageLayout-Body-title">
+      <p>Fichiers</p>
+    </div>
+    <div class="imageLayout-Body-card">
+      <app-image-card  *ngFor="let fileObject of (fileObjects$ | async)" [fileObject]="fileObject" ></app-image-card>
+    </div>
+  </div>
 </div>

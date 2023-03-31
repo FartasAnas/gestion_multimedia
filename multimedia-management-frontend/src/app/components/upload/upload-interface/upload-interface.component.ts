@@ -14,13 +14,13 @@ export class UploadInterfaceComponent {
   @Input() showInterface?:boolean
   @Input() text?:String
   @Output() closeUploadEvent=new EventEmitter<boolean>();
+  @Output() fileUploaded = new EventEmitter();
   @ViewChild (UploadInterfaceStep1Component) step1Component?: UploadInterfaceStep1Component;
 
   fileObjectInitialValue:FileObject={
     createdBy:"",
     fileName:"",
     description:"",
-    // this line gives this error Type 'String | undefined' is not assignable to type 'String'.   Type 'undefined' is not assignable to type 'String'. fix it
     type:"",
     version:"VF",
     state:"PUBLISHED"
@@ -48,6 +48,8 @@ export class UploadInterfaceComponent {
         this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
           data=>{
             this.handelCloseInterfaceClick()
+            this.fileUploaded.emit()
+            // window.location.reload()
           },
           error => {
             console.error('Upload error:', error);

@@ -1,5 +1,4 @@
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import FileObject from "../../../entities/FileObject";
 import FileInput from "../../../entities/FileInput";
 
 @Component({
@@ -12,14 +11,6 @@ export class UploadInterfaceStep1Component {
   @ViewChild('uploadInput') uploadInput?:ElementRef<HTMLInputElement>;
   @Input() selectedFile?: FileInput | undefined;
 
-  fileObject:FileObject={
-    createdBy:"fartasanas",
-    fileName:"",
-    description:"From Front",
-    type:"IMAGE",
-    version:"VF",
-    state:"PUBLISHED"
-  }
   handleUploadInput(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     const files = inputElement.files;
