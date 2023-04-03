@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface FileServices {
     public File saveFile(File file,MultipartFile multipartFiles) throws NotFoundException;
+    public Long countFilesByType(String type);
     public File getFileById(Long id) throws NotFoundException;
     public void getFileObject(Long id, HttpServletResponse response) throws NotFoundException, MinioException, IOException;
     public Collection<File> getUserFilesByType(String username,String type) throws NotFoundException;

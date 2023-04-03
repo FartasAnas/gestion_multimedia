@@ -19,6 +19,7 @@ import { UploadInterfaceComponent } from './components/upload/upload-interface/u
 import { ImageCardComponent } from './components/image-card/image-card.component';
 import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
+import { HomeCardComponent } from './components/home-card/home-card.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { PageTitleComponent } from './components/page-title/page-title.component
     UploadInterfaceComponent,
     ImageCardComponent,
     WebLayoutComponent,
-    PageTitleComponent
+    PageTitleComponent,
+    HomeCardComponent
   ],
   imports: [
     BrowserModule,

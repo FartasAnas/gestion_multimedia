@@ -31,6 +31,11 @@ public class FileControllers {
         return fileServices.getFileById(id);
     }
 
+    @GetMapping("/count/{type}")
+    public Long countFilesByType(@PathVariable String type) {
+        return fileServices.countFilesByType(type);
+    }
+
     @GetMapping("/object/{id}")
     public void getFileObject(@PathVariable("id") Long id, HttpServletResponse response) throws MinioException, NotFoundException, IOException {
         fileServices.getFileObject(id, response);

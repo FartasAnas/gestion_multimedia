@@ -1,0 +1,35 @@
+.home-card{
+  display: flex;
+  flex-direction: row;
+  padding: 25px 15px;
+  gap: 15px;
+  width: 228.75px;
+  height: 111px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 1px rgba(24, 24, 28, 0.04), 0px 3px 4px rgba(24, 24, 28, 0.04);
+  border-radius: 8px;
+}
+.home-card-icon{
+  /*border-radius: 5px;*/
+  /*background: #D7E3FC;*/
+  padding-top: 4px;
+}
+.home-card-content{
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter';
+  font-style: normal;
+  color: #0B2866;
+  gap: 4px;
+}
+.home-card-content .number{
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+}
+.home-card-content .text{
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.1px;
+}

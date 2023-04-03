@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import stage.dcm.api.entities.File;
 import stage.dcm.api.entities.User;
+import stage.dcm.api.enums.FileType;
 import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.repositories.FileRepository;
 import stage.dcm.api.services.FileServices;
@@ -51,6 +52,11 @@ public class FileServicesImp implements FileServices {
         else {
             throw new NotFoundException("User not found");
         }
+    }
+
+    @Override
+    public Long countFilesByType(String type) {
+        return fileRepository.countByType(FileType.valueOf(type.toUpperCase()));
     }
 
     @Override

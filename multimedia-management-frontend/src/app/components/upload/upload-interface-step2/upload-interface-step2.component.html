@@ -13,7 +13,7 @@
     <div class="input-group">
       <label class="contentForm-label" for="description">
         <span>Description</span>
-        <span class="optional"> (facultatif)</span>
+        <span class="subtxt"> (facultatif)</span>
       </label>
       <textarea id="description" name="description" class="contentForm-input" *ngIf="fileObject" [(ngModel)]="fileObject.description" (ngModelChange)="fileObjectChange.emit(fileObject)"></textarea>
     </div>
@@ -38,6 +38,12 @@
           <option value="PENDING">En attente</option>
         </select>
       </div>
+    </div>
+    <div class="input-group">
+      <label class="contentForm-label" for="description">
+        <span>Mots-clés</span>
+        <span class="subtxt"> (maximum 20)</span>
+      </label>
     </div>
   </div>
 </div>

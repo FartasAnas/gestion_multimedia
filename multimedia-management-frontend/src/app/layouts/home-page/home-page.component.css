@@ -5,3 +5,12 @@
 .home-layout-content{
   margin: 72px 50px;
 }
+.home-layout-title{
+  margin-bottom: 91px;
+}
+.home-layout-card{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 18px;
+}

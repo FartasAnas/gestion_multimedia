@@ -44,7 +44,7 @@
 }
 
 .closeInterface-icon:hover{
-  background: red;
+  /*background: red;*/
   cursor: pointer;
 }
 .uploadInterfaceStepper{

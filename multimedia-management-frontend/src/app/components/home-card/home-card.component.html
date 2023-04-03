@@ -1,0 +1,9 @@
+<div class="home-card" *ngIf="homeCardObject">
+  <div class="home-card-icon">
+    <img [src]="homeCardObject.icon">
+  </div>
+  <div class="home-card-content">
+    <p class="number">{{homeCardObject.number}}</p>
+    <p class="text">{{homeCardObject.text}}</p>
+  </div>
+</div>

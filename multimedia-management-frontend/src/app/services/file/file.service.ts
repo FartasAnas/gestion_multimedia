@@ -17,7 +17,6 @@ export class FileService {
     console.log(window.location.pathname.split('/')[1])
     fileObject.fileName = file.name;
     fileObject.createdBy=this.currentUser;
-    // fix this error TS2722: Cannot invoke an object which is possibly 'undefined'.
     fileObject.category = window.location.pathname.split('/')[1].toUpperCase();
     const headers = new HttpHeaders();
     const formData: FormData = new FormData();
@@ -39,6 +38,9 @@ export class FileService {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     const size = parseFloat((bytes / Math.pow(k, i)).toFixed(1));
     return `${size} ${sizes[i-1]}`;
+  }
+  countFileByType(type:String){
+    return this.http.get<String>(`${this.apiUrl}/count/${type}`)
   }
 
 }
