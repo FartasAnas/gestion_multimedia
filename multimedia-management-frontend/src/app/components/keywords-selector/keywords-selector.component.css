@@ -12,7 +12,7 @@
   background: #FFFFFF;
   border: 1px solid #C6CED6;
   border-radius: 4px;
-  height: 40px;
+  min-height: 40px;
   padding: 8px;
 }
 .keywords-selector:hover{
@@ -21,6 +21,7 @@
 .selected-keywords{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 8px;
 }
 .keywords{
@@ -64,9 +65,10 @@
 .keyword-list{
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   overflow: scroll;
   overflow-x: hidden;
-  max-height: 276px;
+  max-height: 144px;
   border: 1px solid #C6CED6;
   border-radius: 4px;
   transition: 0.2s all ease;

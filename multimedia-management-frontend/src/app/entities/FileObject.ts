@@ -1,3 +1,5 @@
+import KeywordObject from "./KeywordObject";
+
 export default interface FileObject {
   id?:number;
   createdBy?:String;
@@ -9,4 +11,5 @@ export default interface FileObject {
   size?:String
   version?:String;
   state?:String;
+  keywords?:KeywordObject[]
 }

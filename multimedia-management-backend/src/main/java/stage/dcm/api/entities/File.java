@@ -12,6 +12,8 @@ import stage.dcm.api.enums.FileType;
 import stage.dcm.api.enums.FileVersion;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity @Data @Table(name = "file")
@@ -37,7 +39,7 @@ public class File {
     private String size;
 
     private FileType type;
-//    private String type;
+
     private FileVersion version;
 
     private FileState state;
@@ -45,5 +47,8 @@ public class File {
     private FileCategory category;
 
     private String filepath;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Keyword> keywords=new ArrayList<>();
 
 }

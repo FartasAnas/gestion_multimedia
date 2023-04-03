@@ -12,7 +12,7 @@
       <app-upload-interface-step1 [selectedFile]="selectedFile" (fileEvent)="handleFileEvent($event)"></app-upload-interface-step1>
     </div>
     <div *ngIf="currentStep=='Step2'">
-      <app-upload-interface-step2 [fileObject]="fileObject" (fileObjectChange)="handleFileObjectChange($event)"></app-upload-interface-step2>
+      <app-upload-interface-step2 (selectedKeywordsEvent)="handleSelectedKeywords($event)" [fileObject]="fileObject" (fileObjectChange)="handleFileObjectChange($event)"></app-upload-interface-step2>
     </div>
 
 

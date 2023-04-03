@@ -1,9 +1,9 @@
 <div class="keywords-selector-component">
   <div class="keywords-selector">
     <div class="selected-keywords">
-      <div class="keywords" *ngFor="let tag of selectedKeywords">
-        <p class="keyword-text">{{tag}}</p>
-        <div class="keyword-icon" (click)="removeKeyword(tag)">
+      <div class="keywords" *ngFor="let keyword of selectedKeywords">
+        <p class="keyword-text">{{keyword.name}}</p>
+        <div class="keyword-icon" (click)="removeKeyword(keyword)">
           <img src="assets/XIcon.svg" />
         </div>
       </div>
@@ -13,11 +13,11 @@
     </div>
   </div>
   <div class="keyword-list" *ngIf="showKeywords">
-    <div *ngFor="let tag of keywords" class="keywords">
-      <div class="keyword-list-checkBox" (click)="addKeyword(tag)" [ngClass]="isChecked(tag)">
+    <div *ngFor="let keyword of (keywords$ | async)" class="keywords">
+      <div class="keyword-list-checkBox" *ngIf="keyword.name" (click)="addKeyword(keyword)" [ngClass]="isChecked(keyword)">
         <img src="assets/Check.svg" />
       </div>
-      <p class="keyword-list-text">{{tag}}</p>
+      <p class="keyword-list-text" *ngIf="keyword.name">{{keyword.name}}</p>
     </div>
   </div>
 </div>

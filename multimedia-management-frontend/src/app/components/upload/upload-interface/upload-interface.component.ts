@@ -3,6 +3,7 @@ import FileObject from "../../../entities/FileObject";
 import FileInput from "../../../entities/FileInput";
 import {FileService} from "../../../services/file/file.service";
 import {UploadInterfaceStep1Component} from "../upload-interface-step1/upload-interface-step1.component";
+import KeywordObject from "../../../entities/KeywordObject";
 
 @Component({
   selector: 'app-upload-interface',
@@ -16,6 +17,7 @@ export class UploadInterfaceComponent {
   @Output() closeUploadEvent=new EventEmitter<boolean>();
   @Output() fileUploaded = new EventEmitter();
   @ViewChild (UploadInterfaceStep1Component) step1Component?: UploadInterfaceStep1Component;
+  selectedKeywords:KeywordObject[] = [];
 
   fileObjectInitialValue:FileObject={
     createdBy:"",
@@ -38,12 +40,14 @@ export class UploadInterfaceComponent {
     this.currentStep="Step1"
     this.step1Component?.clearInputValue()
     this.fileObject={ ...this.fileObjectInitialValue };
+    console.table(this.selectedKeywords)
   }
   handleFileEvent(fileInput: FileInput) {
     this.selectedFile=fileInput;
   }
   handleUploadFile() {
     if(this.selectedFile?.file && this.fileType){
+        this.fileObject.keywords=this.selectedKeywords
         this.fileObject.type = this.fileType
         this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
           data=>{
@@ -63,5 +67,9 @@ export class UploadInterfaceComponent {
 
   handleFileObjectChange(newFileObject: FileObject) {
     this.fileObject=newFileObject;
+  }
+
+  handleSelectedKeywords(newSelectedKeywords:KeywordObject[]) {
+    this.selectedKeywords=newSelectedKeywords
   }
 }

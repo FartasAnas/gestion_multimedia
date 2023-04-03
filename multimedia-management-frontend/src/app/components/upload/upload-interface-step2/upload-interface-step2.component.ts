@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import FileObject from "../../../entities/FileObject";
+import KeywordObject from "../../../entities/KeywordObject";
 
 @Component({
   selector: 'app-upload-interface-step2',
@@ -9,5 +10,10 @@ import FileObject from "../../../entities/FileObject";
 export class UploadInterfaceStep2Component {
   @Input() fileObject?:FileObject
   @Output() fileObjectChange = new EventEmitter<FileObject>();
+  @Output() selectedKeywordsEvent=new EventEmitter<KeywordObject[]>();
+  selectedKeywords:KeywordObject[] = [];
 
+  handleSelectedKeywords(newSelectedKeywords:KeywordObject[]) {
+    this.selectedKeywordsEvent.emit(newSelectedKeywords)
+  }
 }
