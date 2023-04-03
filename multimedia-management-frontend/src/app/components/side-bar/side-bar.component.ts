@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {UserStorageService} from "../../services/user-storage/user-storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-side-bar',
@@ -8,10 +9,10 @@ import {UserStorageService} from "../../services/user-storage/user-storage.servi
 })
 export class SideBarComponent {
 
-  constructor(public userStorage:UserStorageService) {
+  constructor(public userStorage:UserStorageService,private route:Router) {
   }
   logOut() {
     this.userStorage.signOut()
-    window.location.reload()
+    this.route.navigate([''])
   }
 }

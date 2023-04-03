@@ -55,8 +55,8 @@ public class FileServicesImp implements FileServices {
     }
 
     @Override
-    public Long countFilesByType(String type) {
-        return fileRepository.countByType(FileType.valueOf(type.toUpperCase()));
+    public Long countFilesByType(String createdBy,String type) {
+        return fileRepository.countByCreatedByAndType(createdBy,FileType.valueOf(type.toUpperCase()));
     }
 
     @Override

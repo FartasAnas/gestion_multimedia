@@ -31,9 +31,9 @@ public class FileControllers {
         return fileServices.getFileById(id);
     }
 
-    @GetMapping("/count/{type}")
-    public Long countFilesByType(@PathVariable String type) {
-        return fileServices.countFilesByType(type);
+    @GetMapping("/count/{createdBy}/{type}")
+    public Long countFilesByType(@PathVariable String createdBy,@PathVariable String type) {
+        return fileServices.countFilesByType(createdBy,type);
     }
 
     @GetMapping("/object/{id}")

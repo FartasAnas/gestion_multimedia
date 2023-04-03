@@ -40,7 +40,7 @@ export class FileService {
     return `${size} ${sizes[i-1]}`;
   }
   countFileByType(type:String){
-    return this.http.get<String>(`${this.apiUrl}/count/${type}`)
+    return this.http.get<String>(`${this.apiUrl}/count/${this.currentUser}/${type}`)
   }
 
 }

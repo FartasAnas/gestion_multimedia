@@ -18,7 +18,7 @@ export class HomePageComponent implements OnInit{
   }
   ngOnInit(): void {
     if(this.userStorage.getUser()==null){
-      this.route.navigate(['/'])
+      this.route.navigate([''])
     }
     // this.roles$=this.authenticationService.loadRoles()
     this.numberOfImages$=this.fileService.countFileByType("image")
