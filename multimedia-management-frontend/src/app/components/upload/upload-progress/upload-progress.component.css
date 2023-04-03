@@ -47,6 +47,11 @@
   display: flex;
   flex-direction: row;
 }
+.uploadProgress-closeIcon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .uploadProgress-closeIcon:hover{
   cursor: pointer;
 }

@@ -20,6 +20,7 @@ import { ImageCardComponent } from './components/image-card/image-card.component
 import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { HomeCardComponent } from './components/home-card/home-card.component';
+import { KeywordsSelectorComponent } from './components/keywords-selector/keywords-selector.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { HomeCardComponent } from './components/home-card/home-card.component';
     ImageCardComponent,
     WebLayoutComponent,
     PageTitleComponent,
-    HomeCardComponent
+    HomeCardComponent,
+    KeywordsSelectorComponent
   ],
   imports: [
     BrowserModule,
