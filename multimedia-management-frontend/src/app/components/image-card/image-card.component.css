@@ -46,33 +46,6 @@
   line-height: 20px;
   color: #1C1C1C;
 }
-.state-layout{
-  display: flex;
-  align-items: center;
-  padding: 1px 2px;
-  border-radius: 2px;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: -0.05px!important;
-  height: 16px;
-}
-.planned{
-  background: #DDD8FF;
-  color: #4B1E97;
-}
-.published{
-  background: #D1EEDB;
-  color: #131B24;
-}
-.pending{
-  background: #FFE9C5;
-  color: #3B2604;
-}
-.unpublished{
-  background: #FCD9BD;
-  color: #771D1D;
-}
 .supInfo-txt{
   font-weight: 500;
   font-size: 12px;

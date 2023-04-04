@@ -1,13 +1,11 @@
-<div class="image-card" *ngIf="fileObject">
+<div class="image-card" *ngIf="fileObject"  (click)="handleDisplayImage()">
   <div class="imageCard-image" *ngIf="hostname">
     <img  [src]="'http://'+hostname+':8100/files/object/'+fileObject.id || ''">
   </div>
   <div class="image-card-info">
     <div>
       <p class="name-txt" >ID {{fileObject.id}}</p>
-      <div class="state-layout" *ngIf="fileObject.state" [ngClass]="fileObject.state.toLowerCase()">
-        <p>{{fileStateTranslate()}}</p>
-      </div>
+      <app-state-tag [state]="fileObject.state"></app-state-tag>
     </div>
     <div>
       <p class="supInfo-txt" *ngIf="fileObject.fileName" >{{fileObject.fileName.split(".")[1] | uppercase}} - {{fileObject.size}}</p>

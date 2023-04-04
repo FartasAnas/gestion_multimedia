@@ -29,6 +29,9 @@ export class FileService {
   getUserFiles(type:String):Observable<FileObject[]>{
     return this.http.get<FileObject[]>(`${this.apiUrl}/user/${this.currentUser}/${type}`)
   }
+  getFileById(id:number):Observable<FileObject>{
+    return this.http.get<FileObject>(`${this.apiUrl}/${id}`)
+  }
   getFileSize(bytes: number) {
     if (bytes == 0) {
       return "0 KB";

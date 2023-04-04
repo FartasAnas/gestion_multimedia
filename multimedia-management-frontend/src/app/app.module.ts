@@ -21,6 +21,8 @@ import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { HomeCardComponent } from './components/home-card/home-card.component';
 import { KeywordsSelectorComponent } from './components/keywords-selector/keywords-selector.component';
+import { ImageDetailsComponent } from './components/image-details/image-details.component';
+import { StateTagComponent } from './components/state-tag/state-tag.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { KeywordsSelectorComponent } from './components/keywords-selector/keywor
     WebLayoutComponent,
     PageTitleComponent,
     HomeCardComponent,
-    KeywordsSelectorComponent
+    KeywordsSelectorComponent,
+    ImageDetailsComponent,
+    StateTagComponent
   ],
   imports: [
     BrowserModule,

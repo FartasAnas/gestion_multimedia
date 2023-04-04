@@ -8,5 +8,4 @@ import HomeCardObject from "../../entities/HomeCardObject";
 })
 export class HomeCardComponent {
   @Input() homeCardObject?:HomeCardObject
-
 }
