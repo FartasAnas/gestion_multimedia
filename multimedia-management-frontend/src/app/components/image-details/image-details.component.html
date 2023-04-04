@@ -17,16 +17,16 @@
       </div>
     </div>
     <div class="image-displayer-body">
-      <img [src]="'http://' + hostname + ':8100/files/object/' + fileObject.id || ''">
+      <img [src]="'http://' + hostname + ':8100/files/object/' + fileObject.id || ''" [style.transform]="'scale(' + scaleValue + ')'">
     </div>
     <div class="image-displayer-footer">
-      <div class="displayer-icon footer-left">
+      <div class="displayer-icon footer-left" (click)="scaleImage('up')">
         <img src="assets/PlusSign.svg" class="svg-icon" >
       </div>
-      <div class="displayer-icon footer-center">
+      <div class="displayer-icon footer-center" (click)="scaleImage('original')">
         <img src="assets/MagnifyingGlass.svg" class="svg-icon" >
       </div>
-      <div class="displayer-icon footer-right">
+      <div class="displayer-icon footer-right" (click)="scaleImage('down')">
         <img src="assets/MinusSign.svg" class="svg-icon" >
       </div>
     </div>
@@ -43,6 +43,8 @@
         <img src="assets/XIcon.svg" class="svg-icon" >
       </div>
     </div>
+
+
     <div class="image-details-info">
       <p class="image-details-info-tile">ID du fichier</p>
       <div class="image-details-info-body">

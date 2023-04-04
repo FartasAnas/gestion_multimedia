@@ -11,6 +11,7 @@ import {FileService} from "../../services/file/file.service";
 export class ImageDetailsComponent implements OnInit{
   fileObject?:FileObject
   hostname=window.location.hostname
+  scaleValue:number=1;
   constructor(private fileService:FileService,private activatedRoute: ActivatedRoute,private router: Router) {
   }
   handelCloseDetailsClick() {
@@ -38,4 +39,12 @@ export class ImageDetailsComponent implements OnInit{
   }
 
 
+  scaleImage(scale:String) {
+    if (scale == "up" || scale == "down") {
+      let factor = scale == "up" ? 1.1 : 0.909;
+      this.scaleValue = this.scaleValue * factor;
+    } else if (scale == "original") {
+      this.scaleValue = 1;
+    }
+  }
 }

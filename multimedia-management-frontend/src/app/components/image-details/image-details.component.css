@@ -50,8 +50,9 @@
   background-color: #5A5C60;
 }
 .image-displayer-body img{
-  max-height: 360px;
-  max-width: 640px;
+  max-height: 80%;
+  max-width: 80%;
+  object-fit: cover;
 }
 .image-displayer-footer{
   display: flex;
@@ -169,4 +170,3 @@
   justify-content: center;
   border-radius: 30px;
 }
-
