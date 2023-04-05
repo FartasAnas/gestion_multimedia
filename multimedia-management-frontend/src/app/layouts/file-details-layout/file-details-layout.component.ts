@@ -2,7 +2,6 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import FileObject from "../../entities/FileObject";
 import {FileService} from "../../services/file/file.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import { copyImageToClipboard } from 'copy-image-clipboard'
 
 @Component({
   selector: 'app-file-details-layout',
