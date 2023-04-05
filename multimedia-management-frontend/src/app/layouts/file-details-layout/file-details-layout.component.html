@@ -7,17 +7,17 @@
       <div class="displayer-action">
         <img src="assets/Link.svg" class="svg-icon">
       </div>
-      <div class="displayer-action">
-        <a [href]="'http://' + hostname + ':8100/files/object/' + fileObject.id || ''" download>
+      <a [href]="fileUrl" download>
+        <div class="displayer-action">
           <img src="assets/Download.svg" class="svg-icon">
-        </a>
-      </div>
-      <div class="displayer-action">
+        </div>
+      </a>
+      <div class="displayer-action" (click)="handleCopyFile()">
         <img src="assets/CopySimple.svg" class="svg-icon">
       </div>
     </div>
     <div class="displayer-body" #fileContainer>
-      <img [src]="'http://' + hostname + ':8100/files/object/' + fileObject.id || ''" [style.transform]="'scale(' + scaleValue + ')'">
+      <img [src]="fileUrl" [style.transform]="'scale(' + scaleValue + ')'">
     </div>
     <div class="displayer-footer">
       <div class="displayer-action footer-left" (click)="scaleImage('up')">
