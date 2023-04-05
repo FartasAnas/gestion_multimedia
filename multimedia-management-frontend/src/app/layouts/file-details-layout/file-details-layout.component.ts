@@ -1,18 +1,18 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import FileObject from "../../entities/FileObject";
-import {ActivatedRoute, Router} from "@angular/router";
 import {FileService} from "../../services/file/file.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-image-details',
-  templateUrl: './image-details.component.html',
-  styleUrls: ['./image-details.component.css']
+  selector: 'app-file-details-layout',
+  templateUrl: './file-details-layout.component.html',
+  styleUrls: ['./file-details-layout.component.css']
 })
-export class ImageDetailsComponent implements OnInit{
+export class FileDetailsLayoutComponent {
   fileObject?:FileObject
   hostname=window.location.hostname
   scaleValue:number=1;
-  @ViewChild('imageContainer', { static: false }) imageContainer?: ElementRef;
+  @ViewChild('fileContainer', { static: false }) fileContainer?: ElementRef;
   constructor(private fileService:FileService,private activatedRoute: ActivatedRoute,private router: Router) {
   }
   handelCloseDetailsClick() {
@@ -22,7 +22,6 @@ export class ImageDetailsComponent implements OnInit{
     this.activatedRoute.params.subscribe(params => {
       this.getFileById(+params['id']);
     });
-
   }
   getFileById(id: number): void {
     this.fileService.getFileById(id)

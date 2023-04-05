@@ -1,0 +1,37 @@
+<div class="fileDetails-layout-bg" *ngIf="fileObject">
+  <div class="file-displayer">
+    <div class="displayer-header">
+      <div class="displayer-action">
+        <img src="assets/PaperPlaneTilt.svg" class="svg-icon">
+      </div>
+      <div class="displayer-action">
+        <img src="assets/Link.svg" class="svg-icon">
+      </div>
+      <div class="displayer-action">
+        <a [href]="'http://' + hostname + ':8100/files/object/' + fileObject.id || ''" download>
+          <img src="assets/Download.svg" class="svg-icon">
+        </a>
+      </div>
+      <div class="displayer-action">
+        <img src="assets/CopySimple.svg" class="svg-icon">
+      </div>
+    </div>
+    <div class="displayer-body" #fileContainer>
+      <img [src]="'http://' + hostname + ':8100/files/object/' + fileObject.id || ''" [style.transform]="'scale(' + scaleValue + ')'">
+    </div>
+    <div class="displayer-footer">
+      <div class="displayer-action footer-left" (click)="scaleImage('up')">
+        <img src="assets/PlusSign.svg" class="svg-icon">
+      </div>
+      <div class="displayer-action footer-center" (click)="scaleImage('original')">
+        <img src="assets/MagnifyingGlass.svg" class="svg-icon">
+      </div>
+      <div class="displayer-action footer-right" (click)="scaleImage('down')">
+        <img src="assets/MinusSign.svg" class="svg-icon">
+      </div>
+    </div>
+  </div>
+  <div class="file-details-bar">
+    <app-file-details-bar [fileObject]="fileObject"></app-file-details-bar>
+  </div>
+</div>

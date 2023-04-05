@@ -1,4 +1,4 @@
-.imageDetails-interface-bg{
+.fileDetails-layout-bg{
   position: absolute;
   top: 0;
   left: 0;
@@ -11,33 +11,48 @@
   justify-content: center;
   overflow: hidden;
 }
-.showImageDetails{
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #222124;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.showFileDetails {
   display: flex;
 }
-.image-displayer{
+
+.file-displayer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding:30px 35px;
+  padding: 30px 35px;
   width: 75%;
   height: 100vh;
 }
-.image-displayer-header{
+
+.displayer-header{
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
-  gap:10px
+  justify-content: center;
+  gap: 10px;
 }
-.image-displayer-body{
+
+.displayer-body {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-.displayer-icon{
+
+.displayer-action {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   background: #404040;
@@ -47,11 +62,13 @@
   z-index: 3;
   user-select: none;
 }
-.displayer-icon:hover{
+
+.displayer-action:hover {
   cursor: pointer;
   background-color: #5A5C60;
 }
-.image-displayer-body img{
+
+.displayer-body img {
   position: relative;
   max-height: 80%;
   max-width: 80%;
@@ -60,22 +77,25 @@
   transition: 0.3s all ease;
   transition-delay: 0.05s;
 }
-.image-displayer-footer{
+
+.displayer-footer {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row-reverse;
 }
-.footer-center{
-  border-radius: 0px!important;
+.footer-center {
+  border-radius: 0 !important;
 }
-.footer-right{
-  border-top-right-radius: 0px!important;
-  border-bottom-right-radius: 0px!important;
+
+.footer-right {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
 }
-.footer-left{
-  border-top-left-radius: 0px!important;
-  border-bottom-left-radius: 0px!important;
+
+.footer-left {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
 .file-details-bar{
   z-index: 3;

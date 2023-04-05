@@ -21,7 +21,6 @@ import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { HomeCardComponent } from './components/home-card/home-card.component';
 import { KeywordsSelectorComponent } from './components/keywords-selector/keywords-selector.component';
-import { ImageDetailsComponent } from './components/image-details/image-details.component';
 import { StateTagComponent } from './components/state-tag/state-tag.component';
 import { FileDetailsBarComponent } from './components/file-details-bar/file-details-bar.component';
 import { FileDetailsLayoutComponent } from './layouts/file-details-layout/file-details-layout.component';
@@ -46,7 +45,6 @@ import { FileDetailsLayoutComponent } from './layouts/file-details-layout/file-d
     PageTitleComponent,
     HomeCardComponent,
     KeywordsSelectorComponent,
-    ImageDetailsComponent,
     StateTagComponent,
     FileDetailsBarComponent,
     FileDetailsLayoutComponent
