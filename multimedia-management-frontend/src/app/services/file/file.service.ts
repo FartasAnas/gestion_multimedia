@@ -45,5 +45,11 @@ export class FileService {
   countFileByType(type:String){
     return this.http.get<String>(`${this.apiUrl}/count/${this.currentUser}/${type}`)
   }
+  removeFile(id:number){
+    this.http.delete(`${this.apiUrl}/delete/${id}`).subscribe(
+      () => console.log(`File with ID ${id} deleted successfully`),
+      error => console.error(`Error deleting file with ID ${id}: ${error}`)
+    );
+  }
 
 }

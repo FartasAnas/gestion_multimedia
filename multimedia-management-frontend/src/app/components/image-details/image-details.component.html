@@ -16,7 +16,7 @@
         <img src="assets/CopySimple.svg" class="svg-icon" >
       </div>
     </div>
-    <div class="image-displayer-body">
+    <div class="image-displayer-body" #imageContainer>
       <img [src]="'http://' + hostname + ':8100/files/object/' + fileObject.id || ''" [style.transform]="'scale(' + scaleValue + ')'">
     </div>
     <div class="image-displayer-footer">
@@ -31,56 +31,8 @@
       </div>
     </div>
   </div>
-  <div class="image-details">
-    <div class="image-details-header">
-      <div class="details-icon">
-        <img src="assets/Trash.svg" class="svg-icon" >
-      </div>
-      <div class="details-icon">
-        <img src="assets/PencilSimpleLine.svg" class="svg-icon" >
-      </div>
-      <div class="details-icon" (click)="handelCloseDetailsClick()">
-        <img src="assets/XIcon.svg" class="svg-icon" >
-      </div>
-    </div>
-
-
-    <div class="image-details-info">
-      <p class="image-details-info-tile">ID du fichier</p>
-      <div class="image-details-info-body">
-        <div class="details-info-content">
-          <img src="assets/CalendarBlank.svg">
-          <p class="details-info-content-txt">Ajouté le {{fileObject.creationDate | date: 'dd/MM/yyyy'}}</p>
-        </div>
-        <div class="details-info-content">
-          <img src="assets/CalendarBlank.svg">
-          <p class="details-info-content-txt" *ngIf="fileObject.fileName">{{fileObject.fileName.split(".")[1] | uppercase}} - {{fileObject.size}}</p>
-        </div>
-        <div class="details-info-content">
-          <img src="assets/CalendarBlank.svg">
-          <p class="details-info-content-txt">{{fileObject?.type}} > {{fileObject?.category}} > {{fileObject?.fileName}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="image-details-content">
-      <p class="details-content-title">Description</p>
-      <p class="details-content-text">{{fileObject.description}}</p>
-    </div>
-    <div class="image-details-content">
-      <p class="details-content-title">Version</p>
-      <p class="details-content-text">{{fileVersionTranslate()}}</p>
-    </div>
-    <div class="image-details-content">
-      <p class="details-content-title">Statut</p>
-      <app-state-tag [state]="fileObject.state"></app-state-tag>
-    </div>
-    <div class="image-details-content">
-      <p class="details-content-title">Mots-clés</p>
-      <div class="details-content-keywords">
-        <div class="keyword" *ngFor="let keyword of fileObject.keywords">
-          <p class="details-content-text">{{keyword.name}}</p>
-        </div>
-      </div>
-    </div>
+  <div class="file-details-bar">
+    <app-file-details-bar [fileObject]="fileObject"></app-file-details-bar>
   </div>
+
 </div>

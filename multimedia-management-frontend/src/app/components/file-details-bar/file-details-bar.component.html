@@ -1,0 +1,50 @@
+<div class="file-details" *ngIf="fileObject">
+  <div class="file-details-header">
+    <div class="details-icon">
+      <img src="assets/Trash.svg" class="svg-icon" (click)="handleDeleteFile()" >
+    </div>
+    <div class="details-icon">
+      <img src="assets/PencilSimpleLine.svg" class="svg-icon" >
+    </div>
+    <div class="details-icon" (click)="handelCloseDetailsClick()">
+      <img src="assets/XIcon.svg" class="svg-icon" >
+    </div>
+  </div>
+  <div class="file-details-info">
+    <p class="file-details-info-title">ID {{fileObject.id}}</p>
+    <div class="file-details-info-body">
+      <div class="info-content">
+        <img src="assets/CalendarBlank.svg">
+        <p class="info-content-text">Ajouté le {{fileObject.creationDate | date: 'dd/MM/yyyy'}}</p>
+      </div>
+      <div class="info-content">
+        <img src="assets/CalendarBlank.svg">
+        <p class="info-content-text" *ngIf="fileObject.fileName">{{fileObject.fileName.split(".")[1] | uppercase}} - {{fileObject.size}}</p>
+      </div>
+      <div class="info-content">
+        <img src="assets/CalendarBlank.svg">
+        <p class="info-content-text" *ngIf="fileObject.type && fileObject.category">{{fileObject.type.toLowerCase()}} > {{fileObject.category .toLowerCase()}} > {{fileObject.fileName}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="file-details-section">
+    <p class="section-title">Description</p>
+    <p class="section-text">{{fileObject.description}}</p>
+  </div>
+  <div class="file-details-section">
+    <p class="section-title">Version</p>
+    <p class="section-text">{{fileVersionTranslate()}}</p>
+  </div>
+  <div class="file-details-section">
+    <p class="section-title">Statut</p>
+    <app-state-tag [state]="fileObject.state"></app-state-tag>
+  </div>
+  <div class="file-details-section">
+    <p class="section-title">Mots-clés</p>
+    <div class="section-keywords">
+      <div class="keyword" *ngFor="let keyword of fileObject.keywords">
+        <p class="section-text">{{keyword.name}}</p>
+      </div>
+    </div>
+  </div>
+</div>
