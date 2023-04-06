@@ -24,8 +24,6 @@ export class FileDetailsLayoutComponent {
       this.getFileById(+params['id']);
       this.fileUrl=`http://${this.hostname}:8100/files/object/${+params['id']}/`
     });
-
-    console.log(this.fileUrl)
   }
   getFileById(id: number): void {
     this.fileService.getFileById(id)

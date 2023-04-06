@@ -25,6 +25,7 @@ import { KeywordsSelectorComponent } from './components/keywords-selector/keywor
 import { StateTagComponent } from './components/state-tag/state-tag.component';
 import { FileDetailsBarComponent } from './components/file-details-bar/file-details-bar.component';
 import { FileDetailsLayoutComponent } from './layouts/file-details-layout/file-details-layout.component';
+import { EditFileComponent } from './components/edit-file/edit-file.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { FileDetailsLayoutComponent } from './layouts/file-details-layout/file-d
     KeywordsSelectorComponent,
     StateTagComponent,
     FileDetailsBarComponent,
-    FileDetailsLayoutComponent
+    FileDetailsLayoutComponent,
+    EditFileComponent
   ],
   imports: [
     BrowserModule,

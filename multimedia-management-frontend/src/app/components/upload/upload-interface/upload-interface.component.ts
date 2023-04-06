@@ -66,10 +66,10 @@ export class UploadInterfaceComponent {
   }
 
   handleFileObjectChange(newFileObject: FileObject) {
-    this.fileObject=newFileObject;
+    this.fileObject= {...newFileObject};
   }
 
   handleSelectedKeywords(newSelectedKeywords:KeywordObject[]) {
-    this.selectedKeywords=newSelectedKeywords
+    this.selectedKeywords={...newSelectedKeywords}
   }
 }

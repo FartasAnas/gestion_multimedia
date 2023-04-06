@@ -1,0 +1,68 @@
+<div class="editInterface-bg" *ngIf="fileObject && fileObjectCopy" [ngClass]="{'showEditInterface':isVisible}">
+  <div class="editInterface">
+      <div class="editInterface-header">
+        <p class="editInterface-txt header-txt">
+          Modifier les informations
+        </p>
+        <div class="editInterface-header-icon" (click)="toggleVisibility(false)">
+          <img src="assets/XIcon.svg">
+        </div>
+      </div>
+      <form #editForm='ngForm' (ngSubmit)="handleSubmit(editForm)">
+        <div class="editInterface-body">
+          <div class="editInterface-body-fileImage">
+            <img  [src]="'http://'+hostname+':8100/files/object/'+fileObject.id || ''">
+          </div>
+          <div class="editInterface-body-content">
+            <div class="input-group">
+              <label class="editInterface-txt contentForm-label" for="description">
+                <span>Description</span>
+                <span class="subtxt"> (facultatif)</span>
+              </label>
+              <textarea id="description" name="description" class="contentForm-input" [(ngModel)]="fileObjectCopy.description"  [value]="fileObjectCopy.description"></textarea>
+            </div>
+            <div class="row-grp">
+              <div class="input-group select-input">
+                <label class="contentForm-label" for="description">
+                  Version
+                </label>
+                <select id="version" name="version" class="contentForm-input" [(ngModel)]="fileObjectCopy.version" >
+                  <option value="VF" [selected]="fileObject.version=='VF'">Version française</option>
+                  <option value="VA" [selected]="fileObject.version=='VA'">Version arabe</option>
+                </select>
+              </div>
+              <div class="input-group select-input">
+                <label class="contentForm-label" for="description">
+                  Statut
+                </label>
+                <select id="state" name="state" class="contentForm-input" [(ngModel)]="fileObjectCopy.state">
+                  <option value="PUBLISHED" [selected]="fileObject.state=='PUBLISHED'">Publié</option>
+                  <option value="PLANNED" [selected]="fileObject.state=='PLANNED'">Planifié</option>
+                  <option value="UNPUBLISHED" [selected]="fileObject.state=='UNPUBLISHED'">Non publié</option>
+                  <option value="PENDING" [selected]="fileObject.state=='PENDING'">En attente</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="input-group">
+              <label class="contentForm-label">
+                <span>Mots-clés</span>
+                <span class="subtxt"> (maximum 20)</span>
+              </label>
+              <app-keywords-selector *ngIf="fileObjectCopy.keywords" [selectedKeywords]="fileObjectCopy.keywords"></app-keywords-selector>
+            </div>
+          </div>
+        </div>
+        <div class="editInterface-footer">
+          <div class="editInterface-footer-btn cancelBtn" (click)="toggleVisibility(false)">
+            <img src="assets/Close.svg">
+            <p class="editInterface-footer-txt cancelTxt">Annuler</p>
+          </div>
+          <button class="editInterface-footer-btn">
+            <img src="assets/Check.svg">
+            <p class="editInterface-footer-txt">Mettre à jour les informations</p>
+          </button>
+        </div>
+      </form>
+  </div>
+</div>

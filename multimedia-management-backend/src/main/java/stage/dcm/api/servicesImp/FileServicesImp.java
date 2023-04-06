@@ -100,12 +100,10 @@ public class FileServicesImp implements FileServices {
     @Override
     public File updateFile(Long id, File file) throws NotFoundException {
         File fileToUpdate=getFileById(id);
-        fileToUpdate.setFileName( file.getFileName()!=null ? file.getFileName() : fileToUpdate.getFileName() );
-        fileToUpdate.setCreationDate( file.getCreationDate()!=null ? file.getCreationDate() : fileToUpdate.getCreationDate() );
         fileToUpdate.setDescription( file.getDescription()!=null ? file.getDescription() : fileToUpdate.getDescription() );
-        fileToUpdate.setType( file.getType()!=null ? file.getType() : fileToUpdate.getType() );
         fileToUpdate.setState( file.getState()!=null ? file.getState() : fileToUpdate.getState() );
         fileToUpdate.setVersion( file.getVersion()!=null ? file.getVersion() : fileToUpdate.getVersion() );
+        fileToUpdate.setKeywords(file.getKeywords());
         return fileRepository.save(fileToUpdate);
     }
 

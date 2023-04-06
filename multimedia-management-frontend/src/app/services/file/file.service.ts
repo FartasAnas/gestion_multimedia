@@ -51,5 +51,8 @@ export class FileService {
       error => console.error(`Error deleting file with ID ${id}: ${error}`)
     );
   }
+  updateFile(id:number,fileObject:FileObject){
+    return this.http.put(`${this.apiUrl}/update/${id}`,fileObject)
+  }
 
 }

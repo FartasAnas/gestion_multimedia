@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Observable} from "rxjs";
 import KeywordObject from "../../entities/KeywordObject";
 import FileObject from "../../entities/FileObject";
@@ -12,7 +12,7 @@ import FileInput from "../../entities/FileInput";
 })
 export class KeywordsSelectorComponent implements OnInit{
   keywords$:Observable<KeywordObject[]> = new Observable<FileObject[]>();
-  selectedKeywords:KeywordObject[] = [];
+  @Input() selectedKeywords:KeywordObject[] = [];
   showKeywords:boolean=false
   @Output() selectedKeywordsEvent=new EventEmitter<KeywordObject[]>();
   constructor(private keywordService:KeywordService) {
@@ -22,27 +22,29 @@ export class KeywordsSelectorComponent implements OnInit{
     this.keywords$=this.keywordService.getKeywords();
   }
 
-  addKeyword(Keyword:KeywordObject) {
-    if (!this.selectedKeywords.includes(Keyword) && this.selectedKeywords.length<=20) {
-      this.selectedKeywords.push(Keyword);
-      this.selectedKeywordsEvent.emit(this.selectedKeywords)
+  addKeyword(keyword: KeywordObject) {
+    const selectedKeyword = this.selectedKeywords.find(k => k.id === keyword.id);
+    if (!selectedKeyword && this.selectedKeywords.length < 20) {
+      this.selectedKeywords.push(keyword);
+      this.selectedKeywordsEvent.emit(this.selectedKeywords);
+    } else if (selectedKeyword) {
+      this.removeKeyword(selectedKeyword);
     }
   }
-  removeKeyword(Keyword:KeywordObject) {
-    const index = this.selectedKeywords.indexOf(Keyword);
+  removeKeyword(keyword: KeywordObject) {
+    const index = this.selectedKeywords.findIndex(k => k.id === keyword.id);
     if (index !== -1) {
       this.selectedKeywords.splice(index, 1);
-      this.selectedKeywordsEvent.emit(this.selectedKeywords)
+      this.selectedKeywordsEvent.emit(this.selectedKeywords);
     }
   }
   handleShowKeywords(){
     this.showKeywords=!this.showKeywords
   }
-  isChecked(Keyword:KeywordObject){
-    return{
-      'checked':this.selectedKeywords.includes(Keyword)
-    }
+  isChecked(keyword:KeywordObject){
+    const selectedKeyword = this.selectedKeywords.find(k => k.id === keyword.id);
+    return {
+      'checked': !!selectedKeyword
+    };
   }
-
-
 }

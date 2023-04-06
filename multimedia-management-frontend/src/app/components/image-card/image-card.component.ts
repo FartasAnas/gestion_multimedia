@@ -14,7 +14,6 @@ export class ImageCardComponent{
   constructor(private router: Router) {
   }
   handleDisplayImage() {
-    const queryParams = { file: JSON.stringify(this.fileObject) };
-    this.router.navigate(['web/images',this.fileObject?.id]);
+    this.router.navigate(['web/images/',this.fileObject?.id]);
   }
 }

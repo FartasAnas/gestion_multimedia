@@ -23,8 +23,8 @@
           Version
         </label>
         <select id="version" name="version" class="contentForm-input" *ngIf="fileObject" [(ngModel)]="fileObject.version" (ngModelChange)="fileObjectChange.emit(fileObject)">
-          <option value="VF" selected >VF</option>
-          <option value="VA">VA</option>
+          <option value="VF" selected >Version française</option>
+          <option value="VA">Version arabe</option>
         </select>
       </div>
       <div class="input-group">

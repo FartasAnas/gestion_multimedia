@@ -5,6 +5,7 @@ import {HomePageComponent} from "./layouts/home-page/home-page.component";
 import {ImagesLayoutComponent} from "./layouts/images-layout/images-layout.component";
 import {WebLayoutComponent} from "./layouts/web-layout/web-layout.component";
 import {FileDetailsLayoutComponent} from "./layouts/file-details-layout/file-details-layout.component";
+import {EditFileComponent} from "./components/edit-file/edit-file.component";
 
 const routes: Routes = [
   {path:'',component:LoginLayoutComponent},
