@@ -1,14 +1,1 @@
-<div class="imageLayout">
-  <div class="imageLayout-header">
-    <app-page-title title="Web / Images"></app-page-title>
-    <app-upload-btn (fileUploaded)="onFileUploaded()" text="Importer un fichier" fileType="IMAGE"></app-upload-btn>
-  </div>
-  <div class="imageLayout-Body">
-    <div class="imageLayout-Body-title">
-      <p>Fichiers</p>
-    </div>
-    <div class="imageLayout-Body-card" *ngIf="fileObjects$ | async as fileObjects">
-      <app-file-card *ngFor="let fileObject of fileObjects" [fileObject]="fileObject" ></app-file-card>
-    </div>
-  </div>
-</div>
+<app-file-interface [fileInterfaceInput]="{interfaceTitle:'Web / Images',uploadBtnText:'Importer un fichier',fileType:'IMAGE'}"></app-file-interface>

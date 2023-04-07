@@ -1,8 +1,8 @@
 <div class="file-card" *ngIf="fileObject"  (click)="handleDisplayFile()">
   <div class="fileCard-file" *ngIf="hostname">
     <img  [src]="fileUrl" *ngIf="fileType=='IMAGE'">
-    <div class="video-file">
-      <video *ngIf="fileType=='VIDEO'" (mouseover)="playVideo()" (mouseleave)="pauseVideo()" #videoElement muted>
+    <div class="video-file" *ngIf="fileType=='VIDEO'">
+      <video  (mouseover)="playVideo()" (mouseleave)="pauseVideo()" #videoElement muted>
         <source [src]="fileUrl" type="video/mp4">
       </video>
       <img src="assets/PlayIcon.svg">

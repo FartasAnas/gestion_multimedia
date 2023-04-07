@@ -1,0 +1,14 @@
+<div class="fileInterface" *ngIf="fileInterfaceInput">
+  <div class="fileInterface-header">
+    <app-page-title [title]="fileInterfaceInput.interfaceTitle"></app-page-title>
+    <app-upload-btn (fileUploaded)="onFileUploaded()" [text]="fileInterfaceInput.uploadBtnText" [fileType]="fileInterfaceInput.fileType"></app-upload-btn>
+  </div>
+  <div class="fileInterface-body">
+    <div class="fileInterface-body-title">
+      <p>Fichiers</p>
+    </div>
+    <div class="fileInterface-body-card" *ngIf="fileObjects$ | async as fileObjects">
+      <app-file-card  *ngFor="let fileObject of fileObjects" [fileObject]="fileObject" ></app-file-card>
+    </div>
+  </div>
+</div>
