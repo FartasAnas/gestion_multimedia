@@ -1,4 +1,5 @@
-.image-card{
+
+.file-card{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -7,14 +8,16 @@
   border-radius: 5px;
   width: 228px;
 }
-.image-card:hover{
+.file-card:hover{
   background: #D7E3FC;
   cursor: pointer;
 }
-.imageCard-image{
+.fileCard-image{
   width: 100%;
 }
-.imageCard-image img{
+.fileCard-image img,
+.fileCard-image video
+{
   width: 100%;
   height: 172px;
   overflow: hidden;
@@ -22,17 +25,17 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
-.image-card-info{
+.file-card-info{
   display: flex;
   padding: 10px 14px;
 }
-.image-card-info{
+.file-card-info{
   display: flex;
   flex-direction: column;
   gap: 4px;
   width: 100%;
 }
-.image-card-info div{
+.file-card-info div{
   display: flex;
   flex-direction: row;
   justify-content: space-between;

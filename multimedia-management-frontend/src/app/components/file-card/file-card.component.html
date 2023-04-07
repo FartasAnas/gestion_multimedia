@@ -1,0 +1,18 @@
+<div class="file-card" *ngIf="fileObject"  (click)="handleDisplayFile()">
+  <div class="fileCard-image" *ngIf="hostname">
+    <img  [src]="'http://'+hostname+':8100/files/object/'+fileObject.id || ''" *ngIf="fileType=='IMAGE'">
+    <video *ngIf="fileType=='VIDEO'">
+      <source [src]="'http://'+hostname+':8100/files/object/'+fileObject.id || ''" type="video/mp4">
+    </video>
+  </div>
+  <div class="file-card-info">
+    <div>
+      <p class="name-txt" >ID {{fileObject.id}}</p>
+      <app-state-tag [state]="fileObject.state"></app-state-tag>
+    </div>
+    <div>
+      <p class="supInfo-txt" *ngIf="fileObject.fileName" >{{fileObject.fileName.split(".")[1] | uppercase}} - {{fileObject.size}}</p>
+      <p class="supInfo-txt">{{fileObject.creationDate | date: 'dd/MM/yyyy'}} </p>
+    </div>
+  </div>
+</div>
