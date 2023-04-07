@@ -1,9 +1,12 @@
 <div class="file-card" *ngIf="fileObject"  (click)="handleDisplayFile()">
-  <div class="fileCard-image" *ngIf="hostname">
-    <img  [src]="'http://'+hostname+':8100/files/object/'+fileObject.id || ''" *ngIf="fileType=='IMAGE'">
-    <video *ngIf="fileType=='VIDEO'">
-      <source [src]="'http://'+hostname+':8100/files/object/'+fileObject.id || ''" type="video/mp4">
-    </video>
+  <div class="fileCard-file" *ngIf="hostname">
+    <img  [src]="fileUrl" *ngIf="fileType=='IMAGE'">
+    <div class="video-file">
+      <video *ngIf="fileType=='VIDEO'" (mouseover)="playVideo()" (mouseleave)="pauseVideo()" #videoElement muted>
+        <source [src]="fileUrl" type="video/mp4">
+      </video>
+      <img src="assets/PlayIcon.svg">
+    </div>
   </div>
   <div class="file-card-info">
     <div>

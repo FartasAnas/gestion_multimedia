@@ -17,8 +17,10 @@ export class SidebarButtonComponent implements OnInit{
   constructor(private route:Router) {}
 
   handleClick():void{
-    this.clicked = !this.clicked;
-    this.route.navigate([this.clicked && this.content?.url ?  this.content.url : "home"]);
+    // if(this.hasChildren) {
+    //   this.clicked = !this.clicked;
+    // }
+    this.route.navigate([ this.content?.url ?  this.content.url : "home"]);
   }
 
   handleClass() {
@@ -31,7 +33,6 @@ export class SidebarButtonComponent implements OnInit{
     }
   }
   ngOnInit(): void {
-
     if(window.location.pathname.includes(this.content?.url as string)){
       this.clicked=true
     }

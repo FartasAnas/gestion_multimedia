@@ -27,6 +27,7 @@ import { FileDetailsLayoutComponent } from './layouts/file-details-layout/file-d
 import { EditFileComponent } from './components/edit-file/edit-file.component';
 import { VideosLayoutComponent } from './layouts/videos-layout/videos-layout.component';
 import { FileCardComponent } from './components/file-card/file-card.component';
+import { FileInterfaceComponent } from './components/file-interface/file-interface.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { FileCardComponent } from './components/file-card/file-card.component';
     FileDetailsLayoutComponent,
     EditFileComponent,
     VideosLayoutComponent,
-    FileCardComponent
+    FileCardComponent,
+    FileInterfaceComponent
   ],
   imports: [
     BrowserModule,
