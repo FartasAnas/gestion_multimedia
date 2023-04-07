@@ -30,8 +30,7 @@
 }
 .imageLayout-Body-card{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-flow: row wrap;
+  justify-content: flex-start;
   gap: 18px;
-  flex-wrap:wrap;
 }

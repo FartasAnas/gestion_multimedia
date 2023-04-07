@@ -7,8 +7,8 @@
     <div class="imageLayout-Body-title">
       <p>Fichiers</p>
     </div>
-    <div class="imageLayout-Body-card">
-      <app-image-card  *ngFor="let fileObject of (fileObjects$ | async)" [fileObject]="fileObject" ></app-image-card>
+    <div class="imageLayout-Body-card" *ngIf="fileObjects$ | async as fileObjects">
+      <app-image-card  *ngFor="let fileObject of fileObjects" [fileObject]="fileObject" ></app-image-card>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import FileObject from "../../entities/FileObject";
 import {Router} from "@angular/router";
 
@@ -10,7 +10,6 @@ import {Router} from "@angular/router";
 export class ImageCardComponent{
   hostname=window.location.hostname
   @Input() fileObject?:FileObject
-  imageUrl = 'http://localhost:8100/files/download/'+this.fileObject?.id as String;
   constructor(private router: Router) {
   }
   handleDisplayImage() {

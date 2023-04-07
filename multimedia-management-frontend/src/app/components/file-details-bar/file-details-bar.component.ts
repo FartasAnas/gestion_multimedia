@@ -38,7 +38,6 @@ export class FileDetailsBarComponent {
   }
 
   handleEditFile() {
-    console.log('clicked')
     this.editFileComponent.toggleVisibility(true)
   }
 

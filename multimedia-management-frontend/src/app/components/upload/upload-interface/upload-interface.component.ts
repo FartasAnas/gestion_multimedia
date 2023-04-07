@@ -47,7 +47,7 @@ export class UploadInterfaceComponent {
   }
   handleUploadFile() {
     if(this.selectedFile?.file && this.fileType){
-        this.fileObject.keywords=this.selectedKeywords
+        this.fileObject.keywords=Object.values(this.selectedKeywords)
         this.fileObject.type = this.fileType
         this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
           data=>{

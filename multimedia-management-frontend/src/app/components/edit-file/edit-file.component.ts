@@ -15,9 +15,11 @@ export class EditFileComponent implements OnInit{
   @Input() fileObject?:FileObject
   fileObjectCopy?:FileObject
   @Output() fileObjectChange = new EventEmitter<FileObject>();
+  selectedKeywords:KeywordObject[]=[]
 
   ngOnInit(): void {
-    this.fileObjectCopy={...this.fileObject}
+    this.fileObjectCopy=Object.assign({}, this.fileObject)
+    this.selectedKeywords=Object.assign([], this.fileObject?.keywords);
   }
   constructor(private fileService:FileService) {
   }
@@ -29,7 +31,9 @@ export class EditFileComponent implements OnInit{
   }
 
   handleSubmit(form:NgForm) {
-    this.fileObject={ ...this.fileObjectCopy}
+
+    this.fileObject={...this.fileObjectCopy}
+    this.fileObject.keywords=[...this.selectedKeywords]
     const fileId=this.fileObject?.id
     if(fileId && this.fileObject) {
       this.fileService.updateFile(fileId, this.fileObject).subscribe(
@@ -42,6 +46,4 @@ export class EditFileComponent implements OnInit{
       );
     }
   }
-
-
 }
