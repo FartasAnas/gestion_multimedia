@@ -31,6 +31,7 @@ export class SidebarButtonComponent implements OnInit{
     }
   }
   ngOnInit(): void {
+
     if(window.location.pathname.includes(this.content?.url as string)){
       this.clicked=true
     }

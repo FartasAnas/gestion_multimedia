@@ -17,7 +17,6 @@ import { UploadInterfaceStep1Component } from './components/upload/upload-interf
 import { UploadProgressComponent } from './components/upload/upload-progress/upload-progress.component';
 import { UploadInterfaceStep2Component } from './components/upload/upload-interface-step2/upload-interface-step2.component';
 import { UploadInterfaceComponent } from './components/upload/upload-interface/upload-interface.component';
-import { ImageCardComponent } from './components/image-card/image-card.component';
 import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { HomeCardComponent } from './components/home-card/home-card.component';
@@ -26,6 +25,8 @@ import { StateTagComponent } from './components/state-tag/state-tag.component';
 import { FileDetailsBarComponent } from './components/file-details-bar/file-details-bar.component';
 import { FileDetailsLayoutComponent } from './layouts/file-details-layout/file-details-layout.component';
 import { EditFileComponent } from './components/edit-file/edit-file.component';
+import { VideosLayoutComponent } from './layouts/videos-layout/videos-layout.component';
+import { FileCardComponent } from './components/file-card/file-card.component';
 
 
 @NgModule({
@@ -42,7 +43,6 @@ import { EditFileComponent } from './components/edit-file/edit-file.component';
     UploadProgressComponent,
     UploadInterfaceStep2Component,
     UploadInterfaceComponent,
-    ImageCardComponent,
     WebLayoutComponent,
     PageTitleComponent,
     HomeCardComponent,
@@ -50,7 +50,9 @@ import { EditFileComponent } from './components/edit-file/edit-file.component';
     StateTagComponent,
     FileDetailsBarComponent,
     FileDetailsLayoutComponent,
-    EditFileComponent
+    EditFileComponent,
+    VideosLayoutComponent,
+    FileCardComponent
   ],
   imports: [
     BrowserModule,

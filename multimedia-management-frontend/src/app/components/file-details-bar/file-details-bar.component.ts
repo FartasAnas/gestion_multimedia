@@ -3,6 +3,7 @@ import {FileService} from "../../services/file/file.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import FileObject from "../../entities/FileObject";
 import {EditFileComponent} from "../edit-file/edit-file.component";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-file-details-bar',
@@ -13,10 +14,10 @@ export class FileDetailsBarComponent {
   @Input() fileObject?:FileObject
   @ViewChild(EditFileComponent) editFileComponent!: EditFileComponent;
   showEditInterface:boolean=false
-  constructor(private router: Router,private fileService:FileService) {
+  constructor(private router: Router,private fileService:FileService,private location:Location) {
   }
   handelCloseDetailsClick() {
-    this.router.navigate(['web/images']);
+    this.location.back()
   }
 
   fileVersionTranslate():String{
@@ -33,7 +34,7 @@ export class FileDetailsBarComponent {
   handleDeleteFile() {
     if(this.fileObject?.id){
       this.fileService.removeFile(this.fileObject?.id)
-      this.router.navigate(['web/images']);
+      this.location.back()
     }
   }
 

@@ -1,0 +1,36 @@
+.videoLayout{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin: 72px 50px;
+  overflow: hidden;
+}
+.videoLayout-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.videoLayout-Title-text,
+.videoLayout-Body-title{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+  color: #0B2866;
+}
+.videoLayout-Body{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.videoLayout-Body-title{
+  font-size: 18px;
+  line-height: 25px;
+}
+.videoLayout-Body-card{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  gap: 18px;
+}

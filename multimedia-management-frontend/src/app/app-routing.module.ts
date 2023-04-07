@@ -5,7 +5,7 @@ import {HomePageComponent} from "./layouts/home-page/home-page.component";
 import {ImagesLayoutComponent} from "./layouts/images-layout/images-layout.component";
 import {WebLayoutComponent} from "./layouts/web-layout/web-layout.component";
 import {FileDetailsLayoutComponent} from "./layouts/file-details-layout/file-details-layout.component";
-import {EditFileComponent} from "./components/edit-file/edit-file.component";
+import {VideosLayoutComponent} from "./layouts/videos-layout/videos-layout.component";
 
 const routes: Routes = [
   {path:'',component:LoginLayoutComponent},
@@ -15,7 +15,8 @@ const routes: Routes = [
     component:WebLayoutComponent,
     children:[
       {path:'images',component:ImagesLayoutComponent},
-      {path:'images/:id',component:FileDetailsLayoutComponent}
+      {path:'videos',component:VideosLayoutComponent},
+      {path:'file/:id',component:FileDetailsLayoutComponent}
     ]
   }
 ];
