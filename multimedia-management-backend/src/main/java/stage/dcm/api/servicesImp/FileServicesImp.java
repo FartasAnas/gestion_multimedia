@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLConnection;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -79,9 +80,11 @@ public class FileServicesImp implements FileServices {
     public Collection<File> getUserFilesByType(String username, String type) throws NotFoundException {
         User userDto = userServices.getUserByUsername(username);
         if (userDto != null) {
-            return userDto.getFiles().stream()
+            List<File> userFiles = userDto.getFiles().stream()
                     .filter(file -> file.getType().toString().equals(type))
+                    .sorted(Comparator.comparing(File::getCreationDate))
                     .collect(Collectors.toList());
+            return userFiles;
         } else {
             throw new NotFoundException("User Not Found");
         }
