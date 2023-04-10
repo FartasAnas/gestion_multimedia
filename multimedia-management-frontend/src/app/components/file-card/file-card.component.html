@@ -2,12 +2,7 @@
   <div class="fileCard-file" *ngIf="hostname">
     <img  [src]="fileUrl" *ngIf="fileType=='IMAGE'">
     <div class="video-file" *ngIf="fileType=='VIDEO'">
-      <video  (mouseover)="playVideo()" (mouseleave)="pauseVideo()" #videoElement muted>
-        <source [src]="fileUrl" type="video/mp4">
-        <source [src]="fileUrl" type="video/ogg">
-        <source [src]="fileUrl" type="video/webm">
-      </video>
-      <img src="assets/PlayIcon.svg">
+      <app-file-video-card [fileUrl]="fileUrl"></app-file-video-card>
     </div>
   </div>
   <div class="file-card-info">

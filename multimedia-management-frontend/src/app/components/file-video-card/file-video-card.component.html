@@ -1,0 +1,8 @@
+<div class="file-video-card">
+  <video  (mouseover)="playVideo()" (mouseleave)="pauseVideo()" #videoElement muted>
+    <source [src]="fileUrl" type="video/mp4">
+    <source [src]="fileUrl" type="video/ogg">
+    <source [src]="fileUrl" type="video/webm">
+  </video>
+  <img src="assets/PlayIcon.svg">
+</div>

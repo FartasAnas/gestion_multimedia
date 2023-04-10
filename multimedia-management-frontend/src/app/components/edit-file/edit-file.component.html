@@ -10,8 +10,11 @@
       </div>
       <form #editForm='ngForm' (ngSubmit)="handleSubmit(editForm)">
         <div class="editInterface-body">
-          <div class="editInterface-body-fileImage">
-            <img  [src]="'http://'+hostname+':8100/files/object/'+fileObject.id || ''">
+          <div class="editInterface-body-file">
+            <img  [src]="fileUrl" *ngIf="fileObject.type=='IMAGE'">
+            <div class="video-file" *ngIf="fileObject.type=='VIDEO'">
+              <app-file-video-card [fileUrl]="fileUrl"></app-file-video-card>
+            </div>
           </div>
           <div class="editInterface-body-content">
             <div class="input-group">

@@ -16,10 +16,12 @@ export class EditFileComponent implements OnInit{
   fileObjectCopy?:FileObject
   @Output() fileObjectChange = new EventEmitter<FileObject>();
   selectedKeywords:KeywordObject[]=[]
+  fileUrl?:string
 
   ngOnInit(): void {
     this.fileObjectCopy=Object.assign({}, this.fileObject)
     this.selectedKeywords=Object.assign([], this.fileObject?.keywords);
+    this.fileUrl=`http://${this.hostname}:8100/files/object/${this.fileObject?.id}/`
   }
   constructor(private fileService:FileService) {
   }

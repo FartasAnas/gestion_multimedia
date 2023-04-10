@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 export class FileCardComponent implements OnInit{
   hostname=window.location.hostname
   fileType?:String
-  fileUrl?:String
+  fileUrl?:string
   @Input() fileObject?:FileObject
   @ViewChild('videoElement') myVideo?: ElementRef;
   constructor(private router: Router) {

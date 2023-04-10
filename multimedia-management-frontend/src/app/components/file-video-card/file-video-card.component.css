@@ -1,0 +1,26 @@
+.file-video-card{
+  height: 100%;
+  width: 100%;
+}
+.file-video-card video{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.file-video-card{
+  display: grid;
+  place-items: center;
+}
+.file-video-card video,
+.file-video-card img{
+  grid-column: 1;
+  grid-row: 1;
+}
+.file-video-card img{
+  height: 72px;
+  width: 72px;
+  transition: 0.2s all ease;
+}
+.file-video-card:hover img{
+  display: none;
+}
