@@ -13,14 +13,19 @@
           <img src="assets/Download.svg" class="svg-icon">
         </div>
       </a>
-      <div class="displayer-action" (click)="handleCopyFile()">
+      <div class="displayer-action" (click)="handleCopyFile()" *ngIf="fileObject.type=='IMAGE'">
         <img src="assets/CopySimple.svg" class="svg-icon">
       </div>
     </div>
-    <div class="displayer-body" #fileContainer>
-      <img [src]="fileUrl" [style.transform]="'scale(' + scaleValue + ')'">
+    <div class="displayer-body" #fileContainer >
+      <div class="image-wrapper" *ngIf="fileObject.type=='IMAGE'">
+        <img [src]="fileUrl" [style.transform]="'scale(' + scaleValue + ')'">
+      </div>
+      <div class="video-wrapper" *ngIf="fileObject.type=='VIDEO'">
+        <app-video-player [fileUrl]="fileUrl"></app-video-player>
+      </div>
     </div>
-    <div class="displayer-footer">
+    <div class="displayer-footer" *ngIf="fileObject.type=='IMAGE'">
       <div class="displayer-action footer-left" (click)="scaleImage('up')">
         <img src="assets/PlusSign.svg" class="svg-icon">
       </div>

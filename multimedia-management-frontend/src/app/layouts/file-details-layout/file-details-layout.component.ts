@@ -12,7 +12,7 @@ export class FileDetailsLayoutComponent {
   fileObject?:FileObject
   hostname=window.location.hostname
   scaleValue:number=1;
-  fileUrl?:String
+  fileUrl?:string
   @ViewChild('fileContainer', { static: false }) fileContainer?: ElementRef;
   constructor(private fileService:FileService,private activatedRoute: ActivatedRoute,private router: Router) {
   }

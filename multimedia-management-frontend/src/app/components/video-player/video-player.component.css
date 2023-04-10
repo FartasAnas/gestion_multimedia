@@ -1,0 +1,4 @@
+.video-player-wrapper video{
+  width: 100%;
+  object-fit: cover;
+}

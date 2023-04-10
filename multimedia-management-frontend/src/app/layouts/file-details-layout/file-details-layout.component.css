@@ -33,9 +33,8 @@
 
 .displayer-body {
   display: flex;
+  height: 100%;
   justify-content: center;
-  align-items: center;
-  position: relative;
 }
 .displayer-header a,
 .displayer-action {
@@ -56,15 +55,30 @@
 }
 
 .displayer-body img {
+  display: flex;
   position: relative;
   max-height: 80%;
   max-width: 80%;
+  min-height: 50%;
+  min-width: 50%;
   z-index: 2;
   object-fit: cover;
   transition: 0.3s all ease;
   transition-delay: 0.05s;
 }
-
+.image-wrapper,
+.video-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items:  center;
+}
+.image-wrapper{
+  height: 100%;
+  width: 100%;
+}
+.video-wrapper{
+  width: 90%;
+}
 .displayer-footer {
   display: flex;
   align-items: center;

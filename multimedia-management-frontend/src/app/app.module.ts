@@ -28,6 +28,11 @@ import { EditFileComponent } from './components/edit-file/edit-file.component';
 import { VideosLayoutComponent } from './layouts/videos-layout/videos-layout.component';
 import { FileCardComponent } from './components/file-card/file-card.component';
 import { FileInterfaceComponent } from './components/file-interface/file-interface.component';
+import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import {VgCoreModule} from "@videogular/ngx-videogular/core";
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 
 
 @NgModule({
@@ -54,13 +59,18 @@ import { FileInterfaceComponent } from './components/file-interface/file-interfa
     EditFileComponent,
     VideosLayoutComponent,
     FileCardComponent,
-    FileInterfaceComponent
+    FileInterfaceComponent,
+    VideoPlayerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    VgCoreModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+    VgControlsModule
   ],
   providers: [
 
