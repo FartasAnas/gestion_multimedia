@@ -62,7 +62,7 @@ public class FileServicesImp implements FileServices {
 
     @Override
     public File getFileById(Long id) throws NotFoundException {
-        return fileRepository.findById(id).orElseThrow(() -> new NotFoundException("User was not found"));
+        return fileRepository.findById(id).orElseThrow(() -> new NotFoundException("File was not found"));
     }
 
     @Override

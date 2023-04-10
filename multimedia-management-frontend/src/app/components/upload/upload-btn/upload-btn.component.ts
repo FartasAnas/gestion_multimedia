@@ -6,8 +6,8 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrls: ['./upload-btn.component.css']
 })
 export class UploadBtnComponent {
-  @Input() text?:String
-  @Input() fileType?:String
+  @Input() text?:string
+  @Input() fileType?:string
   @Output() fileUploaded = new EventEmitter();
   clicked:boolean=false
   handleClick() {

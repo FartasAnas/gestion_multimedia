@@ -10,29 +10,52 @@ export class UploadInterfaceStep1Component {
   @Output() fileEvent=new EventEmitter<FileInput>();
   @ViewChild('uploadInput') uploadInput?:ElementRef<HTMLInputElement>;
   @Input() selectedFile?: FileInput;
+  @Input() fileType?:string
+
 
   handleUploadInput(event: any) {
     const file: File = event.target.files[0];
     const reader = new FileReader();
-    if (file.size <= 50 * 1024 * 1024) {
+
+    let allowedTypes: string[] = [];
+    switch (this.fileType) {
+      case 'IMAGE':
+        allowedTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/svg+xml'];
+        break;
+      case 'VIDEO':
+        allowedTypes = ['video/mp4', 'video/mpeg', 'video/avi'];
+        break;
+      case 'DOCUMENT':
+        allowedTypes = ['application/pdf', 'application/msword', 'text/plain'];
+        break;
+      default:
+        allowedTypes = [];
+        break;
+    }
+
+    if (allowedTypes.includes(file.type) && file.size <= 50 * 1024 * 1024) {
       reader.onload = (e: any) => {
         this.selectedFile = {
           file: file,
           fileUrl: file.type.startsWith('image/') ? e.target.result : null
         };
-        this.fileEvent.emit(this.selectedFile)
+        this.fileEvent.emit(this.selectedFile);
       };
       reader.readAsDataURL(file);
-      this.fileEvent.emit(this.selectedFile)
+    } else {
+      console.log('Invalid file type or size');
     }
   }
+
   handleRemoveFile(fileInput: FileInput) {
     this.selectedFile = undefined;
     this.fileEvent.emit(this.selectedFile)
     this.clearInputValue()
   }
   handleSelectFile() {
-    this.uploadInput?.nativeElement.click()
+    if(!this.selectedFile) {
+      this.uploadInput?.nativeElement.click()
+    }
   }
   clearInputValue(){
     if (this.uploadInput) {

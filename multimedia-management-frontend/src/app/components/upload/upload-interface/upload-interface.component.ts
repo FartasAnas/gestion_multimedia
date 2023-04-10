@@ -11,7 +11,7 @@ import KeywordObject from "../../../entities/KeywordObject";
   styleUrls: ['./upload-interface.component.css']
 })
 export class UploadInterfaceComponent {
-  @Input() fileType?:String
+  @Input() fileType?:string
   @Input() showInterface?:boolean
   @Input() text?:String
   @Output() closeUploadEvent=new EventEmitter<boolean>();
