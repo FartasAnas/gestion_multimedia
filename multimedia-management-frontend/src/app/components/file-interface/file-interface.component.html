@@ -5,7 +5,7 @@
   </div>
   <div class="fileInterface-body">
     <div class="fileInterface-body-title">
-      <p>Fichiers</p>
+      <p>{{fileInterfaceInput.fileListTitle}}</p>
     </div>
     <div class="fileInterface-body-card" *ngIf="fileObjects$ | async as fileObjects">
       <app-file-card  *ngFor="let fileObject of fileObjects" [fileObject]="fileObject" ></app-file-card>

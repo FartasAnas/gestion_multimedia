@@ -14,6 +14,9 @@ import {FileService} from "../../services/file/file.service";
 export class HomePageComponent implements OnInit{
   roles$ : Observable<Role []> | undefined;
   numberOfImages$ ?:Observable<String>;
+  numberOfVideos$ ?:Observable<String>;
+  numberOfDocuments$ ?:Observable<String>;
+  numberOfPictograms$ ?:Observable<String>;
   constructor(private authenticationService:AuthenticationService,private route:Router, private userStorage:UserStorageService,private fileService:FileService) {
   }
   ngOnInit(): void {
@@ -22,6 +25,9 @@ export class HomePageComponent implements OnInit{
     }
     // this.roles$=this.authenticationService.loadRoles()
     this.numberOfImages$=this.fileService.countFileByType("image")
+    this.numberOfVideos$=this.fileService.countFileByType("video")
+    this.numberOfDocuments$=this.fileService.countFileByType("document")
+    this.numberOfPictograms$=this.fileService.countFileByType("pictogram")
   }
   getUsername():String{
     return  this.userStorage.getUsername()

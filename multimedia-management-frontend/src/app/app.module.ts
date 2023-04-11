@@ -34,6 +34,7 @@ import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { FileVideoCardComponent } from './components/file-video-card/file-video-card.component';
+import { DocumentsLayoutComponent } from './layouts/documents-layout/documents-layout.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { FileVideoCardComponent } from './components/file-video-card/file-video-
     FileCardComponent,
     FileInterfaceComponent,
     VideoPlayerComponent,
-    FileVideoCardComponent
+    FileVideoCardComponent,
+    DocumentsLayoutComponent
   ],
   imports: [
     BrowserModule,
