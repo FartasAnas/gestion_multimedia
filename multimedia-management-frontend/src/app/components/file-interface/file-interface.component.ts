@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {FileService} from "../../services/file/file.service";
 import FileObject from "../../entities/FileObject";
@@ -9,7 +9,7 @@ import FileInterfaceInput from "../../entities/FileInterfaceInput";
   templateUrl: './file-interface.component.html',
   styleUrls: ['./file-interface.component.css']
 })
-export class FileInterfaceComponent {
+export class FileInterfaceComponent implements OnInit{
   @Input() fileInterfaceInput?:FileInterfaceInput
   constructor(private fileService: FileService) {}
   fileObjects$: Observable<FileObject[]> = new Observable<FileObject[]>();

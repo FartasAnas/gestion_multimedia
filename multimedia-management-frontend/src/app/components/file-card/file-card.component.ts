@@ -9,7 +9,6 @@ import {Router} from "@angular/router";
 })
 export class FileCardComponent implements OnInit{
   hostname=window.location.hostname
-  fileType?:String
   fileUrl?:string
   @Input() fileObject?:FileObject
   @ViewChild('videoElement') myVideo?: ElementRef;
@@ -20,23 +19,7 @@ export class FileCardComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.fileType=this.fileObject?.type
     this.fileUrl=`http://${this.hostname}:8100/files/object/${this.fileObject?.id}/`
   }
 
-  playVideo() {
-    const video = this.myVideo?.nativeElement;
-    if (video) {
-      video.muted = true;
-      video.play();
-    }
-  }
-
-  pauseVideo() {
-    const video = this.myVideo?.nativeElement;
-    if (video) {
-      video.pause();
-      video.currentTime = 0;
-    }
-  }
 }

@@ -1,7 +1,7 @@
 <div class="file-card" *ngIf="fileObject"  (click)="handleDisplayFile()">
   <div class="fileCard-file" *ngIf="hostname">
-    <img  [src]="fileUrl" *ngIf="fileType=='IMAGE'">
-    <div class="video-file" *ngIf="fileType=='VIDEO'">
+    <img  [src]="fileUrl" *ngIf="fileObject.type=='IMAGE'">
+    <div class="video-file" *ngIf="fileObject.type=='VIDEO'">
       <app-file-video-card [fileUrl]="fileUrl"></app-file-video-card>
     </div>
   </div>

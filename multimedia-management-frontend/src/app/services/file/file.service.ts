@@ -14,7 +14,6 @@ export class FileService {
   constructor(private http:HttpClient,private userStorageService:UserStorageService) { }
 
   saveFile(file: File, fileObject: FileObject): Observable<FileObject> {
-    console.log(window.location.pathname.split('/')[1])
     fileObject.fileName = file.name;
     fileObject.createdBy=this.currentUser;
     fileObject.category = window.location.pathname.split('/')[1].toUpperCase();
@@ -46,10 +45,7 @@ export class FileService {
     return this.http.get<String>(`${this.apiUrl}/count/${this.currentUser}/${type}`)
   }
   removeFile(id:number){
-    this.http.delete(`${this.apiUrl}/delete/${id}`).subscribe(
-      () => console.log(`File with ID ${id} deleted successfully`),
-      error => console.error(`Error deleting file with ID ${id}: ${error}`)
-    );
+    return this.http.delete(`${this.apiUrl}/delete/${id}`)
   }
   updateFile(id:number,fileObject:FileObject){
     return this.http.put(`${this.apiUrl}/update/${id}`,fileObject)

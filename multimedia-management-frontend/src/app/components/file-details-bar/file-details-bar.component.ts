@@ -33,8 +33,13 @@ export class FileDetailsBarComponent {
 
   handleDeleteFile() {
     if(this.fileObject?.id){
-      this.fileService.removeFile(this.fileObject?.id)
-      this.location.back()
+      this.fileService.removeFile(this.fileObject?.id).subscribe(
+        () => {
+          console.log(`File with ID ${this.fileObject?.id} deleted successfully`);
+          this.location.back()
+        },
+        error => console.error(`Error deleting file with ID ${this.fileObject?.id}: ${error}`)
+      );
     }
   }
 

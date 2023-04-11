@@ -49,7 +49,7 @@
 }
 
 .closeInterface-icon:hover{
-  /*background: red;*/
+  background: #D7E3FC;
   cursor: pointer;
 }
 .uploadInterfaceStepper{
