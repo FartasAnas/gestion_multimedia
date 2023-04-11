@@ -7,6 +7,7 @@ import ma.indh.minio.exception.MinioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import stage.dcm.api.dto.NextPreviousFilesDTO;
 import stage.dcm.api.entities.File;
 import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.services.FileServices;
@@ -52,6 +53,11 @@ public class FileControllers {
     @GetMapping("")
     public List<File> getAllFiles(){
         return fileServices.getAllFiles();
+    }
+
+    @GetMapping("/next-previous/{id}")
+    public NextPreviousFilesDTO getNextPreviousFiles(@PathVariable("id") Long id) throws NotFoundException {
+        return fileServices.getNextPreviousFiles(id);
     }
     @PutMapping("/update/{id}")
     public File updateFile(@PathVariable Long id,@RequestBody File file) throws NotFoundException {

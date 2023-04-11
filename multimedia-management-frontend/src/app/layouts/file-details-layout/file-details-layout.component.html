@@ -18,11 +18,17 @@
       </div>
     </div>
     <div class="displayer-body" #fileContainer >
+      <div class="displayer-action previous-next-icon" (click)="handlePreviousNext('previous')">
+        <img src="assets/ArrowLineLeft.svg">
+      </div>
       <div class="image-wrapper" *ngIf="fileObject.type=='IMAGE'">
         <img [src]="fileUrl" [style.transform]="'scale(' + scaleValue + ')'">
       </div>
       <div class="video-wrapper" *ngIf="fileObject.type=='VIDEO'">
         <app-video-player [fileUrl]="fileUrl"></app-video-player>
+      </div>
+      <div class="displayer-action previous-next-icon" (click)="handlePreviousNext('next')">
+        <img src="assets/ArrowLineRight3.svg">
       </div>
     </div>
     <div class="displayer-footer" *ngIf="fileObject.type=='IMAGE'">

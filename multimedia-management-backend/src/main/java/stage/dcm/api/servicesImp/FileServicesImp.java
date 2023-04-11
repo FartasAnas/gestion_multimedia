@@ -7,6 +7,7 @@ import ma.indh.minio.service.MinioService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import stage.dcm.api.dto.NextPreviousFilesDTO;
 import stage.dcm.api.entities.File;
 import stage.dcm.api.entities.User;
 import stage.dcm.api.enums.FileType;
@@ -20,10 +21,7 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLConnection;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -99,6 +97,30 @@ public class FileServicesImp implements FileServices {
     public List<File> getAllFiles() {
         return fileRepository.findAll();
     }
+
+    @Override
+    public NextPreviousFilesDTO getNextPreviousFiles(Long id) throws NotFoundException {
+        File currentFile = getFileById(id);
+        Collection<File> fileList = getUserFilesByType(currentFile.getCreatedBy(), currentFile.getType().toString());
+        Long nextFileId = null;
+        Long previousFileId = null;
+        Iterator<File> iterator = fileList.iterator();
+        File previousFile = null;
+        while (iterator.hasNext()) {
+            File file = iterator.next();
+            if (file.getId().equals(id)) {
+                previousFileId = (previousFile != null) ? previousFile.getId() : fileList.stream().reduce((a, b) -> b).get().getId();
+                nextFileId = (iterator.hasNext()) ? iterator.next().getId() : fileList.stream().findFirst().get().getId();
+                break;
+            }
+            previousFile = file;
+        }
+        if (nextFileId == null || previousFileId == null) {
+            throw new NotFoundException("File not found in user files list");
+        }
+        return new NextPreviousFilesDTO(nextFileId, previousFileId);
+    }
+
 
     @Override
     public File updateFile(Long id, File file) throws NotFoundException {

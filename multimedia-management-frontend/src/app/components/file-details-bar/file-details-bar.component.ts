@@ -14,10 +14,19 @@ export class FileDetailsBarComponent {
   @Input() fileObject?:FileObject
   @ViewChild(EditFileComponent) editFileComponent!: EditFileComponent;
   showEditInterface:boolean=false
-  constructor(private router: Router,private fileService:FileService,private location:Location) {
+
+  constructor(private router: Router,private fileService:FileService) {
   }
   handelCloseDetailsClick() {
-    this.location.back()
+    const type=this.fileObject?.type
+    const category=this.fileObject?.category
+    if(type=='IMAGE'){
+      this.router.navigate([category?.toLowerCase(),'images'])
+    }else if(type=='VIDEO'){
+      this.router.navigate([category?.toLowerCase(),'videos'])
+    }else {
+      this.router.navigate(['home'])
+    }
   }
 
   fileVersionTranslate():String{
@@ -36,7 +45,7 @@ export class FileDetailsBarComponent {
       this.fileService.removeFile(this.fileObject?.id).subscribe(
         () => {
           console.log(`File with ID ${this.fileObject?.id} deleted successfully`);
-          this.location.back()
+          this.handelCloseDetailsClick()
         },
         error => console.error(`Error deleting file with ID ${this.fileObject?.id}: ${error}`)
       );

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import FileObject from "../../entities/FileObject";
 import {UserStorageService} from "../user-storage/user-storage.service";
+import NextPreviousFilesObject from "../../entities/NextPreviousFilesObject";
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,9 @@ export class FileService {
     const size = parseFloat((bytes / Math.pow(k, i)).toFixed(1));
     return `${size} ${sizes[i-1]}`;
   }
+  getNextPreviousFiles(id:number):Observable<NextPreviousFilesObject>{
+    return this.http.get<NextPreviousFilesObject>(`${this.apiUrl}/next-previous/${id}`)
+  }
   countFileByType(type:String){
     return this.http.get<String>(`${this.apiUrl}/count/${this.currentUser}/${type}`)
   }
@@ -50,5 +54,6 @@ export class FileService {
   updateFile(id:number,fileObject:FileObject){
     return this.http.put(`${this.apiUrl}/update/${id}`,fileObject)
   }
+
 
 }

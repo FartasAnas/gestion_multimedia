@@ -2,6 +2,7 @@ package stage.dcm.api.services;
 
 import ma.indh.minio.exception.MinioException;
 import org.springframework.web.multipart.MultipartFile;
+import stage.dcm.api.dto.NextPreviousFilesDTO;
 import stage.dcm.api.entities.File;
 import stage.dcm.api.exceptions.NotFoundException;
 
@@ -18,6 +19,7 @@ public interface FileServices {
     public Collection<File> getUserFilesByType(String username,String type) throws NotFoundException;
     public File getFileByName(String filename);
     public List<File> getAllFiles();
+    public NextPreviousFilesDTO getNextPreviousFiles(Long id) throws NotFoundException;
     public File updateFile(Long id,File file) throws NotFoundException;
     public void deleteFile(Long id) throws NotFoundException;
 }
