@@ -1,0 +1,25 @@
+.file-document-card{
+  height: 100%;
+}
+.file-document{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.word-document{
+  background: #88AAF5;
+}
+.exel-document{
+  background: #4AA578;
+}
+.pdf-document{
+  background: #F26464;
+}
+.ppt-document{
+  background: #FF8A4C;
+}
+.file-document img{
+  height: 54px;
+  width: 54px;
+}

@@ -1,17 +1,20 @@
-<div class="file-card" *ngIf="fileObject"  (click)="handleDisplayFile()">
-  <div class="fileCard-file" *ngIf="hostname">
-    <img  [src]="fileUrl" *ngIf="fileObject.type=='IMAGE'">
-    <div class="video-file" *ngIf="fileObject.type=='VIDEO'">
+<div class="file-card" *ngIf="fileObject" [style.width]="cardWidth" (click)="handleDisplayFile()" >
+  <div class="fileCard-file" *ngIf="fileUrl!==''">
+    <img  [src]="fileUrl" *ngIf="fileObject.type==='IMAGE'">
+    <div class="video-file" *ngIf="fileObject.type==='VIDEO'">
       <app-file-video-card [fileUrl]="fileUrl"></app-file-video-card>
+    </div>
+    <div class="document-file" *ngIf="fileObject.type==='DOCUMENT'">
+      <app-file-document-card [fileType]="fileType" [fileUrl]="fileUrl"></app-file-document-card>
     </div>
   </div>
   <div class="file-card-info">
     <div>
-      <p class="name-txt" >ID {{fileObject.id}}</p>
+      <p class="name-txt">{{nameText()}}</p>
       <app-state-tag [state]="fileObject.state"></app-state-tag>
     </div>
     <div>
-      <p class="supInfo-txt" *ngIf="fileObject.fileName" >{{fileObject.fileName.split(".")[1] | uppercase}} - {{fileObject.size}}</p>
+      <p class="supInfo-txt" *ngIf="fileObject.fileName" >{{fileType | uppercase}} - {{fileObject.size}}</p>
       <p class="supInfo-txt">{{fileObject.creationDate | date: 'dd/MM/yyyy'}} </p>
     </div>
   </div>

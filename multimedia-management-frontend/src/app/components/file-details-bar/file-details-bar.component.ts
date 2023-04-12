@@ -20,12 +20,18 @@ export class FileDetailsBarComponent {
   handelCloseDetailsClick() {
     const type=this.fileObject?.type
     const category=this.fileObject?.category
-    if(type=='IMAGE'){
-      this.router.navigate([category?.toLowerCase(),'images'])
-    }else if(type=='VIDEO'){
-      this.router.navigate([category?.toLowerCase(),'videos'])
-    }else {
-      this.router.navigate(['home'])
+    switch(type) {
+      case 'IMAGE':
+        this.router.navigate([category?.toLowerCase(), 'images']);
+        break;
+      case 'VIDEO':
+        this.router.navigate([category?.toLowerCase(), 'videos']);
+        break;
+      case 'DOCUMENT':
+        this.router.navigate([category?.toLowerCase(), 'documents']);
+        break;
+      default:
+        this.router.navigate(['home']);
     }
   }
 
