@@ -6,6 +6,6 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./file-document-card.component.css']
 })
 export class FileDocumentCardComponent {
-  @Input() fileType:string=''
+  @Input() fileExtension:string=''
   @Input() fileUrl:string=''
 }

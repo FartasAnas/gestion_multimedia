@@ -15,6 +15,9 @@
             <div class="video-file" *ngIf="fileObject.type=='VIDEO'">
               <app-file-video-card [fileUrl]="fileUrl"></app-file-video-card>
             </div>
+            <div class="video-file" *ngIf="fileObject.type=='DOCUMENT'">
+              <app-file-document-card [fileUrl]="fileUrl" [fileExtension]="getFileExtension()"></app-file-document-card>
+            </div>
           </div>
           <div class="editInterface-body-content">
             <div class="input-group">

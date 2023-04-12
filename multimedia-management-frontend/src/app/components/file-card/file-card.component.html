@@ -5,7 +5,7 @@
       <app-file-video-card [fileUrl]="fileUrl"></app-file-video-card>
     </div>
     <div class="document-file" *ngIf="fileObject.type==='DOCUMENT'">
-      <app-file-document-card [fileType]="fileType" [fileUrl]="fileUrl"></app-file-document-card>
+      <app-file-document-card [fileExtension]="fileType" [fileUrl]="fileUrl"></app-file-document-card>
     </div>
   </div>
   <div class="file-card-info">

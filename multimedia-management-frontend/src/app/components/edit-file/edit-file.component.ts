@@ -18,7 +18,7 @@ export class EditFileComponent implements OnInit,OnChanges{
   fileObjectCopy?:FileObject
   @Output() fileObjectChange = new EventEmitter<FileObject>();
   selectedKeywords:KeywordObject[]=[]
-  fileUrl?:string
+  fileUrl:string=''
   @ViewChild(FileVideoCardComponent) videoCard?:FileVideoCardComponent
 
   ngOnInit(): void {
@@ -62,5 +62,9 @@ export class EditFileComponent implements OnInit,OnChanges{
     this.fileObjectCopy = Object.assign({}, this.fileObject);
     this.fileUrl = `http://${this.hostname}:8100/files/object/${this.fileObject?.id}/`;
     this.selectedKeywords=Object.assign([], this.fileObject?.keywords)
+  }
+
+  getFileExtension():string{
+    return this.fileObject?.fileName?.split(".")[1] as string;
   }
 }

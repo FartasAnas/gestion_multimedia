@@ -1,14 +1,14 @@
 <div class="file-document-card">
-  <div class="file-document word-document" *ngIf="fileType==='docx'">
+  <div class="file-document word-document" *ngIf="fileExtension==='docx'">
     <img src="assets/FileDoc2.svg">
   </div>
-  <div class="file-document exel-document" *ngIf="fileType==='xlsx'">
+  <div class="file-document exel-document" *ngIf="fileExtension==='xlsx'">
     <img src="assets/FileXls.svg">
   </div>
-  <div class="file-document pdf-document" *ngIf="fileType==='pdf'">
+  <div class="file-document pdf-document" *ngIf="fileExtension==='pdf'">
     <img src="assets/FilePdf.svg">
   </div>
-  <div class="file-document ppt-document" *ngIf="fileType==='pptx'">
+  <div class="file-document ppt-document" *ngIf="fileExtension==='pptx'">
     <img src="assets/FilePpt.svg">
   </div>
 </div>
