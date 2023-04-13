@@ -29,7 +29,7 @@
         <img src="assets/ArrowLeft.svg">
         <p class="uploadInterfaceFooter-txt">Précédent</p>
       </button>
-      <button class="uploadInterfaceFooter-btn" [ngClass]="{'disabled':!(fileObject.state!=='' && fileObject.version!=='')}"  (click)="handleUploadFile()" [disabled]="!(fileObject.state!=='' && fileObject.version!=='')" *ngIf="currentStep=='Step2'">
+      <button class="uploadInterfaceFooter-btn" [ngClass]="{'disabled':handleDisableUploadBtn()}"  (click)="handleUploadFile()" [disabled]="handleDisableUploadBtn()" *ngIf="currentStep=='Step2'">
         <img src="assets/Check.svg">
         <p class="uploadInterfaceFooter-txt">Enregistrer</p>
       </button>

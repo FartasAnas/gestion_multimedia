@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import FileObject from "../../../entities/FileObject";
 import KeywordObject from "../../../entities/KeywordObject";
 
@@ -7,7 +7,7 @@ import KeywordObject from "../../../entities/KeywordObject";
   templateUrl: './upload-interface-step2.component.html',
   styleUrls: ['./upload-interface-step2.component.css']
 })
-export class UploadInterfaceStep2Component {
+export class UploadInterfaceStep2Component{
   @Input() fileObject?:FileObject
   @Output() fileObjectChange = new EventEmitter<FileObject>();
   @Output() selectedKeywordsEvent=new EventEmitter<KeywordObject[]>();

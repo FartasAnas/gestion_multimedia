@@ -17,7 +17,7 @@
       </label>
       <textarea id="description" name="description" class="contentForm-input" *ngIf="fileObject" [(ngModel)]="fileObject.description" (ngModelChange)="fileObjectChange.emit(fileObject)"></textarea>
     </div>
-    <div class="row-grp">
+    <div class="row-grp" *ngIf="fileObject?.type!=='PICTOGRAM'">
       <div class="input-group">
         <label class="contentForm-label" for="description">
           Version

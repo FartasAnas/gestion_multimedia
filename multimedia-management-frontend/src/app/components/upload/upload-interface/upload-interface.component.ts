@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import FileObject from "../../../entities/FileObject";
 import FileInput from "../../../entities/FileInput";
 import {FileService} from "../../../services/file/file.service";
@@ -10,7 +10,7 @@ import KeywordObject from "../../../entities/KeywordObject";
   templateUrl: './upload-interface.component.html',
   styleUrls: ['./upload-interface.component.css']
 })
-export class UploadInterfaceComponent {
+export class UploadInterfaceComponent implements OnInit{
   @Input() fileType?:string
   @Input() showInterface?:boolean
   @Input() text?:String
@@ -61,6 +61,9 @@ export class UploadInterfaceComponent {
         )
       }
   }
+  handleDisableUploadBtn():boolean{
+    return (this.fileObject.state==='' && this.fileObject.version==='' && this.fileObject.type!=='PICTOGRAM')
+  }
   handleSwitchStep(): void {
     this.currentStep = this.currentStep === "Step1" ? "Step2" : "Step1";
   }
@@ -71,5 +74,13 @@ export class UploadInterfaceComponent {
 
   handleSelectedKeywords(newSelectedKeywords:KeywordObject[]) {
     this.selectedKeywords={...newSelectedKeywords}
+  }
+
+  ngOnInit(): void {
+    this.fileObject.type=this.fileType
+    if(this.fileType==='PICTOGRAM'){
+      this.fileObject.version=undefined
+      this.fileObject.state=undefined
+    }
   }
 }
