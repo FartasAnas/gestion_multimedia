@@ -1,14 +1,19 @@
-<div class="file-card" *ngIf="fileObject" [style.width]="cardWidth" (click)="handleDisplayFile()" >
+<div class="file-card" *ngIf="fileObject" [style.width]="cardWidth" [style.height]="cardHeight" (click)="handleDisplayFile()" >
   <div class="fileCard-file" *ngIf="fileUrl!==''">
-    <img  [src]="fileUrl" *ngIf="fileObject.type==='IMAGE'">
+    <div class="image-file" *ngIf="fileObject.type==='IMAGE'">
+      <img  [src]="fileUrl">
+    </div>
     <div class="video-file" *ngIf="fileObject.type==='VIDEO'">
       <app-file-video-card [fileUrl]="fileUrl"></app-file-video-card>
     </div>
     <div class="document-file" *ngIf="fileObject.type==='DOCUMENT'">
       <app-file-document-card [fileExtension]="fileType" [fileUrl]="fileUrl"></app-file-document-card>
     </div>
+    <div class="pictos-file"  *ngIf="fileObject.type==='PICTOGRAM'">
+      <img [src]="fileUrl">
+    </div>
   </div>
-  <div class="file-card-info">
+  <div class="file-card-info" *ngIf="fileObject.type!=='PICTOGRAM'">
     <div>
       <p class="name-txt">{{nameText()}}</p>
       <app-state-tag [state]="fileObject.state"></app-state-tag>

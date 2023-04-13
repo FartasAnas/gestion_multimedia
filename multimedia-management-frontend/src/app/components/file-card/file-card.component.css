@@ -29,6 +29,17 @@
 .document-file{
   height: 100%;
 }
+.pictos-file{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pictos-file img{
+  height: 60px;
+  width: 60px;
+}
 
 .file-card-info{
   display: flex;

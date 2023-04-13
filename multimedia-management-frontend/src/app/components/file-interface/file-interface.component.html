@@ -8,7 +8,7 @@
       <p>{{fileInterfaceInput.fileListTitle}}</p>
     </div>
     <div class="fileInterface-body-card" *ngIf="fileObjects$ | async as fileObjects">
-      <app-file-card  *ngFor="let fileObject of fileObjects" [fileObject]="fileObject" [cardWidth]="fileInterfaceInput.cardWidth"></app-file-card>
+      <app-file-card  *ngFor="let fileObject of fileObjects" [fileObject]="fileObject" [cardWidth]="fileInterfaceInput.cardWidth" [cardHeight]="fileInterfaceInput.cardHeight"></app-file-card>
     </div>
   </div>
 </div>

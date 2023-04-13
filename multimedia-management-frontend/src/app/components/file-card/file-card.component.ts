@@ -15,6 +15,7 @@ export class FileCardComponent implements OnInit{
   testUrl:string=''
   @Input() fileObject?:FileObject
   @Input() cardWidth?:string
+  @Input() cardHeight?:string
   @ViewChild('videoElement') myVideo?: ElementRef;
   constructor(private router: Router) {
   }

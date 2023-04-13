@@ -20,13 +20,16 @@ export class UploadInterfaceStep1Component {
     let allowedTypes: string[] = [];
     switch (this.fileType) {
       case 'IMAGE':
-        allowedTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/svg+xml', 'image/bmp', 'image/webp'];
+        allowedTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/bmp', 'image/webp'];
         break;
       case 'VIDEO':
         allowedTypes = ['video/mp4', 'video/mpeg', 'video/avi', 'video/quicktime', 'video/x-msvideo', 'video/x-flv', 'video/x-ms-wmv'];
         break;
       case 'DOCUMENT':
         allowedTypes = ['application/pdf', 'application/msword', 'text/plain', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'];
+        break;
+      case 'PICTOGRAM':
+        allowedTypes = ['image/svg+xml'];
         break;
       default:
         allowedTypes = [];

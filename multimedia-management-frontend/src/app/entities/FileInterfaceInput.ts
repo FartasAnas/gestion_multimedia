@@ -4,4 +4,5 @@ export default interface FileInterfaceInput {
   fileType?:string
   fileListTitle?:string
   cardWidth?:string
+  cardHeight?:string
 }
