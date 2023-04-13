@@ -84,6 +84,11 @@
 .video-wrapper{
   width: 90%;
 }
+.document-wrapper{
+  margin-top: 30px;
+  width: 85%;
+  height: 100%;
+}
 .displayer-footer {
   display: flex;
   align-items: center;

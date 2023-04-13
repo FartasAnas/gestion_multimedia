@@ -37,6 +37,7 @@ import { FileVideoCardComponent } from './components/file-video-card/file-video-
 import { DocumentsLayoutComponent } from './layouts/documents-layout/documents-layout.component';
 import {NgxDocViewerModule} from "ngx-doc-viewer";
 import { FileDocumentCardComponent } from './components/file-document-card/file-document-card.component';
+import {PdfViewerModule} from "ng2-pdf-viewer";
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { FileDocumentCardComponent } from './components/file-document-card/file-
     VgOverlayPlayModule,
     VgBufferingModule,
     VgControlsModule,
-    NgxDocViewerModule
+    NgxDocViewerModule,
+    PdfViewerModule
   ],
   providers: [
 

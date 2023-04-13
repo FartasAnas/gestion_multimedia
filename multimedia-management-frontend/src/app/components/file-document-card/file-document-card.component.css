@@ -23,3 +23,8 @@
   height: 54px;
   width: 54px;
 }
+
+.pdf-viewer{
+  height: 100%;
+  width: 100%;
+}

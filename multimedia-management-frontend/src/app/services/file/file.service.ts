@@ -54,6 +54,28 @@ export class FileService {
   updateFile(id:number,fileObject:FileObject){
     return this.http.put(`${this.apiUrl}/update/${id}`,fileObject)
   }
+  convertFileToBase64(fileUrl: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.http.get(fileUrl, { responseType: 'blob' }).subscribe(
+        blob => {
+          const reader = new FileReader();
+          reader.readAsDataURL(blob);
+          reader.onloadend = () => {
+            const fileBase64 = reader.result?.toString() as string;
+            resolve(fileBase64);
+          };
+          reader.onerror = () => {
+            reject(reader.error);
+          };
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+
 
 
 }

@@ -16,7 +16,7 @@ export class FileCardComponent implements OnInit{
   @Input() fileObject?:FileObject
   @Input() cardWidth?:string
   @ViewChild('videoElement') myVideo?: ElementRef;
-  constructor(private router: Router,private http:HttpClient) {
+  constructor(private router: Router) {
   }
   handleDisplayFile() {
     this.router.navigate(['web/file/',this.fileObject?.id]);
@@ -25,11 +25,6 @@ export class FileCardComponent implements OnInit{
   ngOnInit(): void {
     this.fileUrl=`http://${this.hostname}:8100/files/object/${this.fileObject?.id}/`
     this.fileType=this.fileObject?.fileName?.split(".")[1] as string
-    this.http.get(this.fileUrl, { responseType: 'blob' })
-      .subscribe(response => {
-        const url = URL.createObjectURL(response);
-        this.testUrl=url
-      });
   }
   nameText():string{
     if(this.fileObject?.type=="DOCUMENT")

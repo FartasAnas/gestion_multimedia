@@ -13,7 +13,8 @@ export class FileDetailsLayoutComponent implements OnInit{
   fileObject?:FileObject
   hostname=window.location.hostname
   scaleValue:number=1;
-  fileUrl?:string
+  fileUrl:string=''
+  fileBase64:string=''
   @ViewChild('fileContainer', { static: false }) fileContainer?: ElementRef;
   @ViewChild(VideoPlayerComponent) videoPlayer?:VideoPlayerComponent
 
@@ -36,10 +37,17 @@ export class FileDetailsLayoutComponent implements OnInit{
       fileObject => {
         this.fileObject = fileObject
         this.fileUrl=`http://${this.hostname}:8100/files/object/${fileObject.id}/`
+        if(this.fileObject.type==="DOCUMENT"){
+          this.fileService.convertFileToBase64(this.fileUrl).then(base64 => {
+            this.fileBase64=base64
+          }).catch(error => {
+            console.error(error);
+          });
+        }
       });
   }
 
-  scaleImage(scale: 'up' | 'down' | 'original'): void {
+  scaleFile(scale: 'up' | 'down' | 'original'): void {
     const scaleFactor = scale === 'up' ? 1.1 : 0.909;
     const minScale = 1;
     const maxScale = 4;
