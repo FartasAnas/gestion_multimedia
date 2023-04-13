@@ -38,6 +38,7 @@ import { DocumentsLayoutComponent } from './layouts/documents-layout/documents-l
 import {NgxDocViewerModule} from "ngx-doc-viewer";
 import { FileDocumentCardComponent } from './components/file-document-card/file-document-card.component';
 import {PdfViewerModule} from "ng2-pdf-viewer";
+import { PreviewUnavailableComponent } from './components/preview-unavailable/preview-unavailable.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
     VideoPlayerComponent,
     FileVideoCardComponent,
     DocumentsLayoutComponent,
-    FileDocumentCardComponent
+    FileDocumentCardComponent,
+    PreviewUnavailableComponent
   ],
   imports: [
     BrowserModule,

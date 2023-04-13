@@ -95,5 +95,9 @@ export class FileDetailsLayoutComponent implements OnInit{
       });
     }
   }
+  getFileExtension():string{
+    return this.fileObject?.fileName?.split(".")[1] as string;
+  }
+
 
 }

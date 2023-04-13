@@ -89,6 +89,8 @@
   width: 85%;
   height: 100%;
 }
+.preview-unavailable-wrapper{
+}
 .displayer-footer {
   display: flex;
   align-items: center;
