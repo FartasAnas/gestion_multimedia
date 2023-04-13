@@ -20,11 +20,11 @@
         <p class="info-content-text">Ajouté le {{fileObject.creationDate | date: 'dd/MM/yyyy'}}</p>
       </div>
       <div class="info-content">
-        <img src="assets/CalendarBlank.svg">
+        <img src="assets/File.svg">
         <p class="info-content-text" *ngIf="fileObject.fileName">{{fileObject.fileName.split(".")[1] | uppercase}} - {{fileObject.size}}</p>
       </div>
       <div class="info-content">
-        <img src="assets/CalendarBlank.svg">
+        <img src="assets/PushPin.svg">
         <p class="info-content-text" *ngIf="fileObject.type && fileObject.category">{{fileObject.type.toLowerCase()}} > {{fileObject.category .toLowerCase()}} > {{fileObject.fileName}}</p>
       </div>
     </div>

@@ -14,18 +14,18 @@ button, input{
   padding: 0;
 }
 /* ===== Scrollbar CSS ===== */
-* {
-  scrollbar-width: auto;
-  scrollbar-color: #b8b8b8 #ffffff;
-}
+/** {*/
+/*  scrollbar-width: auto;*/
+/*  scrollbar-color: #b8b8b8 #ffffff;*/
+/*}*/
 
-*::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 12px;
 }
-*::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: #ffffff;
 }
-*::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: #B3BDC8;
   border-radius: 10px;
   border: 2px solid #ffffff;

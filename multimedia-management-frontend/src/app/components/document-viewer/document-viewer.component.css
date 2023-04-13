@@ -1,0 +1,51 @@
+.document-viewer {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  position: relative;
+}
+.viewer {
+  width: 100%;
+}
+.viewer,
+.document-viewer-control {
+  grid-column: 1;
+  grid-row: 1;
+}
+.document-viewer-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  position: fixed;
+  bottom: 30px;
+  width: 100%;
+}
+.viewer-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #404040;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.viewer-action:hover {
+  cursor: pointer;
+  background-color: #5a5c60;
+}
+
+.zoomReset-action {
+  border-radius: 0;
+}
+
+.zoomOut-action {
+  border-radius: 5px 0 0 5px;
+}
+
+.zoomIn-action {
+  border-radius: 0 5px 5px 0;
+}
+
