@@ -1,7 +1,7 @@
 <div class="document-viewer">
   <div class="viewer">
     <pdf-viewer
-      [src]="fileBase64"
+      [src]="fileUrl"
       [show-all]="true"
       [stick-to-page]="true"
       [render-text]="true"
@@ -11,7 +11,7 @@
       [show-borders]="false"
       [zoom]="zoom"
       style="width: 100%;height: 100vh;"
-    ></pdf-viewer>>
+    ></pdf-viewer>
   </div>
   <div class="document-viewer-control">
     <div class="viewer-action zoomIn-action" (click)="setZoom('in')">

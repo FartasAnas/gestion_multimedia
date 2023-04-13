@@ -1,12 +1,13 @@
 import {Component, Input} from '@angular/core';
 
+
 @Component({
   selector: 'app-document-viewer',
   templateUrl: './document-viewer.component.html',
   styleUrls: ['./document-viewer.component.css']
 })
 export class DocumentViewerComponent {
-  @Input() fileBase64:string=""
+  @Input() fileUrl:string=""
   zoom = 0.98;
   zoomMax = 2;
   zoomMin = 0.5;
