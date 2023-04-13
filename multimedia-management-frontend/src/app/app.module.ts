@@ -40,6 +40,7 @@ import { FileDocumentCardComponent } from './components/file-document-card/file-
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import { PreviewUnavailableComponent } from './components/preview-unavailable/preview-unavailable.component';
 import { DocumentViewerComponent } from './components/document-viewer/document-viewer.component';
+import { PictosLayoutComponent } from './layouts/pictos-layout/pictos-layout.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { DocumentViewerComponent } from './components/document-viewer/document-v
     DocumentsLayoutComponent,
     FileDocumentCardComponent,
     PreviewUnavailableComponent,
-    DocumentViewerComponent
+    DocumentViewerComponent,
+    PictosLayoutComponent
   ],
   imports: [
     BrowserModule,
