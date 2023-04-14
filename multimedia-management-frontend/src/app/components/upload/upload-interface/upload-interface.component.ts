@@ -61,8 +61,15 @@ export class UploadInterfaceComponent implements OnInit{
         )
       }
   }
-  handleDisableUploadBtn():boolean{
-    return (this.fileObject.state==='' && this.fileObject.version==='' && this.fileObject.type!=='PICTOGRAM')
+  handleDisableUploadBtn(): boolean {
+    return (
+      this.fileObject.state === '' &&
+      this.fileObject.version === '' &&
+      (
+        this.fileObject.type !== 'PICTOGRAM' ||
+        this.fileObject.fileName === ''
+      )
+    );
   }
   handleSwitchStep(): void {
     this.currentStep = this.currentStep === "Step1" ? "Step2" : "Step1";

@@ -15,7 +15,11 @@ export class FileService {
   constructor(private http:HttpClient,private userStorageService:UserStorageService) { }
 
   saveFile(file: File, fileObject: FileObject): Observable<FileObject> {
-    fileObject.fileName = file.name;
+    console.log(fileObject.fileName)
+    if(fileObject.fileName!=='')
+      fileObject.fileName = fileObject.fileName+'.'+file.name.split('.')[1];
+    else
+      fileObject.fileName=file.name
     fileObject.createdBy=this.currentUser;
     fileObject.category = window.location.pathname.split('/')[1].toUpperCase();
     const headers = new HttpHeaders();

@@ -12,29 +12,30 @@ export class UploadInterfaceStep1Component {
   @Input() selectedFile?: FileInput;
   @Input() fileType?:string
 
-
+  getAllowedTypes():string[] {
+    switch (this.fileType) {
+      case 'IMAGE':
+        return  ['image/png', 'image/jpeg', 'image/gif', 'image/bmp', 'image/webp'];
+        break;
+      case 'VIDEO':
+        return  ['video/mp4', 'video/mpeg', 'video/avi', 'video/quicktime', 'video/x-msvideo', 'video/x-flv', 'video/x-ms-wmv'];
+        break;
+      case 'DOCUMENT':
+        return  ['application/pdf', 'application/msword', 'text/plain', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'];
+        break;
+      case 'PICTOGRAM':
+        return  ['image/svg+xml'];
+        break;
+      default:
+        return  [];
+        break;
+    }
+  }
   handleUploadInput(event: any) {
     const file: File = event.target.files[0];
     const reader = new FileReader();
 
-    let allowedTypes: string[] = [];
-    switch (this.fileType) {
-      case 'IMAGE':
-        allowedTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/bmp', 'image/webp'];
-        break;
-      case 'VIDEO':
-        allowedTypes = ['video/mp4', 'video/mpeg', 'video/avi', 'video/quicktime', 'video/x-msvideo', 'video/x-flv', 'video/x-ms-wmv'];
-        break;
-      case 'DOCUMENT':
-        allowedTypes = ['application/pdf', 'application/msword', 'text/plain', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'];
-        break;
-      case 'PICTOGRAM':
-        allowedTypes = ['image/svg+xml'];
-        break;
-      default:
-        allowedTypes = [];
-        break;
-    }
+    let allowedTypes: string[] = this.getAllowedTypes();
 
     if (allowedTypes.includes(file.type) && file.size <= 50 * 1024 * 1024) {
       reader.onload = (e: any) => {

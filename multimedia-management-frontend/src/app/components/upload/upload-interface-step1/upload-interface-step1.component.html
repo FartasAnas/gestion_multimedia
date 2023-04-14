@@ -12,14 +12,14 @@
   <div class="uploadInterface-Body" (click)="handleSelectFile()">
     <img src="assets/FileArrowDown.svg">
     <div class="uploadInterfaceBody-txt">
-            <span class="uploadInterfaceBody-txt1">
-              <span class="uploadInterfaceBody-txt1-1">Cliquez pour télécharger</span>
-              <span class="uploadInterfaceBody-txt1-2"> ou faites glisser et déposez.</span>
-            </span>
-            <input type="file" class="upload-input" (change)="handleUploadInput($event)" #uploadInput/>
-            <span class="uploadInterfaceBody-txt2">
-              <span>Taille de fichier maximale 50 Mo.</span>
-            </span>
+      <span class="uploadInterfaceBody-txt1">
+        <span class="uploadInterfaceBody-txt1-1">Cliquez pour télécharger</span>
+        <span class="uploadInterfaceBody-txt1-2"> ou faites glisser et déposez.</span>
+      </span>
+      <input type="file" class="upload-input" (change)="handleUploadInput($event)" #uploadInput [accept]="getAllowedTypes().join(', ')"/>
+      <span class="uploadInterfaceBody-txt2">
+        <span>Taille de fichier maximale 50 Mo.</span>
+      </span>
     </div>
   </div>
   <div *ngIf="selectedFile">

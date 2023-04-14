@@ -1,4 +1,4 @@
-<div class="uploadInterfaceStep2">
+<div class="uploadInterfaceStep2" *ngIf="fileObject">
   <div class="uploadInterfaceStepper">
     <div class="uploadInterfaceStep step1">
       <img src="assets/StepDoneIcon.svg">
@@ -10,19 +10,25 @@
     </div>
   </div>
   <div class="contentForm">
+    <div class="input-group" *ngIf="fileObject.type==='PICTOGRAM'">
+      <label class="contentForm-label" for="name">
+        Nom
+      </label>
+      <input type="text" id="name" name="name" class="contentForm-input" [(ngModel)]="fileObject.fileName" (ngModelChange)="fileObjectChange.emit(fileObject)"/>
+    </div>
     <div class="input-group">
       <label class="contentForm-label" for="description">
         <span>Description</span>
         <span class="subtxt"> (facultatif)</span>
       </label>
-      <textarea id="description" name="description" class="contentForm-input" *ngIf="fileObject" [(ngModel)]="fileObject.description" (ngModelChange)="fileObjectChange.emit(fileObject)"></textarea>
+      <textarea id="description" name="description" class="contentForm-input" [(ngModel)]="fileObject.description" (ngModelChange)="fileObjectChange.emit(fileObject)"></textarea>
     </div>
     <div class="row-grp" *ngIf="fileObject?.type!=='PICTOGRAM'">
       <div class="input-group">
         <label class="contentForm-label" for="description">
           Version
         </label>
-        <select id="version" name="version" class="contentForm-input" *ngIf="fileObject" [(ngModel)]="fileObject.version" (ngModelChange)="fileObjectChange.emit(fileObject)">
+        <select id="version" name="version" class="contentForm-input" [(ngModel)]="fileObject.version" (ngModelChange)="fileObjectChange.emit(fileObject)">
           <option value="VF" selected >Version française</option>
           <option value="VA">Version arabe</option>
         </select>
@@ -31,7 +37,7 @@
         <label class="contentForm-label" for="description">
           Statut
         </label>
-        <select id="state" name="state" class="contentForm-input" *ngIf="fileObject" [(ngModel)]="fileObject.state" (ngModelChange)="fileObjectChange.emit(fileObject)">
+        <select id="state" name="state" class="contentForm-input" [(ngModel)]="fileObject.state" (ngModelChange)="fileObjectChange.emit(fileObject)">
           <option value="PUBLISHED" selected>Publié</option>
           <option value="PLANNED">Planifié</option>
           <option value="UNPUBLISHED">Non publié</option>

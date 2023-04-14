@@ -30,6 +30,9 @@ export class FileDetailsBarComponent {
       case 'DOCUMENT':
         this.router.navigate([category?.toLowerCase(), 'documents']);
         break;
+      case 'PICTOGRAM':
+        this.router.navigate([category?.toLowerCase(), 'pictos']);
+        break;
       default:
         this.router.navigate(['home']);
     }
@@ -64,5 +67,10 @@ export class FileDetailsBarComponent {
 
   handleFileObjectChange(newFileObject:FileObject) {
     this.fileObject= {...newFileObject}
+  }
+  detailInfoTitle():string{
+    if(this.fileObject?.type==='DOCUMENT' || this.fileObject?.type==='PICTOGRAM')
+      return this.fileObject.fileName?.split(".")[0] as string
+    return "ID "+this.fileObject?.id
   }
 }

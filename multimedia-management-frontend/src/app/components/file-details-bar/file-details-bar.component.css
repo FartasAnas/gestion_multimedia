@@ -40,6 +40,9 @@
   font-weight: 600;
   font-size: 30px;
   line-height: 35px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .file-details-info-body{
   display: flex;

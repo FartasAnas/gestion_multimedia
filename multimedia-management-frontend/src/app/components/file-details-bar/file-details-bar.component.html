@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="file-details-info">
-    <p class="file-details-info-title">ID {{fileObject.id}}</p>
+    <p class="file-details-info-title">{{detailInfoTitle()}}</p>
     <div class="file-details-info-body">
       <div class="info-content">
         <img src="assets/CalendarBlank.svg">
@@ -33,11 +33,11 @@
     <p class="section-title">Description</p>
     <p class="section-text">{{fileObject.description}}</p>
   </div>
-  <div class="file-details-section">
+  <div class="file-details-section" *ngIf="fileObject.type!=='PICTOGRAM'">
     <p class="section-title">Version</p>
     <p class="section-text">{{fileVersionTranslate()}}</p>
   </div>
-  <div class="file-details-section">
+  <div class="file-details-section" *ngIf="fileObject.type!=='PICTOGRAM'">
     <p class="section-title">Statut</p>
     <app-state-tag [state]="fileObject.state"></app-state-tag>
   </div>
