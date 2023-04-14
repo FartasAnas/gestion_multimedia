@@ -13,7 +13,7 @@
           <img src="assets/Download.svg" class="svg-icon">
         </div>
       </a>
-      <div class="displayer-action" (click)="handleCopyFile()" *ngIf="fileObject.type=='IMAGE'">
+      <div class="displayer-action" (click)="handleCopyFile()" *ngIf="fileObject.type=='IMAGE' || fileObject.type=='PICTOGRAM'">
         <img src="assets/CopySimple.svg" class="svg-icon">
       </div>
     </div>
@@ -32,6 +32,9 @@
       </div>
       <div class="preview-unavailable-wrapper" *ngIf="fileObject.type=='DOCUMENT' && getFileExtension()!=='pdf'">
         <app-preview-unavailable [fileUrl]="fileUrl"></app-preview-unavailable>
+      </div>
+      <div class="pictos-wrapper" *ngIf="fileObject.type=='PICTOGRAM'">
+        <img [src]="fileUrl">
       </div>
       <div class="displayer-action previous-next-icon" (click)="handlePreviousNext('next')">
         <img src="assets/ArrowLineRight3.svg">

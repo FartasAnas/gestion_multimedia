@@ -89,6 +89,18 @@
   width: 85%;
   height: 100%;
 }
+.pictos-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 270px;
+  width: 270px;
+}
+.pictos-wrapper img{
+  height: 100%;
+  width: 100%;
+  object-fit: inherit;
+}
 .preview-unavailable-wrapper{
 }
 .displayer-footer {
@@ -97,6 +109,7 @@
   justify-content: center;
   flex-direction: row-reverse;
 }
+
 .footer-center {
   border-radius: 0 !important;
 }
