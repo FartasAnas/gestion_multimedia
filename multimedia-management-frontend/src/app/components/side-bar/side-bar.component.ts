@@ -68,10 +68,13 @@ export class SideBarComponent {
   readonly userManagement = { name: 'Utilisateurs', icon: 'assets/Users.svg' };
   readonly rolesManagement = { name: 'Roles', icon: 'assets/GearSix.svg' };
 
-  constructor(public userStorage: UserStorageService, private router: Router) {}
+  constructor(private userStorage: UserStorageService, private router: Router) {}
 
   logOut() {
     this.userStorage.signOut();
     this.router.navigate(['']);
+  }
+  getUserFullName():string{
+    return this.userStorage.getFullName()
   }
 }

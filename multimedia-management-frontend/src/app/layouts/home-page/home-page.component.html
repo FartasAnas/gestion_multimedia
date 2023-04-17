@@ -2,7 +2,7 @@
   <app-side-bar></app-side-bar>
   <div class="home-layout-content">
     <div class="home-layout-title">
-      <app-page-title [title]="'Bonjour, ' + (getUsername().valueOf() | titlecase) + ' !'"></app-page-title>
+      <app-page-title [title]="'Bonjour, ' + (getUserFullName() | titlecase) + ' !'"></app-page-title>
     </div>
     <div class="home-layout-card">
       <app-home-card [homeCardObject]="{icon:'assets/HomeIcon1.svg',number:(numberOfImages$ | async) ?? '0',text:'Nouvelles images'}"></app-home-card>

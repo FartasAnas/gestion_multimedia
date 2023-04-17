@@ -36,18 +36,17 @@ export class LoginComponentComponent  implements OnInit {
     onSubmit(form :NgForm) {
       this.authenticationService.login(this.loginObject).subscribe(
         data=>{
-          console.log(data)
           const storageObject: StorageObject = {
             email: data.email,
             username: data.username,
             token: data.token,
-            roles: data.roles
+            roles: data.roles,
+            fullName:data.fullName
           };
           this.userStorage.saveUser(storageObject);
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.reloadPage();
-
         },
         error => {
           console.error('Login error:', error.status);

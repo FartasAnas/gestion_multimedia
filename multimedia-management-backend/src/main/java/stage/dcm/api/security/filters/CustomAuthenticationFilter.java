@@ -77,6 +77,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         stage.dcm.api.entities.User appUser=userServices.getUserByUsername(user.getUsername());
         tokens.put("token",accessToken);
         tokens.put("username",user.getUsername());
+        tokens.put("fullName",appUser.getFirstName()+" "+appUser.getLastName());
         tokens.put("email",appUser.getEmail());
         tokens.put("roles",user.getAuthorities());
         response.setContentType(APPLICATION_JSON_VALUE);

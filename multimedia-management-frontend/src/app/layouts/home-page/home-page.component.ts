@@ -29,8 +29,8 @@ export class HomePageComponent implements OnInit{
     this.numberOfDocuments$=this.fileService.countFileByType("document")
     this.numberOfPictograms$=this.fileService.countFileByType("pictogram")
   }
-  getUsername():String{
-    return  this.userStorage.getUsername()
+  getUserFullName():string{
+    return this.userStorage.getFullName()
   }
 
 }

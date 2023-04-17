@@ -17,7 +17,7 @@
   <div class="sidebarFooter">
     <div class="sidebarFooter-user" (click)="logOut()">
       <img src="assets/userLogo.svg" alt="" class="sidebar-userLogo">
-      <p class="sidebar-username">{{userStorage.getUsername()}}</p>
+      <p class="sidebar-username">{{getUserFullName() | titlecase}}</p>
       <img src="assets/ArrowLineRight.svg" alt="" class="sidebar-arrowLine">
     </div>
   </div>
