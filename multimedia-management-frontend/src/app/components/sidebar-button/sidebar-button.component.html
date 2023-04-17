@@ -2,10 +2,12 @@
   <div class="sidebarBody-btn" (click)="handleClick()" [ngClass]="handleClass()" >
     <img src="assets/ArrowLineRight2.svg" *ngIf="hasChildren" class="sidebarBody-arrowLine">
     <div class="menuElement-decoration"></div>
-    <img [src]="content.icon" alt="" class="sidebarBody-icon">
-    <p class="sidebarBody-text">{{content.name}}</p>
+    <img [src]="content?.icon" alt="" class="sidebarBody-icon">
+    <p class="sidebarBody-text">{{content?.name}}</p>
   </div>
-  <div *ngIf="hasChildren" class="child-menu" [ngClass]="{'unselected': !this.clicked}">
-    <ng-content></ng-content>
+  <div *ngIf="hasChildren" class="child-menu" [ngClass]="{'unselected': !clicked}">
+    <ng-template [ngIf]="clicked">
+      <ng-content></ng-content>
+    </ng-template>
   </div>
 </div>

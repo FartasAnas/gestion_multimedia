@@ -17,17 +17,17 @@ export class SidebarButtonComponent implements OnInit{
   constructor(private route:Router) {}
 
   handleClick():void{
-    // if(this.hasChildren) {
-    //   this.clicked = !this.clicked;
-    // }
-    this.route.navigate([ this.content?.url ?  this.content.url : "home"]);
+    if(this.hasChildren) {
+      this.clicked = !this.clicked;
+    }
+    else {
+      this.route.navigate([ this.content?.url ?  this.content.url : "home"]);
+    }
   }
 
   handleClass() {
     return {
-      'selected': this.clicked
-                  || ("/"+this.content?.url==window.location.pathname),
-                  // || (`"${window.location.pathname}" contains "${this.content?.url?.toLowerCase()}"`),
+      'selected': window.location.pathname.includes(this.content?.url as string),
       'child': this.isChild,
       'hasChildren': this.hasChildren
     }

@@ -52,15 +52,10 @@
 .hasChildren .menuElement-decoration{
   background: rgba(0,0,0,0);
 }
-.selected .sidebarBody-text{
+.selected:not(.hasChildren) .sidebarBody-text{
   color: #0B2866!important;
   font-weight: 500!important;
 }
-/*.selected .sidebarBody-icon{*/
-/*  color: #0B2866!important;;*/
-/*  fill: #0B2866 !important;*/
-/*  filter: saturate(0) hue-rotate(205deg);*/
-/*}*/
 .sidebarBody-arrowLine{
   transition: 0.3s all ease;
 }
