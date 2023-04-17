@@ -41,9 +41,9 @@ public class FileControllers {
     public void getFileObject(@PathVariable("id") Long id, HttpServletResponse response) throws MinioException, NotFoundException, IOException {
         fileServices.getFileObject(id, response);
     }
-    @GetMapping("/user/{username}/{type}")
-    public Collection<File> getUserFilesByType(@PathVariable("username") String username, @PathVariable("type") String type) throws NotFoundException {
-        return fileServices.getUserFilesByType(username,type);
+    @GetMapping("/user/{username}/{type}/{category}")
+    public Collection<File> getUserFiles(@PathVariable("username") String username, @PathVariable("type") String type,@PathVariable("category") String category) throws NotFoundException {
+        return fileServices.getUserFiles(username,type,category);
     }
 
     @GetMapping("/name/{name}")

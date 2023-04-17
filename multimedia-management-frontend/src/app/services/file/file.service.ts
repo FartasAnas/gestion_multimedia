@@ -15,7 +15,6 @@ export class FileService {
   constructor(private http:HttpClient,private userStorageService:UserStorageService) { }
 
   saveFile(file: File, fileObject: FileObject): Observable<FileObject> {
-    console.log(fileObject.fileName)
     if(fileObject.fileName!=='')
       fileObject.fileName = fileObject.fileName+'.'+file.name.split('.')[1];
     else
@@ -30,8 +29,8 @@ export class FileService {
     headers.append('Content-Type', 'multipart/form-data');
     return this.http.post<FileObject>(`${this.apiUrl}/add`, formData, { headers: headers });
   }
-  getUserFiles(type:String):Observable<FileObject[]>{
-    return this.http.get<FileObject[]>(`${this.apiUrl}/user/${this.currentUser}/${type}`)
+  getUserFiles(type:string,category:string):Observable<FileObject[]>{
+    return this.http.get<FileObject[]>(`${this.apiUrl}/user/${this.currentUser}/${type}/${category}`)
   }
   getFileById(id:number):Observable<FileObject>{
     return this.http.get<FileObject>(`${this.apiUrl}/${id}`)

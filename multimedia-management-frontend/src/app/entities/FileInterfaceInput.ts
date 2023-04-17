@@ -3,6 +3,7 @@ export default interface FileInterfaceInput {
   uploadBtnText?:string
   fileType?:string
   fileListTitle?:string
+  fileCategory?:string
   cardWidth?:string
   cardHeight?:string
 }

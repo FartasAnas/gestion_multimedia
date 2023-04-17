@@ -15,10 +15,16 @@ export class FileInterfaceComponent implements OnInit{
   fileObjects$: Observable<FileObject[]> = new Observable<FileObject[]>();
 
   ngOnInit(): void {
-    this.fileObjects$ = this.fileService.getUserFiles(this.fileInterfaceInput?.fileType as string);
+    if(this.fileInterfaceInput) {
+      this.fileInterfaceInput.fileCategory = window.location.pathname.split('/')[1].toUpperCase()
+      this.getUserFiles()
+    }
   }
 
   onFileUploaded(): void {
-    this.fileObjects$ = this.fileService.getUserFiles(this.fileInterfaceInput?.fileType as string);
+    this.getUserFiles()
+  }
+  getUserFiles(){
+    this.fileObjects$ = this.fileService.getUserFiles(this.fileInterfaceInput?.fileType as string,this.fileInterfaceInput?.fileCategory as string);
   }
 }

@@ -16,7 +16,7 @@ public interface FileServices {
     public Long countFilesByType(String createdBy,String type);
     public File getFileById(Long id) throws NotFoundException;
     public void getFileObject(Long id, HttpServletResponse response) throws NotFoundException, MinioException, IOException;
-    public Collection<File> getUserFilesByType(String username,String type) throws NotFoundException;
+    public Collection<File> getUserFiles(String username, String type,String category) throws NotFoundException;
     public File getFileByName(String filename);
     public List<File> getAllFiles();
     public NextPreviousFilesDTO getNextPreviousFiles(Long id) throws NotFoundException;

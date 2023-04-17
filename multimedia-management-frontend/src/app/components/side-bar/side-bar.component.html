@@ -11,7 +11,12 @@
       <app-sidebar-button [content]="{name:'Pictos',icon:'assets/Person.svg',url:'web/pictos'}" [isChild]="true"></app-sidebar-button>
       <app-sidebar-button [content]="{name:'Documents',icon:'assets/FileDoc.svg',url:'web/documents'}" [isChild]="true"></app-sidebar-button>
     </app-sidebar-button>
-    <app-sidebar-button [content]="{name:'Mobile',icon:'assets/DeviceMobile.svg'}" [hasChildren]="true"></app-sidebar-button>
+    <app-sidebar-button [content]="{name:'Mobile',icon:'assets/DeviceMobile.svg',url:'mobile'}" [hasChildren]="true">
+      <app-sidebar-button [content]="{name:'Images',icon:'assets/ImageSquare.svg',url:'mobile/images'}" [isChild]="true"></app-sidebar-button>
+      <app-sidebar-button [content]="{name:'Vidéos',icon:'assets/Video.svg',url:'mobile/videos'}" [isChild]="true"></app-sidebar-button>
+      <app-sidebar-button [content]="{name:'Pictos',icon:'assets/Person.svg',url:'mobile/pictos'}" [isChild]="true"></app-sidebar-button>
+      <app-sidebar-button [content]="{name:'Documents',icon:'assets/FileDoc.svg',url:'mobile/documents'}" [isChild]="true"></app-sidebar-button>
+    </app-sidebar-button>
     <app-sidebar-button [content]="{name:'SM',icon:'assets/Graph.svg'}" [hasChildren]="true"></app-sidebar-button>
     <app-sidebar-button [content]="{name:'P.L.V',icon:'assets/PLV.svg'}" [hasChildren]="true"></app-sidebar-button>
     <app-sidebar-button [content]="{name:'Campagnes',icon:'assets/Megaphone.svg'}" [hasChildren]="true"></app-sidebar-button>

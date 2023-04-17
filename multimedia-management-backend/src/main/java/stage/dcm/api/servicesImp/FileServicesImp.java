@@ -38,7 +38,7 @@ public class FileServicesImp implements FileServices {
         file.setUser(userServices.getUserByUsername(file.getCreatedBy()));
         if(file.getUser()!=null) {
             file.setId(Math.abs(random.nextLong()) % 10000000000L);
-            String fullPath = String.join("/", file.getUser().getUsername(), file.getType().toString(),file.getId().toString(), file.getFileName());
+            String fullPath = String.join("/", file.getUser().getUsername(),file.getCategory().toString(), file.getType().toString(),file.getId().toString(), file.getFileName());
             try {
                 minioService.upload(fullPath, multipartFiles.getInputStream());
                 file.setSize(formatFileSize(multipartFiles.getSize()));
@@ -75,11 +75,11 @@ public class FileServicesImp implements FileServices {
     }
 
     @Override
-    public Collection<File> getUserFilesByType(String username, String type) throws NotFoundException {
+    public Collection<File> getUserFiles(String username, String type,String category) throws NotFoundException {
         User userDto = userServices.getUserByUsername(username);
         if (userDto != null) {
             List<File> userFiles = userDto.getFiles().stream()
-                    .filter(file -> file.getType().toString().equals(type))
+                    .filter(file -> file.getType().toString().equals(type) && file.getCategory().toString().equals(category))
                     .sorted(Comparator.comparing(File::getCreationDate))
                     .collect(Collectors.toList());
             return userFiles;
@@ -101,7 +101,7 @@ public class FileServicesImp implements FileServices {
     @Override
     public NextPreviousFilesDTO getNextPreviousFiles(Long id) throws NotFoundException {
         File currentFile = getFileById(id);
-        Collection<File> fileList = getUserFilesByType(currentFile.getCreatedBy(), currentFile.getType().toString());
+        Collection<File> fileList = getUserFiles(currentFile.getCreatedBy(), currentFile.getType().toString(),currentFile.getCategory().toString());
         Long nextFileId = null;
         Long previousFileId = null;
         Iterator<File> iterator = fileList.iterator();
