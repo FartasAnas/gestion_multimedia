@@ -43,6 +43,7 @@ import { PictosLayoutComponent } from './layouts/pictos-layout/pictos-layout.com
 import { MobileLayoutComponent } from './layouts/mobile-layout/mobile-layout.component';
 import { LibraryInterfaceComponent } from './components/library-interface/library-interface.component';
 import { SmLayoutComponent } from './layouts/sm-layout/sm-layout.component';
+import { PlvLayoutComponent } from './layouts/plv-layout/plv-layout.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { SmLayoutComponent } from './layouts/sm-layout/sm-layout.component';
     PictosLayoutComponent,
     MobileLayoutComponent,
     LibraryInterfaceComponent,
-    SmLayoutComponent
+    SmLayoutComponent,
+    PlvLayoutComponent
   ],
   imports: [
     BrowserModule,

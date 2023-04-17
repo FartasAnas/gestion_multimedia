@@ -45,7 +45,16 @@ export class SideBarComponent {
       ],
     },
 
-    { content: { name: 'P.L.V', icon: 'assets/PLV.svg' }, hasChildren: true },
+    {
+      content: { name: 'P.L.V', icon: 'assets/PLV.svg' , url: 'plv'},
+      hasChildren: true,
+      children: [
+        { content: { name: 'Images', icon: 'assets/ImageSquare.svg', url: 'plv/images' } },
+        { content: { name: 'Vidéos', icon: 'assets/Video.svg', url: 'plv/videos' } },
+        { content: { name: 'Pictos', icon: 'assets/Person.svg', url: 'plv/pictos' } },
+        { content: { name: 'Documents', icon: 'assets/FileDoc.svg', url: 'plv/documents' } },
+      ],
+    },
     { content: { name: 'Campagnes', icon: 'assets/Megaphone.svg' }, hasChildren: true },
   ];
   readonly userManagement = { name: 'Utilisateurs', icon: 'assets/Users.svg' };
