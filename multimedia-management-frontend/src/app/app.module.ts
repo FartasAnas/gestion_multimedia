@@ -44,6 +44,7 @@ import { MobileLayoutComponent } from './layouts/mobile-layout/mobile-layout.com
 import { LibraryInterfaceComponent } from './components/library-interface/library-interface.component';
 import { SmLayoutComponent } from './layouts/sm-layout/sm-layout.component';
 import { PlvLayoutComponent } from './layouts/plv-layout/plv-layout.component';
+import { CampagnesLayoutComponent } from './layouts/campagnes-layout/campagnes-layout.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { PlvLayoutComponent } from './layouts/plv-layout/plv-layout.component';
     MobileLayoutComponent,
     LibraryInterfaceComponent,
     SmLayoutComponent,
-    PlvLayoutComponent
+    PlvLayoutComponent,
+    CampagnesLayoutComponent
   ],
   imports: [
     BrowserModule,

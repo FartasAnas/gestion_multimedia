@@ -58,6 +58,17 @@ const routes: Routes = [
       {path:'pictos',component:PictosLayoutComponent},
       {path:'file/:id',component:FileDetailsLayoutComponent}
     ]
+  },
+  {
+    path:'campagnes',
+    component:PlvLayoutComponent,
+    children:[
+      {path:'images',component:ImagesLayoutComponent},
+      {path:'videos',component:VideosLayoutComponent},
+      {path:'documents',component:DocumentsLayoutComponent},
+      {path:'pictos',component:PictosLayoutComponent},
+      {path:'file/:id',component:FileDetailsLayoutComponent}
+    ]
   }
 ];
 
