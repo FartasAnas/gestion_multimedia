@@ -35,7 +35,6 @@ import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { FileVideoCardComponent } from './components/file-video-card/file-video-card.component';
 import { DocumentsLayoutComponent } from './layouts/documents-layout/documents-layout.component';
-import {NgxDocViewerModule} from "ngx-doc-viewer";
 import { FileDocumentCardComponent } from './components/file-document-card/file-document-card.component';
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import { PreviewUnavailableComponent } from './components/preview-unavailable/preview-unavailable.component';
@@ -85,7 +84,6 @@ import { PictosLayoutComponent } from './layouts/pictos-layout/pictos-layout.com
     VgOverlayPlayModule,
     VgBufferingModule,
     VgControlsModule,
-    NgxDocViewerModule,
     PdfViewerModule
   ],
   providers: [

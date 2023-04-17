@@ -10,61 +10,67 @@ import {FileVideoCardComponent} from "../file-video-card/file-video-card.compone
   templateUrl: './edit-file.component.html',
   styleUrls: ['./edit-file.component.css']
 })
-export class EditFileComponent implements OnInit,OnChanges{
-  isVisible:boolean=false
-  hostname=window.location.hostname
-  //same for this class even if the fileObject changes the values in form does not change
-  @Input() fileObject?:FileObject
-  fileObjectCopy?:FileObject
+export class EditFileComponent implements OnInit, OnChanges {
+  isVisible = false;
+  readonly hostname = window.location.hostname;
+  @Input() fileObject?: FileObject;
+  fileObjectCopy?: FileObject;
   @Output() fileObjectChange = new EventEmitter<FileObject>();
-  selectedKeywords:KeywordObject[]=[]
-  fileUrl:string=''
-  @ViewChild(FileVideoCardComponent) videoCard?:FileVideoCardComponent
+  selectedKeywords: KeywordObject[] = [];
+  fileUrl = '';
+
+  @ViewChild(FileVideoCardComponent) videoCard?: FileVideoCardComponent;
 
   ngOnInit(): void {
-    this.fileObjectCopy=Object.assign({}, this.fileObject)
-    this.selectedKeywords=Object.assign([], this.fileObject?.keywords);
-    this.fileUrl=`http://${this.hostname}:8100/files/object/${this.fileObject?.id}/`
+    this.fileObjectCopy = { ...this.fileObject };
+    this.selectedKeywords = [...this.fileObject?.keywords ?? []];
+    this.fileUrl = `http://${this.hostname}:8100/files/object/${this.fileObject?.id}/`;
   }
-  constructor(private fileService:FileService) {
-  }
-  toggleVisibility(toggle:boolean): void {
-    if(!toggle){
-      this.fileObjectCopy= {...this.fileObject}
+
+  constructor(private readonly fileService: FileService) {}
+
+  toggleVisibility(toggle: boolean): void {
+    if (!toggle) {
+      this.fileObjectCopy = { ...this.fileObject };
     }
     this.isVisible = toggle;
   }
 
-  handleSubmit(form:NgForm) {
-
-    this.fileObject={...this.fileObjectCopy}
-    this.fileObject.keywords=[...this.selectedKeywords]
-    const fileId=this.fileObject?.id
-    if(fileId && this.fileObject) {
+  handleSubmit(form: NgForm) {
+    const fileObjectCopy = { ...this.fileObjectCopy };
+    if (fileObjectCopy && fileObjectCopy.type === 'PICTOGRAM') {
+      fileObjectCopy.fileName = form.value.name + '.' + (fileObjectCopy.fileName?.split('.')[1] ?? '');
+    }
+    this.fileObject = {
+      ...fileObjectCopy,
+      keywords: [...this.selectedKeywords],
+    };
+    const fileId = this.fileObject?.id;
+    if (fileId && this.fileObject) {
       this.fileService.updateFile(fileId, this.fileObject).subscribe(
         () => {
-          console.log(`File with ID ${fileId} deleted successfully`)
-          this.fileObjectChange.emit(this.fileObject)
-          this.toggleVisibility(false)
+          console.log(`File with ID ${fileId} deleted successfully`);
+          this.fileObjectChange.emit(this.fileObject);
+          this.toggleVisibility(false);
         },
-        error => console.error(`Error deleting file with ID ${fileId}: ${error}`)
+        (error) => console.error(`Error deleting file with ID ${fileId}: ${error}`)
       );
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('fileObject' in changes) {
-      this.updateEditInterface()
+      this.updateEditInterface();
     }
   }
 
   updateEditInterface() {
-    this.fileObjectCopy = Object.assign({}, this.fileObject);
+    this.fileObjectCopy = { ...this.fileObject };
     this.fileUrl = `http://${this.hostname}:8100/files/object/${this.fileObject?.id}/`;
-    this.selectedKeywords=Object.assign([], this.fileObject?.keywords)
+    this.selectedKeywords = [...this.fileObject?.keywords ?? []];
   }
 
-  getFileExtension():string{
-    return this.fileObject?.fileName?.split(".")[1] as string;
+  getFileExtension(): string {
+    return this.fileObject?.fileName?.split('.')[1] as string;
   }
 }

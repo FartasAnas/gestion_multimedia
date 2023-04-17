@@ -70,17 +70,31 @@
   height: 221px;
   border-radius: 5px;
   overflow: hidden;
+  border: 1px solid #ECEFF1;
 }
-.editInterface-body-file img{
-  box-sizing: border-box;
+.image-file{
   height: 100%;
   width: 100%;
-  border: 1px solid #ECEFF1;
+}
+.image-file img{
+  height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 .video-file{
   height: 100%;
   width: 100%;
+}
+.pictos-file {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.pictos-file img{
+  height: 110px;
+  width: 110px;
 }
 .editInterface-body-content{
   display: flex;

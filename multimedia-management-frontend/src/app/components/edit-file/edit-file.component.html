@@ -11,15 +11,26 @@
       <form #editForm='ngForm' (ngSubmit)="handleSubmit(editForm)">
         <div class="editInterface-body">
           <div class="editInterface-body-file">
-            <img  [src]="fileUrl" *ngIf="fileObject.type=='IMAGE'">
+            <div class="image-file" *ngIf="fileObject.type=='IMAGE'">
+              <img  [src]="fileUrl" >
+            </div>
             <div class="video-file" *ngIf="fileObject.type=='VIDEO'">
               <app-file-video-card [fileUrl]="fileUrl"></app-file-video-card>
             </div>
             <div class="video-file" *ngIf="fileObject.type=='DOCUMENT'">
               <app-file-document-card [fileUrl]="fileUrl" [fileExtension]="getFileExtension()"></app-file-document-card>
             </div>
+            <div class="pictos-file" *ngIf="fileObject.type=='PICTOGRAM'">
+              <img  [src]="fileUrl">
+            </div>
           </div>
           <div class="editInterface-body-content">
+            <div class="input-group" *ngIf="fileObject.type==='PICTOGRAM' && fileObject.fileName">
+              <label class="contentForm-label" for="name">
+                Nom
+              </label>
+              <input type="text" id="name" name="name" class="contentForm-input" [ngModel]="fileObject.fileName.split('.')[0]"/>
+            </div>
             <div class="input-group">
               <label class="editInterface-txt contentForm-label" for="description">
                 <span>Description</span>
@@ -27,7 +38,7 @@
               </label>
               <textarea id="description" name="description" class="contentForm-input" [(ngModel)]="fileObjectCopy.description"  [value]="fileObjectCopy.description"></textarea>
             </div>
-            <div class="row-grp">
+            <div class="row-grp" *ngIf="fileObject?.type!=='PICTOGRAM'">
               <div class="input-group select-input">
                 <label class="contentForm-label" for="description">
                   Version
