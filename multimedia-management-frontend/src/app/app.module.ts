@@ -42,6 +42,7 @@ import { DocumentViewerComponent } from './components/document-viewer/document-v
 import { PictosLayoutComponent } from './layouts/pictos-layout/pictos-layout.component';
 import { MobileLayoutComponent } from './layouts/mobile-layout/mobile-layout.component';
 import { LibraryInterfaceComponent } from './components/library-interface/library-interface.component';
+import { SmLayoutComponent } from './layouts/sm-layout/sm-layout.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { LibraryInterfaceComponent } from './components/library-interface/librar
     DocumentViewerComponent,
     PictosLayoutComponent,
     MobileLayoutComponent,
-    LibraryInterfaceComponent
+    LibraryInterfaceComponent,
+    SmLayoutComponent
   ],
   imports: [
     BrowserModule,

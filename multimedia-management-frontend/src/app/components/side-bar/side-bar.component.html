@@ -3,27 +3,16 @@
     <img src="assets/logo.svg" alt="" class="sidebar-logo">
   </div>
   <div class="sidebarBody ">
-    <app-sidebar-button [content]="{name:'Accueil',icon:'assets/House.svg',url:'home'}"></app-sidebar-button>
-    <h1 class="sidebarBody-title">Librairie</h1>
-    <app-sidebar-button [content]="{name:'Web',icon:'assets/Desktop.svg',url:'web'}" [hasChildren]="true" >
-      <app-sidebar-button [content]="{name:'Images',icon:'assets/ImageSquare.svg',url:'web/images'}" [isChild]="true"></app-sidebar-button>
-      <app-sidebar-button [content]="{name:'Vidéos',icon:'assets/Video.svg',url:'web/videos'}" [isChild]="true"></app-sidebar-button>
-      <app-sidebar-button [content]="{name:'Pictos',icon:'assets/Person.svg',url:'web/pictos'}" [isChild]="true"></app-sidebar-button>
-      <app-sidebar-button [content]="{name:'Documents',icon:'assets/FileDoc.svg',url:'web/documents'}" [isChild]="true"></app-sidebar-button>
-    </app-sidebar-button>
-    <app-sidebar-button [content]="{name:'Mobile',icon:'assets/DeviceMobile.svg',url:'mobile'}" [hasChildren]="true">
-      <app-sidebar-button [content]="{name:'Images',icon:'assets/ImageSquare.svg',url:'mobile/images'}" [isChild]="true"></app-sidebar-button>
-      <app-sidebar-button [content]="{name:'Vidéos',icon:'assets/Video.svg',url:'mobile/videos'}" [isChild]="true"></app-sidebar-button>
-      <app-sidebar-button [content]="{name:'Pictos',icon:'assets/Person.svg',url:'mobile/pictos'}" [isChild]="true"></app-sidebar-button>
-      <app-sidebar-button [content]="{name:'Documents',icon:'assets/FileDoc.svg',url:'mobile/documents'}" [isChild]="true"></app-sidebar-button>
-    </app-sidebar-button>
-    <app-sidebar-button [content]="{name:'SM',icon:'assets/Graph.svg'}" [hasChildren]="true"></app-sidebar-button>
-    <app-sidebar-button [content]="{name:'P.L.V',icon:'assets/PLV.svg'}" [hasChildren]="true"></app-sidebar-button>
-    <app-sidebar-button [content]="{name:'Campagnes',icon:'assets/Megaphone.svg'}" [hasChildren]="true"></app-sidebar-button>
+    <ng-container *ngFor="let item of sidebarItems">
+      <app-sidebar-button [content]="item.content" [hasChildren]="item.hasChildren">
+        <ng-container *ngFor="let child of item.children">
+          <app-sidebar-button [content]="child.content" [isChild]="true"></app-sidebar-button>
+        </ng-container>
+      </app-sidebar-button>
+    </ng-container>
     <h1 class="sidebarBody-title">Gestion</h1>
-    <app-sidebar-button [content]="{name:'Utilisateurs',icon:'assets/Users.svg'}"></app-sidebar-button>
-    <app-sidebar-button [content]="{name:'Roles',icon:'assets/GearSix.svg'}"></app-sidebar-button>
-
+    <app-sidebar-button [content]="userManagement"></app-sidebar-button>
+    <app-sidebar-button [content]="rolesManagement"></app-sidebar-button>
   </div>
   <div class="sidebarFooter">
     <div class="sidebarFooter-user" (click)="logOut()">
@@ -32,5 +21,4 @@
       <img src="assets/ArrowLineRight.svg" alt="" class="sidebar-arrowLine">
     </div>
   </div>
-
 </div>

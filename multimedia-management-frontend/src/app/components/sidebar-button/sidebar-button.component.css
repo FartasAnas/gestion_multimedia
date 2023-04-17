@@ -59,7 +59,8 @@
 .sidebarBody-arrowLine{
   transition: 0.3s all ease;
 }
-.selected .sidebarBody-arrowLine{
+
+.rotate-arrowLine{
   transform: rotate(90deg)!important;
 }
 .child{

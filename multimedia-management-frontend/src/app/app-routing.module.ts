@@ -9,6 +9,7 @@ import {VideosLayoutComponent} from "./layouts/videos-layout/videos-layout.compo
 import {DocumentsLayoutComponent} from "./layouts/documents-layout/documents-layout.component";
 import {PictosLayoutComponent} from "./layouts/pictos-layout/pictos-layout.component";
 import {MobileLayoutComponent} from "./layouts/mobile-layout/mobile-layout.component";
+import {SmLayoutComponent} from "./layouts/sm-layout/sm-layout.component";
 
 const routes: Routes = [
   {path:'',component:LoginLayoutComponent},
@@ -27,6 +28,17 @@ const routes: Routes = [
   {
     path:'mobile',
     component:MobileLayoutComponent,
+    children:[
+      {path:'images',component:ImagesLayoutComponent},
+      {path:'videos',component:VideosLayoutComponent},
+      {path:'documents',component:DocumentsLayoutComponent},
+      {path:'pictos',component:PictosLayoutComponent},
+      {path:'file/:id',component:FileDetailsLayoutComponent}
+    ]
+  },
+  {
+    path:'sm',
+    component:SmLayoutComponent,
     children:[
       {path:'images',component:ImagesLayoutComponent},
       {path:'videos',component:VideosLayoutComponent},
