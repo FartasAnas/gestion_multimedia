@@ -1,8 +1,4 @@
-<button *ngIf="text" class="uploadBtn" (click)="handleClick()">
-  <img src="../../../../assets/ArrowFatLineDown.svg" class="uploadBtn-icon">
-  <p class="uploadBtn-text">{{text}}</p>
-</button>
+<app-button *ngIf="text" [btnText]="text" btnIconUrl="assets/ArrowFatLineDown.svg" (click)="handleClick()"></app-button>
 <div class="uploadInterfaceStep2-bg">
-<!--  <app-upload-interface-step1   [showInterface]="this.clicked" [text]="text" (closeUploadEvent)="handleCloseUploadEvent($event)"></app-upload-interface-step1>-->
   <app-upload-interface (fileUploaded)="onFileUploaded()" [fileType]="fileType" [showInterface]="this.clicked" [text]="text" (closeUploadEvent)="handleCloseUploadEvent($event)"></app-upload-interface>
 </div>

@@ -45,6 +45,8 @@ import { LibraryInterfaceComponent } from './components/library-interface/librar
 import { SmLayoutComponent } from './layouts/sm-layout/sm-layout.component';
 import { PlvLayoutComponent } from './layouts/plv-layout/plv-layout.component';
 import { CampagnesLayoutComponent } from './layouts/campagnes-layout/campagnes-layout.component';
+import { ProfileLayoutComponent } from './layouts/profile-layout/profile-layout.component';
+import { ButtonComponent } from './components/button/button.component';
 
 
 @NgModule({
@@ -83,7 +85,9 @@ import { CampagnesLayoutComponent } from './layouts/campagnes-layout/campagnes-l
     LibraryInterfaceComponent,
     SmLayoutComponent,
     PlvLayoutComponent,
-    CampagnesLayoutComponent
+    CampagnesLayoutComponent,
+    ProfileLayoutComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,

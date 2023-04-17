@@ -2,7 +2,9 @@
   <div class="sidebarHeader">
     <img src="assets/logo.svg" alt="" class="sidebar-logo">
   </div>
-  <div class="sidebarBody ">
+  <div class="sidebarBody">
+    <app-sidebar-button [content]="homePage"></app-sidebar-button>
+    <h1 class="sidebar-title-txt">Librairie</h1>
     <ng-container *ngFor="let item of sidebarItems">
       <app-sidebar-button [content]="item.content" [hasChildren]="item.hasChildren">
         <ng-container *ngFor="let child of item.children">
@@ -10,15 +12,26 @@
         </ng-container>
       </app-sidebar-button>
     </ng-container>
-    <h1 class="sidebarBody-title">Gestion</h1>
+    <h1 class="sidebar-title-txt">Gestion</h1>
     <app-sidebar-button [content]="userManagement"></app-sidebar-button>
     <app-sidebar-button [content]="rolesManagement"></app-sidebar-button>
   </div>
+  <div class="sidebarFooter-child" [ngClass]="{'display':showFooterChild}">
+    <div class="sidebarFooter-child-content" (click)="handleFooterChildClick('profile')">
+      <img src="assets/User.svg">
+      <p class="sidebar-title-txt">Profil</p>
+    </div>
+    <div class="sidebarFooter-child-content" (click)="handleFooterChildClick('logout')">
+      <img src="assets/SignOut.svg">
+      <p class="sidebar-title-txt">Se déconnecter</p>
+    </div>
+
+  </div>
   <div class="sidebarFooter">
-    <div class="sidebarFooter-user" (click)="logOut()">
+    <div class="sidebarFooter-user" (click)="showFooterChild=!showFooterChild">
       <img src="assets/userLogo.svg" alt="" class="sidebar-userLogo">
       <p class="sidebar-username">{{getUserFullName() | titlecase}}</p>
-      <img src="assets/ArrowLineRight.svg" alt="" class="sidebar-arrowLine">
+      <img src="assets/ArrowLineRight.svg" alt="" class="sidebar-arrowLine" [ngClass]="{'rotate-arrowLine':showFooterChild}">
     </div>
   </div>
 </div>

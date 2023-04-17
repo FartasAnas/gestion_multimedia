@@ -11,10 +11,12 @@ import {PictosLayoutComponent} from "./layouts/pictos-layout/pictos-layout.compo
 import {MobileLayoutComponent} from "./layouts/mobile-layout/mobile-layout.component";
 import {SmLayoutComponent} from "./layouts/sm-layout/sm-layout.component";
 import {PlvLayoutComponent} from "./layouts/plv-layout/plv-layout.component";
+import {ProfileLayoutComponent} from "./layouts/profile-layout/profile-layout.component";
 
 const routes: Routes = [
   {path:'',component:LoginLayoutComponent},
   {path:'home',component:HomePageComponent},
+  {path:'profile',component:ProfileLayoutComponent},
   {
     path:'web',
     component:WebLayoutComponent,

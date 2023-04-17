@@ -11,10 +11,6 @@ import SideBarItemObject from "../../entities/SideBarItemObject";
 export class SideBarComponent {
   readonly sidebarItems: SideBarItemObject[] = [
     {
-      content: { name: 'Accueil', icon: 'assets/House.svg', url: 'home' },
-      hasChildren: false,
-    },
-    {
       content: { name: 'Web', icon: 'assets/Desktop.svg', url: 'web' },
       hasChildren: true,
       children: [
@@ -65,16 +61,24 @@ export class SideBarComponent {
       ]
     }
   ];
+  readonly homePage={ name: 'Accueil', icon: 'assets/House.svg', url: 'home' }
   readonly userManagement = { name: 'Utilisateurs', icon: 'assets/Users.svg' };
   readonly rolesManagement = { name: 'Roles', icon: 'assets/GearSix.svg' };
+  showFooterChild:boolean=false
 
   constructor(private userStorage: UserStorageService, private router: Router) {}
-
-  logOut() {
-    this.userStorage.signOut();
-    this.router.navigate(['']);
-  }
   getUserFullName():string{
     return this.userStorage.getFullName()
+  }
+
+
+  handleFooterChildClick(action:'profile'|'logout') {
+    if(action==='profile'){
+      this.router.navigate(['profile'])
+    }
+    else if(action==='logout'){
+      this.userStorage.signOut();
+      this.router.navigate(['']);
+    }
   }
 }
