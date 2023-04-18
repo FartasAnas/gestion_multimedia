@@ -1,0 +1,22 @@
+<div class="pagination-bar">
+  <div class="pagination-bar-content">
+    <div class="pagination-bar-pages-icon" (click)="switchPage('previous')">
+      <img src="assets/ChevronLeft.svg">
+    </div>
+    <div class="pagination-bar-pagesList" *ngFor="let page of pages">
+      <div class="pagination-bar-page" (click)="handleChangePage(page)" [ngClass]="{'selected-page':page===currentPage}">
+          <p class="pagination-bar-text">{{page}}</p>
+      </div>
+    </div>
+    <div class="pagination-bar-pages-icon" (click)="switchPage('next')">
+      <img src="assets/ChevronRight.svg">
+    </div>
+  </div>
+  <div class="pagination-bar-content">
+    <p class="pagination-bar-text">Showing</p>
+    <select class="pagination-bar-pages-select" [(ngModel)]="pageSize" (ngModelChange)="calculatePages()">
+      <option *ngFor="let option of pageSizeOptions" [value]="option" [selected]="option === pageSize">{{ option }}</option>
+    </select>
+    <p class="pagination-bar-text">of {{paginationInput.listSize}} items</p>
+  </div>
+</div>

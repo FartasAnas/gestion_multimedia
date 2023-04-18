@@ -3,12 +3,13 @@
     <app-page-title [title]="fileInterfaceInput.interfaceTitle"></app-page-title>
     <app-upload-btn (fileUploaded)="onFileUploaded()" [text]="fileInterfaceInput.uploadBtnText" [fileType]="fileInterfaceInput.fileType"></app-upload-btn>
   </div>
-  <div class="fileInterface-body">
+  <div class="fileInterface-body" *ngIf="fileObjects$ | async as fileObjects">
     <div class="fileInterface-body-title">
       <p>{{fileInterfaceInput.fileListTitle}}</p>
     </div>
-    <div class="fileInterface-body-card" *ngIf="fileObjects$ | async as fileObjects">
+    <div class="fileInterface-body-card">
       <app-file-card  *ngFor="let fileObject of fileObjects" [fileObject]="fileObject" [cardWidth]="fileInterfaceInput.cardWidth" [cardHeight]="fileInterfaceInput.cardHeight"></app-file-card>
     </div>
+    <app-pagination-bar  [paginationInput]="{listSize:fileObjects.length,sizeOptionIncrement:5}"></app-pagination-bar>
   </div>
 </div>

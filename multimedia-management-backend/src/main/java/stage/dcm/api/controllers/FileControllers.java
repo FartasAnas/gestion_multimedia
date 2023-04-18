@@ -42,8 +42,10 @@ public class FileControllers {
         fileServices.getFileObject(id, response);
     }
     @GetMapping("/user/{username}/{type}/{category}")
-    public Collection<File> getUserFiles(@PathVariable("username") String username, @PathVariable("type") String type,@PathVariable("category") String category) throws NotFoundException {
-        return fileServices.getUserFiles(username,type,category);
+    public Collection<File> getUserFiles(@PathVariable("username") String username, @PathVariable("type") String type
+                                        ,@PathVariable("category") String category,@RequestParam(name = "page", defaultValue = "1") int page
+                                        ,@RequestParam(name = "pageSize", defaultValue = "10") int pageSize) throws NotFoundException {
+        return fileServices.getUserFiles(username,type,category,page,pageSize);
     }
 
     @GetMapping("/name/{name}")

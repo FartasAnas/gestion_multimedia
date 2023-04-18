@@ -75,7 +75,14 @@ public class FileServicesImp implements FileServices {
     }
 
     @Override
-    public Collection<File> getUserFiles(String username, String type,String category) throws NotFoundException {
+    public List<File> getUserFiles(String username, String type, String category, int page, int pageSize) throws NotFoundException {
+//        List<File> newFilesList=userFilesList(username,type,category).stream()
+//                .skip((page - 1) * pageSize)
+//                .limit(pageSize)
+//                .collect(Collectors.toList());
+        return userFilesList(username,type,category);
+    }
+    public List<File> userFilesList(String username, String type, String category) throws NotFoundException{
         User userDto = userServices.getUserByUsername(username);
         if (userDto != null) {
             List<File> userFiles = userDto.getFiles().stream()
@@ -87,6 +94,8 @@ public class FileServicesImp implements FileServices {
             throw new NotFoundException("User Not Found");
         }
     }
+
+
 
     @Override
     public File getFileByName(String filename) {
@@ -101,7 +110,7 @@ public class FileServicesImp implements FileServices {
     @Override
     public NextPreviousFilesDTO getNextPreviousFiles(Long id) throws NotFoundException {
         File currentFile = getFileById(id);
-        Collection<File> fileList = getUserFiles(currentFile.getCreatedBy(), currentFile.getType().toString(),currentFile.getCategory().toString());
+        Collection<File> fileList = userFilesList(currentFile.getCreatedBy(), currentFile.getType().toString(),currentFile.getCategory().toString());
         Long nextFileId = null;
         Long previousFileId = null;
         Iterator<File> iterator = fileList.iterator();

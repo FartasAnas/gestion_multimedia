@@ -47,6 +47,8 @@ import { PlvLayoutComponent } from './layouts/plv-layout/plv-layout.component';
 import { CampagnesLayoutComponent } from './layouts/campagnes-layout/campagnes-layout.component';
 import { ProfileLayoutComponent } from './layouts/profile-layout/profile-layout.component';
 import { ButtonComponent } from './components/button/button.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { PaginationBarComponent } from './components/pagination-bar/pagination-bar.component';
 
 
 @NgModule({
@@ -87,7 +89,9 @@ import { ButtonComponent } from './components/button/button.component';
     PlvLayoutComponent,
     CampagnesLayoutComponent,
     ProfileLayoutComponent,
-    ButtonComponent
+    ButtonComponent,
+    SearchBarComponent,
+    PaginationBarComponent
   ],
   imports: [
     BrowserModule,
