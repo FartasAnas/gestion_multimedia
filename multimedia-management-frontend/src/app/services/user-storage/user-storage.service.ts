@@ -39,4 +39,22 @@ export class UserStorageService {
     }
     return ""
   }
+  public getUserEmail():string{
+    const user = sessionStorage.getItem(USER_KEY);
+    if (user) {
+      return JSON.parse(user).email;
+    }
+    return ""
+  }
+  public getUserInfo():any{
+    const user = sessionStorage.getItem(USER_KEY);
+    if (user) {
+      return {
+        "fullName":JSON.parse(user).fullName,
+        "email":JSON.parse(user).email,
+        "role":JSON.parse(user).role
+      }
+    }
+    return ""
+  }
 }

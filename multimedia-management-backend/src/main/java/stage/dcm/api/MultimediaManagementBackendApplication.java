@@ -44,11 +44,12 @@ public class MultimediaManagementBackendApplication {
 				roleService.saveRole(new Role(null,"ADMIN"));
 				roleService.saveRole(new Role(null,"USER"));
 
-				appUserService.saveUser(new User(null,"fartasanas","fartas@gmail.com","1234","fartas","anas",new ArrayList<>(),new ArrayList<>()));
-				appUserService.saveUser(new User(null,"hajibDiae","diae@gmail.com","1234","hajib","diae",new ArrayList<>(),new ArrayList<>()));
+				appUserService.saveUser(new User(null,"fartasanas","fartas@gmail.com","1234","fartas","anas","Digital marketing manager",new ArrayList<>(),new ArrayList<>()));
+				appUserService.saveUser(new User(null,"hajibDiae","diae@gmail.com","1234","hajib","diae","",new ArrayList<>(),new ArrayList<>()));
 
 
 				appUserService.addRoleToUser("fartasanas","ADMIN");
+				appUserService.addRoleToUser("fartasanas","USER");
 				appUserService.addRoleToUser("hajibDiae","USER");
 
 			}

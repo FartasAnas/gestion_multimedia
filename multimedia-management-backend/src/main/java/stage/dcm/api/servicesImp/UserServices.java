@@ -60,6 +60,7 @@ public class UserServices {
         User userToUpdate = userRepository.findById(id).orElse(null);
         userToUpdate.setUsername( User.getUsername()!=null ? User.getUsername() : userToUpdate.getUsername() );
         userToUpdate.setEmail( User.getEmail()!=null ? User.getEmail() : userToUpdate.getEmail() );
+        userToUpdate.setFunction( User.getFunction()!=null ? User.getFunction() : userToUpdate.getFunction() );
         userToUpdate.setFirstName( User.getFirstName()!=null ? User.getFirstName() : userToUpdate.getFirstName() );
         userToUpdate.setLastName( User.getLastName()!=null ? User.getLastName() : userToUpdate.getLastName() );
         return userRepository.save(userToUpdate);

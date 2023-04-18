@@ -1,53 +1,60 @@
-<div class="profile-layout">
+<div class="profile-layout" xmlns="http://www.w3.org/1999/html">
   <app-side-bar></app-side-bar>
   <div class="profile-layout-head">
     <app-page-title title="Informations générales"></app-page-title>
-    <app-button btnText="Modifier mon profil" btnIconUrl="assets/PencilSimpleLineWhite.svg"></app-button>
+    <app-button [btnText]="!isUpdating ?'Modifier mon profil':'Annuler'"
+                [btnIconUrl]="!isUpdating ? 'assets/PencilSimpleLineWhite.svg':'assets/CloseWhite.svg'" (click)="handleUpdateBtn()"></app-button>
   </div>
-  <div class="profile-layout-body">
+  <div class="profile-layout-body" *ngIf="userObject">
     <div class="profile-layout-body-content">
       <p class="profile-layout-text body-head">Profil</p>
-      <div class="profile-layout-body-input">
-        <div class="row-grp">
-          <div class="input-group">
-            <label class="profile-layout-text contentForm-label" for="firstName">
-              Nom
-            </label>
-            <input type="text" id="firstName" name="firstName" class="profile-layout-text contentForm-input"/>
+      <form #updateProfileForm="ngForm" class="profile-layout-body-input">
+        <div class="profile-layout-body-input">
+          <div class="row-grp">
+            <div class="input-group">
+              <label class="profile-layout-text contentForm-label" for="firstName">
+                Nom
+              </label>
+              <input type="text" id="firstName" name="firstName" class="profile-layout-text contentForm-input" [ngClass]="{'active-input':isUpdating}" [ngModel]="userObject.firstName"/>
+            </div>
+            <div class="input-group">
+              <label class="profile-layout-text contentForm-label" for="lastName">
+                Prénom
+              </label>
+              <input type="text" id="lastName" name="lastName" class="profile-layout-text contentForm-input" [ngClass]="{'active-input':isUpdating}" [ngModel]="userObject.lastName"/>
+            </div>
           </div>
-          <div class="input-group">
-            <label class="profile-layout-text contentForm-label" for="lastName">
-              Prénom
-            </label>
-            <input type="text" id="lastName" name="lastName" class="profile-layout-text contentForm-input"/>
-          </div>
-        </div>
 
-        <div class="row-grp">
-          <div class="input-group">
-            <label class="profile-layout-text contentForm-label" for="function">
-              Fonction
-            </label>
-            <input type="text" id="function" name="function" class="profile-layout-text contentForm-input"/>
-          </div>
-          <div class="input-group">
-            <label class="profile-layout-text contentForm-label" for="email">
-              E-mail
-            </label>
-            <input type="email" id="email" name="email" class="profile-layout-text contentForm-input"/>
+          <div class="row-grp">
+            <div class="input-group">
+              <label class="profile-layout-text contentForm-label" for="function">
+                Fonction
+              </label>
+              <input type="text" id="function" name="function" class="profile-layout-text contentForm-input" [ngClass]="{'active-input':isUpdating}" [ngModel]="userObject.function"/>
+            </div>
+            <div class="input-group">
+              <label class="profile-layout-text contentForm-label" for="email">
+                E-mail
+              </label>
+              <input type="email" id="email" name="email" class="profile-layout-text contentForm-input" [ngClass]="{'active-input':isUpdating}" [ngModel]="userObject.email"/>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
-    <div class="profile-layout-body-content">
+    <div class="profile-layout-body-content" [ngClass]="{'inactive-input':isUpdating}">
       <p class="profile-layout-text body-head">Rôle</p>
       <div class="profile-layout-body-input">
         <div class="row-grp">
-          <div class="input-group">
+          <div class="input-group" >
             <label class="profile-layout-text contentForm-label" for="role">
               Rôle
             </label>
-            <input type="text" id="role" name="role" class="profile-layout-text contentForm-input"/>
+            <div class="role-list">
+            <ng-container *ngFor="let role of userObject.roles">
+              <input type="text" id="role" name="role" class="profile-layout-text contentForm-input" [ngModel]="role.name"/>
+            </ng-container>
+            </div>
           </div>
         </div>
       </div>

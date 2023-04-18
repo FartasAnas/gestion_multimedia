@@ -1,3 +1,4 @@
 export default interface Role {
-  authority:String;
+  id:number
+  name:string
 }

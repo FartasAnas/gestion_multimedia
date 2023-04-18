@@ -1,5 +1,6 @@
 package stage.dcm.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +23,7 @@ public class User {
     @Column(nullable = false,unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false) @JsonIgnore
     private String password;
 
     @Column(nullable = false)
@@ -31,10 +32,13 @@ public class User {
     @Column(nullable = false)
     private String lastName;
 
+    private String function;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles=new ArrayList<>();
 
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade=CascadeType.ALL)
     @JsonIncludeProperties(value = {"id","fileName","type","filepath"})
+    @JsonIgnore
     private Collection<File> files=new ArrayList<>();
 }
