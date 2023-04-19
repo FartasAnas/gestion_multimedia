@@ -1,4 +1,3 @@
-
 .file-card{
   display: flex;
   flex-direction: column;
@@ -8,10 +7,39 @@
   border-radius: 5px;
   overflow: hidden;
   width: 228px;
+  z-index: -1;
 }
 .file-card:hover{
   background: #D7E3FC;
   cursor: pointer;
+}
+.file-card-checkBox{
+  display: flex;
+  position: absolute;
+  background: #FFFFFF;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #8D9CAD;
+  border-radius: 2px;
+  width: 16px;
+  height: 16px;
+  margin-top: 16px;
+  margin-left: 16px;
+  z-index: 0;
+  overflow: hidden;
+}
+.file-card-checkBox:hover{
+  cursor: pointer;
+}
+.file-card-checkBox img{
+  height: 12px;
+  width: 12px;
+}
+.file-card-checkBox.checked{
+  background: #105DFB;
+}
+.file-card.checked{
+  background: #D7E3FC;
 }
 .fileCard-file{
   width: 100%;

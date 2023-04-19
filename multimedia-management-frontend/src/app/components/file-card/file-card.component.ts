@@ -17,6 +17,7 @@ export class FileCardComponent implements OnInit{
   @Input() cardWidth?:string
   @Input() cardHeight?:string
   @ViewChild('videoElement') myVideo?: ElementRef;
+  isChecked:boolean=false
   constructor(private router: Router) {
   }
   handleDisplayFile() {
@@ -30,8 +31,12 @@ export class FileCardComponent implements OnInit{
   nameText():string{
     if(this.fileObject?.type=="DOCUMENT")
       return this.fileObject.fileName as string
-    return "ID"+this.fileObject?.id
+    return "ID "+this.fileObject?.id
   }
 
 
+  fileChecked() {
+    this.isChecked=!this.isChecked
+    console.log("Check File Id:"+this.fileObject?.id)
+  }
 }

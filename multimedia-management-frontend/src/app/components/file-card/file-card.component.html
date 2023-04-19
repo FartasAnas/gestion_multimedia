@@ -1,4 +1,7 @@
-<div class="file-card" *ngIf="fileObject" [style.width]="cardWidth" [style.height]="cardHeight" (click)="handleDisplayFile()" >
+<div class="file-card-checkBox" (click)="fileChecked()" [ngClass]="{'checked':isChecked}">
+  <img src="assets/checked.svg" />
+</div>
+<div class="file-card" *ngIf="fileObject" [style.width]="cardWidth" [style.height]="cardHeight" (click)="handleDisplayFile()" [ngClass]="{'checked':isChecked}">
   <div class="fileCard-file" *ngIf="fileUrl!==''">
     <div class="image-file" *ngIf="fileObject.type==='IMAGE'">
       <img  [src]="fileUrl">
