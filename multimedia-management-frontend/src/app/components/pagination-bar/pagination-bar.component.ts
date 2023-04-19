@@ -19,10 +19,11 @@ export class PaginationBarComponent implements OnInit{
   @Output() pageChanged = new EventEmitter<{ currentPage: number; pageSize: number }>();
 
   ngOnInit(): void {
-    if (this.paginationInput.listSize > this.paginationInput.sizeOptionIncrement) {
-      this.pageSize = this.paginationInput.sizeOptionIncrement*2;
-    } else if (this.paginationInput.listSize > 0) {
-      this.pageSize = this.paginationInput.sizeOptionIncrement;
+    const increment=this.paginationInput.sizeOptionIncrement
+    if (this.paginationInput.listSize > increment) {
+      this.pageSize = increment*2;
+    } else if (this.paginationInput.listSize > 0 && this.paginationInput.listSize <= increment) {
+      this.pageSize = increment;
     } else {
       this.pageSize = 0;
     }

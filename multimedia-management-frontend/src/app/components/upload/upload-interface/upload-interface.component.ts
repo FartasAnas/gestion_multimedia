@@ -86,8 +86,9 @@ export class UploadInterfaceComponent implements OnInit{
   ngOnInit(): void {
     this.fileObject.type=this.fileType
     if(this.fileType==='PICTOGRAM'){
-      this.fileObject.version=undefined
-      this.fileObject.state=undefined
+      this.fileObject.version=this.fileObjectInitialValue.version=undefined
+      this.fileObject.state=this.fileObjectInitialValue.state=undefined
+      this.fileObjectInitialValue.type=this.fileType
     }
   }
 }

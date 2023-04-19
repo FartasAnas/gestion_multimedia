@@ -16,4 +16,7 @@ export class UploadInterfaceStep2Component{
   handleSelectedKeywords(newSelectedKeywords:KeywordObject[]) {
     this.selectedKeywordsEvent.emit(newSelectedKeywords)
   }
+  ngOnInit(): void {
+    console.log(this.fileObject?.type)
+  }
 }
