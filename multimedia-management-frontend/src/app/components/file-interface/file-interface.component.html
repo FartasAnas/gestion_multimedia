@@ -8,8 +8,11 @@
       <p>{{fileInterfaceInput.fileListTitle}}</p>
     </div>
     <div class="fileInterface-body-card">
-      <app-file-card  *ngFor="let fileObject of fileObjects" [fileObject]="fileObject" [cardWidth]="fileInterfaceInput.cardWidth" [cardHeight]="fileInterfaceInput.cardHeight"></app-file-card>
+      <app-file-card  *ngFor="let fileObject of displayedFileObjects" [fileObject]="fileObject" [cardWidth]="fileInterfaceInput.cardWidth" [cardHeight]="fileInterfaceInput.cardHeight"></app-file-card>
     </div>
-    <app-pagination-bar  [paginationInput]="{listSize:fileObjects.length,sizeOptionIncrement:5}"></app-pagination-bar>
+    <app-pagination-bar
+      [paginationInput]="{ listSize: fileObjects.length, sizeOptionIncrement: sizeOptionIncrement }"
+      (pageChanged)="handlePageChange($event)"
+    ></app-pagination-bar>
   </div>
 </div>

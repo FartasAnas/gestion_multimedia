@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import PaginationInput from "../../entities/PaginationInput";
 
 @Component({
@@ -16,12 +16,13 @@ export class PaginationBarComponent implements OnInit{
   pageSize:number=10
   pages: number[] = [];
   pageSizeOptions: number[] = [];
+  @Output() pageChanged = new EventEmitter<{ currentPage: number; pageSize: number }>();
 
   ngOnInit(): void {
-    if (this.paginationInput.listSize > 5) {
-      this.pageSize = 10;
+    if (this.paginationInput.listSize > this.paginationInput.sizeOptionIncrement) {
+      this.pageSize = this.paginationInput.sizeOptionIncrement*2;
     } else if (this.paginationInput.listSize > 0) {
-      this.pageSize = 5;
+      this.pageSize = this.paginationInput.sizeOptionIncrement;
     } else {
       this.pageSize = 0;
     }
@@ -32,6 +33,7 @@ export class PaginationBarComponent implements OnInit{
    calculatePages() {
     const totalPages = Math.ceil(this.paginationInput.listSize / this.pageSize);
     this.pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+    this.pageChanged.emit({ currentPage: this.currentPage=1, pageSize: this.pageSize });
   }
    calculatePageSize() {
     const increment=this.paginationInput.sizeOptionIncrement
@@ -46,14 +48,17 @@ export class PaginationBarComponent implements OnInit{
 
   handleChangePage(page: number) {
     this.currentPage=page
+    this.pageChanged.emit({ currentPage: this.currentPage, pageSize: this.pageSize });
   }
 
   switchPage(action: 'next' | 'previous') {
     const totalPages = Math.ceil(this.paginationInput.listSize / this.pageSize);
     if (action === 'next' && this.currentPage < totalPages) {
       this.currentPage += 1;
+      this.pageChanged.emit({ currentPage: this.currentPage, pageSize: this.pageSize });
     } else if (action === 'previous' && this.currentPage > 1) {
       this.currentPage -= 1;
+      this.pageChanged.emit({ currentPage: this.currentPage, pageSize: this.pageSize });
     }
   }
 
