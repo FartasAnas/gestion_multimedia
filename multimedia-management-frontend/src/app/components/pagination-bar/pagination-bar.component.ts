@@ -10,15 +10,15 @@ export class PaginationBarComponent implements OnInit{
 
   @Input() currentPage: number=1;
   @Input() paginationInput:PaginationInput={
-    listSize:9,
+    listSize:20,
     sizeOptionIncrement:5
   }
-  pageSize:number=5
+  pageSize:number=10
   pages: number[] = [];
   pageSizeOptions: number[] = [];
 
   ngOnInit(): void {
-    if (this.paginationInput.listSize >= 10) {
+    if (this.paginationInput.listSize > 5) {
       this.pageSize = 10;
     } else if (this.paginationInput.listSize > 0) {
       this.pageSize = 5;
