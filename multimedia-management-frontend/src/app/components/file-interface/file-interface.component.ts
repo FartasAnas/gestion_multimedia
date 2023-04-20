@@ -3,6 +3,7 @@ import {Observable, take} from "rxjs";
 import {FileService} from "../../services/file/file.service";
 import FileObject from "../../entities/FileObject";
 import FileInterfaceInput from "../../entities/FileInterfaceInput";
+import KeywordObject from "../../entities/KeywordObject";
 
 @Component({
   selector: 'app-file-interface',
@@ -51,11 +52,25 @@ export class FileInterfaceComponent implements OnInit{
 
   }
 
-  handleSearchEvent(event: {fileId: string}) {
+  handleSearchEvent(event: {fileId: string, fileName: string, fileKeywords: KeywordObject[] | {[key: string]: KeywordObject}}) {
     this.fileObjects$.subscribe((fileObjects) => {
-      this.filteredFileObjects=fileObjects.filter(fileObject => (fileObject.id as number).toString().startsWith(event.fileId));
+      this.filteredFileObjects = fileObjects.filter(fileObject => {
+        const idMatches = (fileObject.id as number).toString().startsWith(event.fileId);
+        const nameMatches = (fileObject.fileName as string).toLowerCase().includes(event.fileName.toLowerCase());
+        const keywordMatches = Object.values(event.fileKeywords).every(keyword => (fileObject.keywords as KeywordObject[]).some(fileKeyword => fileKeyword.id === keyword.id));
+        return idMatches && nameMatches && keywordMatches;
+      });
       const pageSize = this.filteredFileObjects.length > this.sizeOptionIncrement ? this.sizeOptionIncrement*2 : this.filteredFileObjects.length > 0 ? this.sizeOptionIncrement : 0;
       this.handlePageChange({currentPage:1,pageSize:pageSize})
     });
   }
+
+
+
+
+
+
+
+
+
 }

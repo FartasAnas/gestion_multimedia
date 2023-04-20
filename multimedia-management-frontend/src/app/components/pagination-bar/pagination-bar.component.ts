@@ -42,8 +42,12 @@ export class PaginationBarComponent implements OnInit,OnChanges{
   }
   calculatePages() {
     const totalPages = Math.ceil(this.paginationInput.listSize / this.pageSize);
+    if (!isFinite(totalPages) || totalPages <= 0) {
+      return;
+    }
     this.pages = Array(totalPages).fill(0).map((_, i) => i + 1);
-    this.pageChanged.emit({ currentPage: this.currentPage=1, pageSize: this.pageSize });
+    this.currentPage = 1;
+    this.pageChanged.emit({ currentPage: this.currentPage, pageSize: this.pageSize });
   }
 
   calculatePageSizeOption() {

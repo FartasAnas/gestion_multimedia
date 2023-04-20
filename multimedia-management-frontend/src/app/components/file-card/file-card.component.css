@@ -7,7 +7,6 @@
   border-radius: 5px;
   overflow: hidden;
   width: 228px;
-  z-index: -1;
 }
 .file-card:hover{
   background: #D7E3FC;
@@ -25,7 +24,7 @@
   height: 16px;
   margin-top: 16px;
   margin-left: 16px;
-  z-index: 0;
+  z-index: 2;
   overflow: hidden;
 }
 .file-card-checkBox:hover{

@@ -13,6 +13,7 @@ import FileInput from "../../entities/FileInput";
 export class KeywordsSelectorComponent implements OnInit{
   keywords$:Observable<KeywordObject[]> = new Observable<FileObject[]>();
   @Input() selectedKeywords:KeywordObject[] = [];
+  @Input() inSearchBar:boolean=false
   showKeywords:boolean=false
   @Output() selectedKeywordsEvent=new EventEmitter<KeywordObject[]>();
   constructor(private keywordService:KeywordService) {
@@ -21,6 +22,7 @@ export class KeywordsSelectorComponent implements OnInit{
   ngOnInit(): void {
     this.keywords$=this.keywordService.getKeywords();
   }
+
 
   addKeyword(keyword: KeywordObject) {
     const selectedKeyword = this.selectedKeywords.find(k => k.id === keyword.id);

@@ -11,6 +11,7 @@
 .search-bar-inputs-col{
   display: flex;
   flex-direction: row;
+  gap:11px;
   width: 100%;
 }
 .search-bar-spreader{

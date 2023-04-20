@@ -1,5 +1,5 @@
 <div class="keywords-selector-component">
-  <div class="keywords-selector">
+  <div class="keywords-selector" #keywordsSelector [ngClass]="{'borderless':inSearchBar}">
     <div class="selected-keywords">
       <div class="keywords" *ngFor="let keyword of selectedKeywords">
         <p class="keyword-text">{{keyword.name}}</p>
@@ -12,7 +12,7 @@
       <img src="assets/ArrowLineDown.svg" />
     </div>
   </div>
-  <div class="keyword-list" *ngIf="showKeywords">
+  <div class="keyword-list" *ngIf="showKeywords" [ngClass]="{'borderless inSearchBar':inSearchBar}" [style.top]="inSearchBar? (keywordsSelector.offsetHeight + 4)+'px' :'auto'">
     <div *ngFor="let keyword of (keywords$ | async)" class="keywords">
       <div class="keyword-list-checkBox" *ngIf="keyword.name" (click)="addKeyword(keyword)" [ngClass]="isChecked(keyword)">
         <img src="assets/Check.svg" />
