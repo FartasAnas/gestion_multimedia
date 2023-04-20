@@ -6,7 +6,14 @@ import PaginationInput from "../../entities/PaginationInput";
   templateUrl: './pagination-bar.component.html',
   styleUrls: ['./pagination-bar.component.css']
 })
-export class PaginationBarComponent implements OnInit{
+export class PaginationBarComponent implements OnInit,OnChanges{
+    ngOnChanges(changes: SimpleChanges): void {
+        if('paginationInput' in changes){
+          this.calculatePageSize()
+          this.calculatePages()
+          this.calculatePageSizeOption()
+        }
+    }
 
   @Input() currentPage: number=1;
   @Input() paginationInput:PaginationInput={
@@ -19,6 +26,11 @@ export class PaginationBarComponent implements OnInit{
   @Output() pageChanged = new EventEmitter<{ currentPage: number; pageSize: number }>();
 
   ngOnInit(): void {
+    this.calculatePageSize()
+    this.calculatePages();
+    this.calculatePageSizeOption();
+  }
+  calculatePageSize(){
     const increment=this.paginationInput.sizeOptionIncrement
     if (this.paginationInput.listSize > increment) {
       this.pageSize = increment*2;
@@ -27,16 +39,15 @@ export class PaginationBarComponent implements OnInit{
     } else {
       this.pageSize = 0;
     }
-    this.calculatePages();
-    this.calculatePageSize();
   }
-
-   calculatePages() {
+  calculatePages() {
     const totalPages = Math.ceil(this.paginationInput.listSize / this.pageSize);
-    this.pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+    this.pages = Array(totalPages).fill(0).map((_, i) => i + 1);
     this.pageChanged.emit({ currentPage: this.currentPage=1, pageSize: this.pageSize });
   }
-   calculatePageSize() {
+
+  calculatePageSizeOption() {
+    this.pageSizeOptions=[]
     const increment=this.paginationInput.sizeOptionIncrement
     let currentSize = increment;
     while (currentSize < this.paginationInput.listSize) {

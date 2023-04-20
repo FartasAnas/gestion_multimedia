@@ -1,1 +1,18 @@
-<p>search-bar works!</p>
+<div class="search-bar">
+  <div class="search-bar-inputs">
+    <div class="search-bar-inputs-col">
+      <div class="input-group">
+        <label class="search-bar-text contentForm-label" for="firstName">
+          ID du fichier
+        </label>
+        <input type="text" id="firstName" name="firstName" class="search-bar-text contentForm-input" [(ngModel)]="fileId" (ngModelChange)="handleInputChanges()"/>
+      </div>
+    </div>
+    <div class="search-bar-inputs-col">
+
+    </div>
+  </div>
+  <div class="search-bar-spreader"  (click)="spreadSearchInputs=!spreadSearchInputs">
+    <img [src]="spreadSearchInputs ? 'assets/CloseWhite.svg' : 'assets/Faders.svg'" >
+  </div>
+</div>

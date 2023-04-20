@@ -14,6 +14,7 @@ export class FileInterfaceComponent implements OnInit{
   constructor(private fileService: FileService) {}
   fileObjects$: Observable<FileObject[]> = new Observable<FileObject[]>();
   displayedFileObjects:FileObject[]=[];
+  filteredFileObjects:FileObject[]=[]
   sizeOptionIncrement:number=5
   ngOnInit(): void {
     if(this.fileInterfaceInput) {
@@ -32,13 +33,29 @@ export class FileInterfaceComponent implements OnInit{
   }
   getUserFiles(){
     this.fileObjects$ = this.fileService.getUserFiles(this.fileInterfaceInput?.fileType as string,this.fileInterfaceInput?.fileCategory as string);
+    this.fileObjects$.subscribe((fileObjects) => {
+      this.filteredFileObjects=fileObjects;
+      this.displayedFileObjects=fileObjects;
+    });
   }
 
   handlePageChange(event: { currentPage: number; pageSize: number }): void {
+    // this.fileObjects$.subscribe((fileObjects) => {
+    //   let start = (event.currentPage - 1) * event.pageSize;
+    //   let end = start + Number(event.pageSize);
+    //   this.displayedFileObjects=fileObjects.slice(start, end);
+    // });
+    let start = (event.currentPage - 1) * event.pageSize;
+    let end = start + Number(event.pageSize);
+    this.displayedFileObjects=this.filteredFileObjects.slice(start, end);
+
+  }
+
+  handleSearchEvent(event: {fileId: string}) {
     this.fileObjects$.subscribe((fileObjects) => {
-      let start = (event.currentPage - 1) * event.pageSize;
-      let end = start + Number(event.pageSize);
-      this.displayedFileObjects=fileObjects.slice(start, end);
+      this.filteredFileObjects=fileObjects.filter(fileObject => (fileObject.id as number).toString().startsWith(event.fileId));
+      const pageSize = this.filteredFileObjects.length > this.sizeOptionIncrement ? this.sizeOptionIncrement*2 : this.filteredFileObjects.length > 0 ? this.sizeOptionIncrement : 0;
+      this.handlePageChange({currentPage:1,pageSize:pageSize})
     });
   }
 }

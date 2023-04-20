@@ -3,7 +3,9 @@
     <app-page-title [title]="fileInterfaceInput.interfaceTitle"></app-page-title>
     <app-upload-btn (fileUploaded)="onFileUploaded()" [text]="fileInterfaceInput.uploadBtnText" [fileType]="fileInterfaceInput.fileType"></app-upload-btn>
   </div>
-  <div class="fileInterface-body" *ngIf="fileObjects$ | async as fileObjects">
+  <app-search-bar (searchEvent)="handleSearchEvent($event)"></app-search-bar>
+<!--  <div class="fileInterface-body" *ngIf="fileObjects$ | async as fileObjects">-->
+    <div class="fileInterface-body">
     <div class="fileInterface-body-title">
       <p>{{fileInterfaceInput.fileListTitle}}</p>
     </div>
@@ -11,7 +13,7 @@
       <app-file-card  *ngFor="let fileObject of displayedFileObjects" [fileObject]="fileObject" [cardWidth]="fileInterfaceInput.cardWidth" [cardHeight]="fileInterfaceInput.cardHeight"></app-file-card>
     </div>
     <app-pagination-bar
-      [paginationInput]="{ listSize: fileObjects.length, sizeOptionIncrement: sizeOptionIncrement }"
+      [paginationInput]="{ listSize: filteredFileObjects.length, sizeOptionIncrement: sizeOptionIncrement }"
       (pageChanged)="handlePageChange($event)"
     ></app-pagination-bar>
   </div>
