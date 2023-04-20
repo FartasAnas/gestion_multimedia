@@ -11,13 +11,19 @@
         <label class="search-bar-text contentForm-label" for="fileName">
           Nom du {{fileType | lowercase}}
         </label>
-        <input type="text" id="fileName" name="fileName" class="search-bar-text contentForm-input" [(ngModel)]="fileName" (ngModelChange)="handleInputChanges()"/>
+        <input type="text" id="fileName" name="fileName" class="search-bar-text contentForm-input" [(ngModel)]="fileName" (ngModelChange)="handleInputChanges()" placeholder="Saisissez l’ID du fichier"/>
       </div>
       <div class="input-group" >
         <label class="search-bar-text contentForm-label">
           Mots-clés
         </label>
-        <app-keywords-selector [inSearchBar]="true" (selectedKeywordsEvent)="handleSelectedKeywords($event)"></app-keywords-selector>
+        <app-input-selector listType="keyword" [inSearchBar]="true"  (selectedInputsEvent)="handleSelectedInputsEvent($event)"></app-input-selector>
+      </div>
+      <div class="input-group" >
+        <label class="search-bar-text contentForm-label">
+          Statut
+        </label>
+        <app-input-selector listType="status" [inSearchBar]="true"  (selectedInputsEvent)="handleSelectedInputsEvent($event)"></app-input-selector>
       </div>
     </div>
     <div class="search-bar-inputs-col">
@@ -25,6 +31,9 @@
     </div>
   </div>
   <div class="search-bar-spreader"  (click)="spreadSearchInputs=!spreadSearchInputs" *ngIf="fileType!=='PICTOGRAM'">
-    <img [src]="spreadSearchInputs ? 'assets/CloseWhite.svg' : 'assets/Faders.svg'" >
+    <div class="search-bar-spreader-container">
+      <img [src]="spreadSearchInputs ? 'assets/CloseWhite.svg' : 'assets/Faders.svg'" >
+    </div>
+
   </div>
 </div>

@@ -49,6 +49,7 @@ import { ProfileLayoutComponent } from './layouts/profile-layout/profile-layout.
 import { ButtonComponent } from './components/button/button.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { PaginationBarComponent } from './components/pagination-bar/pagination-bar.component';
+import { InputSelectorComponent } from './components/input-selector/input-selector.component';
 
 
 @NgModule({
@@ -91,7 +92,8 @@ import { PaginationBarComponent } from './components/pagination-bar/pagination-b
     ProfileLayoutComponent,
     ButtonComponent,
     SearchBarComponent,
-    PaginationBarComponent
+    PaginationBarComponent,
+    InputSelectorComponent
   ],
   imports: [
     BrowserModule,

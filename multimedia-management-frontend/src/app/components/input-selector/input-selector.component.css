@@ -1,0 +1,122 @@
+.input-selector-component{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+.input-selector{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid #C6CED6;
+  border-radius: 4px;
+  min-height: 40px;
+  padding: 8px;
+  box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
+}
+.input-selector:hover{
+  cursor: pointer;
+}
+.selected-inputs{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.inputs{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #D7E3FC;
+  border-radius: 4px;
+  gap: 8px;
+  height: 24px;
+  padding: 4px 8px;
+}
+.input-text{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  color: #0B2866;
+}
+.input-icon{
+  height: 16px;
+  width: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input-icon img{
+  height: 7px;
+  width: 7px;
+}
+.input-icon:hover{
+  cursor: pointer;
+}
+.rotate{
+  transform: rotate(180deg)
+}
+.show-inputs-icon{
+  height: 14px;
+  width: 14px;
+}
+.input-list.inSearchBar{
+  position: absolute;
+}
+.input-list{
+  /*top: 44px;*/
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: scroll;
+  max-height: 168px;
+  background: #FFFFFF;
+  border: 1px solid #C6CED6;
+  border-radius: 4px;
+  transition: 0.2s all ease;
+  z-index: 3;
+  box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
+}
+.borderless{
+  border: none;
+}
+.input-list-text{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0B2866;
+}
+.input-list .inputs{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 11px 16px;
+  gap: 16px;
+  height: 46px;
+  background: #FFFFFF;
+}
+.input-list-checkBox{
+  border: 1px solid #8D9CAD;
+  border-radius: 2px;
+  width: 16px;
+  height: 16px;
+}
+.input-list-checkBox:hover{
+  cursor: pointer;
+}
+.checked{
+  border: none;
+  background: #105DFB;
+}
+.input-list-checkBox img {
+  width: 16px;
+  height: 16px;
+}

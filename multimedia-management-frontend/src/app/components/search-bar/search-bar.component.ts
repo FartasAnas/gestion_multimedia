@@ -18,7 +18,7 @@ export class SearchBarComponent {
     this.searchEvent.emit({fileId:this.fileId,fileName:this.fileName,fileKeywords:this.fileKeywords})
   }
 
-  handleSelectedKeywords(selectedKeywords:KeywordObject[]) {
+  handleSelectedInputsEvent(selectedKeywords:KeywordObject[]) {
     this.fileKeywords={...selectedKeywords}
     this.handleInputChanges()
   }
