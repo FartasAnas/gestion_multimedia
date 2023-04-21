@@ -14,7 +14,7 @@
     </div>
     <app-pagination-bar
       [paginationInput]="{ listSize: filteredFileObjects.length, sizeOptionIncrement: sizeOptionIncrement }"
-      (pageChanged)="handlePageChange($event)"
+      (pageChanged)="handlePageChange($event)" #paginationBar
     ></app-pagination-bar>
   </div>
 </div>

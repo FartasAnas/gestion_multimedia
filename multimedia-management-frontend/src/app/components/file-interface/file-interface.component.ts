@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Observable, take} from "rxjs";
 import {FileService} from "../../services/file/file.service";
 import FileObject from "../../entities/FileObject";
 import FileInterfaceInput from "../../entities/FileInterfaceInput";
 import KeywordObject from "../../entities/KeywordObject";
+import {PaginationBarComponent} from "../pagination-bar/pagination-bar.component";
 
 @Component({
   selector: 'app-file-interface',
@@ -17,6 +18,7 @@ export class FileInterfaceComponent implements OnInit{
   displayedFileObjects:FileObject[]=[];
   filteredFileObjects:FileObject[]=[]
   sizeOptionIncrement:number=5
+  @ViewChild(PaginationBarComponent) paginationBar?:PaginationBarComponent
   ngOnInit(): void {
     if(this.fileInterfaceInput) {
       this.fileInterfaceInput.fileCategory = window.location.pathname.split('/')[1].toUpperCase()
@@ -40,8 +42,8 @@ export class FileInterfaceComponent implements OnInit{
     });
   }
 
-  handlePageChange(event: { currentPage: number; pageSize: number }): void {
-    let start = (event.currentPage - 1) * event.pageSize;
+  handlePageChange(event: { currentPage: number; pageSize?: number }): void {
+    let start = (event.currentPage - 1) * (event.pageSize as number);
     let end = start + Number(event.pageSize);
     this.displayedFileObjects=this.filteredFileObjects.slice(start, end);
 
@@ -58,8 +60,8 @@ export class FileInterfaceComponent implements OnInit{
         const versionMatches = Object.values(event.fileVersion).length === 0 || Object.values(event.fileVersion).some(version => version.id === fileObject.version);
         return idMatches && nameMatches && keywordMatches && statusMatches && versionMatches;
       });
-      const pageSize = this.filteredFileObjects.length > this.sizeOptionIncrement ? this.sizeOptionIncrement*2 : this.filteredFileObjects.length > 0 ? this.sizeOptionIncrement : 0;
-      this.handlePageChange({currentPage:1,pageSize:pageSize})
+      this.paginationBar?.calculatePageSize()
+      this.handlePageChange({currentPage:1})
     });
   }
 

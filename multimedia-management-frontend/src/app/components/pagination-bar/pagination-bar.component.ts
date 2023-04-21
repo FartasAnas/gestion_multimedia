@@ -7,14 +7,13 @@ import PaginationInput from "../../entities/PaginationInput";
   styleUrls: ['./pagination-bar.component.css']
 })
 export class PaginationBarComponent implements OnInit,OnChanges{
-    ngOnChanges(changes: SimpleChanges): void {
-        if('paginationInput' in changes){
-          this.calculatePageSize()
-          this.calculatePages()
-          this.calculatePageSizeOption()
-        }
-    }
-
+  ngOnChanges(changes: SimpleChanges): void {
+      if('paginationInput' in changes){
+        this.calculatePageSize()
+        this.calculatePages()
+        this.calculatePageSizeOption()
+      }
+  }
   @Input() currentPage: number=1;
   @Input() paginationInput:PaginationInput={
     listSize:20,
@@ -23,7 +22,7 @@ export class PaginationBarComponent implements OnInit,OnChanges{
   pageSize:number=10
   pages: number[] = [];
   pageSizeOptions: number[] = [];
-  @Output() pageChanged = new EventEmitter<{ currentPage: number; pageSize: number }>();
+  @Output() pageChanged = new EventEmitter<{ currentPage: number; pageSize?: number }>();
 
   ngOnInit(): void {
     this.calculatePageSize()
@@ -34,10 +33,10 @@ export class PaginationBarComponent implements OnInit,OnChanges{
     const increment=this.paginationInput.sizeOptionIncrement
     if (this.paginationInput.listSize > increment) {
       this.pageSize = increment*2;
-    } else if (this.paginationInput.listSize > 0 && this.paginationInput.listSize <= increment) {
+    } else if (this.paginationInput.listSize === increment) {
       this.pageSize = increment;
     } else {
-      this.pageSize = 0;
+      this.pageSize = this.paginationInput.listSize; // set to listSize if less than increment
     }
   }
   calculatePages() {
@@ -53,10 +52,14 @@ export class PaginationBarComponent implements OnInit,OnChanges{
   calculatePageSizeOption() {
     this.pageSizeOptions=[]
     const increment=this.paginationInput.sizeOptionIncrement
-    let currentSize = increment;
-    while (currentSize < this.paginationInput.listSize) {
-      this.pageSizeOptions.push(currentSize);
-      currentSize += this.paginationInput.sizeOptionIncrement;
+    if(this.paginationInput.listSize < this.paginationInput.sizeOptionIncrement){
+      this.pageSizeOptions=[this.paginationInput.listSize]
+    }else {
+      let currentSize = increment;
+      while (currentSize < this.paginationInput.listSize) {
+        this.pageSizeOptions.push(currentSize);
+        currentSize += this.paginationInput.sizeOptionIncrement;
+      }
     }
     this.pageSizeOptions.push(Math.ceil(this.paginationInput.listSize / increment) * increment);
   }
