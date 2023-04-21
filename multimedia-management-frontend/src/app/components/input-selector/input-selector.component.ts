@@ -9,11 +9,11 @@ import {KeywordService} from "../../services/keyword/keyword.service";
 })
 export class InputSelectorComponent{
   @Input() selectedInputs:any[] = [];
-  @Input() inSearchBar:boolean=false
   @Input() listType:string=''
+  @Input() placeholder:string=''
   showInputs:boolean=false
   inputsList:any[]=[]
-  @Output() selectedInputsEvent=new EventEmitter<KeywordObject[]>();
+  @Output() selectedInputsEvent=new EventEmitter<any[]>();
   constructor(private keywordService:KeywordService) {
   }
 
@@ -25,6 +25,8 @@ export class InputSelectorComponent{
     }else if(this.listType === 'status'){
       this.inputsList=Object.values([{id:1,name:"PUBLISHED",color:'#D1EEDB'},{id:2,name:"PLANNED",color:'#DDD8FF'},
                                         {id:3,name:"PENDING",color:'#FFE9C5'},{id:4,name:"UNPUBLISHED",color:'#FCD9BD'}])
+    }else if(this.listType === 'version'){
+      this.inputsList=Object.values([{id:"VF",name:"Version française"},{id:"VA",name:"Version arabe"}])
     }
   }
 
@@ -46,7 +48,6 @@ export class InputSelectorComponent{
     }
   }
   handleShowInputs(){
-    console.log(this.inputsList)
     this.showInputs=!this.showInputs
   }
   isChecked(input:any){

@@ -1,39 +1,39 @@
 <div class="search-bar">
   <div class="search-bar-inputs">
-    <div class="search-bar-inputs-col">
-      <div class="input-group" *ngIf="fileType==='IMAGE' || fileType==='VIDEO'">
-        <label class="search-bar-text contentForm-label" for="fileId">
-          ID du fichier
-        </label>
-        <input type="text" id="fileId" name="fileId" class="search-bar-text contentForm-input" [(ngModel)]="fileId" (ngModelChange)="handleInputChanges()"/>
-      </div>
-      <div class="input-group" *ngIf="fileType==='PICTOGRAM' || fileType==='DOCUMENT'">
-        <label class="search-bar-text contentForm-label" for="fileName">
-          Nom du {{fileType | lowercase}}
-        </label>
-        <input type="text" id="fileName" name="fileName" class="search-bar-text contentForm-input" [(ngModel)]="fileName" (ngModelChange)="handleInputChanges()" placeholder="Saisissez l’ID du fichier"/>
-      </div>
-      <div class="input-group" >
-        <label class="search-bar-text contentForm-label">
-          Mots-clés
-        </label>
-        <app-input-selector listType="keyword" [inSearchBar]="true"  (selectedInputsEvent)="handleSelectedInputsEvent($event)"></app-input-selector>
-      </div>
-      <div class="input-group" >
-        <label class="search-bar-text contentForm-label">
-          Statut
-        </label>
-        <app-input-selector listType="status" [inSearchBar]="true"  (selectedInputsEvent)="handleSelectedInputsEvent($event)"></app-input-selector>
-      </div>
+    <div class="input-group" *ngIf="fileType==='IMAGE' || fileType==='VIDEO'">
+      <label class="search-bar-text contentForm-label" for="fileId">
+        ID du fichier
+      </label>
+      <input type="text" id="fileId" name="fileId" class="search-bar-text contentForm-input" [(ngModel)]="fileId" (ngModelChange)="handleInputChanges()" placeholder="Saisissez l’ID du fichier"/>
     </div>
-    <div class="search-bar-inputs-col">
-
+    <div class="input-group" *ngIf="fileType==='PICTOGRAM' || fileType==='DOCUMENT'">
+      <label class="search-bar-text contentForm-label" for="fileName">
+        Nom du {{fileType | lowercase}}
+      </label>
+      <input type="text" id="fileName" name="fileName" class="search-bar-text contentForm-input" [(ngModel)]="fileName" (ngModelChange)="handleInputChanges()" placeholder="Saisissez le nom du pictogramme"/>
+    </div>
+    <div class="input-group" >
+      <label class="search-bar-text contentForm-label">
+        Mots-clés
+      </label>
+      <app-input-selector listType="keyword" (selectedInputsEvent)="handleSelectedKeywords($event)" placeholder="Sélectionnez / saisissez des tags"></app-input-selector>
+    </div>
+    <div class="input-group" *ngIf="fileType!=='PICTOGRAM'">
+      <label class="search-bar-text contentForm-label">
+        Statut
+      </label>
+      <app-input-selector listType="status" (selectedInputsEvent)="handleSelectedStatusEvent($event)" placeholder="Sélectionnez un statut"></app-input-selector>
+    </div>
+    <div class="input-group" *ngIf="fileType!=='PICTOGRAM' && spreadSearchInputs">
+      <label class="search-bar-text contentForm-label">
+        Version du fichier
+      </label>
+      <app-input-selector listType="version" (selectedInputsEvent)="handleSelectedVersionEvent($event)" placeholder="Sélectionnez une version du fichier"></app-input-selector>
     </div>
   </div>
   <div class="search-bar-spreader"  (click)="spreadSearchInputs=!spreadSearchInputs" *ngIf="fileType!=='PICTOGRAM'">
     <div class="search-bar-spreader-container">
       <img [src]="spreadSearchInputs ? 'assets/CloseWhite.svg' : 'assets/Faders.svg'" >
     </div>
-
   </div>
 </div>

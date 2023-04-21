@@ -41,31 +41,27 @@ export class FileInterfaceComponent implements OnInit{
   }
 
   handlePageChange(event: { currentPage: number; pageSize: number }): void {
-    // this.fileObjects$.subscribe((fileObjects) => {
-    //   let start = (event.currentPage - 1) * event.pageSize;
-    //   let end = start + Number(event.pageSize);
-    //   this.displayedFileObjects=fileObjects.slice(start, end);
-    // });
     let start = (event.currentPage - 1) * event.pageSize;
     let end = start + Number(event.pageSize);
     this.displayedFileObjects=this.filteredFileObjects.slice(start, end);
 
   }
 
-  handleSearchEvent(event: {fileId: string, fileName: string, fileKeywords: KeywordObject[] | {[key: string]: KeywordObject}}) {
+  handleSearchEvent(event: {fileId: string, fileName: string, fileKeywords: KeywordObject[],fileStatus:any[],fileVersion:any[]}) {
+    console.log(event.fileStatus)
     this.fileObjects$.subscribe((fileObjects) => {
       this.filteredFileObjects = fileObjects.filter(fileObject => {
         const idMatches = (fileObject.id as number).toString().startsWith(event.fileId);
         const nameMatches = (fileObject.fileName as string).toLowerCase().includes(event.fileName.toLowerCase());
-        const keywordMatches = Object.values(event.fileKeywords).every(keyword => (fileObject.keywords as KeywordObject[]).some(fileKeyword => fileKeyword.id === keyword.id));
-        return idMatches && nameMatches && keywordMatches;
+        const keywordMatches = Object.values(event.fileKeywords).every(keyword => (fileObject.keywords as KeywordObject[]).some(fileKeyword => fileKeyword.id === keyword.id && fileKeyword.name === keyword.name));
+        const statusMatches = Object.values(event.fileStatus).length === 0 || Object.values(event.fileStatus).some(status => status.name === fileObject.state);
+        const versionMatches = Object.values(event.fileVersion).length === 0 || Object.values(event.fileVersion).some(version => version.id === fileObject.version);
+        return idMatches && nameMatches && keywordMatches && statusMatches && versionMatches;
       });
       const pageSize = this.filteredFileObjects.length > this.sizeOptionIncrement ? this.sizeOptionIncrement*2 : this.filteredFileObjects.length > 0 ? this.sizeOptionIncrement : 0;
       this.handlePageChange({currentPage:1,pageSize:pageSize})
     });
   }
-
-
 
 
 

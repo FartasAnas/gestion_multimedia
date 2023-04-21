@@ -1,6 +1,6 @@
 <div class="input-selector-component">
-  <div class="input-selector" #inputSelector [ngClass]="{'borderless':inSearchBar}">
-    <div class="selected-inputs">
+  <div class="input-selector" #inputSelector>
+    <div class="selected-inputs" >
       <div class="inputs" *ngFor="let input of selectedInputs" [style.background-color]="listType==='status'?input.color:'#D7E3FC'">
         <div class="input-text">
           <p *ngIf="listType!=='status'">{{input.name}}</p>
@@ -10,12 +10,13 @@
           <img src="assets/XIcon.svg" />
         </div>
       </div>
+      <p *ngIf="selectedInputs.length===0" class="placeholder-text">{{placeholder}}</p>
     </div>
     <div class="show-inputs-icon" (click)="handleShowInputs()" [ngClass]="{'rotate':showInputs}">
       <img src="assets/ArrowLineDown.svg" />
     </div>
   </div>
-  <div class="input-list" *ngIf="showInputs" [ngClass]="{'borderless inSearchBar':inSearchBar}" [style.top]="inSearchBar? (inputSelector.offsetHeight + 4)+'px' :'auto'">
+  <div class="input-list" *ngIf="showInputs" [style.top]="(inputSelector.offsetHeight + 4)+'px'">
     <div *ngFor="let input of inputsList" class="inputs">
       <div class="input-list-checkBox" *ngIf="input" (click)="addInput(input)" [ngClass]="isChecked(input)">
         <img src="assets/Check.svg" />
@@ -24,7 +25,6 @@
         <p *ngIf="listType!=='status'">{{input.name}}</p>
         <app-state-tag *ngIf="listType==='status'" [state]="input.name"></app-state-tag>
       </div>
-
     </div>
   </div>
 </div>
