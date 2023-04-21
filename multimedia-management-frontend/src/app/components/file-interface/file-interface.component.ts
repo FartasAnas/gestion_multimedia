@@ -42,8 +42,8 @@ export class FileInterfaceComponent implements OnInit{
     });
   }
 
-  handlePageChange(event: { currentPage: number; pageSize?: number }): void {
-    let start = (event.currentPage - 1) * (event.pageSize as number);
+  handlePageChange(event: { currentPage: number; pageSize: number }): void {
+    let start = (event.currentPage - 1) * event.pageSize;
     let end = start + Number(event.pageSize);
     this.displayedFileObjects=this.filteredFileObjects.slice(start, end);
 
@@ -60,8 +60,8 @@ export class FileInterfaceComponent implements OnInit{
         const versionMatches = Object.values(event.fileVersion).length === 0 || Object.values(event.fileVersion).some(version => version.id === fileObject.version);
         return idMatches && nameMatches && keywordMatches && statusMatches && versionMatches;
       });
-      this.paginationBar?.calculatePageSize()
-      this.handlePageChange({currentPage:1})
+
+      this.handlePageChange({currentPage:1,pageSize:this.paginationBar?.calculatePageSize() as number})
     });
   }
 

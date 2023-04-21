@@ -22,14 +22,14 @@ export class PaginationBarComponent implements OnInit,OnChanges{
   pageSize:number=10
   pages: number[] = [];
   pageSizeOptions: number[] = [];
-  @Output() pageChanged = new EventEmitter<{ currentPage: number; pageSize?: number }>();
+  @Output() pageChanged = new EventEmitter<{ currentPage: number; pageSize: number }>();
 
   ngOnInit(): void {
     this.calculatePageSize()
     this.calculatePages();
     this.calculatePageSizeOption();
   }
-  calculatePageSize(){
+  calculatePageSize():number{
     const increment=this.paginationInput.sizeOptionIncrement
     if (this.paginationInput.listSize > increment) {
       this.pageSize = increment*2;
@@ -38,6 +38,7 @@ export class PaginationBarComponent implements OnInit,OnChanges{
     } else {
       this.pageSize = this.paginationInput.listSize; // set to listSize if less than increment
     }
+    return this.pageSize
   }
   calculatePages() {
     const totalPages = Math.ceil(this.paginationInput.listSize / this.pageSize);
