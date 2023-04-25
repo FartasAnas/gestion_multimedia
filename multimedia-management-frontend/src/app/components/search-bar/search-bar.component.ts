@@ -13,11 +13,12 @@ export class SearchBarComponent {
   fileKeywords:KeywordObject[]=[]
   fileStatus:any[]=[]
   fileVersion:any[]=[]
+  fileExtension:any[]=[]
   @Input() fileType:string=''
-  @Output() searchEvent=new EventEmitter<{fileId: string;fileName:string;fileKeywords:KeywordObject[];fileStatus:any[];fileVersion:any[]}>();
+  @Output() searchEvent=new EventEmitter<{fileId: string;fileName:string;fileKeywords:KeywordObject[];fileStatus:any[];fileVersion:any[];fileExtension:any[]}>();
 
   handleInputChanges() {
-    this.searchEvent.emit({fileId:this.fileId,fileName:this.fileName,fileKeywords:this.fileKeywords,fileStatus:this.fileStatus,fileVersion:this.fileVersion})
+    this.searchEvent.emit({fileId:this.fileId,fileName:this.fileName,fileKeywords:this.fileKeywords,fileStatus:this.fileStatus,fileVersion:this.fileVersion,fileExtension:this.fileExtension})
   }
 
   handleSelectedStatusEvent(selectedStatus:any[]) {
@@ -32,6 +33,11 @@ export class SearchBarComponent {
 
   handleSelectedVersionEvent(selectedVersion: any[]) {
     this.fileVersion={...selectedVersion}
+    this.handleInputChanges()
+  }
+
+  handleSelectedExtension(selectedExtension: any[]) {
+    this.fileExtension={...selectedExtension}
     this.handleInputChanges()
   }
 }

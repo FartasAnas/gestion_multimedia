@@ -1,6 +1,6 @@
 <div class="input-selector-component">
   <div class="input-selector" #inputSelector>
-    <div class="selected-inputs" >
+    <div class="selected-inputs">
       <div class="inputs" *ngFor="let input of selectedInputs" [style.background-color]="listType==='status'?input.color:'#D7E3FC'">
         <div class="input-text">
           <p *ngIf="listType!=='status'">{{input.name}}</p>
@@ -16,7 +16,16 @@
       <img src="assets/ArrowLineDown.svg" />
     </div>
   </div>
-  <div class="input-list" *ngIf="showInputs" [style.top]="(inputSelector.offsetHeight + 4)+'px'">
+  <div class="input-list" *ngIf="showInputs" [style.top]="(inputSelector.offsetHeight + 4)+'px'" (mouseleave)="handleInputSelectorBlur()"
+       [style.flex-flow]="listType==='extension'?'row wrap':'column'">
+    <div class="input-list-selectAll" (click)="selectAllInputs()" *ngIf="listType==='extension'">
+      <div class="input-list-checkBox" [ngClass]="isAllSelected() ? 'checked' : ''">
+        <img src="assets/Check.svg" />
+      </div>
+      <p class="input-list-text">
+        Tout sélectionner
+      </p>
+    </div>
     <div *ngFor="let input of inputsList" class="inputs">
       <div class="input-list-checkBox" *ngIf="input" (click)="addInput(input)" [ngClass]="isChecked(input)">
         <img src="assets/Check.svg" />

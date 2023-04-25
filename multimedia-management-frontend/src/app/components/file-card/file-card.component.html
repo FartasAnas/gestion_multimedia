@@ -10,7 +10,7 @@
       <app-file-video-card [fileUrl]="fileUrl"></app-file-video-card>
     </div>
     <div class="document-file" *ngIf="fileObject.type==='DOCUMENT'">
-      <app-file-document-card [fileExtension]="fileType" [fileUrl]="fileUrl"></app-file-document-card>
+      <app-file-document-card [fileExtension]="fileExtension" [fileUrl]="fileUrl"></app-file-document-card>
     </div>
     <div class="pictos-file"  *ngIf="fileObject.type==='PICTOGRAM'">
       <img [src]="fileUrl">
@@ -22,7 +22,7 @@
       <app-state-tag [state]="fileObject.state"></app-state-tag>
     </div>
     <div>
-      <p class="supInfo-txt" *ngIf="fileObject.fileName" >{{fileType | uppercase}} - {{fileObject.size}}</p>
+      <p class="supInfo-txt" *ngIf="fileObject.fileName" >{{fileExtension | uppercase}} - {{fileObject.size}}</p>
       <p class="supInfo-txt">{{fileObject.creationDate | date: 'dd/MM/yyyy'}} </p>
     </div>
   </div>

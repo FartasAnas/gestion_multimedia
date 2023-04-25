@@ -11,7 +11,7 @@ import {HttpClient} from "@angular/common/http";
 export class FileCardComponent implements OnInit{
   hostname=window.location.hostname
   fileUrl:string=''
-  fileType:string=''
+  fileExtension:string=''
   testUrl:string=''
   @Input() fileObject?:FileObject
   @Input() cardWidth?:string
@@ -26,7 +26,7 @@ export class FileCardComponent implements OnInit{
 
   ngOnInit(): void {
     this.fileUrl=`http://${this.hostname}:8100/files/object/${this.fileObject?.id}/`
-    this.fileType=this.fileObject?.fileName?.split(".")[1] as string
+    this.fileExtension=this.fileObject?.fileName?.split(".")[1] as string
   }
   nameText():string{
     if(this.fileObject?.type=="DOCUMENT")

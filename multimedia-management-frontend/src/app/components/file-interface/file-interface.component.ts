@@ -49,7 +49,7 @@ export class FileInterfaceComponent implements OnInit{
 
   }
 
-  handleSearchEvent(event: {fileId: string, fileName: string, fileKeywords: KeywordObject[],fileStatus:any[],fileVersion:any[]}) {
+  handleSearchEvent(event: {fileId: string, fileName: string, fileKeywords: KeywordObject[],fileStatus:any[],fileVersion:any[],fileExtension:any[]}) {
     console.log(event.fileStatus)
     this.fileObjects$.subscribe((fileObjects) => {
       this.filteredFileObjects = fileObjects.filter(fileObject => {
@@ -58,7 +58,8 @@ export class FileInterfaceComponent implements OnInit{
         const keywordMatches = Object.values(event.fileKeywords).every(keyword => (fileObject.keywords as KeywordObject[]).some(fileKeyword => fileKeyword.id === keyword.id && fileKeyword.name === keyword.name));
         const statusMatches = Object.values(event.fileStatus).length === 0 || Object.values(event.fileStatus).some(status => status.name === fileObject.state);
         const versionMatches = Object.values(event.fileVersion).length === 0 || Object.values(event.fileVersion).some(version => version.id === fileObject.version);
-        return idMatches && nameMatches && keywordMatches && statusMatches && versionMatches;
+        const extensionMatches= Object.values(event.fileExtension).length === 0 || Object.values(event.fileExtension).some(extension => extension.name.toLowerCase() === (fileObject.fileName as string).split(".")[1]);
+        return idMatches && nameMatches && keywordMatches && statusMatches && versionMatches && extensionMatches;
       });
 
       this.handlePageChange({currentPage:1,pageSize:this.paginationBar?.calculatePageSize() as number})
