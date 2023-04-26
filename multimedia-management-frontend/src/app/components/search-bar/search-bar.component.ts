@@ -14,11 +14,13 @@ export class SearchBarComponent {
   fileStatus:any[]=[]
   fileVersion:any[]=[]
   fileExtension:any[]=[]
+  startDate?:Date
+  endDate?:Date
   @Input() fileType:string=''
-  @Output() searchEvent=new EventEmitter<{fileId: string;fileName:string;fileKeywords:KeywordObject[];fileStatus:any[];fileVersion:any[];fileExtension:any[]}>();
+  @Output() searchEvent=new EventEmitter<{fileId: string;fileName:string;fileKeywords:KeywordObject[];fileStatus:any[];fileVersion:any[];fileExtension:any[];startDate:Date;endDate:Date}>();
 
   handleInputChanges() {
-    this.searchEvent.emit({fileId:this.fileId,fileName:this.fileName,fileKeywords:this.fileKeywords,fileStatus:this.fileStatus,fileVersion:this.fileVersion,fileExtension:this.fileExtension})
+    this.searchEvent.emit({fileId:this.fileId,fileName:this.fileName,fileKeywords:this.fileKeywords,fileStatus:this.fileStatus,fileVersion:this.fileVersion,fileExtension:this.fileExtension,startDate:(this.startDate as Date),endDate:(this.endDate as Date)})
   }
 
   handleSelectedStatusEvent(selectedStatus:any[]) {
@@ -38,6 +40,12 @@ export class SearchBarComponent {
 
   handleSelectedExtension(selectedExtension: any[]) {
     this.fileExtension={...selectedExtension}
+    this.handleInputChanges()
+  }
+
+  handleSelectedDateRange(event: { startDate: Date; endDate: Date }) {
+      this.startDate=event.startDate
+      this.endDate=event.endDate
     this.handleInputChanges()
   }
 }

@@ -40,11 +40,11 @@
       <label class="search-bar-text contentForm-label">
         Plage de dates
       </label>
-      <app-date-range-picker></app-date-range-picker>
+      <app-date-range-picker (selectedDateRange)="handleSelectedDateRange($event)"></app-date-range-picker>
     </div>
   </div>
-  <div class="search-bar-spreader"  (click)="spreadSearchInputs=!spreadSearchInputs" *ngIf="fileType!=='PICTOGRAM'">
-    <div class="search-bar-spreader-container">
+  <div class="search-bar-spreader" *ngIf="fileType!=='PICTOGRAM'">
+    <div class="search-bar-spreader-container" (click)="spreadSearchInputs=!spreadSearchInputs">
       <img [src]="spreadSearchInputs ? 'assets/CloseWhite.svg' : 'assets/Faders.svg'" >
     </div>
   </div>

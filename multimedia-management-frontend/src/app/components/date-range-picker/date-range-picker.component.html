@@ -1,6 +1,8 @@
 <div class="date-range-picker">
   <div class="date-range-text date-range-input" (click)="displayCalendar=!displayCalendar">
-    <p class="selected-date-range">{{formatDate(startDate)}} - {{formatDate(endDate)}}</p>
+    <p class="selected-date-range" [style.color]="startDate || endDate? '#0B2866' : '#8D9CAD'">
+      {{startDate? (startDate | date:'dd/MM/yyyy'):'00/00/0000'}} - {{endDate? (endDate | date:'dd/MM/yyyy'):'00/00/0000'}}
+    </p>
     <img src="assets/CalendarDarkBlue.svg">
   </div>
   <div class="date-range-calendar" [ngClass]="{'display-date-range-calendar':displayCalendar}">

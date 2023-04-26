@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-date-range-picker',
@@ -15,18 +15,18 @@ export class DateRangePickerComponent implements OnInit{
   hoveredDate?: Date;
   days=[]
   displayCalendar=false
-
+  @Output() selectedDateRange=new EventEmitter<{startDate:Date;endDate:Date}>();
 
   ngOnInit(): void {
   }
-  formatDate(date: Date | undefined): string {
+  handleDateRangeChanges(){
+    this.selectedDateRange.emit({startDate:(this.startDate as Date),endDate:(this.endDate as Date)})
+  }
+  formatDate(date: Date | undefined): any {
     if (!date) {
-      return '00/00/0000';
+      return "00/00/0000";
     }
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+    return date;
   }
 
   getDaysInMonth(month: number, year: number): number[] {
@@ -60,8 +60,7 @@ export class DateRangePickerComponent implements OnInit{
     } else {
       this.startDate = selectedDate;
     }
-    console.log("startDate:"+this.startDate)
-    console.log("endDate:"+this.endDate)
+    this.handleDateRangeChanges()
   }
   isStartDate(day: number, month: number, year: number): boolean {
     const date = new Date(year, month, day);

@@ -71,3 +71,6 @@
 .contentForm-input:focus{
   outline: none;
 }
+.contentForm-input::placeholder{
+  color: #8D9CAD;
+}

@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 50px;
   margin: 72px 50px;
-  overflow: hidden;
+  height: 100vh;
 }
 
 .fileInterface-header {
