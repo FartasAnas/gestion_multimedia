@@ -8,11 +8,13 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import stage.dcm.api.dto.NextPreviousFilesDTO;
+import stage.dcm.api.entities.Category;
 import stage.dcm.api.entities.File;
 import stage.dcm.api.entities.User;
 import stage.dcm.api.enums.FileType;
 import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.repositories.FileRepository;
+import stage.dcm.api.services.CategoryServices;
 import stage.dcm.api.services.FileServices;
 
 
@@ -31,14 +33,17 @@ public class FileServicesImp implements FileServices {
     private final MinioService minioService;
     private final FileRepository fileRepository;
     private final UserServices userServices;
+    private final CategoryServices categoryServices;
 
     @Override
     public File saveFile(File file, MultipartFile multipartFiles) throws NotFoundException {
         Random random = new Random();
         file.setUser(userServices.getUserByUsername(file.getCreatedBy()));
+        log.info("file categoty: {}",file.getCategory());
         if(file.getUser()!=null) {
             file.setId(Math.abs(random.nextLong()) % 10000000000L);
-            String fullPath = String.join("/", file.getUser().getUsername(),file.getCategory().toString(), file.getType().toString(),file.getId().toString(), file.getFileName());
+            file.setCategory(categoryServices.getCategory(file.getCategory()));
+            String fullPath = String.join("/", file.getUser().getUsername(),file.getCategory().getName(), file.getType().toString(),file.getId().toString(), file.getFileName());
             try {
                 minioService.upload(fullPath, multipartFiles.getInputStream());
                 file.setSize(formatFileSize(multipartFiles.getSize()));
@@ -86,7 +91,7 @@ public class FileServicesImp implements FileServices {
         User userDto = userServices.getUserByUsername(username);
         if (userDto != null) {
             List<File> userFiles = userDto.getFiles().stream()
-                    .filter(file -> file.getType().toString().equals(type) && file.getCategory().toString().equals(category))
+                    .filter(file -> file.getType().toString().equals(type) && file.getCategory().getName().equals(category))
                     .sorted(Comparator.comparing(File::getCreationDate))
                     .collect(Collectors.toList());
             return userFiles;
@@ -110,7 +115,7 @@ public class FileServicesImp implements FileServices {
     @Override
     public NextPreviousFilesDTO getNextPreviousFiles(Long id) throws NotFoundException {
         File currentFile = getFileById(id);
-        Collection<File> fileList = userFilesList(currentFile.getCreatedBy(), currentFile.getType().toString(),currentFile.getCategory().toString());
+        Collection<File> fileList = userFilesList(currentFile.getCreatedBy(), currentFile.getType().toString(),currentFile.getCategory().getName());
         Long nextFileId = null;
         Long previousFileId = null;
         Iterator<File> iterator = fileList.iterator();

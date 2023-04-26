@@ -44,7 +44,10 @@ public class File {
 
     private FileState state;
 
-    private FileCategory category;
+//    private FileCategory category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
 
     private String filepath;
 
