@@ -1,14 +1,18 @@
 package stage.dcm.api.controllers;
 
 import lombok.AllArgsConstructor;
+import ma.indh.minio.exception.MinioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import stage.dcm.api.entities.Category;
 import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.services.CategoryServices;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -18,8 +22,8 @@ public class CategoryControllers {
     private CategoryServices categoryServices;
 
     @PostMapping("/add")
-    public ResponseEntity<Category> saveCategory(@RequestBody Category category) {
-        return new ResponseEntity<>(categoryServices.saveCategory(category), HttpStatus.CREATED);
+    public ResponseEntity<Category> saveCategory(@RequestPart("category") Category category, @RequestParam("icon") MultipartFile categoryIcon) {
+        return new ResponseEntity<>(categoryServices.saveCategory(category,categoryIcon), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -35,6 +39,11 @@ public class CategoryControllers {
     @GetMapping("/name/{name}")
     public ResponseEntity<Category> getCategoryByName(@PathVariable String name) {
         return new ResponseEntity<>(categoryServices.getCategoryByName(name), HttpStatus.OK);
+    }
+    @GetMapping("/icon/{id}")
+    public ResponseEntity<Void> getCategoryIcon(@PathVariable Long id, HttpServletResponse response) throws NotFoundException, IOException, MinioException {
+        categoryServices.getCategoryIcon(id, response);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/update/{id}")
