@@ -1,0 +1,55 @@
+<div class="date-range-picker">
+  <div class="date-range-text date-range-input" (click)="displayCalendar=!displayCalendar">
+    <p class="selected-date-range">{{formatDate(startDate)}} - {{formatDate(endDate)}}</p>
+    <img src="assets/CalendarDarkBlue.svg">
+  </div>
+  <div class="date-range-calendar" [ngClass]="{'display-date-range-calendar':displayCalendar}">
+    <div class="date-range-calendar-col">
+      <div class="date-range-calendar-head">
+        <div class="date-range-calendar-head-icon">
+          <img src="assets/ArrowLineRight.svg" [style.rotate]="'180deg'" (click)="previousMonth()">
+        </div>
+        <p class="date-range-text">{{months[currentMonth] | titlecase}} {{currentYear}}</p>
+        <p></p>
+      </div>
+      <div class="date-range-calendar-week">
+        <div class="date-range-calendar-week-day" *ngFor="let day of weekDays" >
+          <p class="date-range-text" >{{day | uppercase}}</p>
+        </div>
+      </div>
+      <div class="date-range-calendar-days">
+        <div class="date-range-calendar-month-day" *ngFor="let emptyDay of getEmptyDaysBeforeFirstDayOfMonth(currentMonth, currentYear)">
+          <p class="date-range-text"></p>
+        </div>
+        <div class="date-range-calendar-month-day not-empty" *ngFor="let day of getDaysInMonth(currentMonth, currentYear)" (click)="selectDate(day, currentMonth, currentYear)" (mouseover)="updateHoveredDate(day, currentMonth, currentYear)"
+             [ngClass]="{'start-date': isStartDate(day, currentMonth, currentYear), 'end-date': isEndDate(day, currentMonth, currentYear), 'hovered': isHovered(day, currentMonth, currentYear)}">
+          <p class="date-range-text">{{day}}</p>
+        </div>
+
+      </div>
+    </div>
+    <div class="date-range-calendar-col">
+      <div class="date-range-calendar-head">
+        <p></p>
+        <p class="date-range-text">{{months[currentMonth + 1] | titlecase}} {{currentYear}}</p>
+        <div class="date-range-calendar-head-icon">
+          <img src="assets/ArrowLineRight.svg" (click)="nextMonth()">
+        </div>
+      </div>
+      <div class="date-range-calendar-week">
+        <div class="date-range-calendar-week-day" *ngFor="let day of weekDays" >
+          <p class="date-range-text" >{{day | uppercase}}</p>
+        </div>
+      </div>
+      <div class="date-range-calendar-days">
+        <div class="date-range-calendar-month-day" *ngFor="let emptyDay of getEmptyDaysBeforeFirstDayOfMonth(currentMonth + 1, currentYear)">
+          <p class="date-range-text"></p>
+        </div>
+        <div class="date-range-calendar-month-day not-empty" *ngFor="let day of getDaysInMonth(currentMonth + 1, currentYear)" (click)="selectDate(day, currentMonth + 1, currentYear)" (mouseover)="updateHoveredDate(day, currentMonth + 1, currentYear)"
+             [ngClass]="{'start-date': isStartDate(day, currentMonth + 1, currentYear), 'end-date': isEndDate(day, currentMonth + 1, currentYear), 'hovered': isHovered(day, currentMonth + 1, currentYear)}">
+          <p class="date-range-text">{{day}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

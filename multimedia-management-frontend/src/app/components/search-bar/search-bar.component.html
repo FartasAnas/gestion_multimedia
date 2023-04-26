@@ -36,6 +36,12 @@
       </label>
       <app-input-selector listType="extension" [fileType]="fileType" (selectedInputsEvent)="handleSelectedExtension($event)" placeholder="Sélectionnez le type du fichier"></app-input-selector>
     </div>
+    <div class="input-group" *ngIf="fileType=='PICTOGRAM' || spreadSearchInputs">
+      <label class="search-bar-text contentForm-label">
+        Plage de dates
+      </label>
+      <app-date-range-picker></app-date-range-picker>
+    </div>
   </div>
   <div class="search-bar-spreader"  (click)="spreadSearchInputs=!spreadSearchInputs" *ngIf="fileType!=='PICTOGRAM'">
     <div class="search-bar-spreader-container">
