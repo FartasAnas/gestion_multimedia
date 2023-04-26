@@ -1,4 +1,5 @@
 import KeywordObject from "./KeywordObject";
+import Category from "./Category";
 
 export default interface FileObject {
   id?:number;
@@ -6,7 +7,7 @@ export default interface FileObject {
   fileName?:String;
   description?:String;
   creationDate?:Date;
-  category?:String;
+  category?:Category;
   type?:String;
   size?:String
   version?:String;

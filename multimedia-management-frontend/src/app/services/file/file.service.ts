@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import FileObject from "../../entities/FileObject";
 import {UserStorageService} from "../user-storage/user-storage.service";
 import NextPreviousFilesObject from "../../entities/NextPreviousFilesObject";
+import Category from "../../entities/Category";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class FileService {
     else
       fileObject.fileName=file.name
     fileObject.createdBy=this.currentUser;
-    fileObject.category = window.location.pathname.split('/')[1].toUpperCase();
+    fileObject.category={ name: window.location.pathname.split('/')[1] } as Category;
     const headers = new HttpHeaders();
     const formData: FormData = new FormData();
     formData.append('file', file);
@@ -30,7 +31,7 @@ export class FileService {
     return this.http.post<FileObject>(`${this.apiUrl}/add`, formData, { headers: headers });
   }
   getUserFiles(type:string,category:string):Observable<FileObject[]>{
-    return this.http.get<FileObject[]>(`${this.apiUrl}/user/${this.currentUser}/${type}/${category}`)
+    return this.http.get<FileObject[]>(`${this.apiUrl}/user/${this.currentUser}/${category}/${type}`)
   }
   getFileById(id:number):Observable<FileObject>{
     return this.http.get<FileObject>(`${this.apiUrl}/${id}`)

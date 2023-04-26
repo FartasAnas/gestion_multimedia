@@ -43,6 +43,7 @@ public class FileServicesImp implements FileServices {
         if(file.getUser()!=null) {
             file.setId(Math.abs(random.nextLong()) % 10000000000L);
             file.setCategory(categoryServices.getCategory(file.getCategory()));
+
             String fullPath = String.join("/", file.getUser().getUsername(),file.getCategory().getName(), file.getType().toString(),file.getId().toString(), file.getFileName());
             try {
                 minioService.upload(fullPath, multipartFiles.getInputStream());

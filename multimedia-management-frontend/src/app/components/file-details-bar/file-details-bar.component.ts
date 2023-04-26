@@ -22,16 +22,16 @@ export class FileDetailsBarComponent {
     const category=this.fileObject?.category
     switch(type) {
       case 'IMAGE':
-        this.router.navigate([category?.toLowerCase(), 'images']);
+        this.router.navigate([category?.name, 'images']);
         break;
       case 'VIDEO':
-        this.router.navigate([category?.toLowerCase(), 'videos']);
+        this.router.navigate([category?.name, 'videos']);
         break;
       case 'DOCUMENT':
-        this.router.navigate([category?.toLowerCase(), 'documents']);
+        this.router.navigate([category?.name, 'documents']);
         break;
       case 'PICTOGRAM':
-        this.router.navigate([category?.toLowerCase(), 'pictos']);
+        this.router.navigate([category?.name, 'pictos']);
         break;
       default:
         this.router.navigate(['home']);

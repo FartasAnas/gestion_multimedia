@@ -22,7 +22,7 @@ export class FileInterfaceComponent implements OnInit{
   @ViewChild(PaginationBarComponent) paginationBar?:PaginationBarComponent
   ngOnInit(): void {
     if(this.fileInterfaceInput) {
-      this.fileInterfaceInput.fileCategory = window.location.pathname.split('/')[1].toUpperCase()
+      this.fileInterfaceInput.fileCategory = window.location.pathname.split('/')[1]
       this.getUserFiles()
     }
     if (this.fileInterfaceInput?.fileType==='PICTOGRAM') {

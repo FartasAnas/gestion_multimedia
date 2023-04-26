@@ -44,9 +44,9 @@ public class File {
 
     private FileState state;
 
-//    private FileCategory category;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIncludeProperties(value = {"id","name"})
     private Category category;
 
     private String filepath;
