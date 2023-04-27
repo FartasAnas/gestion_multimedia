@@ -1,5 +1,6 @@
 package stage.dcm.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,4 +21,6 @@ public class Category {
     @Column(nullable = false,unique = true)
     private String path;
 
+    @JsonProperty("isActive")
+    private Boolean isActive;
 }

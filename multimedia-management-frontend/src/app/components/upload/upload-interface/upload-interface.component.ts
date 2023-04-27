@@ -40,7 +40,6 @@ export class UploadInterfaceComponent implements OnInit{
     this.currentStep="Step1"
     this.step1Component?.clearInputValue()
     this.fileObject={ ...this.fileObjectInitialValue };
-    console.table(this.selectedKeywords)
   }
   handleFileEvent(fileInput: FileInput) {
     this.selectedFile=fileInput;

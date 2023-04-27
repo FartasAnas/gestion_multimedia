@@ -1,6 +1,7 @@
 package stage.dcm.api.servicesImp;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ma.indh.minio.exception.MinioException;
 import ma.indh.minio.service.MinioService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service @Transactional
-@RequiredArgsConstructor
+@RequiredArgsConstructor @Slf4j
 public class CategoryServicesImp implements CategoryServices {
 
     private final CategoryRepository categoryRepository;
@@ -30,6 +31,7 @@ public class CategoryServicesImp implements CategoryServices {
 
     @Override
     public Category saveCategory(Category category, MultipartFile categoryIcon) {
+        log.info("isActive:{}",category);
         String iconPath=String.join("/","icons/category",category.getName(),categoryIcon.getOriginalFilename());
         try {
             minioService.upload(iconPath, categoryIcon.getInputStream());
@@ -87,6 +89,7 @@ public class CategoryServicesImp implements CategoryServices {
                 .orElseThrow(() -> new NotFoundException("Category not found"));
         existingCategory.setName(category.getName() != null ? category.getName() : existingCategory.getName());
         existingCategory.setPath(category.getPath() != null ? category.getPath() : existingCategory.getPath());
+        existingCategory.setIsActive(category.getIsActive() != null ? category.getIsActive() : existingCategory.getIsActive());
         return categoryRepository.save(existingCategory);
     }
 

@@ -71,7 +71,8 @@ const routes: Routes = [
       {path:'pictos',component:PictosLayoutComponent},
       {path:'file/:id',component:FileDetailsLayoutComponent}
     ]
-  }
+  },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
