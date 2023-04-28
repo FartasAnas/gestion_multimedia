@@ -1,9 +1,8 @@
 import {Component, Input, ViewChild} from '@angular/core';
 import {FileService} from "../../services/file/file.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import FileObject from "../../entities/FileObject";
 import {EditFileComponent} from "../edit-file/edit-file.component";
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-file-details-bar',

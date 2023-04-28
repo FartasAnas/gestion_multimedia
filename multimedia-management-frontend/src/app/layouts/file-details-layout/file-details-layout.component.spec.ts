@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FileDetailsLayoutComponent } from './file-details-layout.component';
+import {FileDetailsLayoutComponent} from './file-details-layout.component';
 
 describe('FileDetailsLayoutComponent', () => {
   let component: FileDetailsLayoutComponent;

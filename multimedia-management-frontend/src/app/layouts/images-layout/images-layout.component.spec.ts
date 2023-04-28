@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ImagesLayoutComponent } from './images-layout.component';
+import {ImagesLayoutComponent} from './images-layout.component';
 
 describe('ImagesLayoutComponent', () => {
   let component: ImagesLayoutComponent;

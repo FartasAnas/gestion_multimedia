@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { UserStorageService } from './user-storage.service';
+import {UserStorageService} from './user-storage.service';
 
 describe('UserStorageService', () => {
   let service: UserStorageService;

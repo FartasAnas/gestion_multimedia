@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import LoginObject from "../../entities/LoginObject";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-login-layout',

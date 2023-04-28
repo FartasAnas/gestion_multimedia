@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PaginationBarComponent } from './pagination-bar.component';
+import {PaginationBarComponent} from './pagination-bar.component';
 
 describe('PaginationBarComponent', () => {
   let component: PaginationBarComponent;

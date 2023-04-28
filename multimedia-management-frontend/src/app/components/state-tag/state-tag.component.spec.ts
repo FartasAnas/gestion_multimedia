@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { StateTagComponent } from './state-tag.component';
+import {StateTagComponent} from './state-tag.component';
 
 describe('StateTagComponent', () => {
   let component: StateTagComponent;

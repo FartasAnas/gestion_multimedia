@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LibraryInterfaceComponent } from './library-interface.component';
+import {LibraryInterfaceComponent} from './library-interface.component';
 
 describe('LibraryInterfaceComponent', () => {
   let component: LibraryInterfaceComponent;

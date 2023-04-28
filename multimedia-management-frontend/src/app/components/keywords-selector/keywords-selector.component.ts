@@ -3,7 +3,6 @@ import {Observable} from "rxjs";
 import KeywordObject from "../../entities/KeywordObject";
 import FileObject from "../../entities/FileObject";
 import {KeywordService} from "../../services/keyword/keyword.service";
-import FileInput from "../../entities/FileInput";
 
 @Component({
   selector: 'app-keywords-selector',

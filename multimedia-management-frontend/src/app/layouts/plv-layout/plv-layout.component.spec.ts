@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PlvLayoutComponent } from './plv-layout.component';
+import {PlvLayoutComponent} from './plv-layout.component';
 
 describe('PlvLayoutComponent', () => {
   let component: PlvLayoutComponent;

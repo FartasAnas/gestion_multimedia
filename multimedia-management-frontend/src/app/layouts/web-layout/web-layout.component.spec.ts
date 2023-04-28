@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { WebLayoutComponent } from './web-layout.component';
+import {WebLayoutComponent} from './web-layout.component';
 
 describe('WebLayoutComponent', () => {
   let component: WebLayoutComponent;

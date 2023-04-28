@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DocumentViewerComponent } from './document-viewer.component';
+import {DocumentViewerComponent} from './document-viewer.component';
 
 describe('DocumentViewerComponent', () => {
   let component: DocumentViewerComponent;

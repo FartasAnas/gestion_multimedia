@@ -1,11 +1,10 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {Observable, take} from "rxjs";
+import {Observable} from "rxjs";
 import {FileService} from "../../services/file/file.service";
 import FileObject from "../../entities/FileObject";
 import FileInterfaceInput from "../../entities/FileInterfaceInput";
 import KeywordObject from "../../entities/KeywordObject";
 import {PaginationBarComponent} from "../pagination-bar/pagination-bar.component";
-import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-file-interface',

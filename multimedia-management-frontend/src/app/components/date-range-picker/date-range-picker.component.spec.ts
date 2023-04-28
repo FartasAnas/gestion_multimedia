@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DateRangePickerComponent } from './date-range-picker.component';
+import {DateRangePickerComponent} from './date-range-picker.component';
 
 describe('DateRangePickerComponent', () => {
   let component: DateRangePickerComponent;

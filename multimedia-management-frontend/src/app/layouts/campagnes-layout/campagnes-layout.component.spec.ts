@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CampagnesLayoutComponent } from './campagnes-layout.component';
+import {CampagnesLayoutComponent} from './campagnes-layout.component';
 
 describe('CampagnesLayoutComponent', () => {
   let component: CampagnesLayoutComponent;

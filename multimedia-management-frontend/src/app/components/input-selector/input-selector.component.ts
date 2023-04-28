@@ -1,5 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
-import KeywordObject from "../../entities/KeywordObject";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {KeywordService} from "../../services/keyword/keyword.service";
 
 @Component({

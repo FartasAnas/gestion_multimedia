@@ -2,10 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import LoginObject from "../../entities/LoginObject";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
-import {AppRoutingModule} from "../../app-routing.module";
 import {UserStorageService} from "../../services/user-storage/user-storage.service";
 import StorageObject from "../../entities/StorageObject";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-component',

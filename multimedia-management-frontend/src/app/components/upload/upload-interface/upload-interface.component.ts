@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import FileObject from "../../../entities/FileObject";
 import FileInput from "../../../entities/FileInput";
 import {FileService} from "../../../services/file/file.service";

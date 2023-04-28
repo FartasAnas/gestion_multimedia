@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FileInterfaceComponent } from './file-interface.component';
+import {FileInterfaceComponent} from './file-interface.component';
 
 describe('FileInterfaceComponent', () => {
   let component: FileInterfaceComponent;

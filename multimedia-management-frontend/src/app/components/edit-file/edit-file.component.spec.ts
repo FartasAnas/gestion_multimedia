@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EditFileComponent } from './edit-file.component';
+import {EditFileComponent} from './edit-file.component';
 
 describe('EditFileComponent', () => {
   let component: EditFileComponent;

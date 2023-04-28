@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UploadBtnComponent } from './upload-btn.component';
+import {UploadBtnComponent} from './upload-btn.component';
 
 describe('UploadBtnComponent', () => {
   let component: UploadBtnComponent;

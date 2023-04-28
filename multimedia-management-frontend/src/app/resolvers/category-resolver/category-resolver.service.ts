@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Resolve} from "@angular/router";
 import Category from "../../entities/Category";
-import {Observable} from "rxjs";
 import {CategoryService} from "../../services/category/category.service";
 
 @Injectable({

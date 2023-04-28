@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { KeywordsSelectorComponent } from './keywords-selector.component';
+import {KeywordsSelectorComponent} from './keywords-selector.component';
 
 describe('KeywordsSelectorComponent', () => {
   let component: KeywordsSelectorComponent;

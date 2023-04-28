@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import Role from "../../entities/Role";
 import {HttpClient} from "@angular/common/http";

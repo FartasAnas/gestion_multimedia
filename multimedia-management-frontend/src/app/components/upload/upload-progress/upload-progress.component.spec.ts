@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UploadProgressComponent } from './upload-progress.component';
+import {UploadProgressComponent} from './upload-progress.component';
 
 describe('UploadProgressComponent', () => {
   let component: UploadProgressComponent;

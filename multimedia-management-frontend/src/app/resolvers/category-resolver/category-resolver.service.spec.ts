@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { CategoryResolverService } from './category-resolver.service';
+import {CategoryResolverService} from './category-resolver.service';
 
 describe('CategoryResolverService', () => {
   let service: CategoryResolverService;

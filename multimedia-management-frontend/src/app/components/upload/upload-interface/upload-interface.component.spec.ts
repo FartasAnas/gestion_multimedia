@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UploadInterfaceComponent } from './upload-interface.component';
+import {UploadInterfaceComponent} from './upload-interface.component';
 
 describe('UploadInterfaceComponent', () => {
   let component: UploadInterfaceComponent;

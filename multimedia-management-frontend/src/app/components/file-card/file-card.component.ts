@@ -1,7 +1,6 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import FileObject from "../../entities/FileObject";
 import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-file-card',

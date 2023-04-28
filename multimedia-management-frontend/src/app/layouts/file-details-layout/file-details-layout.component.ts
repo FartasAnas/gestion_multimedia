@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import FileObject from "../../entities/FileObject";
 import {FileService} from "../../services/file/file.service";
 import {ActivatedRoute, Router} from "@angular/router";

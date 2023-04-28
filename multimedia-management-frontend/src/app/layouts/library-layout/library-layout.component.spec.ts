@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LibraryLayoutComponent } from './library-layout.component';
+import {LibraryLayoutComponent} from './library-layout.component';
 
 describe('LibraryLayoutComponent', () => {
   let component: LibraryLayoutComponent;

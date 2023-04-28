@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FileVideoCardComponent } from './file-video-card.component';
+import {FileVideoCardComponent} from './file-video-card.component';
 
 describe('FileVideoCardComponent', () => {
   let component: FileVideoCardComponent;

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SmLayoutComponent } from './sm-layout.component';
+import {SmLayoutComponent} from './sm-layout.component';
 
 describe('SmLayoutComponent', () => {
   let component: SmLayoutComponent;

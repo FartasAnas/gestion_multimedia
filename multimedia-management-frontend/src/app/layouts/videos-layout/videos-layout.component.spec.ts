@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { VideosLayoutComponent } from './videos-layout.component';
+import {VideosLayoutComponent} from './videos-layout.component';
 
 describe('VideosLayoutComponent', () => {
   let component: VideosLayoutComponent;

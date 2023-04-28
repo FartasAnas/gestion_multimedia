@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PreviewUnavailableComponent } from './preview-unavailable.component';
+import {PreviewUnavailableComponent} from './preview-unavailable.component';
 
 describe('PreviewUnavailableComponent', () => {
   let component: PreviewUnavailableComponent;

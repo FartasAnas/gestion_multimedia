@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DocumentsLayoutComponent } from './documents-layout.component';
+import {DocumentsLayoutComponent} from './documents-layout.component';
 
 describe('DocumentsLayoutComponent', () => {
   let component: DocumentsLayoutComponent;
