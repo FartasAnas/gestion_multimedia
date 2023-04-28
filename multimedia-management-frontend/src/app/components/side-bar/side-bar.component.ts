@@ -15,6 +15,7 @@ export class SideBarComponent implements OnInit{
   readonly homePage={ name: 'Accueil', icon: 'assets/House.svg', url: 'home' }
   readonly userManagement = { name: 'Utilisateurs', icon: 'assets/Users.svg' };
   readonly rolesManagement = { name: 'Roles', icon: 'assets/GearSix.svg' };
+  readonly categoriesManagement = { name: 'Categories', icon: 'assets/GearSix.svg' , url:'categories' };
   readonly hostname = window.location.hostname;
   sidebarItems: SideBarItemObject[] = [];
   showFooterChild:boolean=false

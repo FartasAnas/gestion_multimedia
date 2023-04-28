@@ -13,7 +13,6 @@ import {SmLayoutComponent} from "./layouts/sm-layout/sm-layout.component";
 import {PlvLayoutComponent} from "./layouts/plv-layout/plv-layout.component";
 import {ProfileLayoutComponent} from "./layouts/profile-layout/profile-layout.component";
 import {LibraryLayoutComponent} from "./layouts/library-layout/library-layout.component";
-import {CategoryService} from "./services/category/category.service";
 import {CategoryResolverService} from "./resolvers/category-resolver/category-resolver.service";
 
 const routes: Routes = [
@@ -23,9 +22,11 @@ const routes: Routes = [
   {
     path: ':categoryPath',
     component: LibraryLayoutComponent,
-    resolve: { categories: CategoryResolverService },
+    resolve: {
+      categories: CategoryResolverService,
+    },
     children: [
-      { path: 'images', component: ImagesLayoutComponent },
+      { path: 'images', component: ImagesLayoutComponent},
       { path: 'videos', component: VideosLayoutComponent },
       { path: 'documents', component: DocumentsLayoutComponent },
       { path: 'pictos', component: PictosLayoutComponent },
@@ -36,7 +37,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
