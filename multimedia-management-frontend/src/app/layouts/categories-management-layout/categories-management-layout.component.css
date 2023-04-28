@@ -1,0 +1,10 @@
+.categories-management{
+  display: flex;
+  flex-direction: column;
+  gap: 75px;
+  margin: 0px 50px 0px 261px;
+}
+.categories-management-head{
+  display: flex;
+  justify-content: space-between;
+}

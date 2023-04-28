@@ -1,0 +1,10 @@
+<div class="categories-management">
+  <app-side-bar></app-side-bar>
+  <div class="categories-management-head">
+    <app-page-title title="Gestion des catégories"></app-page-title>
+    <app-button [btnText]="'Ajouter une nouvelle catégorie'" [btnIconUrl]="'assets/PlusSign.svg'"></app-button>
+  </div>
+  <div class="categories-management-body">
+    <app-table-list [tableListTitle]="'Liste des catégories'" [columns]="['name','path','description','isActive']" [data]="categories"></app-table-list>
+  </div>
+</div>

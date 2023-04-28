@@ -10,11 +10,15 @@ import {PictosLayoutComponent} from "./layouts/pictos-layout/pictos-layout.compo
 import {ProfileLayoutComponent} from "./layouts/profile-layout/profile-layout.component";
 import {LibraryLayoutComponent} from "./layouts/library-layout/library-layout.component";
 import {CategoryResolverService} from "./resolvers/category-resolver/category-resolver.service";
+import {
+  CategoriesManagementLayoutComponent
+} from "./layouts/categories-management-layout/categories-management-layout.component";
 
 const routes: Routes = [
   { path: '', component: LoginLayoutComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'profile', component: ProfileLayoutComponent },
+  { path:'categories',component:CategoriesManagementLayoutComponent},
   {
     path: ':categoryPath',
     component: LibraryLayoutComponent,

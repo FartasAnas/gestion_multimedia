@@ -19,7 +19,7 @@ export class SideBarComponent implements OnInit{
   readonly hostname = window.location.hostname;
   sidebarItems: SideBarItemObject[] = [];
   showFooterChild:boolean=false
-  Categories$:Observable<Category[]>=new Observable<Category[]>()
+  categories$:Observable<Category[]>=new Observable<Category[]>()
 
   constructor(private userStorage: UserStorageService, private router: Router, private categoryService:CategoryService) {}
 
@@ -30,8 +30,8 @@ export class SideBarComponent implements OnInit{
     return this.userStorage.getFullName()
   }
   private loadCategories(): void {
-    this.Categories$ = this.categoryService.getCategories();
-    this.Categories$.subscribe(categories => {
+    this.categories$ = this.categoryService.getCategories();
+    this.categories$.subscribe(categories => {
       this.sidebarItems = this.createSidebarItems(categories);
     });
   }

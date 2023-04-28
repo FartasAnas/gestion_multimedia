@@ -21,6 +21,9 @@ public class Category {
     @Column(nullable = false,unique = true)
     private String path;
 
+
+    private String description;
+
     @JsonProperty("isActive")
     private Boolean isActive;
 }

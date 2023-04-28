@@ -1,0 +1,25 @@
+<div class="table-list">
+  <div class="table-list-head" *ngIf="tableListTitle!==''">
+    <p class="table-list-text">{{tableListTitle}}</p>
+  </div>
+  <div class="table-list-body">
+    <div class="table-list-columns" *ngIf="columns.length!==0">
+      <div class="table-list-columns-thead" *ngFor="let column of columns" >
+        <p class="table-list-text">{{ column.toLowerCase() === 'isactive'? 'Statut' : column| uppercase}}</p>
+      </div>
+    </div>
+    <hr class="horizontal-line">
+    <div class="table-list-tr" *ngFor="let item of data">
+      <div class="table-list-columns" >
+        <div class="table-list-columns-tbody-td" *ngFor="let column of columns">
+          <p class="table-list-text" *ngIf="column!=='isActive'">{{item[column]}}</p>
+          <div class="table-list-tag-box" *ngIf="column==='isActive'" [ngClass]="{'active':item[column],'inactive':!item[column] }">
+            <p class="table-list-text" [ngClass]="{'active':item[column],'inactive':!item[column] }">
+              {{item[column]?'Activé':'Désactivé'}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
