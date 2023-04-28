@@ -51,6 +51,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { PaginationBarComponent } from './components/pagination-bar/pagination-bar.component';
 import { InputSelectorComponent } from './components/input-selector/input-selector.component';
 import { DateRangePickerComponent } from './components/date-range-picker/date-range-picker.component';
+import { LibraryLayoutComponent } from './layouts/library-layout/library-layout.component';
 
 
 @NgModule({
@@ -95,7 +96,8 @@ import { DateRangePickerComponent } from './components/date-range-picker/date-ra
     SearchBarComponent,
     PaginationBarComponent,
     InputSelectorComponent,
-    DateRangePickerComponent
+    DateRangePickerComponent,
+    LibraryLayoutComponent
   ],
   imports: [
     BrowserModule,

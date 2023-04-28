@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {Route, Router, RouterModule, Routes} from '@angular/router';
 import {LoginLayoutComponent} from "./layouts/login-layout/login-layout.component";
 import {HomePageComponent} from "./layouts/home-page/home-page.component";
 import {ImagesLayoutComponent} from "./layouts/images-layout/images-layout.component";
@@ -12,71 +12,31 @@ import {MobileLayoutComponent} from "./layouts/mobile-layout/mobile-layout.compo
 import {SmLayoutComponent} from "./layouts/sm-layout/sm-layout.component";
 import {PlvLayoutComponent} from "./layouts/plv-layout/plv-layout.component";
 import {ProfileLayoutComponent} from "./layouts/profile-layout/profile-layout.component";
+import {LibraryLayoutComponent} from "./layouts/library-layout/library-layout.component";
+import {CategoryService} from "./services/category/category.service";
+import {CategoryResolverService} from "./resolvers/category-resolver/category-resolver.service";
 
 const routes: Routes = [
-  {path:'',component:LoginLayoutComponent},
-  {path:'home',component:HomePageComponent},
-  {path:'profile',component:ProfileLayoutComponent},
+  { path: '', component: LoginLayoutComponent },
+  { path: 'home', component: HomePageComponent },
+  { path: 'profile', component: ProfileLayoutComponent },
   {
-    path:'web',
-    component:WebLayoutComponent,
-    children:[
-      {path:'images',component:ImagesLayoutComponent},
-      {path:'videos',component:VideosLayoutComponent},
-      {path:'documents',component:DocumentsLayoutComponent},
-      {path:'pictos',component:PictosLayoutComponent},
-      {path:'file/:id',component:FileDetailsLayoutComponent}
-    ]
-  },
-  {
-    path:'mobile',
-    component:MobileLayoutComponent,
-    children:[
-      {path:'images',component:ImagesLayoutComponent},
-      {path:'videos',component:VideosLayoutComponent},
-      {path:'documents',component:DocumentsLayoutComponent},
-      {path:'pictos',component:PictosLayoutComponent},
-      {path:'file/:id',component:FileDetailsLayoutComponent}
-    ]
-  },
-  {
-    path:'sm',
-    component:SmLayoutComponent,
-    children:[
-      {path:'images',component:ImagesLayoutComponent},
-      {path:'videos',component:VideosLayoutComponent},
-      {path:'documents',component:DocumentsLayoutComponent},
-      {path:'pictos',component:PictosLayoutComponent},
-      {path:'file/:id',component:FileDetailsLayoutComponent}
-    ]
-  },
-  {
-    path:'plv',
-    component:PlvLayoutComponent,
-    children:[
-      {path:'images',component:ImagesLayoutComponent},
-      {path:'videos',component:VideosLayoutComponent},
-      {path:'documents',component:DocumentsLayoutComponent},
-      {path:'pictos',component:PictosLayoutComponent},
-      {path:'file/:id',component:FileDetailsLayoutComponent}
-    ]
-  },
-  {
-    path:'campagnes',
-    component:PlvLayoutComponent,
-    children:[
-      {path:'images',component:ImagesLayoutComponent},
-      {path:'videos',component:VideosLayoutComponent},
-      {path:'documents',component:DocumentsLayoutComponent},
-      {path:'pictos',component:PictosLayoutComponent},
-      {path:'file/:id',component:FileDetailsLayoutComponent}
-    ]
+    path: ':categoryPath',
+    component: LibraryLayoutComponent,
+    resolve: { categories: CategoryResolverService },
+    children: [
+      { path: 'images', component: ImagesLayoutComponent },
+      { path: 'videos', component: VideosLayoutComponent },
+      { path: 'documents', component: DocumentsLayoutComponent },
+      { path: 'pictos', component: PictosLayoutComponent },
+      { path: 'file/:id', component: FileDetailsLayoutComponent },
+    ],
   },
   { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

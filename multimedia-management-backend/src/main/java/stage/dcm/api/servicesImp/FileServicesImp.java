@@ -37,13 +37,14 @@ public class FileServicesImp implements FileServices {
 
     @Override
     public File saveFile(File file, MultipartFile multipartFiles) throws NotFoundException {
+        log.info("Category: {}",file.getCategory());
         Random random = new Random();
         file.setUser(userServices.getUserByUsername(file.getCreatedBy()));
         log.info("file categoty: {}",file.getCategory());
         if(file.getUser()!=null) {
             file.setId(Math.abs(random.nextLong()) % 10000000000L);
             file.setCategory(categoryServices.getCategory(file.getCategory()));
-
+            log.info("Category: {}",categoryServices.getCategory(file.getCategory()));
             String fullPath = String.join("/","users", file.getUser().getUsername(),file.getCategory().getName(), file.getType().toString(),file.getId().toString(), multipartFiles.getOriginalFilename());
             try {
                 minioService.upload(fullPath, multipartFiles.getInputStream());

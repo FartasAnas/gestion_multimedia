@@ -36,6 +36,7 @@ public class CategoryServicesImp implements CategoryServices {
         try {
             minioService.upload(iconPath, categoryIcon.getInputStream());
             category.setIconPath(iconPath);
+            category.setName(category.getName().toLowerCase());
             return categoryRepository.save(category);
         } catch (IOException | MinioException e) {
             throw new IllegalStateException("The file cannot be read", e);
