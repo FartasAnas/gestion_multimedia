@@ -8,14 +8,19 @@ import KeywordObject from "../../../entities/KeywordObject";
   styleUrls: ['./upload-interface-step2.component.css']
 })
 export class UploadInterfaceStep2Component{
-  @Input() fileObject?:FileObject
+  @Input() fileObject:any;
   @Output() fileObjectChange = new EventEmitter<FileObject>();
   @Output() selectedKeywordsEvent=new EventEmitter<KeywordObject[]>();
+  @Input() fileType?:string
   selectedKeywords:KeywordObject[] = [];
 
   handleSelectedKeywords(newSelectedKeywords:KeywordObject[]) {
     this.selectedKeywordsEvent.emit(newSelectedKeywords)
   }
   ngOnInit(): void {
+  }
+
+  handleChangeStatus(status: boolean) {
+    this.fileObject.isActive = status;
   }
 }

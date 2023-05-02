@@ -4,6 +4,8 @@ import FileInput from "../../../entities/FileInput";
 import {FileService} from "../../../services/file/file.service";
 import {UploadInterfaceStep1Component} from "../upload-interface-step1/upload-interface-step1.component";
 import KeywordObject from "../../../entities/KeywordObject";
+import Category from "../../../entities/Category";
+import {CategoryService} from "../../../services/category/category.service";
 
 @Component({
   selector: 'app-upload-interface',
@@ -28,9 +30,15 @@ export class UploadInterfaceComponent implements OnInit{
     state:"PUBLISHED"
   }
   fileObject:FileObject={ ...this.fileObjectInitialValue };
+  categoryObject:Category={
+    name:"",
+    description:"",
+    path:"",
+    isActive:true,
+  }
   selectedFile?: FileInput | undefined;
   currentStep:String="Step1"
-  constructor(private fileService:FileService) {
+  constructor(private fileService:FileService,private categoryService:CategoryService) {
   }
 
   handelCloseInterfaceClick() {
@@ -48,16 +56,28 @@ export class UploadInterfaceComponent implements OnInit{
     if(this.selectedFile?.file && this.fileType){
         this.fileObject.keywords=Object.values(this.selectedKeywords)
         this.fileObject.type = this.fileType
-        this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
-          data=>{
-            this.handelCloseInterfaceClick()
-            this.fileUploaded.emit()
-            // window.location.reload()
-          },
-          error => {
-            console.error('Upload error:', error);
-          }
-        )
+        if(this.fileType==='Category'){
+          this.categoryService.saveCategory(this.selectedFile?.file,this.categoryObject).subscribe(
+            data=>{
+              this.handelCloseInterfaceClick()
+                this.fileUploaded.emit()
+            },
+            error => {
+              console.error('Upload error:', error);
+            }
+            )
+        }else {
+          this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
+            data=>{
+              this.handelCloseInterfaceClick()
+              this.fileUploaded.emit()
+            },
+            error => {
+              console.error('Upload error:', error);
+            }
+          )
+        }
+
       }
   }
   handleDisableUploadBtn(): boolean {

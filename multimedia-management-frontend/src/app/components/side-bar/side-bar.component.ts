@@ -49,7 +49,7 @@ export class SideBarComponent implements OnInit{
     return categories
       .filter(category => category.isActive)
       .map(category => ({
-        content: { name: category.name, icon:this.getCategoryIconUrl(category.id), url: category.path },
+        content: { name: category.name, icon:this.getCategoryIconUrl(category.id as number), url: category.path },
         hasChildren: true,
         children: [
           { content: { name: 'Images', icon: 'assets/ImageSquare.svg', url: `${category.path}/images` } },

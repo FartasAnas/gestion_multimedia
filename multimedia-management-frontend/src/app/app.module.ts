@@ -58,6 +58,8 @@ import {DateRangePickerComponent} from './components/date-range-picker/date-rang
 import {LibraryLayoutComponent} from './layouts/library-layout/library-layout.component';
 import { CategoriesManagementLayoutComponent } from './layouts/categories-management-layout/categories-management-layout.component';
 import { TableListComponent } from './components/table-list/table-list.component';
+import { AddCategoryInterfaceComponent } from './components/add-category-interface/add-category-interface.component';
+import { SwitchInputComponent } from './components/switch-input/switch-input.component';
 
 
 @NgModule({
@@ -105,7 +107,9 @@ import { TableListComponent } from './components/table-list/table-list.component
     DateRangePickerComponent,
     LibraryLayoutComponent,
     CategoriesManagementLayoutComponent,
-    TableListComponent
+    TableListComponent,
+    AddCategoryInterfaceComponent,
+    SwitchInputComponent
   ],
   imports: [
     BrowserModule,

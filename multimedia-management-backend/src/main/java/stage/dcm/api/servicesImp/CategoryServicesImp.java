@@ -32,11 +32,11 @@ public class CategoryServicesImp implements CategoryServices {
     @Override
     public Category saveCategory(Category category, MultipartFile categoryIcon) {
         log.info("isActive:{}",category);
-        String iconPath=String.join("/","icons/category",category.getName(),categoryIcon.getOriginalFilename());
+        String iconPath=String.join("/","icons/category",category.getName().toLowerCase(),categoryIcon.getOriginalFilename());
         try {
             minioService.upload(iconPath, categoryIcon.getInputStream());
             category.setIconPath(iconPath);
-            category.setName(category.getName().toLowerCase());
+            category.setName(category.getName());
             return categoryRepository.save(category);
         } catch (IOException | MinioException e) {
             throw new IllegalStateException("The file cannot be read", e);

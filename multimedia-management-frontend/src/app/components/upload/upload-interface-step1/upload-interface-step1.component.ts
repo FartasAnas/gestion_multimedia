@@ -37,7 +37,7 @@ export class UploadInterfaceStep1Component {
 
     let allowedTypes: string[] = this.getAllowedTypes();
 
-    if (allowedTypes.includes(file.type) && file.size <= 50 * 1024 * 1024) {
+    if ((allowedTypes.includes(file.type) || this.fileType==='Category') && file.size <= 50 * 1024 * 1024) {
       reader.onload = (e: any) => {
         this.selectedFile = {
           file: file,

@@ -10,6 +10,7 @@ import {CategoryService} from "../../services/category/category.service";
 export class CategoriesManagementLayoutComponent implements OnInit{
   categories:Category[]=[];
   columns: string[] = [];
+  showAddCategoryInterface: boolean=false;
   readonly hostname = window.location.hostname;
   constructor(private categoryService:CategoryService) {
   }
@@ -23,5 +24,13 @@ export class CategoriesManagementLayoutComponent implements OnInit{
         this.columns = Object.keys(this.categories[0]);
       }
     )
+  }
+  handleCloseUploadEvent(showInterface: boolean) {
+    this.showAddCategoryInterface = showInterface;
+  }
+
+  onFileUploaded() {
+    this.loadCategories();
+    window.location.reload()
   }
 }

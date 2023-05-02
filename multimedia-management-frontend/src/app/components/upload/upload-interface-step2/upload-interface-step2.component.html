@@ -1,5 +1,5 @@
 <div class="uploadInterfaceStep2" *ngIf="fileObject">
-  <div class="uploadInterfaceStepper">
+  <div class="uploadInterfaceStepper" *ngIf="fileType!=='Category'">
     <div class="uploadInterfaceStep step1">
       <img src="assets/StepDoneIcon.svg">
       <p class="step1-text">Importer le fichier</p>
@@ -10,11 +10,17 @@
     </div>
   </div>
   <div class="contentForm">
-    <div class="input-group" *ngIf="fileObject.type==='PICTOGRAM'">
+    <div class="input-group" *ngIf="fileObject.type==='PICTOGRAM' || fileType==='Category'">
       <label class="contentForm-label" for="name">
         Nom
       </label>
-      <input type="text" id="name" name="name" class="contentForm-input" [(ngModel)]="fileObject.fileName" (ngModelChange)="fileObjectChange.emit(fileObject)"/>
+      <input type="text" id="name" name="name" class="contentForm-input" [(ngModel)]="fileType!=='Category'?fileObject.fileName:fileObject.name" (ngModelChange)="fileObjectChange.emit(fileObject)"/>
+    </div>
+    <div class="input-group" *ngIf="fileType==='Category'">
+      <label class="contentForm-label" for="path">
+        Path
+      </label>
+      <input type="text" id="path" name="path" class="contentForm-input" [(ngModel)]="fileObject.path" (ngModelChange)="fileObjectChange.emit(fileObject)"/>
     </div>
     <div class="input-group">
       <label class="contentForm-label" for="description">
@@ -23,7 +29,7 @@
       </label>
       <textarea id="description" name="description" class="contentForm-input" [(ngModel)]="fileObject.description" (ngModelChange)="fileObjectChange.emit(fileObject)"></textarea>
     </div>
-    <div class="row-grp" *ngIf="fileObject?.type!=='PICTOGRAM'">
+    <div class="row-grp" *ngIf="fileObject?.type!=='PICTOGRAM' && fileType!=='Category'">
       <div class="input-group">
         <label class="contentForm-label" for="description">
           Version
@@ -45,7 +51,13 @@
         </select>
       </div>
     </div>
-    <div class="input-group">
+    <div class="input-group" *ngIf="fileType==='Category'">
+      <label class="contentForm-label">
+        Statut
+      </label>
+      <app-switch-input [isChecked]="fileObject.isActive" (toggle)="handleChangeStatus($event)"></app-switch-input>
+    </div>
+    <div class="input-group" *ngIf="fileType!=='Category'">
       <label class="contentForm-label" for="description">
         <span>Mots-clés</span>
         <span class="subtxt"> (maximum 20)</span>
