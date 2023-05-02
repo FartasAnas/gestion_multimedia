@@ -14,4 +14,7 @@ export class CategoryService {
   getCategories():Observable<Category[]>{
     return this.http.get<Category[]>(this.apiUrl)
   }
+  getIconUrl(id:number):string {
+      return "http://"+this.hostname+":8100/categories/icon/"+id;
+  }
 }

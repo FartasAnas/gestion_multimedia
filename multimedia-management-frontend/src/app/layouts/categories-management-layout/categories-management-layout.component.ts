@@ -10,6 +10,7 @@ import {CategoryService} from "../../services/category/category.service";
 export class CategoriesManagementLayoutComponent implements OnInit{
   categories:Category[]=[];
   columns: string[] = [];
+  readonly hostname = window.location.hostname;
   constructor(private categoryService:CategoryService) {
   }
   ngOnInit(): void {
@@ -20,8 +21,6 @@ export class CategoriesManagementLayoutComponent implements OnInit{
       (data) => {
         this.categories = data;
         this.columns = Object.keys(this.categories[0]);
-        console.log(this.columns)
-        console.log(this.categories)
       }
     )
   }

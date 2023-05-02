@@ -29,6 +29,9 @@ export class SideBarComponent implements OnInit{
   getUserFullName():string{
     return this.userStorage.getFullName()
   }
+  getCategoryIconUrl(categoryId:number):string{
+    return this.categoryService.getIconUrl(categoryId);
+  }
   private loadCategories(): void {
     this.categories$ = this.categoryService.getCategories();
     this.categories$.subscribe(categories => {
@@ -39,7 +42,7 @@ export class SideBarComponent implements OnInit{
     return categories
       .filter(category => category.isActive)
       .map(category => ({
-        content: { name: category.name, icon:`http://${this.hostname}:8100/categories/icon/${category.id}/`, url: category.path },
+        content: { name: category.name, icon:this.getCategoryIconUrl(category.id), url: category.path },
         hasChildren: true,
         children: [
           { content: { name: 'Images', icon: 'assets/ImageSquare.svg', url: `${category.path}/images` } },
