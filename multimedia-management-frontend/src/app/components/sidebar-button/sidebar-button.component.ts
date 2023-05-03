@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {NavigationExtras, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import SideBarContentObject from "../../entities/SideBarContentObject";
 import {SharedService} from "../../services/shared-service/shared.service";
 

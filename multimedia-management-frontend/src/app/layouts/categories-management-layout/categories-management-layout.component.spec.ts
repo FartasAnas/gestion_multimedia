@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CategoriesManagementLayoutComponent } from './categories-management-layout.component';
+import {CategoriesManagementLayoutComponent} from './categories-management-layout.component';
 
 describe('CategoriesManagementLayoutComponent', () => {
   let component: CategoriesManagementLayoutComponent;

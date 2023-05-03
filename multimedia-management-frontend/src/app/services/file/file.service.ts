@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 import FileObject from "../../entities/FileObject";
 import {UserStorageService} from "../user-storage/user-storage.service";
 import NextPreviousFilesObject from "../../entities/NextPreviousFilesObject";
-import Category from "../../entities/Category";
 
 @Injectable({
   providedIn: 'root'

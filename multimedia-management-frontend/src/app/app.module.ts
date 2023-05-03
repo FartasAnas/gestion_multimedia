@@ -56,10 +56,12 @@ import {PaginationBarComponent} from './components/pagination-bar/pagination-bar
 import {InputSelectorComponent} from './components/input-selector/input-selector.component';
 import {DateRangePickerComponent} from './components/date-range-picker/date-range-picker.component';
 import {LibraryLayoutComponent} from './layouts/library-layout/library-layout.component';
-import { CategoriesManagementLayoutComponent } from './layouts/categories-management-layout/categories-management-layout.component';
-import { TableListComponent } from './components/table-list/table-list.component';
-import { SwitchInputComponent } from './components/switch-input/switch-input.component';
-import { UpdateCategoryLayoutComponent } from './layouts/update-category-layout/update-category-layout.component';
+import {
+  CategoriesManagementLayoutComponent
+} from './layouts/categories-management-layout/categories-management-layout.component';
+import {TableListComponent} from './components/table-list/table-list.component';
+import {SwitchInputComponent} from './components/switch-input/switch-input.component';
+import {UpdateCategoryLayoutComponent} from './layouts/update-category-layout/update-category-layout.component';
 
 
 @NgModule({

@@ -1,8 +1,6 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import FileObject from "../../entities/FileObject";
-import {Route, Router} from "@angular/router";
-import {LibraryLayoutComponent} from "../../layouts/library-layout/library-layout.component";
-import {FileDetailsLayoutComponent} from "../../layouts/file-details-layout/file-details-layout.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-file-card',

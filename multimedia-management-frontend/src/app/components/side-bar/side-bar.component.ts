@@ -1,16 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {UserStorageService} from "../../services/user-storage/user-storage.service";
-import {Route, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import SideBarItemObject from "../../entities/SideBarItemObject";
 import {CategoryService} from "../../services/category/category.service";
 import {Observable} from "rxjs";
 import Category from "../../entities/Category";
-import {ImagesLayoutComponent} from "../../layouts/images-layout/images-layout.component";
-import {LibraryLayoutComponent} from "../../layouts/library-layout/library-layout.component";
-import {VideosLayoutComponent} from "../../layouts/videos-layout/videos-layout.component";
-import {PictosLayoutComponent} from "../../layouts/pictos-layout/pictos-layout.component";
-import {DocumentsLayoutComponent} from "../../layouts/documents-layout/documents-layout.component";
-import {FileDetailsLayoutComponent} from "../../layouts/file-details-layout/file-details-layout.component";
 
 @Component({
   selector: 'app-side-bar',
