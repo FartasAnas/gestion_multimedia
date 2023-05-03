@@ -1,4 +1,4 @@
 <app-button *ngIf="text" [btnText]="text" btnIconUrl="assets/ArrowFatLineDown.svg" (click)="handleClick()"></app-button>
 <div class="uploadInterfaceStep2-bg">
-  <app-upload-interface (fileUploaded)="onFileUploaded()" [fileType]="fileType" [showInterface]="this.clicked" [text]="text" (closeUploadEvent)="handleCloseUploadEvent($event)"></app-upload-interface>
+  <app-upload-interface (fileUploaded)="onFileUploaded()" [categoryId]="categoryId" [fileType]="fileType" [showInterface]="this.clicked" [text]="text" (closeUploadEvent)="handleCloseUploadEvent($event)"></app-upload-interface>
 </div>

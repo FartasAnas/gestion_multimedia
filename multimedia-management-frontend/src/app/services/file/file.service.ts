@@ -21,7 +21,6 @@ export class FileService {
     else
       fileObject.fileName=file.name
     fileObject.createdBy=this.currentUser;
-    fileObject.category={ name: window.location.pathname.split('/')[1] } as Category;
     const headers = new HttpHeaders();
     const formData: FormData = new FormData();
     formData.append('file', file);

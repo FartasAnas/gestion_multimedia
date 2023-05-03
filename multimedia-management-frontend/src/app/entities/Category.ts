@@ -1,6 +1,6 @@
 export default interface Category {
   id?:number
-  name:string
+  label:string
   path:string
   description:string
   isActive:boolean

@@ -18,10 +18,10 @@ import {FileDetailsLayoutComponent} from "../../layouts/file-details-layout/file
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit{
-  readonly homePage={ name: 'Accueil', icon: 'assets/House.svg', url: 'home' }
-  readonly userManagement = { name: 'Utilisateurs', icon: 'assets/Users.svg' };
-  readonly rolesManagement = { name: 'Roles', icon: 'assets/GearSix.svg' };
-  readonly categoriesManagement = { name: 'Categories', icon: 'assets/GearSix.svg' , url:'categories' };
+  readonly homePage={ label: 'Accueil', icon: 'assets/House.svg', url: 'home' }
+  readonly userManagement = { label: 'Utilisateurs', icon: 'assets/Users.svg' };
+  readonly rolesManagement = { label: 'Roles', icon: 'assets/GearSix.svg' };
+  readonly categoriesManagement = { label: 'Categories', icon: 'assets/GearSix.svg' , url:'categories' };
   readonly hostname = window.location.hostname;
   sidebarItems: SideBarItemObject[] = [];
   showFooterChild:boolean=false
@@ -49,13 +49,13 @@ export class SideBarComponent implements OnInit{
     return categories
       .filter(category => category.isActive)
       .map(category => ({
-        content: { name: category.name, icon:this.getCategoryIconUrl(category.id as number), url: category.path },
+        content: { id: category.id,label: category.label, icon:this.getCategoryIconUrl(category.id as number), url: category.path },
         hasChildren: true,
         children: [
-          { content: { name: 'Images', icon: 'assets/ImageSquare.svg', url: `${category.path}/images` } },
-          { content: { name: 'Vidéos', icon: 'assets/Video.svg', url: `${category.path}/videos` } },
-          { content: { name: 'Pictos', icon: 'assets/Person.svg', url: `${category.path}/pictos` } },
-          { content: { name: 'Documents', icon: 'assets/FileDoc.svg', url: `${category.path}/documents` } },
+          { content: { id: category.id,label: 'Images', icon: 'assets/ImageSquare.svg', url: `${category.path}/images` } },
+          { content: { id: category.id,label: 'Vidéos', icon: 'assets/Video.svg', url: `${category.path}/videos` } },
+          { content: { id: category.id,label: 'Pictos', icon: 'assets/Person.svg', url: `${category.path}/pictos` } },
+          { content: { id: category.id,label: 'Documents', icon: 'assets/FileDoc.svg', url: `${category.path}/documents` } },
         ],
       }));
   }

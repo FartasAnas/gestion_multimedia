@@ -1,7 +1,7 @@
 <div class="fileInterface" *ngIf="fileInterfaceInput">
   <div class="fileInterface-header">
     <app-page-title [title]="fileInterfaceInput.interfaceTitle"></app-page-title>
-    <app-upload-btn (fileUploaded)="onFileUploaded()" [text]="fileInterfaceInput.uploadBtnText" [fileType]="fileInterfaceInput.fileType"></app-upload-btn>
+    <app-upload-btn (fileUploaded)="onFileUploaded()" [text]="fileInterfaceInput.uploadBtnText" [fileType]="fileInterfaceInput.fileType" [categoryId]="fileInterfaceInput.categoryId" ></app-upload-btn>
   </div>
   <app-search-bar (searchEvent)="handleSearchEvent($event)" [fileType]="fileInterfaceInput.fileType ?? ''"></app-search-bar>
 <!--  <div class="fileInterface-body" *ngIf="fileObjects$ | async as fileObjects">-->

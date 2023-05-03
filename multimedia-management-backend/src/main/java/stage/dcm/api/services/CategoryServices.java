@@ -14,7 +14,6 @@ public interface CategoryServices {
     public Category getCategoryById(Long id) throws NotFoundException;
     public Category getCategory(Category category) throws NotFoundException;
     public List<Category> getAllCategories();
-    public Category getCategoryByName(String name);
     public void getCategoryIcon(Long id,HttpServletResponse response) throws NotFoundException, MinioException, IOException;
     public Category updateCategory(Long id, Category category) throws NotFoundException;
     public void deleteCategory(Long id) throws NotFoundException;

@@ -10,11 +10,11 @@ import javax.persistence.*;
 @Entity @Data @Table(name = "category")
 @NoArgsConstructor @AllArgsConstructor
 public class Category {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
 
     @Column(nullable = false,unique = true)
-    private String name;
+    private String label;
 
     private String iconPath;
 

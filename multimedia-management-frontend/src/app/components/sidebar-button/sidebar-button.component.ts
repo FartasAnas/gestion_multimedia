@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import SidebarBtnInput from "../../entities/SidebarBtnInput";
-import {Router} from "@angular/router";
+import {NavigationExtras, Router} from "@angular/router";
+import SideBarContentObject from "../../entities/SideBarContentObject";
+import {SharedService} from "../../services/shared-service/shared.service";
 
 @Component({
   selector: 'app-sidebar-button',
@@ -10,18 +11,18 @@ import {Router} from "@angular/router";
 export class SidebarButtonComponent implements OnInit{
 
   clicked:boolean=false;
-  @Input() content:SidebarBtnInput | undefined
+  @Input() content:SideBarContentObject | undefined
   @Input() isChild:boolean=false;
   @Input() hasChildren:boolean=false;
 
-  constructor(private route:Router) {}
+  constructor(private router:Router, private sharedService: SharedService) {}
 
-  handleClick():void{
-    if(this.hasChildren) {
+  handleClick(): void {
+    if (this.hasChildren) {
       this.clicked = !this.clicked;
-    }
-    else {
-      this.route.navigate([ this.content?.url ?  this.content.url : "home"]);
+    } else {
+      this.sharedService.setCategoryId(this.content?.id as number);
+      this.router.navigate([this.content?.url ? this.content.url : 'home']);
     }
   }
 

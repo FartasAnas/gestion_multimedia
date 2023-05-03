@@ -1,5 +1,6 @@
 export default interface SideBarContentObject {
-  name: string;
+  id?:number
+  label: string;
   icon: string;
   url?: string;
 }

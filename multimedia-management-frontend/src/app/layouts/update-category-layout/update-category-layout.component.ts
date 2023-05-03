@@ -23,7 +23,7 @@ export class UpdateCategoryLayoutComponent implements OnInit{
     if(this.isUpdating){
       const updatedCategory:Category={
         id:this.updateCategoryForm.value.id,
-        name:this.updateCategoryForm.value.name,
+        label:this.updateCategoryForm.value.name,
         path:this.updateCategoryForm.value.path,
         description:this.updateCategoryForm.value.description,
         isActive:this.categoryStatus
@@ -59,7 +59,7 @@ export class UpdateCategoryLayoutComponent implements OnInit{
     this.isUpdating=false
     if (this.categoryObject) {
       this.updateCategoryForm.reset({
-        name: this.categoryObject.name,
+        name: this.categoryObject.label,
         path: this.categoryObject.path,
         description: this.categoryObject.description
       });

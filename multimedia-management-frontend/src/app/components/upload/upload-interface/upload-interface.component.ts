@@ -16,6 +16,7 @@ export class UploadInterfaceComponent implements OnInit{
   @Input() fileType?:string
   @Input() showInterface?:boolean
   @Input() text?:String
+  @Input() categoryId?:number
   @Output() closeUploadEvent=new EventEmitter<boolean>();
   @Output() fileUploaded = new EventEmitter();
   @ViewChild (UploadInterfaceStep1Component) step1Component?: UploadInterfaceStep1Component;
@@ -31,7 +32,7 @@ export class UploadInterfaceComponent implements OnInit{
   }
   fileObject:FileObject={ ...this.fileObjectInitialValue };
   categoryObject:Category={
-    name:"",
+    label:"",
     description:"",
     path:"",
     isActive:true,
@@ -39,6 +40,15 @@ export class UploadInterfaceComponent implements OnInit{
   selectedFile?: FileInput | undefined;
   currentStep:String="Step1"
   constructor(private fileService:FileService,private categoryService:CategoryService) {
+  }
+
+  ngOnInit(): void {
+    this.fileObject.type=this.fileType
+    if(this.fileType==='PICTOGRAM'){
+      this.fileObject.version=this.fileObjectInitialValue.version=undefined
+      this.fileObject.state=this.fileObjectInitialValue.state=undefined
+      this.fileObjectInitialValue.type=this.fileType
+    }
   }
 
   handelCloseInterfaceClick() {
@@ -67,6 +77,7 @@ export class UploadInterfaceComponent implements OnInit{
             }
             )
         }else {
+          this.fileObject.category= {id:this.categoryId,label:"",description:"",path:"",isActive:true}
           this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
             data=>{
               this.handelCloseInterfaceClick()
@@ -102,12 +113,5 @@ export class UploadInterfaceComponent implements OnInit{
     this.selectedKeywords={...newSelectedKeywords}
   }
 
-  ngOnInit(): void {
-    this.fileObject.type=this.fileType
-    if(this.fileType==='PICTOGRAM'){
-      this.fileObject.version=this.fileObjectInitialValue.version=undefined
-      this.fileObject.state=this.fileObjectInitialValue.state=undefined
-      this.fileObjectInitialValue.type=this.fileType
-    }
-  }
+
 }

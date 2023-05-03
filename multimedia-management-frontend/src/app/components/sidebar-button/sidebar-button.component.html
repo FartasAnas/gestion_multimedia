@@ -4,7 +4,7 @@
          [ngClass]="{'rotate-arrowLine':clicked}">
     <div class="menuElement-decoration"></div>
     <img [src]="content.icon" alt="" class="sidebarBody-icon">
-    <p class="sidebarBody-text">{{content.name}}</p>
+    <p class="sidebarBody-text">{{content.label}}</p>
   </div>
   <div *ngIf="hasChildren" class="child-menu" [ngClass]="{'unselected': !clicked}">
     <ng-template [ngIf]="clicked">

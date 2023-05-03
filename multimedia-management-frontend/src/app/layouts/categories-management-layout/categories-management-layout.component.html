@@ -5,7 +5,7 @@
     <app-button [btnText]="'Ajouter une nouvelle catégorie'" [btnIconUrl]="'assets/PlusSign.svg'" (click)="showAddCategoryInterface=!showAddCategoryInterface"></app-button>
   </div>
   <div class="categories-management-body">
-    <app-table-list [tableListTitle]="'Liste des catégories'" [columns]="['icon','name','path','description','isActive']" [data]="categories"></app-table-list>
+    <app-table-list [tableListTitle]="'Liste des catégories'" [columns]="['icon','label','path','description','isActive']" [data]="categories"></app-table-list>
   </div>
 </div>
 <app-upload-interface (fileUploaded)="onFileUploaded()"  [fileType]="'Category'" [showInterface]="showAddCategoryInterface" [text]="'Ajouter une nouvelle catégorie'" (closeUploadEvent)="handleCloseUploadEvent($event)"></app-upload-interface>

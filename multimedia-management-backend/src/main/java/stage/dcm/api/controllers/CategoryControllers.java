@@ -35,11 +35,6 @@ public class CategoryControllers {
     public ResponseEntity<List<Category>> getAllCategories() {
         return new ResponseEntity<>(categoryServices.getAllCategories(), HttpStatus.OK);
     }
-
-    @GetMapping("/name/{name}")
-    public ResponseEntity<Category> getCategoryByName(@PathVariable String name) {
-        return new ResponseEntity<>(categoryServices.getCategoryByName(name), HttpStatus.OK);
-    }
     @GetMapping("/icon/{id}")
     public ResponseEntity<Void> getCategoryIcon(@PathVariable Long id, HttpServletResponse response) throws NotFoundException, IOException, MinioException {
         categoryServices.getCategoryIcon(id, response);

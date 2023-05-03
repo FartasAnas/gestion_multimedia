@@ -5,12 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import ma.indh.minio.exception.MinioException;
 import ma.indh.minio.service.MinioService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import stage.dcm.api.entities.Category;
-import stage.dcm.api.entities.File;
 import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.repositories.CategoryRepository;
 import stage.dcm.api.services.CategoryServices;
@@ -22,6 +20,7 @@ import java.io.InputStream;
 import java.net.URLConnection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service @Transactional
 @RequiredArgsConstructor @Slf4j
@@ -32,12 +31,13 @@ public class CategoryServicesImp implements CategoryServices {
 
     @Override
     public Category saveCategory(Category category, MultipartFile categoryIcon) {
-        log.info("isActive:{}",category);
-        String iconPath=String.join("/","icons/category",category.getName().toLowerCase(),categoryIcon.getOriginalFilename());
+        Random random = new Random();
+        category.setId(Math.abs(random.nextLong()) % 1000L);
+        category.setPath(category.getPath().toLowerCase());
+        String iconPath=String.join("/","icons/category",category.getId().toString(),categoryIcon.getOriginalFilename());
         try {
             minioService.upload(iconPath, categoryIcon.getInputStream());
             category.setIconPath(iconPath);
-            category.setName(category.getName());
             return categoryRepository.save(category);
         } catch (IOException | MinioException e) {
             throw new IllegalStateException("The file cannot be read", e);
@@ -53,24 +53,24 @@ public class CategoryServicesImp implements CategoryServices {
             throw new NotFoundException("Category not found with id: " + id);
         }
     }
+
+
     @Override
     public Category getCategory(Category category) throws NotFoundException {
         if (category.getId() != null) {
             return getCategoryById(category.getId());
-        } else if (category.getName() != null) {
-            return getCategoryByName(category.getName());
-        } else {
+        } else if (category.getPath() != null) {
+            return categoryRepository.findByPath(category.getPath());
+        } else if (category.getLabel() !=null) {
+            return categoryRepository.findByLabel(category.getLabel());
+        }else {
             throw new NotFoundException("Category not found");
         }
     }
+
     @Override
     public List<Category> getAllCategories() {
         return categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
-    }
-
-    @Override
-    public Category getCategoryByName(String name) {
-        return categoryRepository.findByName(name);
     }
 
     @Override
@@ -89,8 +89,8 @@ public class CategoryServicesImp implements CategoryServices {
     public Category updateCategory(Long id, Category category) throws NotFoundException {
         Category existingCategory = categoryRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Category not found"));
-        existingCategory.setName(category.getName() != null ? category.getName() : existingCategory.getName());
-        existingCategory.setPath(category.getPath() != null ? category.getPath() : existingCategory.getPath());
+        existingCategory.setLabel(category.getLabel() != null ? category.getLabel() : existingCategory.getLabel());
+        existingCategory.setPath(category.getPath() != null ? category.getPath().toLowerCase() : existingCategory.getPath());
         existingCategory.setDescription(category.getDescription() != null ? category.getDescription() : existingCategory.getDescription());
         existingCategory.setIsActive(category.getIsActive() != null ? category.getIsActive() : existingCategory.getIsActive());
         return categoryRepository.save(existingCategory);
