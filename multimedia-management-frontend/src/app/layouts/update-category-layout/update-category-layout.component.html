@@ -1,0 +1,55 @@
+<div class="update-category-layout">
+  <app-side-bar></app-side-bar>
+  <a class="go-back" routerLink="/categories">
+    <img src="assets/ArrowLeftLightBlue.svg">
+    <p class="update-category-layout-text">Retour à la liste</p>
+  </a>
+  <div class="update-category-layout-head">
+    <app-page-title title="Informations générales"></app-page-title>
+    <div class="update-category-layout-head-btn">
+      <button class="uploadInterfaceFooter-btn cancelBtn" *ngIf="isUpdating" (click)="handleCancelBtn()">
+        <img src="assets/Close.svg">
+        <p class="update-category-layout-text cancelTxt">Annuler</p>
+      </button>
+      <app-button [btnText]="!isUpdating ?'Modifier la catégorie':'Enregistrer'"
+                  [btnIconUrl]="!isUpdating ? 'assets/PencilSimpleLineWhite.svg':'assets/Check.svg'" (click)="handleUpdateBtn()"></app-button>
+    </div>
+  </div>
+  <div class="update-category-layout-body" *ngIf="categoryObject">
+    <div class="update-category-layout-body-content">
+      <p class="update-category-layout-text body-head">Catégorie</p>
+      <form #updateCategoryForm="ngForm" class="update-category-layout-body-input">
+        <div class="update-category-layout-body-input">
+          <div class="row-grp">
+            <div class="input-group">
+              <label class="update-category-layout-text contentForm-label" for="name">
+                Nom
+              </label>
+              <input type="text" id="name" name="name" class="update-category-layout-text contentForm-input" [ngClass]="{'active-input':isUpdating}" [ngModel]="categoryObject.name"/>
+            </div>
+            <div class="input-group">
+              <label class="update-category-layout-text contentForm-label" for="path">
+                Path
+              </label>
+              <input type="text" id="path" name="path" class="update-category-layout-text contentForm-input" [ngClass]="{'active-input':isUpdating}" [ngModel]="categoryObject.path"/>
+            </div>
+          </div>
+          <div class="row-grp">
+            <div class="input-group">
+              <label class="update-category-layout-text contentForm-label" for="description">
+                Description
+              </label>
+              <input type="text" id="description" name="description" class="update-category-layout-text contentForm-input" [ngClass]="{'active-input':isUpdating}" [ngModel]="categoryObject.description"/>
+            </div>
+            <div class="input-group">
+              <label class="update-category-layout-text contentForm-label">
+                Statut
+              </label>
+              <app-switch-input [isChecked]="categoryStatus" [isDisabled]="!isUpdating" (toggle)="handleChangeStatus($event)"></app-switch-input>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

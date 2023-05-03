@@ -6,6 +6,7 @@ import ma.indh.minio.exception.MinioException;
 import ma.indh.minio.service.MinioService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import stage.dcm.api.entities.Category;
@@ -64,7 +65,7 @@ public class CategoryServicesImp implements CategoryServices {
     }
     @Override
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+        return categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @Override
@@ -90,6 +91,7 @@ public class CategoryServicesImp implements CategoryServices {
                 .orElseThrow(() -> new NotFoundException("Category not found"));
         existingCategory.setName(category.getName() != null ? category.getName() : existingCategory.getName());
         existingCategory.setPath(category.getPath() != null ? category.getPath() : existingCategory.getPath());
+        existingCategory.setDescription(category.getDescription() != null ? category.getDescription() : existingCategory.getDescription());
         existingCategory.setIsActive(category.getIsActive() != null ? category.getIsActive() : existingCategory.getIsActive());
         return categoryRepository.save(existingCategory);
     }

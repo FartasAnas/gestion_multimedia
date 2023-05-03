@@ -10,7 +10,7 @@
     </div>
     <hr class="horizontal-line">
     <div class="table-list-tr" *ngFor="let item of data">
-      <div class="table-list-columns body" >
+      <div class="table-list-columns body"  (click)="displayCategoryUpdateInterface(item.id)">
         <div class="table-list-columns-tbody-td" *ngFor="let column of columns" [style.width]="100/columns.length+'%'">
           <p class="table-list-text" *ngIf="column!=='isActive'">{{item[column]}}</p>
           <div class="table-list-tag-box" *ngIf="column==='isActive'" [ngClass]="{'active':item[column],'inactive':!item[column] }">

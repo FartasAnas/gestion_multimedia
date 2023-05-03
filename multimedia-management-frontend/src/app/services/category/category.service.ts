@@ -27,4 +27,12 @@ export class CategoryService {
     formData.append('category', jsonBlob);
     return this.http.post<Category>(`${this.apiUrl}/add`,formData,{headers:headers})
   }
+  getCategoryById(id:number):Observable<Category>{
+    return this.http.get<Category>(`${this.apiUrl}/${id}`)
+  }
+
+  updateCategory(id: number | undefined, category: Category) {
+    return this.http.put(`${this.apiUrl}/update/${id}`, category);
+  }
+
 }
