@@ -22,14 +22,6 @@ export class FileCardComponent implements OnInit{
   constructor(private router: Router) {
   }
   handleDisplayFile() {
-    const routes: Route[] = [];
-    const fileDetailsRoute: Route = {
-      path: this.fileObject?.category?.path,
-      component: LibraryLayoutComponent,
-      children: [{ path: 'file/:id', component: FileDetailsLayoutComponent }]
-    };
-    routes.push(fileDetailsRoute);
-    this.router.config.unshift(...routes)
     this.router.navigate([this.fileObject?.category?.path,'file',this.fileObject?.id]);
   }
 

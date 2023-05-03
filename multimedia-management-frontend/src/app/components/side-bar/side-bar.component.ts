@@ -42,7 +42,6 @@ export class SideBarComponent implements OnInit{
     this.categories$ = this.categoryService.getCategories();
     this.categories$.subscribe(categories => {
       this.sidebarItems = this.createSidebarItems(categories);
-      this.createRoutes(categories);
     });
   }
   private createSidebarItems(categories: Category[]): SideBarItemObject[] {
@@ -59,31 +58,6 @@ export class SideBarComponent implements OnInit{
         ],
       }));
   }
-  public createRoutes(categories: Category[]): void {
-    const routes: Route[] = [];
-
-    categories.filter(category => category.isActive).forEach(category => {
-      const children: Route[] = [
-        { path: 'images', component: ImagesLayoutComponent },
-        { path: 'videos', component: VideosLayoutComponent },
-        { path: 'pictos', component: PictosLayoutComponent },
-        { path: 'documents', component: DocumentsLayoutComponent },
-        { path: 'file/:id', component: FileDetailsLayoutComponent }
-      ];
-
-      const categoryRoute: Route = {
-        path: category.path,
-        component: LibraryLayoutComponent,
-        children: children
-      };
-
-      routes.push(categoryRoute);
-    });
-    this.router.config.unshift(...routes)
-  }
-
-
-
   handleFooterChildClick(action:'profile'|'logout') {
     if(action==='profile'){
       this.router.navigate(['profile'])

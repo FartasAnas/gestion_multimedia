@@ -15,7 +15,6 @@ export class ImagesLayoutComponent implements OnInit {
   ngOnInit(): void {
     this.sharedService.categoryId$.subscribe(categoryId => {
       this.categoryId = categoryId;
-      console.log(this.categoryId)
     });
   }
 

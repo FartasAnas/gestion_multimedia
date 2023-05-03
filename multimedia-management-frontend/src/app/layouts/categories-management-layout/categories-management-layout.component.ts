@@ -22,7 +22,6 @@ export class CategoriesManagementLayoutComponent implements OnInit{
       (data) => {
         this.categories = data;
         this.columns = Object.keys(this.categories[0]);
-        console.log(this.categories)
       }
     )
   }
