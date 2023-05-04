@@ -89,7 +89,7 @@ public class FileServicesImp implements FileServices {
     }
     public List<File> userFilesList(String username, String type, String category) throws NotFoundException{
         User userDto = userServices.getUserByUsername(username);
-        Category categoryDto = categoryServices.getCategory(new Category(null,null,null,category.toLowerCase(),null,null));
+        Category categoryDto = categoryServices.getCategory(new Category(null,null,null,category.toLowerCase(),null,null,null));
         if (userDto != null && categoryDto!=null) {
             List<File> userFiles = userDto.getFiles().stream()
                     .filter(file -> file.getType().toString().equals(type) && file.getCategory().equals(categoryDto))

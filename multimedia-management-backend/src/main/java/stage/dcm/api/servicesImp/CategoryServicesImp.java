@@ -34,14 +34,20 @@ public class CategoryServicesImp implements CategoryServices {
         Random random = new Random();
         category.setId(Math.abs(random.nextLong()) % 1000L);
         category.setPath(category.getPath().toLowerCase());
-        String iconPath=String.join("/","icons/category",category.getId().toString(),categoryIcon.getOriginalFilename());
-        try {
-            minioService.upload(iconPath, categoryIcon.getInputStream());
-            category.setIconPath(iconPath);
-            return categoryRepository.save(category);
-        } catch (IOException | MinioException e) {
-            throw new IllegalStateException("The file cannot be read", e);
+        String iconPath;
+        if (categoryIcon!=null){
+            iconPath=String.join("/","icons/category",category.getId().toString(),categoryIcon.getOriginalFilename());
+            try {
+                minioService.upload(iconPath, categoryIcon.getInputStream());
+            } catch (IOException | MinioException e) {
+                throw new IllegalStateException("The file cannot be read", e);
+            }
         }
+        else {
+            iconPath=String.join("/","icons/category/default/category.svg");
+        }
+        category.setIconPath(iconPath);
+        return categoryRepository.save(category);
     }
 
     @Override
@@ -70,7 +76,7 @@ public class CategoryServicesImp implements CategoryServices {
 
     @Override
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        return categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "creationDate"));
     }
 
     @Override

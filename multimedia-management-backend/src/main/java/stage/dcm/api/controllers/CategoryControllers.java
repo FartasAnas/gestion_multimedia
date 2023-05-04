@@ -22,7 +22,7 @@ public class CategoryControllers {
     private CategoryServices categoryServices;
 
     @PostMapping("/add")
-    public ResponseEntity<Category> saveCategory(@RequestPart("category") Category category, @RequestParam("icon") MultipartFile categoryIcon) {
+    public ResponseEntity<Category> saveCategory(@RequestPart("category")Category category, @RequestParam(name = "icon",required = false) MultipartFile categoryIcon) {
         return new ResponseEntity<>(categoryServices.saveCategory(category,categoryIcon), HttpStatus.CREATED);
     }
 

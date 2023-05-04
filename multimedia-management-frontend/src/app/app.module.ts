@@ -64,7 +64,7 @@ import {SwitchInputComponent} from './components/switch-input/switch-input.compo
 import {UpdateCategoryLayoutComponent} from './layouts/update-category-layout/update-category-layout.component';
 import { ConfirmationPopupMessageComponent } from './components/confirmation-popup-message/confirmation-popup-message.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDialogModule} from "@angular/material/dialog";
+
 
 
 @NgModule({
@@ -127,8 +127,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     VgBufferingModule,
     VgControlsModule,
     PdfViewerModule,
-    BrowserAnimationsModule,
-    MatDialogModule
+    BrowserAnimationsModule
   ],
   providers: [
 

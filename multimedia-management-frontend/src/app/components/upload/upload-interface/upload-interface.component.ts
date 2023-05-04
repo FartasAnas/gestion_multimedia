@@ -7,7 +7,6 @@ import KeywordObject from "../../../entities/KeywordObject";
 import Category from "../../../entities/Category";
 import {CategoryService} from "../../../services/category/category.service";
 import {ConfirmationPopupMessageComponent} from "../../confirmation-popup-message/confirmation-popup-message.component";
-import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-upload-interface',
@@ -43,7 +42,7 @@ export class UploadInterfaceComponent implements OnInit {
   currentStep: String = "Step1"
   showConfirmation = false;
 
-  constructor(private fileService: FileService, private categoryService: CategoryService, public dialog: MatDialog) {
+  constructor(private fileService: FileService, private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
@@ -62,6 +61,7 @@ export class UploadInterfaceComponent implements OnInit {
     this.currentStep = "Step1"
     this.step1Component?.clearInputValue()
     this.fileObject = {...this.fileObjectInitialValue};
+    console.log((!this.selectedFile && this.fileType!=='Category'))
   }
 
   handleFileEvent(fileInput: FileInput) {
@@ -71,7 +71,9 @@ export class UploadInterfaceComponent implements OnInit {
   handleUploadFile() {
 
   }
-
+  handleDisableNextBtn():boolean{
+    return (!this.selectedFile && (this.fileType !== 'Category' || this.categoryObject.label === '' || this.categoryObject.path === ''));
+  }
   handleDisableUploadBtn(): boolean {
     return (
       this.fileObject.state === '' &&
@@ -97,7 +99,7 @@ export class UploadInterfaceComponent implements OnInit {
 
   handleConfirmation(confirmed: boolean) {
     if (confirmed) {
-      if(this.selectedFile?.file && this.fileType){
+      if(this.fileType){
         this.fileObject.keywords=Object.values(this.selectedKeywords)
         this.fileObject.type = this.fileType
         if(this.fileType==='Category'){
@@ -111,16 +113,19 @@ export class UploadInterfaceComponent implements OnInit {
             }
           )
         }else {
-          this.fileObject.category= {id:this.categoryId,label:"",description:"",path:"",isActive:true}
-          this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
-            data=>{
-              this.handelCloseInterfaceClick()
-              this.fileUploaded.emit()
-            },
-            error => {
-              console.error('Upload error:', error);
-            }
-          )
+          if(this.selectedFile?.file){
+            this.fileObject.category= {id:this.categoryId,label:"",description:"",path:"",isActive:true}
+            this.fileService.saveFile(this.selectedFile?.file,this.fileObject).subscribe(
+              data=>{
+                this.handelCloseInterfaceClick()
+                this.fileUploaded.emit()
+              },
+              error => {
+                console.error('Upload error:', error);
+              }
+            )
+          }
+
         }
       }
     }

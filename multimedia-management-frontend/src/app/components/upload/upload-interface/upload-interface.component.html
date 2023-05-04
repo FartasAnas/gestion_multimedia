@@ -1,5 +1,5 @@
 <div class="uploadInterface-bg"
-     [ngClass]="{'showInterface':showInterface,'uploaded':selectedFile}">
+     [ngClass]="{'showInterface':showInterface,'uploaded':selectedFile || fileType==='Category'}">
 <!--  <div class="uploadInterface-bg showInterface uploaded" >-->
   <div class="uploadInterface">
     <div class="uploadInterface-header">
@@ -8,20 +8,26 @@
         <img src="assets/XIcon.svg" class="svg-icon" >
       </div>
     </div>
-    <div *ngIf="currentStep=='Step1'">
+    <div *ngIf="currentStep=='Step1' && fileType!=='Category'" >
       <app-upload-interface-step1 [selectedFile]="selectedFile" [fileType]="fileType" (fileEvent)="handleFileEvent($event)"></app-upload-interface-step1>
     </div>
-    <div *ngIf="currentStep=='Step2'">
+    <div *ngIf="currentStep=='Step2' && fileType!=='Category'" >
       <app-upload-interface-step2 (selectedKeywordsEvent)="handleSelectedKeywords($event)" [fileType]="fileType" [fileObject]="fileType!=='Category'?fileObject:categoryObject" (fileObjectChange)="handleFileObjectChange($event)"></app-upload-interface-step2>
       <app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)" transformX="60%"></app-confirmation-popup-message>
-
+    </div>
+    <div *ngIf="currentStep=='Step1' && fileType==='Category'" >
+      <app-upload-interface-step2 (selectedKeywordsEvent)="handleSelectedKeywords($event)" [fileType]="fileType" [fileObject]="fileType!=='Category'?fileObject:categoryObject" (fileObjectChange)="handleFileObjectChange($event)"></app-upload-interface-step2>
+    </div>
+    <div *ngIf="currentStep=='Step2'&& fileType==='Category'">
+      <app-upload-interface-step1 [selectedFile]="selectedFile" [fileType]="fileType" (fileEvent)="handleFileEvent($event)"></app-upload-interface-step1>
+      <app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)" transformX="60%"></app-confirmation-popup-message>
     </div>
     <div class="uploadInterface-footer">
       <button class="uploadInterfaceFooter-btn cancelBtn" (click)="handelCloseInterfaceClick()">
         <img src="assets/Close.svg">
         <p class="uploadInterfaceFooter-txt cancelTxt">Annuler</p>
       </button>
-      <button class="uploadInterfaceFooter-btn" (click)="handleSwitchStep()" [ngClass]="{'disabled':!selectedFile}"  [disabled]="!selectedFile" *ngIf="currentStep=='Step1'">
+      <button class="uploadInterfaceFooter-btn" (click)="handleSwitchStep()" [ngClass]="{'disabled':handleDisableNextBtn()}"  [disabled]="handleDisableNextBtn()" *ngIf="currentStep=='Step1'">
         <p class="uploadInterfaceFooter-txt">Suivant</p>
         <img src="assets/TrailingIcon.svg">
       </button>
