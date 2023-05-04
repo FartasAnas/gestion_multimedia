@@ -10,17 +10,17 @@ import {EditFileComponent} from "../edit-file/edit-file.component";
   styleUrls: ['./file-details-bar.component.css']
 })
 export class FileDetailsBarComponent {
-  @Input() fileObject?:FileObject
+  @Input() fileObject?: FileObject;
   @ViewChild(EditFileComponent) editFileComponent!: EditFileComponent;
-  showEditInterface:boolean=false
+  showEditInterface = false;
+  showConfirmation = false;
 
   constructor(private router: Router,private fileService:FileService) {
   }
   handelCloseDetailsClick() {
-    const type=this.fileObject?.type
-    const category=this.fileObject?.category
-    console.log(type,category)
-    switch(type) {
+    const type = this.fileObject?.type;
+    const category = this.fileObject?.category;
+    switch (type) {
       case 'IMAGE':
         this.router.navigate([category?.path, 'images']);
         break;
@@ -38,39 +38,43 @@ export class FileDetailsBarComponent {
     }
   }
 
-  fileVersionTranslate():String{
-    switch (this.fileObject?.version){
-      case "VF":
-        return "Française"
-      case "VA":
-        return "Arabe"
+  fileVersionTranslate(): String {
+    switch (this.fileObject?.version) {
+      case 'VF':
+        return 'Française';
+      case 'VA':
+        return 'Arabe';
       default:
-        return ""
-    }
-  }
-
-  handleDeleteFile() {
-    if(this.fileObject?.id){
-      this.fileService.removeFile(this.fileObject?.id).subscribe(
-        () => {
-          console.log(`File with ID ${this.fileObject?.id} deleted successfully`);
-          this.handelCloseDetailsClick()
-        },
-        error => console.error(`Error deleting file with ID ${this.fileObject?.id}: ${error}`)
-      );
+        return '';
     }
   }
 
   handleEditFile() {
-    this.editFileComponent.toggleVisibility(true)
+    this.editFileComponent.toggleVisibility(true);
   }
 
-  handleFileObjectChange(newFileObject:FileObject) {
-    this.fileObject= {...newFileObject}
+  handleFileObjectChange(newFileObject: FileObject) {
+    this.fileObject = { ...newFileObject };
   }
-  detailInfoTitle():string{
-    if(this.fileObject?.type==='DOCUMENT' || this.fileObject?.type==='PICTOGRAM')
-      return this.fileObject.fileName?.split(".")[0] as string
-    return "ID "+this.fileObject?.id
+
+  detailInfoTitle(): string {
+    if (this.fileObject?.type === 'DOCUMENT' || this.fileObject?.type === 'PICTOGRAM')
+      return this.fileObject.fileName?.split('.')[0] as string;
+    return 'ID ' + this.fileObject?.id;
+  }
+
+  handleConfirmation(confirmed: boolean) {
+    if (confirmed) {
+      if(this.fileObject?.id) {
+        this.fileService.removeFile(this.fileObject?.id).subscribe(
+          () => {
+            console.log(`File with ID ${this.fileObject?.id} deleted successfully`);
+            this.handelCloseDetailsClick()
+          },
+          error => console.error(`Error deleting file with ID ${this.fileObject?.id}: ${error}`)
+        );
+      }
+    }
+    this.showConfirmation = false;
   }
 }

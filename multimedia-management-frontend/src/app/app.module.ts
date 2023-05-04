@@ -62,6 +62,9 @@ import {
 import {TableListComponent} from './components/table-list/table-list.component';
 import {SwitchInputComponent} from './components/switch-input/switch-input.component';
 import {UpdateCategoryLayoutComponent} from './layouts/update-category-layout/update-category-layout.component';
+import { ConfirmationPopupMessageComponent } from './components/confirmation-popup-message/confirmation-popup-message.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -111,7 +114,8 @@ import {UpdateCategoryLayoutComponent} from './layouts/update-category-layout/up
     CategoriesManagementLayoutComponent,
     TableListComponent,
     SwitchInputComponent,
-    UpdateCategoryLayoutComponent
+    UpdateCategoryLayoutComponent,
+    ConfirmationPopupMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -122,7 +126,9 @@ import {UpdateCategoryLayoutComponent} from './layouts/update-category-layout/up
     VgOverlayPlayModule,
     VgBufferingModule,
     VgControlsModule,
-    PdfViewerModule
+    PdfViewerModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
 

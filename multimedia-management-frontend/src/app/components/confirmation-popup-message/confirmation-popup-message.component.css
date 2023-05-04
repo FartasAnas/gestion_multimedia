@@ -1,0 +1,86 @@
+.confirmation-dialog {
+  position: fixed;
+  top: -100%;
+  transform: translate(-275%, 0);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color:#FFFFFF;
+  z-index: 50;
+  animation-duration: 0.5s;
+  animation-name: slideInFromTop;
+  box-shadow: 0px 48px 64px -36px rgba(24, 24, 28, 0.13), 0px 24px 48px -8px rgba(24, 24, 28, 0.11);
+  animation-fill-mode: forwards;
+}
+.confirmation-dialog.slide-out {
+  animation-name: slideOutToTop!important;
+}
+@keyframes slideInFromTop {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 3%;
+  }
+}
+@keyframes slideOutToTop {
+  0% {
+    top: 3%;
+  }
+  100% {
+    top: -100%;
+  }
+}
+.confirmation-dialog-text{
+  font-family: 'Inter';
+  font-style: normal;
+  color: #0B2866;
+}
+.confirmation-dialog-head .confirmation-dialog-text{
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+}
+.confirmation-dialog-body .confirmation-dialog-text{
+  font-weight: 500;
+  font-size: 18px;
+  color: #FF2626;
+}
+.confirmation-dialog-footer{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 11px;
+}
+.cancelBtn{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: 40px;
+  box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
+  border-radius: 5px;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid #105DFB;
+}
+.cancelBtn:hover{
+  cursor: pointer;
+}
+.confirmation-dialog-text.cancelTxt{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #105DFB;
+}
+.horizontal-line{
+  height: 1px;
+  background-color: #ECEFF1;
+  border: none;
+}

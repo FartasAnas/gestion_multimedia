@@ -1,12 +1,13 @@
+<app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)"></app-confirmation-popup-message>
 <div class="file-details" *ngIf="fileObject">
   <div class="file-details-header">
-    <div class="details-icon" (click)="handleDeleteFile()">
+    <div class="details-icon" (click)="showConfirmation=!showConfirmation">
       <img src="assets/Trash.svg" class="svg-icon"  >
     </div>
     <div class="details-icon" (click)="handleEditFile()">
       <img src="assets/PencilSimpleLine.svg" class="svg-icon" >
-
     </div>
+
     <app-edit-file (fileObjectChange)="handleFileObjectChange($event)" [fileObject]="fileObject"></app-edit-file>
     <div class="details-icon" (click)="handelCloseDetailsClick()">
       <img src="assets/XIcon.svg" class="svg-icon" >

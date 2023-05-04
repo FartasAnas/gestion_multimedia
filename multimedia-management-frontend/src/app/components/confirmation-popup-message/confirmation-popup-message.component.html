@@ -1,0 +1,12 @@
+<div class="confirmation-dialog" [style.transform]="transformX!==''?'translate('+transformX+', 0)':'translate(-275%, 0)'">
+  <div class="confirmation-dialog-body">
+    <p class="confirmation-dialog-text">Voulez-vous poursuivre?</p>
+  </div>
+  <div class="confirmation-dialog-footer">
+    <button class="cancelBtn" (click)="onNoClick()">
+      <img src="assets/Close.svg">
+      <p class="confirmation-dialog-text cancelTxt">Non</p>
+    </button>
+    <app-button [btnText]="'Oui'" [btnIconUrl]="'assets/Check.svg'" (click)="onYesClick()"></app-button>
+  </div>
+</div>
