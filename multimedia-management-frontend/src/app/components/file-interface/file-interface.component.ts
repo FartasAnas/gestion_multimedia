@@ -50,6 +50,7 @@ export class FileInterfaceComponent implements OnInit{
   }
 
   handleSearchEvent(event: {fileId: string, fileName: string, fileKeywords: KeywordObject[],fileStatus:any[],fileVersion:any[],fileExtension:any[],startDate:Date,endDate:Date}) {
+    console.log(event.startDate)
     this.fileObjects$.subscribe((fileObjects) => {
       this.filteredFileObjects = fileObjects.filter(fileObject => {
         const idMatches = (fileObject.id as number).toString().startsWith(event.fileId);
@@ -58,7 +59,7 @@ export class FileInterfaceComponent implements OnInit{
         const statusMatches = Object.values(event.fileStatus).length === 0 || Object.values(event.fileStatus).some(status => status.name === fileObject.state);
         const versionMatches = Object.values(event.fileVersion).length === 0 || Object.values(event.fileVersion).some(version => version.id === fileObject.version);
         const extensionMatches= Object.values(event.fileExtension).length === 0 || Object.values(event.fileExtension).some(extension => extension.name.toLowerCase() === (fileObject.fileName as string).split(".")[1]);
-        const dateMatches = new Date(fileObject.creationDate as Date).getTime() >= event.startDate.getTime() && new Date(fileObject.creationDate as Date).getTime() <= event.endDate.getTime();
+        const dateMatches = (!event.startDate || !event.endDate || !fileObject.creationDate) ? true : (new Date(fileObject.creationDate as Date).getTime() >= event.startDate.getTime() && new Date(fileObject.creationDate as Date).getTime() <= event.endDate.getTime());
 
         return idMatches && nameMatches && keywordMatches && statusMatches && versionMatches && extensionMatches && dateMatches;
       });
