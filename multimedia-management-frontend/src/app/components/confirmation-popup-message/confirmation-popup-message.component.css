@@ -13,6 +13,7 @@
   animation-name: slideInFromTop;
   box-shadow: 0px 48px 64px -36px rgba(24, 24, 28, 0.13), 0px 24px 48px -8px rgba(24, 24, 28, 0.11);
   animation-fill-mode: forwards;
+  min-width: 255px;
 }
 .confirmation-dialog.slide-out {
   animation-name: slideOutToTop!important;

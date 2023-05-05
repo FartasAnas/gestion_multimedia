@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import FileObject from "../../entities/FileObject";
 import {Router} from "@angular/router";
 
@@ -17,6 +17,7 @@ export class FileCardComponent implements OnInit{
   @Input() cardHeight?:string
   @ViewChild('videoElement') myVideo?: ElementRef;
   isChecked:boolean=false
+  @Output() checkedFilesEvent = new EventEmitter<{isChecked:boolean;checkedFile:FileObject}>();
   constructor(private router: Router) {
   }
   handleDisplayFile() {
@@ -36,6 +37,6 @@ export class FileCardComponent implements OnInit{
 
   fileChecked() {
     this.isChecked=!this.isChecked
-    console.log("Check File Id:"+this.fileObject?.id)
+    this.checkedFilesEvent.emit({isChecked:this.isChecked,checkedFile:this.fileObject as FileObject})
   }
 }

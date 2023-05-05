@@ -16,9 +16,12 @@ export class FileInterfaceComponent implements OnInit{
   constructor(private fileService: FileService) {}
   fileObjects$: Observable<FileObject[]> = new Observable<FileObject[]>();
   displayedFileObjects:FileObject[]=[];
-  filteredFileObjects:FileObject[]=[]
+  filteredFileObjects:FileObject[]=[];
+  checkedFiles:FileObject[]=[];
   sizeOptionIncrement:number=5
+
   @ViewChild(PaginationBarComponent) paginationBar?:PaginationBarComponent
+  showConfirmation=false;
   ngOnInit(): void {
     if(this.fileInterfaceInput) {
       this.fileInterfaceInput.fileCategory = window.location.pathname.split('/')[1]
@@ -69,9 +72,48 @@ export class FileInterfaceComponent implements OnInit{
   }
 
 
+  handleCheckedFiles(event: { isChecked: boolean; checkedFile: FileObject }) {
+    if(event.isChecked){
+      this.checkedFiles.push(event.checkedFile)
+    }
+    else {
+      this.checkedFiles = this.checkedFiles.filter(checkedFile => checkedFile.id !== event.checkedFile.id)
+    }
+  }
 
+  handleActionClick(action: 'delete' | 'download') {
+    console.log(action);
+    if (action === 'delete') {
+      this.showConfirmation = !this.showConfirmation;
+    } else if (action === 'download') {
+      this.checkedFiles.forEach((checkedFile, index) => {
+        setTimeout(() => {
+          const link = document.createElement('a');
+          link.href = this.fileService.getFileUrl(checkedFile.id as number);
+          link.download = checkedFile.fileName as string;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }, index * 50);
+      });
+      this.checkedFiles = [];
+    }
+  }
 
-
-
-
+  handleConfirmation(confirmation: boolean) {
+    if (confirmation) {
+      this.checkedFiles.forEach(checkedFile => {
+        this.fileService.removeFile(checkedFile.id as number).subscribe(
+          () => {
+            this.displayedFileObjects=this.displayedFileObjects.filter(fileObject => fileObject.id !== checkedFile.id)
+            this.filteredFileObjects=this.filteredFileObjects.filter(fileObject => fileObject.id !== checkedFile.id)
+          },
+          error => console.error(`Error deleting file with ID ${checkedFile.id as number}: ${error}`)
+        );
+      })
+      this.checkedFiles = [];
+    } else {
+      this.showConfirmation = false;
+    }
+  }
 }

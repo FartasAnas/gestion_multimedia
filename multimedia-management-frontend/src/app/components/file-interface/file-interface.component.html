@@ -4,17 +4,28 @@
     <app-upload-btn (fileUploaded)="onFileUploaded()" [text]="fileInterfaceInput.uploadBtnText" [fileType]="fileInterfaceInput.fileType" [categoryId]="fileInterfaceInput.categoryId" ></app-upload-btn>
   </div>
   <app-search-bar (searchEvent)="handleSearchEvent($event)" [fileType]="fileInterfaceInput.fileType ?? ''"></app-search-bar>
-<!--  <div class="fileInterface-body" *ngIf="fileObjects$ | async as fileObjects">-->
+
     <div class="fileInterface-body">
-    <div class="fileInterface-body-title">
-      <p>{{fileInterfaceInput.fileListTitle}}</p>
-    </div>
-    <div class="fileInterface-body-card">
-      <app-file-card  *ngFor="let fileObject of displayedFileObjects" [fileObject]="fileObject" [cardWidth]="fileInterfaceInput.cardWidth" [cardHeight]="fileInterfaceInput.cardHeight"></app-file-card>
-    </div>
-    <app-pagination-bar
-      [paginationInput]="{ listSize: filteredFileObjects.length, sizeOptionIncrement: sizeOptionIncrement }"
-      (pageChanged)="handlePageChange($event)" #paginationBar
-    ></app-pagination-bar>
+      <div class="fileInterface-body-head">
+        <div class="fileInterface-body-title">
+          <p>{{fileInterfaceInput.fileListTitle}}</p>
+        </div>
+        <div class="fileInterface-body-actions" *ngIf="checkedFiles.length!==0">
+          <app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)" transformX="-325%"></app-confirmation-popup-message>
+          <app-list-action-button imageUrl="assets/Trash.svg" (click)="handleActionClick('delete')"></app-list-action-button>
+          <app-list-action-button imageUrl="assets/DownloadDarkBlue.svg" (click)="handleActionClick('download')"></app-list-action-button>
+        </div>
+      </div>
+      <div class="fileInterface-body-card">
+        <app-file-card  *ngFor="let fileObject of displayedFileObjects"
+                        [fileObject]="fileObject" [cardWidth]="fileInterfaceInput.cardWidth"
+                        [cardHeight]="fileInterfaceInput.cardHeight" (checkedFilesEvent)="handleCheckedFiles($event)">
+        </app-file-card>
+      </div>
+      <app-pagination-bar
+        [paginationInput]="{ listSize: filteredFileObjects.length, sizeOptionIncrement: sizeOptionIncrement }"
+        (pageChanged)="handlePageChange($event)" #paginationBar
+      ></app-pagination-bar>
   </div>
 </div>
+

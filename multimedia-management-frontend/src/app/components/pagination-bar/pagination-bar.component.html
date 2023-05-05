@@ -13,10 +13,10 @@
     </div>
   </div>
   <div class="pagination-bar-content">
-    <p class="pagination-bar-text">Showing</p>
+    <p class="pagination-bar-text">Affichage de</p>
     <select class="pagination-bar-pages-select" [(ngModel)]="pageSize" (ngModelChange)="calculatePages()">
       <option *ngFor="let option of pageSizeOptions" [value]="option" [selected]="option === pageSize">{{ option }}</option>
     </select>
-    <p class="pagination-bar-text">of {{paginationInput.listSize}} items</p>
+    <p class="pagination-bar-text">sur {{paginationInput.listSize}} éléments</p>
   </div>
 </div>
