@@ -9,6 +9,7 @@ import stage.dcm.api.services.KeywordServices;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Random;
 
 @Service @Transactional @RequiredArgsConstructor
 public class KeywordServicesImp implements KeywordServices {
@@ -17,6 +18,8 @@ public class KeywordServicesImp implements KeywordServices {
 
     @Override
     public Keyword saveKeyword(Keyword keyword) {
+        Random random = new Random();
+        keyword.setId(Math.abs(random.nextLong()) % 100000L);
         return keywordRepository.save(keyword);
     }
 

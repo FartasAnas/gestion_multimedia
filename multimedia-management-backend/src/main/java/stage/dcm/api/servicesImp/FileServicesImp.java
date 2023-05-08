@@ -10,10 +10,12 @@ import org.springframework.web.multipart.MultipartFile;
 import stage.dcm.api.dto.NextPreviousFilesDTO;
 import stage.dcm.api.entities.Category;
 import stage.dcm.api.entities.File;
+import stage.dcm.api.entities.Keyword;
 import stage.dcm.api.entities.User;
 import stage.dcm.api.enums.FileType;
 import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.repositories.FileRepository;
+import stage.dcm.api.repositories.KeywordRepository;
 import stage.dcm.api.services.CategoryServices;
 import stage.dcm.api.services.FileServices;
 
@@ -35,6 +37,10 @@ public class FileServicesImp implements FileServices {
     private final UserServices userServices;
     private final CategoryServices categoryServices;
 
+    private final KeywordServicesImp keywordServices;
+
+    private final KeywordRepository keywordRepository;
+
     @Override
     public File saveFile(File file, MultipartFile multipartFiles) throws NotFoundException {
         Random random = new Random();
@@ -44,6 +50,16 @@ public class FileServicesImp implements FileServices {
             file.setId(Math.abs(random.nextLong()) % 10000000000L);
             file.setCategory(categoryServices.getCategory(file.getCategory()));
             String fullPath = String.join("/","users", file.getUser().getUsername(),file.getCategory().getId().toString(), file.getType().toString(),file.getId().toString(), multipartFiles.getOriginalFilename());
+            List<Keyword> newKeywords = new ArrayList<>();
+            for (Keyword keyword : file.getKeywords()) {
+                log.info("keyword: {}", keyword);
+                if (keywordRepository.findById(keyword.getId()).orElse(null) == null) {
+                    newKeywords.add(keywordServices.saveKeyword(new Keyword(null, keyword.getName())));
+                } else {
+                    newKeywords.add(keyword);
+                }
+            }
+            file.setKeywords(newKeywords);
             try {
                 minioService.upload(fullPath, multipartFiles.getInputStream());
                 file.setSize(formatFileSize(multipartFiles.getSize()));

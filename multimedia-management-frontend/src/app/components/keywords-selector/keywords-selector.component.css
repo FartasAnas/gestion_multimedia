@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 4px;
   width: 100%;
+  max-width: 532px;
 }
 .keywords-selector{
   display: flex;
@@ -57,6 +58,13 @@
 }
 .keyword-icon:hover{
   cursor: pointer;
+}
+.selected-keywords-input{
+  border: none;
+  width: fit-content;
+}
+.selected-keywords-input:focus{
+  outline: none;
 }
 .rotate{
   transform: rotate(180deg)

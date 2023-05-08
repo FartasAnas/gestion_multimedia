@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity @Data @Table(name = "keyword")
 @NoArgsConstructor @AllArgsConstructor
 public class Keyword {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
 
     @Column(nullable = false,unique = true)
