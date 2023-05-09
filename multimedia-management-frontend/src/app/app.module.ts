@@ -65,6 +65,8 @@ import {UpdateCategoryLayoutComponent} from './layouts/update-category-layout/up
 import { ConfirmationPopupMessageComponent } from './components/confirmation-popup-message/confirmation-popup-message.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListActionButtonComponent } from './components/list-action-button/list-action-button.component';
+import { RolesManagementLayoutComponent } from './layouts/roles-management-layout/roles-management-layout.component';
+import { AddRoleComponent } from './components/add-role/add-role.component';
 
 
 
@@ -117,7 +119,9 @@ import { ListActionButtonComponent } from './components/list-action-button/list-
     SwitchInputComponent,
     UpdateCategoryLayoutComponent,
     ConfirmationPopupMessageComponent,
-    ListActionButtonComponent
+    ListActionButtonComponent,
+    RolesManagementLayoutComponent,
+    AddRoleComponent
   ],
   imports: [
     BrowserModule,

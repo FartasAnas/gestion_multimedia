@@ -1,0 +1,89 @@
+<div class="add-role-bg">
+  <div class="add-role-interface">
+    <div class="add-role-interface-header">
+      <p class="add-role-interface-txt">Ajouter un nouveau rôle</p>
+      <div class="closeInterface-icon" (click)="handelCloseInterfaceClick()">
+        <img src="assets/XIcon.svg" class="svg-icon" >
+      </div>
+    </div>
+    <div class="add-role-interface-body">
+      <form (ngSubmit)="handleAddRole()">
+        <div class="input-group">
+          <label class="contentForm-label" for="name">
+            Nom
+          </label>
+          <input type="text" id="name" name="name" class="contentForm-input" [(ngModel)]="roleObject.name"/>
+        </div>
+        <div class="input-group switch-input-grp">
+          <label class="contentForm-label">
+            Statut
+          </label>
+          <div class="switch-input">
+            <app-switch-input [isChecked]="true" (toggle)="handleChangeStatus($event,'isActive')"></app-switch-input>
+          </div>
+        </div>
+        <div class="input-group">
+          <label class="contentForm-label" for="description">
+            <span>Description</span>
+            <span class="subtxt"> (facultatif)</span>
+          </label>
+          <textarea id="description" name="description" class="contentForm-input" [(ngModel)]="roleObject.description"></textarea>
+        </div>
+        <div class="input-group">
+          <p class="contentForm-label">
+            Action
+          </p>
+          <div class="action-grp">
+            <div class="row-grp">
+              <div class="input-group switch-input-grp">
+                <label class="contentForm-label">
+                  Images
+                </label>
+                <div class="switch-input">
+                  <app-switch-input [isChecked]="roleObject.action.image" (toggle)="handleChangeStatus($event,'imageAction')"></app-switch-input>
+                </div>
+              </div>
+              <div class="input-group switch-input-grp">
+                <label class="contentForm-label">
+                  Vidéos
+                </label>
+                <div class="switch-input">
+                  <app-switch-input [isChecked]="roleObject.action.video" (toggle)="handleChangeStatus($event,'videoAction')"></app-switch-input>
+                </div>
+              </div>
+            </div>
+            <div class="row-grp">
+              <div class="input-group switch-input-grp">
+                <label class="contentForm-label">
+                  Pictogrammes
+                </label>
+                <div class="switch-input">
+                  <app-switch-input [isChecked]="roleObject.action.pictogram" (toggle)="handleChangeStatus($event,'pictogramAction')"></app-switch-input>
+                </div>
+              </div>
+              <div class="input-group switch-input-grp">
+                <label class="contentForm-label">
+                  Documents
+                </label>
+                <div class="switch-input">
+                  <app-switch-input [isChecked]="roleObject.action.document" (toggle)="handleChangeStatus($event,'documentAction')"></app-switch-input>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="add-role-interface-buttons">
+          <button class="add-role-interface-btn cancelBtn" (click)="handelCloseInterfaceClick()">
+            <img src="assets/Close.svg">
+            <p class="add-role-interface-txt cancelTxt">Annuler</p>
+          </button>
+          <button type="submit" class="add-role-interface-btn" [ngClass]="{'disabled':roleObject.name===''}" [disabled]="roleObject.name===''">
+            <img src="assets/Check.svg">
+            <p class="add-role-interface-txt add-role-interface-btn-txt">Enregistrer</p>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)" transformX="-150%"></app-confirmation-popup-message>
+</div>

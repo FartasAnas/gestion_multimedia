@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import stage.dcm.api.entities.Action;
 import stage.dcm.api.entities.Role;
 import stage.dcm.api.entities.User;
 import stage.dcm.api.servicesImp.RoleServices;
@@ -41,16 +42,12 @@ public class MultimediaManagementBackendApplication {
 	CommandLineRunner run(UserServices appUserService, RoleServices roleService){
 		return args -> {
 			try {
-				roleService.saveRole(new Role(null,"ADMIN"));
-				roleService.saveRole(new Role(null,"USER"));
+				roleService.saveRole(new Role(null,"ADMIN","admin Role",new Action(null,true,true,true,true),true));
 
 				appUserService.saveUser(new User(null,"fartasanas","fartas@gmail.com","1234","fartas","anas","Digital marketing manager",new ArrayList<>(),new ArrayList<>()));
-				appUserService.saveUser(new User(null,"hajibDiae","diae@gmail.com","1234","hajib","diae","",new ArrayList<>(),new ArrayList<>()));
 
 
 				appUserService.addRoleToUser("fartasanas","ADMIN");
-				appUserService.addRoleToUser("fartasanas","USER");
-				appUserService.addRoleToUser("hajibDiae","USER");
 
 			}
 			catch (Exception e){

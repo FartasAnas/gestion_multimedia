@@ -14,7 +14,7 @@ import Category from "../../entities/Category";
 export class SideBarComponent implements OnInit{
   readonly homePage={ label: 'Accueil', icon: 'assets/House.svg', url: 'home' }
   readonly userManagement = { label: 'Utilisateurs', icon: 'assets/Users.svg' };
-  readonly rolesManagement = { label: 'Roles', icon: 'assets/GearSix.svg' };
+  readonly rolesManagement = { label: 'Roles', icon: 'assets/GearSix.svg' ,url:'roles' };
   readonly categoriesManagement = { label: 'Categories', icon: 'assets/GearSix.svg' , url:'categories' };
   readonly hostname = window.location.hostname;
   sidebarItems: SideBarItemObject[] = [];

@@ -1,0 +1,161 @@
+.add-role-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background-color: rgba(11, 40, 102,0.8) ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-role-interface{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 30px;
+  width: 532px;
+  background: #FFFFFF;
+  box-shadow: 0px 48px 64px -36px rgba(24, 24, 28, 0.13), 0px 24px 48px -8px rgba(24, 24, 28, 0.11);
+  border-radius: 12px
+}
+.add-role-interface-header{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.add-role-interface-txt{
+  font-family: 'Inter';
+  font-style: normal;
+  color: #0B2866;
+}
+.add-role-interface-header .add-role-interface-txt{
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+}
+.closeInterface-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+}
+.closeInterface-icon:hover{
+  background: #D7E3FC;
+  cursor: pointer;
+}
+.add-role-interface-body form{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.input-group{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+.contentForm-label{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.1px;
+  color: #0B2866;
+}
+.contentForm-label .subtxt{
+  color: #8D9CAD;
+  font-weight: 400;
+}
+.contentForm-input{
+  font-family: 'Inter';
+  color: #0B2866;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 8px 16px;
+  isolation: isolate;
+  background: #FFFFFF;
+  border: 1px solid #C6CED6;
+  border-radius: 4px;
+}
+#description{
+  height: 104px;
+}
+.row-grp{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  /*justify-content: space-between;*/
+}
+.switch-input{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.switch-input-grp{
+  display: flex;
+  flex-direction: row;
+}
+.switch-input-grp .contentForm-label{
+  font-weight: 500;
+}
+.action-grp .input-group{
+  display: flex;
+  justify-content: space-between;
+}
+.action-grp{
+  display: flex;
+  padding: 0px 10px;
+  flex-direction: column;
+  gap: 10px;
+}
+.add-role-interface-buttons{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap:10px;
+}
+.add-role-interface-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: 40px;
+  box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
+  border-radius: 5px;
+  gap: 8px;
+  background: #105DFB;
+  border: 1px solid #105DFB;
+}
+.add-role-interface-btn:hover:not(.cancelBtn , .disabled){
+  background: #1650CF;
+  cursor: pointer;
+}
+.cancelBtn{
+  background: #FFFFFF;
+  border: 1px solid #105DFB;
+}
+.cancelBtn:hover{
+  background: #D7E3FC;
+}
+.cancelTxt{
+  font-weight: 500;
+  color: #105DFB;
+}
+.add-role-interface-btn-txt{
+  font-weight: 500;
+  color: #FFFFFF;
+}
+.disabled{
+  background: #8D9CAD;
+  border: none;
+}

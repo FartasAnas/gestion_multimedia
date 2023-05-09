@@ -11,6 +11,7 @@ export class TableListComponent {
   @Input() tableListTitle: string='';
   @Input() columns: string[] = [];
   @Input() data: any[]=[];
+  @Input() path:string=""
   constructor(private categoryService:CategoryService,private router: Router) {
   }
   getCategoryIconUrl(categoryId:number):string{
@@ -19,6 +20,6 @@ export class TableListComponent {
 
 
   displayCategoryUpdateInterface(id: number) {
-    this.router.navigate(['categories/update/',id]);
+    this.router.navigate([this.path+'/update/',id]);
   }
 }

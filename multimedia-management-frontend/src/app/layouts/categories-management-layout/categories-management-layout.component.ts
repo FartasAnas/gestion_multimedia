@@ -11,7 +11,6 @@ export class CategoriesManagementLayoutComponent implements OnInit{
   categories:Category[]=[];
   columns: string[] = [];
   showAddCategoryInterface: boolean=false;
-  readonly hostname = window.location.hostname;
   constructor(private categoryService:CategoryService) {
   }
   ngOnInit(): void {

@@ -60,6 +60,15 @@ public class CategoryServicesImp implements CategoryServices {
         }
     }
 
+    @Override
+    public Category getCategoryByPath(String path) throws NotFoundException {
+        Category category = categoryRepository.findByPath(path.toLowerCase());
+        if(category!=null && category.getIsActive())
+            return category;
+        else
+            return null;
+    }
+
 
     @Override
     public Category getCategory(Category category) throws NotFoundException {

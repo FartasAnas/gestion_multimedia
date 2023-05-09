@@ -30,6 +30,10 @@ public class CategoryControllers {
     public ResponseEntity<Category> getCategoryById(@PathVariable Long id) throws NotFoundException {
         return new ResponseEntity<>(categoryServices.getCategoryById(id), HttpStatus.OK);
     }
+    @GetMapping("/path/{path}")
+    public ResponseEntity<Category> getCategoryByPath(@PathVariable String path) throws NotFoundException {
+        return new ResponseEntity<>(categoryServices.getCategoryByPath(path), HttpStatus.OK);
+    }
 
     @GetMapping
     public ResponseEntity<List<Category>> getAllCategories() {

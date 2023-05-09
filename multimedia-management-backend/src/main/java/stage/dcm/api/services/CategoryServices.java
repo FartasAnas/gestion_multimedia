@@ -12,6 +12,7 @@ import java.util.List;
 public interface CategoryServices {
     public Category saveCategory(Category category, MultipartFile categoryIcon);
     public Category getCategoryById(Long id) throws NotFoundException;
+    public Category getCategoryByPath(String path) throws NotFoundException;
     public Category getCategory(Category category) throws NotFoundException;
     public List<Category> getAllCategories();
     public void getCategoryIcon(Long id,HttpServletResponse response) throws NotFoundException, MinioException, IOException;
