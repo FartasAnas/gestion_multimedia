@@ -1,0 +1,180 @@
+.update-role-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 75px;
+  overflow: hidden;
+  margin: 0px 50px 0px 261px;
+}
+
+.update-role-layout-txt {
+  font-family: 'Inter';
+  font-style: normal;
+  color: #0B2866;
+}
+
+.update-role-layout-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.update-role-layout-head-btn {
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+}
+
+.cancelBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: 40px;
+  box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
+  border-radius: 5px;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid #105DFB;
+}
+
+.cancelBtn:hover {
+  background: #D7E3FC;
+  cursor: pointer;
+}
+
+.cancelTxt {
+  font-weight: 500;
+  color: #105DFB;
+}
+
+.update-role-layout-body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.update-role-layout-body-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  gap: 25px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
+  border-radius: 8px;
+}
+
+.update-role-layout-text {
+  font-family: 'Inter';
+  font-style: normal;
+  color: #0B2866;
+}
+
+.body-head {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.update-role-layout-body-input {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+}
+
+.row-grp {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 50px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  width: 100%;
+}
+
+.contentForm-label {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.contentForm-input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 8px 16px;
+  isolation: isolate;
+  background: #FFFFFF;
+  border: 1px solid #C6CED6;
+  border-radius: 4px;
+  pointer-events: none;
+  width: 100%;
+}
+
+.active-input {
+  pointer-events: auto;
+}
+
+.update-role-layout-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkbox-input-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.checkbox-label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.update-role-layout-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 30px;
+}
+
+.update-role-layout-footer-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: 40px;
+  box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
+  border-radius: 5px;
+  gap: 8px;
+  background: #105DFB;
+}
+
+.update-role-layout-footer-btn:hover {
+  background: #0B2866;
+  cursor: pointer;
+}
+
+.update-role-layout-footer-btn-txt {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #FFFFFF;
+}
+
+.update-role-layout-footer-btn-icon {
+  height: 14px;
+  width: 14px;
+}

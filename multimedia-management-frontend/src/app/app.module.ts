@@ -67,6 +67,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListActionButtonComponent } from './components/list-action-button/list-action-button.component';
 import { RolesManagementLayoutComponent } from './layouts/roles-management-layout/roles-management-layout.component';
 import { AddRoleComponent } from './components/add-role/add-role.component';
+import { UpdateRoleLayoutComponent } from './layouts/update-role-layout/update-role-layout.component';
+import { GoBackComponent } from './components/go-back/go-back.component';
 
 
 
@@ -121,7 +123,9 @@ import { AddRoleComponent } from './components/add-role/add-role.component';
     ConfirmationPopupMessageComponent,
     ListActionButtonComponent,
     RolesManagementLayoutComponent,
-    AddRoleComponent
+    AddRoleComponent,
+    UpdateRoleLayoutComponent,
+    GoBackComponent
   ],
   imports: [
     BrowserModule,

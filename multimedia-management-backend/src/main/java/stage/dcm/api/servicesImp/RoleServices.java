@@ -1,6 +1,7 @@
 package stage.dcm.api.servicesImp;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import stage.dcm.api.entities.Role;
 import stage.dcm.api.repositories.ActionRepository;
@@ -28,13 +29,18 @@ public class RoleServices {
     }
 
     public List<Role> getAllRoles() {
-        return roleRepository.findAll();
+        return roleRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     //put Methods
     public Role updateRole(Long id, Role role) {
         Role roleToUpdate = roleRepository.findById(id).orElse(null);
         roleToUpdate.setName( role.getName()!=null ? role.getName() : roleToUpdate.getName() );
+        roleToUpdate.setDescription(role.getDescription()!=null ? role.getDescription() : roleToUpdate.getDescription());
+        roleToUpdate.setAction(role.getAction()!=null ? role.getAction() : roleToUpdate.getAction());
+        if(role.getAction()!=null) {
+            roleToUpdate.setAction(actionRepository.save(role.getAction()));
+        }
         return roleRepository.save(roleToUpdate);
     }
 

@@ -16,4 +16,12 @@ export class RoleService {
   saveRole(role:Role):Observable<Role>{
     return this.http.post<Role>(`${this.apiUrl}/add`,role);
   }
+
+  getRoleById(id: number):Observable<Role> {
+    return this.http.get<Role>(`${this.apiUrl}/${id}`);
+  }
+
+  updateRole(role: Role):Observable<Role>{
+    return this.http.put<Role>(`${this.apiUrl}/update/${role.id}`,role);
+  }
 }

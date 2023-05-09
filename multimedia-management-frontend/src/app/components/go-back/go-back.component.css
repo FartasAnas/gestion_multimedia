@@ -1,0 +1,14 @@
+.go-back{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  text-decoration-color: #105DFB;
+}
+.go-back .update-category-layout-text{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #105DFB;
+
+}
