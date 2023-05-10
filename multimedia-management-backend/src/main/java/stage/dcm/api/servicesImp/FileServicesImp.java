@@ -8,10 +8,7 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import stage.dcm.api.dto.NextPreviousFilesDTO;
-import stage.dcm.api.entities.Category;
-import stage.dcm.api.entities.File;
-import stage.dcm.api.entities.Keyword;
-import stage.dcm.api.entities.User;
+import stage.dcm.api.entities.*;
 import stage.dcm.api.enums.FileType;
 import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.repositories.FileRepository;
@@ -42,9 +39,10 @@ public class FileServicesImp implements FileServices {
     private final KeywordRepository keywordRepository;
 
     @Override
-    public File saveFile(File file, MultipartFile multipartFiles) throws NotFoundException {
+    public File saveFile(File file, MultipartFile multipartFiles) throws NotFoundException, IllegalStateException {
         Random random = new Random();
-        file.setUser(userServices.getUserByUsername(file.getCreatedBy()));
+        User createdBy=userServices.getUserByUsername(file.getCreatedBy());
+        file.setUser(createdBy);
         log.info("file category: {}",file.getCategory());
         if(file.getUser()!=null) {
             file.setId(Math.abs(random.nextLong()) % 10000000000L);
@@ -60,6 +58,12 @@ public class FileServicesImp implements FileServices {
                 }
             }
             file.setKeywords(newKeywords);
+
+            // Check if user has permission to add file type
+            if (!hasPermissionToAddFileType(createdBy.getRoles(), file.getType())) {
+                throw new IllegalStateException("User does not have permission to add this file type");
+            }
+
             try {
                 minioService.upload(fullPath, multipartFiles.getInputStream());
                 file.setSize(formatFileSize(multipartFiles.getSize()));
@@ -73,7 +77,26 @@ public class FileServicesImp implements FileServices {
             throw new NotFoundException("User not found");
         }
     }
-
+    private boolean hasPermissionToAddFileType(Collection<Role> roles, FileType fileType) {
+        for (Role role : roles) {
+            if(role.getIsActive()){
+                Action action = role.getAction();
+                switch (fileType) {
+                    case IMAGE:
+                        return action.isImage();
+                    case VIDEO:
+                        return action.isVideo();
+                    case PICTOGRAM:
+                        return action.isPictogram();
+                    case DOCUMENT:
+                        return action.isDocument();
+                    default:
+                        break;
+                }
+            }
+        }
+        return false;
+    }
     @Override
     public Long countFilesByType(String createdBy,String type) {
         return fileRepository.countByCreatedByAndType(createdBy,FileType.valueOf(type.toUpperCase()));

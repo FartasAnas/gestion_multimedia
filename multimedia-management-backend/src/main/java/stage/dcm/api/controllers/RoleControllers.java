@@ -22,6 +22,11 @@ public class RoleControllers {
         return roleServices.getRoleById(id);
     }
 
+    @GetMapping("/name/{name}")
+    public Role getRoleByName(@PathVariable String name) {
+        return roleServices.getRoleByName(name);
+    }
+
     @GetMapping("")
     public List<Role> getAllRoles() {
         return roleServices.getAllRoles();

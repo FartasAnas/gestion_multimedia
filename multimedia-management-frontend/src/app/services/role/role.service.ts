@@ -20,6 +20,9 @@ export class RoleService {
   getRoleById(id: number):Observable<Role> {
     return this.http.get<Role>(`${this.apiUrl}/${id}`);
   }
+  getRoleByName(name: string):Observable<Role> {
+    return this.http.get<Role>(`${this.apiUrl}/name/${name}`);
+  }
 
   updateRole(role: Role):Observable<Role>{
     return this.http.put<Role>(`${this.apiUrl}/update/${role.id}`,role);

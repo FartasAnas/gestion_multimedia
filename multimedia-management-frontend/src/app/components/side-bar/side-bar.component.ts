@@ -39,18 +39,35 @@ export class SideBarComponent implements OnInit{
     });
   }
   private createSidebarItems(categories: Category[]): SideBarItemObject[] {
-    return categories
+    const sidebarItems: SideBarItemObject[] = categories
       .filter(category => category.isActive)
       .map(category => ({
-        content: { id: category.id,label: category.label, icon:this.getCategoryIconUrl(category.id as number), url: category.path },
+        content: { id: category.id, label: category.label, icon: this.getCategoryIconUrl(category.id as number), url: category.path },
         hasChildren: true,
-        children: [
-          { content: { id: category.id,label: 'Images', icon: 'assets/ImageSquare.svg', url: `${category.path}/images` } },
-          { content: { id: category.id,label: 'Vidéos', icon: 'assets/Video.svg', url: `${category.path}/videos` } },
-          { content: { id: category.id,label: 'Pictos', icon: 'assets/Person.svg', url: `${category.path}/pictos` } },
-          { content: { id: category.id,label: 'Documents', icon: 'assets/FileDoc.svg', url: `${category.path}/documents` } },
-        ],
+        children: [],
       }));
+
+    const role = this.userStorage.getRole();
+    role.subscribe(role => {
+      sidebarItems.forEach(sidebarItem => {
+        const children = [];
+        if (role.action.image) {
+          children.push({ content: { id: sidebarItem.content.id, label: 'Images', icon: 'assets/ImageSquare.svg', url: `${sidebarItem.content.url}/images` } });
+        }
+        if (role.action.video) {
+          children.push({ content: { id: sidebarItem.content.id, label: 'Vidéos', icon: 'assets/Video.svg', url: `${sidebarItem.content.url}/videos` } });
+        }
+        if (role.action.pictogram) {
+          children.push({ content: { id: sidebarItem.content.id, label: 'Pictos', icon: 'assets/Person.svg', url: `${sidebarItem.content.url}/pictos` } });
+        }
+        if (role.action.document) {
+          children.push({ content: { id: sidebarItem.content.id, label: 'Documents', icon: 'assets/FileDoc.svg', url: `${sidebarItem.content.url}/documents` } });
+        }
+        sidebarItem.children = children;
+      });
+    });
+
+    return sidebarItems;
   }
   handleFooterChildClick(action:'profile'|'logout') {
     if(action==='profile'){

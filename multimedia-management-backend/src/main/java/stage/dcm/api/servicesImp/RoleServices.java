@@ -28,6 +28,10 @@ public class RoleServices {
         return roleRepository.findById(id).orElse(null);
     }
 
+    public Role getRoleByName(String name) {
+        return roleRepository.findByNameIgnoreCase(name);
+    }
+
     public List<Role> getAllRoles() {
         return roleRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
@@ -37,7 +41,7 @@ public class RoleServices {
         Role roleToUpdate = roleRepository.findById(id).orElse(null);
         roleToUpdate.setName( role.getName()!=null ? role.getName() : roleToUpdate.getName() );
         roleToUpdate.setDescription(role.getDescription()!=null ? role.getDescription() : roleToUpdate.getDescription());
-        roleToUpdate.setAction(role.getAction()!=null ? role.getAction() : roleToUpdate.getAction());
+        roleToUpdate.setIsActive(role.getIsActive()!=null ? role.getIsActive() : roleToUpdate.getIsActive());
         if(role.getAction()!=null) {
             roleToUpdate.setAction(actionRepository.save(role.getAction()));
         }

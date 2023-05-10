@@ -19,7 +19,7 @@
             Statut
           </label>
           <div class="switch-input">
-            <app-switch-input [isChecked]="true" (toggle)="handleChangeStatus($event,'isActive')"></app-switch-input>
+            <app-switch-input [isChecked]="roleObject.isActive" (toggle)="handleChangeStatus($event,'isActive')"></app-switch-input>
           </div>
         </div>
         <div class="input-group">

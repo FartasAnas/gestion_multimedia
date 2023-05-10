@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
 import StorageObject from "../../entities/StorageObject";
+import Role from "../../entities/Role";
+import {RoleService} from "../role/role.service";
+import {Observable} from "rxjs";
 
 const USER_KEY = 'auth-user';
 @Injectable({
@@ -7,7 +10,7 @@ const USER_KEY = 'auth-user';
 })
 export class UserStorageService {
 
-  constructor() { }
+  constructor(private roleService:RoleService) { }
 
   public saveUser(user:StorageObject):void{
     window.sessionStorage.removeItem(USER_KEY)
@@ -31,6 +34,10 @@ export class UserStorageService {
       return JSON.parse(user).username;
     }
     return ""
+  }
+  public getRole():Observable<Role>{
+    const user = sessionStorage.getItem(USER_KEY);
+    return  this.roleService.getRoleByName(JSON.parse(user as string).roles[0].authority)
   }
   public getFullName():string{
     const user = sessionStorage.getItem(USER_KEY);

@@ -8,6 +8,7 @@ import {VideosLayoutComponent} from "./layouts/videos-layout/videos-layout.compo
 import {DocumentsLayoutComponent} from "./layouts/documents-layout/documents-layout.component";
 import {PictosLayoutComponent} from "./layouts/pictos-layout/pictos-layout.component";
 import {FileDetailsLayoutComponent} from "./layouts/file-details-layout/file-details-layout.component";
+import {RoleGuard} from "./guards/role-guard/role.guard";
 
 @Component({
   selector: 'app-root',
@@ -31,11 +32,11 @@ export class AppComponent implements OnInit {
     const routes :Route[]= [];
     this.categories.filter(category => category.isActive).forEach(category => {
       const children: Route[] = [
-        { path: 'images', component: ImagesLayoutComponent },
-        { path: 'videos', component: VideosLayoutComponent },
-        { path: 'pictos', component: PictosLayoutComponent },
-        { path: 'documents', component: DocumentsLayoutComponent },
-        { path: 'file/:id', component: FileDetailsLayoutComponent }
+        { path: 'images', component: ImagesLayoutComponent , canActivate: [RoleGuard]},
+        { path: 'videos', component: VideosLayoutComponent , canActivate: [RoleGuard]},
+        { path: 'pictos', component: PictosLayoutComponent , canActivate: [RoleGuard]},
+        { path: 'documents', component: DocumentsLayoutComponent , canActivate: [RoleGuard]},
+        { path: 'file/:id', component: FileDetailsLayoutComponent , canActivate: [RoleGuard]}
       ];
 
       const categoryRoute: Route = {

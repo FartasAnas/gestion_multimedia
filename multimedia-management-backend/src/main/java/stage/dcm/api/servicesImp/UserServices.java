@@ -27,7 +27,7 @@ public class UserServices {
     }
     public void addRoleToUser(String username, String roleName)  {
         User User = userRepository.findByUsername(username.toLowerCase());
-        Role role = roleRepository.findByName(roleName);
+        Role role = roleRepository.findByNameIgnoreCase(roleName);
 
         if(User == null || role == null) {
             throw new RuntimeException();

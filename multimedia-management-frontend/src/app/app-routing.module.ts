@@ -7,16 +7,17 @@ import {CategoriesManagementLayoutComponent} from "./layouts/categories-manageme
 import {UpdateCategoryLayoutComponent} from "./layouts/update-category-layout/update-category-layout.component";
 import {RolesManagementLayoutComponent} from "./layouts/roles-management-layout/roles-management-layout.component";
 import {UpdateRoleLayoutComponent} from "./layouts/update-role-layout/update-role-layout.component";
+import {RoleGuard} from "./guards/role-guard/role.guard";
 
 const routes: Routes = [
-  { path: '', component: LoginLayoutComponent },
+  { path: '', component: LoginLayoutComponent},
   { path: 'home', component: HomePageComponent },
   { path: 'profile', component: ProfileLayoutComponent },
   { path: 'categories', component: CategoriesManagementLayoutComponent },
   { path: 'categories/update/:id', component: UpdateCategoryLayoutComponent },
   { path: 'roles', component: RolesManagementLayoutComponent },
   { path: 'roles/update/:id', component: UpdateRoleLayoutComponent },
-  // { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
