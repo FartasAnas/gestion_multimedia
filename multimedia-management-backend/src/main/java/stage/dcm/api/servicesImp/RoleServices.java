@@ -58,21 +58,31 @@ public class RoleServices {
     //put Methods
     public Role updateRole(Long id, Role role) throws NotFoundException {
         Role roleToUpdate = roleRepository.findById(id).orElse(null);
-        roleToUpdate.setName( role.getName()!=null ? role.getName() : roleToUpdate.getName() );
-        roleToUpdate.setDescription(role.getDescription()!=null ? role.getDescription() : roleToUpdate.getDescription());
-        roleToUpdate.setIsActive(role.getIsActive()!=null ? role.getIsActive() : roleToUpdate.getIsActive());
-        if(role.getActions().size()>0) {
-            for(Action action: role.getActions()){
+        roleToUpdate.setName(role.getName() != null ? role.getName() : roleToUpdate.getName());
+        roleToUpdate.setDescription(role.getDescription() != null ? role.getDescription() : roleToUpdate.getDescription());
+        roleToUpdate.setIsActive(role.getIsActive() != null ? role.getIsActive() : roleToUpdate.getIsActive());
+
+        // Iterate through roleToUpdate actions and remove any that are not present in role actions
+        List<Action> actionsToRemove = new ArrayList<>();
+        for (Action action : roleToUpdate.getActions()) {
+            if (!role.getActions().contains(action)) {
+                actionsToRemove.add(action);
+            }
+        }
+        roleToUpdate.getActions().removeAll(actionsToRemove);
+        actionRepository.deleteAll(actionsToRemove);
+
+        if (role.getActions().size() > 0) {
+            for (Action action : role.getActions()) {
                 Action actionToUpdate = actionRepository.findById(action.getId()).orElse(null);
-                if(actionToUpdate!=null) {
+                if (actionToUpdate != null) {
                     actionToUpdate.setImage(action.isImage());
                     actionToUpdate.setVideo(action.isVideo());
                     actionToUpdate.setPictogram(action.isPictogram());
                     actionToUpdate.setDocument(action.isDocument());
                     actionRepository.save(actionToUpdate);
-                }
-                else {
-                    if (action.getCategory()==null){
+                } else {
+                    if (action.getCategory() == null) {
                         throw new NotFoundException("Category not found");
                     }
                     action.setCategory(categoryServices.getCategory(action.getCategory()));
@@ -80,6 +90,9 @@ public class RoleServices {
                     roleToUpdate.getActions().add(action);
                 }
             }
+        } else {
+            roleToUpdate.getActions().clear();
+            actionRepository.deleteAll(roleToUpdate.getActions());
         }
         return roleRepository.save(roleToUpdate);
     }
@@ -87,10 +100,6 @@ public class RoleServices {
 
     //delete Methods
     public void deleteRole(Long id) {
-        Role roleToDelete = roleRepository.findById(id).orElse(null);
-//        for(Action action : roleToDelete.getActions()){
-//            actionRepository.deleteById(action.getId());
-//        }
-        roleRepository.delete(roleToDelete);
+        roleRepository.deleteById(id);
     }
 }

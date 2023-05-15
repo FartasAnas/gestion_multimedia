@@ -34,7 +34,7 @@ export class RoleCategoryListComponent implements OnInit{
     this.hoveredCategory=this.hoveredCategory!==category?category:undefined;
   }
   isCategorySelected(category: Category) {
-    if((this.roleObject as Role).actions.find(action=>action.category.id===category.id)){
+    if((this.roleObject as Role).actions.find(action=>action.category.id===category.id && (action.image || action.video || action.pictogram || action.document))){
       return true
     }
     return false
@@ -64,7 +64,7 @@ export class RoleCategoryListComponent implements OnInit{
     }
   }
   handleChangeStatus(status: boolean, attributeName: 'imageAction'|'videoAction'|'pictogramAction'|'documentAction',category:Category) {
-    if(!((this.roleObject as Role).actions.find(action=>action.category.id===category.id)) && (this.roleObject as Role).actions.length===0){
+    if(!((this.roleObject as Role).actions.find(action=>action.category.id===category.id))){
       const action = {
         id: new Date().getTime(),
         category: category,
@@ -91,6 +91,11 @@ export class RoleCategoryListComponent implements OnInit{
         break;
       default:
         break;
+    }
+    if((this.roleObject as Role).actions.find(action=>!(action.image || action.video || action.pictogram || action.document))){
+        (this.roleObject as Role).actions = (this.roleObject as Role).actions.filter(
+            (action) => action.category.id !== category.id
+        );
     }
   }
 

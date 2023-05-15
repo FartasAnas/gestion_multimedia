@@ -34,6 +34,8 @@ export class UpdateRoleLayoutComponent implements OnInit{
   handleUpdateBtn() {
 
     if(this.isUpdating){
+      console.log(this.roleObject)
+      console.table(this.roleObject?.actions)
         this.roleService.updateRole(this.roleObject as Role).subscribe(data=>{
             this.isUpdating=false
             this.roleObjectInitialValue= {...this.roleObject} as Role;
@@ -49,9 +51,9 @@ export class UpdateRoleLayoutComponent implements OnInit{
   }
   handleConfirmation(confirmed: boolean) {
     if(confirmed){
-      // this.roleService.deleteRole((this.roleObject as Role).id as number).subscribe(data=>{
-      //   this.router.navigate(['/roles'])
-      // })
+      this.roleService.deleteRole((this.roleObject as Role).id as number).subscribe(data=>{
+        this.router.navigate(['/roles'])
+      })
     }
     this.showConfirmation = false;
   }
