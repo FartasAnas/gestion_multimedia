@@ -19,59 +19,17 @@
             Statut
           </label>
           <div class="switch-input">
-            <app-switch-input [isChecked]="roleObject.isActive" (toggle)="handleChangeStatus($event,'isActive')"></app-switch-input>
+            <app-switch-input [isChecked]="roleObject.isActive" (toggle)="roleObject.isActive=$event"></app-switch-input>
           </div>
         </div>
         <div class="input-group">
           <label class="contentForm-label" for="description">
-            <span>Description</span>
+            <span>Descriptions</span>
             <span class="subtxt"> (facultatif)</span>
           </label>
           <textarea id="description" name="description" class="contentForm-input" [(ngModel)]="roleObject.description"></textarea>
         </div>
-        <div class="input-group">
-          <p class="contentForm-label">
-            Actions autorisées
-          </p>
-          <div class="action-grp">
-            <div class="row-grp">
-              <div class="input-group switch-input-grp">
-                <label class="contentForm-label">
-                  Images
-                </label>
-                <div class="switch-input">
-                  <app-switch-input [isChecked]="roleObject.action.image" (toggle)="handleChangeStatus($event,'imageAction')"></app-switch-input>
-                </div>
-              </div>
-              <div class="input-group switch-input-grp">
-                <label class="contentForm-label">
-                  Vidéos
-                </label>
-                <div class="switch-input">
-                  <app-switch-input [isChecked]="roleObject.action.video" (toggle)="handleChangeStatus($event,'videoAction')"></app-switch-input>
-                </div>
-              </div>
-            </div>
-            <div class="row-grp">
-              <div class="input-group switch-input-grp">
-                <label class="contentForm-label">
-                  Pictogrammes
-                </label>
-                <div class="switch-input">
-                  <app-switch-input [isChecked]="roleObject.action.pictogram" (toggle)="handleChangeStatus($event,'pictogramAction')"></app-switch-input>
-                </div>
-              </div>
-              <div class="input-group switch-input-grp">
-                <label class="contentForm-label">
-                  Documents
-                </label>
-                <div class="switch-input">
-                  <app-switch-input [isChecked]="roleObject.action.document" (toggle)="handleChangeStatus($event,'documentAction')"></app-switch-input>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <app-role-category-list [roleObject]="roleObject"></app-role-category-list>
         <div class="add-role-interface-buttons">
           <button class="add-role-interface-btn cancelBtn" (click)="handelCloseInterfaceClick()">
             <img src="assets/Close.svg">
@@ -85,5 +43,5 @@
       </form>
     </div>
   </div>
-  <app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)" transformX="-150%"></app-confirmation-popup-message>
+  <app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)"></app-confirmation-popup-message>
 </div>

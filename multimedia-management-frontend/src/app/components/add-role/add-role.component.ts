@@ -1,61 +1,37 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import Role from "../../entities/Role";
 import {RoleService} from "../../services/role/role.service";
+import Category from "../../entities/Category";
+import {CategoryService} from "../../services/category/category.service";
+import {Action} from "rxjs/internal/scheduler/Action";
 
 @Component({
   selector: 'app-add-role',
   templateUrl: './add-role.component.html',
   styleUrls: ['./add-role.component.css']
 })
-export class AddRoleComponent {
+export class AddRoleComponent{
   @Output() closeInterface = new EventEmitter<boolean>();
   showConfirmation = false;
   roleObjectInitialValue:Role={
     name:'',
     description:'',
-    action:{
-      image:false,
-      video:false,
-      pictogram:false,
-      document:false
-    },
+    actions:[],
     isActive:true
   }
   roleObject:Role
-  constructor(private roleService:RoleService) {
+  hoveredCategory?:Category
+  showActions= false;
+  constructor(private roleService:RoleService,private categoryService:CategoryService) {
     this.roleObject={...this.roleObjectInitialValue};
   }
   handelCloseInterfaceClick() {
     this.closeInterface.emit(false);
     this.roleObject={...this.roleObjectInitialValue};
   }
-
-  handleChangeStatus(status: boolean, attributeName: 'isActive'|'imageAction'|'videoAction'|'pictogramAction'|'documentAction') {
-    switch (attributeName) {
-      case 'isActive':
-        this.roleObject.isActive = status;
-        break;
-      case 'imageAction':
-        this.roleObject.action.image = status;
-        break;
-      case 'videoAction':
-        this.roleObject.action.video = status;
-        break;
-      case 'pictogramAction':
-        this.roleObject.action.pictogram = status;
-        break;
-      case 'documentAction':
-        this.roleObject.action.document = status;
-        break;
-      default:
-        break;
-    }
-  }
-
   handleAddRole() {
     this.showConfirmation = true;
   }
-
   handleConfirmation(confirmed: boolean) {
     if(confirmed){
       this.roleService.saveRole(this.roleObject).subscribe(
@@ -65,4 +41,5 @@ export class AddRoleComponent {
     }
     this.showConfirmation = false;
   }
+
 }

@@ -1,0 +1,52 @@
+<div class="role-category-list">
+  <div class="input-group " *ngFor="let category of categories">
+    <div class="add-role-category" (click)="handleHoveredCategory(category)">
+      <div class="add-role-category-info">
+        <img src="assets/ArrowLineRight3.svg" [ngClass]="{'selected':hoveredCategory===category}">
+        <p class="add-role-interface-txt">
+          {{category.label | titlecase}}
+        </p>
+      </div>
+      <app-switch-input [isChecked]="isCategorySelected(category)" [isDisabled]="isDisabled" (toggle)="handleSelectedCategories($event,category)"></app-switch-input>
+    </div>
+
+    <div class="action-grp" [ngClass]="{'selected':hoveredCategory===category}">
+      <div class="row-grp">
+        <div class="input-group switch-input-grp">
+          <label class="contentForm-label">
+            Images
+          </label>
+          <div class="switch-input">
+            <app-switch-input [isChecked]="isActionSelected(category,'image')" [isDisabled]="isDisabled" (toggle)="handleChangeStatus($event,'imageAction',category)"></app-switch-input>
+          </div>
+        </div>
+        <div class="input-group switch-input-grp">
+          <label class="contentForm-label">
+            Vidéos
+          </label>
+          <div class="switch-input">
+            <app-switch-input [isChecked]="isActionSelected(category,'video')" [isDisabled]="isDisabled" (toggle)="handleChangeStatus($event,'videoAction',category)"></app-switch-input>
+          </div>
+        </div>
+      </div>
+      <div class="row-grp">
+        <div class="input-group switch-input-grp">
+          <label class="contentForm-label">
+            Pictogrammes
+          </label>
+          <div class="switch-input">
+            <app-switch-input [isChecked]="isActionSelected(category,'pictogram')" [isDisabled]="isDisabled" (toggle)="handleChangeStatus($event,'pictogramAction',category)"></app-switch-input>
+          </div>
+        </div>
+        <div class="input-group switch-input-grp">
+          <label class="contentForm-label">
+            Documents
+          </label>
+          <div class="switch-input">
+            <app-switch-input [isChecked]="isActionSelected(category,'document')" [isDisabled]="isDisabled" (toggle)="handleChangeStatus($event,'documentAction',category)"></app-switch-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

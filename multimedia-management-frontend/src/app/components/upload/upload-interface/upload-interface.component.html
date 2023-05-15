@@ -13,14 +13,14 @@
     </div>
     <div *ngIf="currentStep=='Step2' && fileType!=='Category'" >
       <app-upload-interface-step2 (selectedKeywordsEvent)="handleSelectedKeywords($event)" [fileType]="fileType" [fileObject]="fileType!=='Category'?fileObject:categoryObject" (fileObjectChange)="handleFileObjectChange($event)"></app-upload-interface-step2>
-      <app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)" transformX="60%"></app-confirmation-popup-message>
+      <app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)"></app-confirmation-popup-message>
     </div>
     <div *ngIf="currentStep=='Step1' && fileType==='Category'" >
       <app-upload-interface-step2 (selectedKeywordsEvent)="handleSelectedKeywords($event)" [fileType]="fileType" [fileObject]="fileType!=='Category'?fileObject:categoryObject" (fileObjectChange)="handleFileObjectChange($event)"></app-upload-interface-step2>
     </div>
     <div *ngIf="currentStep=='Step2'&& fileType==='Category'">
       <app-upload-interface-step1 [selectedFile]="selectedFile" [fileType]="fileType" (fileEvent)="handleFileEvent($event)"></app-upload-interface-step1>
-      <app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)" transformX="60%"></app-confirmation-popup-message>
+      <app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)"></app-confirmation-popup-message>
     </div>
     <div class="uploadInterface-footer">
       <button class="uploadInterfaceFooter-btn cancelBtn" (click)="handelCloseInterfaceClick()">

@@ -69,6 +69,7 @@ import { RolesManagementLayoutComponent } from './layouts/roles-management-layou
 import { AddRoleComponent } from './components/add-role/add-role.component';
 import { UpdateRoleLayoutComponent } from './layouts/update-role-layout/update-role-layout.component';
 import { GoBackComponent } from './components/go-back/go-back.component';
+import { RoleCategoryListComponent } from './components/role-category-list/role-category-list.component';
 
 
 
@@ -125,7 +126,8 @@ import { GoBackComponent } from './components/go-back/go-back.component';
     RolesManagementLayoutComponent,
     AddRoleComponent,
     UpdateRoleLayoutComponent,
-    GoBackComponent
+    GoBackComponent,
+    RoleCategoryListComponent
   ],
   imports: [
     BrowserModule,

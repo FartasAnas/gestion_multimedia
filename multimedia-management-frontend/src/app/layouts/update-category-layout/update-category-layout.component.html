@@ -8,6 +8,10 @@
         <img src="assets/Close.svg">
         <p class="update-category-layout-text cancelTxt">Annuler</p>
       </button>
+      <button class="deleteBtn" *ngIf="isUpdating" (click)="showConfirmation=true">
+        <img src="assets/TrashWhite.svg">
+        <p class="update-role-layout-txt deleteBtnTxt">Delete</p>
+      </button>
       <app-button [btnText]="!isUpdating ?'Modifier la catégorie':'Enregistrer'"
                   [btnIconUrl]="!isUpdating ? 'assets/PencilSimpleLineWhite.svg':'assets/Check.svg'" (click)="handleUpdateBtn()"></app-button>
     </div>
@@ -50,3 +54,4 @@
     </div>
   </div>
 </div>
+<app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)"></app-confirmation-popup-message>

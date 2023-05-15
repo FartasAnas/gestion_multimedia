@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import Role from "../../entities/Role";
 import {RoleService} from "../../services/role/role.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-update-role-layout',
@@ -12,7 +12,8 @@ export class UpdateRoleLayoutComponent implements OnInit{
   isUpdating=false;
   roleObject?:Role;
   roleObjectInitialValue?:Role;
-  constructor(private roleService:RoleService,private activatedRoute: ActivatedRoute) {
+  showConfirmation = false;
+  constructor(private roleService:RoleService,private activatedRoute: ActivatedRoute,private router:Router) {
   }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -31,6 +32,7 @@ export class UpdateRoleLayoutComponent implements OnInit{
   }
 
   handleUpdateBtn() {
+
     if(this.isUpdating){
         this.roleService.updateRole(this.roleObject as Role).subscribe(data=>{
             this.isUpdating=false
@@ -39,26 +41,18 @@ export class UpdateRoleLayoutComponent implements OnInit{
     }
     this.isUpdating=true
   }
-  handleChangeAction(status: boolean, attributeName: 'isActive'|'imageAction'|'videoAction'|'pictogramAction'|'documentAction') {
-    switch (attributeName) {
-      case 'isActive':
-        (this.roleObject as Role).isActive = status;
-        break;
-      case 'imageAction':
-        (this.roleObject as Role).action.image = status;
-        break;
-      case 'videoAction':
-        (this.roleObject as Role).action.video = status;
-        break;
-      case 'pictogramAction':
-        (this.roleObject as Role).action.pictogram = status;
-        break;
-      case 'documentAction':
-        (this.roleObject as Role).action.document = status;
-        break;
-      default:
-        break;
-    }
-  }
 
+  handleDeleteRole() {
+    this.roleService.deleteRole((this.roleObject as Role).id as number).subscribe(data=>{
+      this.router.navigate(['/roles'])
+    })
+  }
+  handleConfirmation(confirmed: boolean) {
+    if(confirmed){
+      // this.roleService.deleteRole((this.roleObject as Role).id as number).subscribe(data=>{
+      //   this.router.navigate(['/roles'])
+      // })
+    }
+    this.showConfirmation = false;
+  }
 }

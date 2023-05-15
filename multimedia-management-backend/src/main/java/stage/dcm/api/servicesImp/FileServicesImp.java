@@ -60,7 +60,7 @@ public class FileServicesImp implements FileServices {
             file.setKeywords(newKeywords);
 
             // Check if user has permission to add file type
-            if (!hasPermissionToAddFileType(createdBy.getRoles(), file.getType())) {
+            if (!hasPermissionToAddFileType(createdBy.getRoles(), file.getType(), file.getCategory())) {
                 throw new IllegalStateException("User does not have permission to add this file type");
             }
 
@@ -77,22 +77,26 @@ public class FileServicesImp implements FileServices {
             throw new NotFoundException("User not found");
         }
     }
-    private boolean hasPermissionToAddFileType(Collection<Role> roles, FileType fileType) {
+    private boolean hasPermissionToAddFileType(Collection<Role> roles, FileType fileType , Category category) {
         for (Role role : roles) {
             if(role.getIsActive()){
-                Action action = role.getAction();
-                switch (fileType) {
-                    case IMAGE:
-                        return action.isImage();
-                    case VIDEO:
-                        return action.isVideo();
-                    case PICTOGRAM:
-                        return action.isPictogram();
-                    case DOCUMENT:
-                        return action.isDocument();
-                    default:
-                        break;
+                for (Action action:role.getActions()){
+                    if(action.getCategory().getId().equals(category.getId())){
+                        switch (fileType) {
+                            case IMAGE:
+                                return action.isImage();
+                            case VIDEO:
+                                return action.isVideo();
+                            case PICTOGRAM:
+                                return action.isPictogram();
+                            case DOCUMENT:
+                                return action.isDocument();
+                            default:
+                                break;
+                        }
+                    }
                 }
+
             }
         }
         return false;

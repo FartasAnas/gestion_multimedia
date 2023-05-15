@@ -1,0 +1,73 @@
+.input-group{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+.contentForm-label{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.1px;
+  color: #0B2866;
+}
+.row-grp{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.switch-input{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.switch-input-grp{
+  display: flex;
+  flex-direction: row;
+}
+.switch-input-grp .contentForm-label{
+  font-weight: 500;
+}
+.action-grp .input-group{
+  display: flex;
+  justify-content: space-between;
+}
+.action-grp{
+  display: none;
+  padding: 0px 10px;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.action-grp.selected{
+  display: flex;
+}
+img.selected{
+  rotate: 90deg;
+}
+.role-category-list{
+  overflow: hidden;
+  border-radius: 12px;
+}
+.add-role-category-info{
+  display: flex;
+  flex-direction: row;
+  gap: 34px;
+}
+.add-role-category{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 30px 0px 16px;
+  height: 64px;
+  background: #105DFB;
+}
+.add-role-category .add-role-interface-txt{
+  font-weight: 600;
+  font-size: 14px;
+  color: #FFFFFF;
+}

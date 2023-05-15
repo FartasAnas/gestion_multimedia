@@ -7,7 +7,6 @@ import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
 })
 export class ConfirmationPopupMessageComponent {
   @Output() confirmed = new EventEmitter<boolean>();
-  @Input() transformX:string=''
   constructor() { }
 
   onNoClick(): void {

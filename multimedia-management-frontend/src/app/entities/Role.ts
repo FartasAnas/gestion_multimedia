@@ -1,13 +1,9 @@
+import Action from "./Action";
+
 export default interface Role {
   id?:number
   name:string
   description:string
-  action:{
-    id?:number
-    image:boolean
-    video:boolean
-    pictogram:boolean
-    document:boolean
-  }
+  actions:Action[]
   isActive:boolean
 }

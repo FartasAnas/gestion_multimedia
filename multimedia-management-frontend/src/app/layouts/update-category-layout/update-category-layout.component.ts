@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import Category from "../../entities/Category";
 import {NgForm} from "@angular/forms";
 import {CategoryService} from "../../services/category/category.service";
@@ -16,7 +16,8 @@ export class UpdateCategoryLayoutComponent implements OnInit{
   categoryObject?:Category
   categoryStatus:boolean=false
   @ViewChild('updateCategoryForm') updateCategoryForm!: NgForm;
-  constructor(private categoryService:CategoryService,private activatedRoute: ActivatedRoute) {
+  showConfirmation=false;
+  constructor(private categoryService:CategoryService,private activatedRoute: ActivatedRoute,private router:Router) {
   }
 
   handleUpdateBtn() {
@@ -71,5 +72,14 @@ export class UpdateCategoryLayoutComponent implements OnInit{
     if(this.isUpdating){
       this.categoryStatus=status;
     }
+  }
+
+  handleConfirmation(confirmed: boolean) {
+    if(confirmed){
+      this.categoryService.deleteCategory((this.categoryObject as Category).id).subscribe(data=>{
+        this.router.navigate(['/categories'])
+      })
+    }
+    this.showConfirmation = false;
   }
 }

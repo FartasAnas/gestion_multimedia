@@ -1,19 +1,21 @@
 package stage.dcm.api.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import stage.dcm.api.entities.Role;
+import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.servicesImp.RoleServices;
 
 import java.util.List;
 
-@RestController @RequestMapping("/roles")
+@RestController @RequestMapping("/roles") @Slf4j
 public class RoleControllers {
     @Autowired
     private RoleServices roleServices;
 
     @PostMapping("/add")
-    public Role saveRole(@RequestBody Role role) {
+    public Role saveRole(@RequestBody Role role) throws NotFoundException {
         return roleServices.saveRole(role);
     }
 
@@ -33,7 +35,7 @@ public class RoleControllers {
     }
 
     @PutMapping("/update/{id}")
-    public Role updateRole(@PathVariable Long id, @RequestBody Role role) {
+    public Role updateRole(@PathVariable Long id, @RequestBody Role role) throws NotFoundException {
         return roleServices.updateRole(id, role);
     }
 

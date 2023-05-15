@@ -8,6 +8,10 @@
         <img src="assets/Close.svg">
         <p class="update-role-layout-txt cancelTxt">Annuler</p>
       </button>
+      <button class="deleteBtn" *ngIf="isUpdating" (click)="showConfirmation=true">
+        <img src="assets/TrashWhite.svg">
+        <p class="update-role-layout-txt deleteBtnTxt">Delete</p>
+      </button>
       <app-button [btnText]="!isUpdating ?'Modifier le rôle':'Enregistrer'"
                   [btnIconUrl]="!isUpdating ? 'assets/PencilSimpleLineWhite.svg':'assets/Check.svg'" (click)="handleUpdateBtn()"></app-button>
     </div>
@@ -18,52 +22,38 @@
       <form #updateRoleForm="ngForm" class="update-role-layout-body-input">
         <div class="update-role-layout-body-input">
           <div class="row-grp">
-            <div class="input-group">
-              <label class="update-role-layout-text contentForm-label" for="name">
-                Nom
-              </label>
-              <input type="text" id="name" name="name" class="update-role-layout-text contentForm-input" [ngClass]="{'active-input':isUpdating}" [(ngModel)]="roleObject.name"/>
+            <div class="col-grp">
+              <div class="input-group">
+                <label class="update-role-layout-text contentForm-label" for="name">
+                  Nom
+                </label>
+                <input type="text" id="name" name="name" class="update-role-layout-text contentForm-input" [ngClass]="{'active-input':isUpdating}" [(ngModel)]="roleObject.name"/>
+              </div>
+              <div class="input-group">
+                <label class="update-role-layout-text contentForm-label">
+                  Statut
+                </label>
+                <app-switch-input [isChecked]="roleObject.isActive" [isDisabled]="!isUpdating" (toggle)="roleObject.isActive=$event"></app-switch-input>
+              </div>
+
             </div>
-            <div class="input-group">
-              <label class="update-role-layout-text contentForm-label" for="description">
-                Description
-              </label>
-              <input type="text" id="description" name="description" class="update-role-layout-text contentForm-input" [ngClass]="{'active-input':isUpdating}" [(ngModel)]="roleObject.description"/>
-            </div>
-          </div>
-          <div class="row-grp">
-            <div class="input-group">
-              <label class="update-role-layout-text contentForm-label">
-                Actions autorisées
-              </label>
-              <div class="update-role-layout-checkboxes">
-                <div class="checkbox-input-group">
-                  <label class="update-role-layout-text checkbox-label">Image</label>
-                  <app-switch-input [isChecked]="roleObject.action.image" [isDisabled]="!isUpdating" (toggle)="handleChangeAction($event,'imageAction' )"></app-switch-input>
-                </div>
-                <div class="checkbox-input-group">
-                  <label class="update-role-layout-text checkbox-label">Vidéo</label>
-                  <app-switch-input [isChecked]="roleObject.action.video" [isDisabled]="!isUpdating" (toggle)="handleChangeAction($event,'videoAction')"></app-switch-input>
-                </div>
-                <div class="checkbox-input-group">
-                  <label class="update-role-layout-text checkbox-label">Pictogramme</label>
-                  <app-switch-input [isChecked]="roleObject.action.pictogram" [isDisabled]="!isUpdating" (toggle)="handleChangeAction($event,'pictogramAction')"></app-switch-input>
-                </div>
-                <div class="checkbox-input-group">
-                  <label class="update-role-layout-text checkbox-label">Document</label>
-                  <app-switch-input [isChecked]="roleObject.action.document" [isDisabled]="!isUpdating" (toggle)="handleChangeAction($event,'documentAction')"></app-switch-input>
-                </div>
+            <div class="col-grp">
+              <div class="input-group">
+                <label class="update-role-layout-text contentForm-label" for="description">
+                  Description
+                </label>
+                <textarea id="description" name="description" class="contentForm-input" [ngClass]="{'active-input':isUpdating}"  [(ngModel)]="roleObject.description"></textarea>
               </div>
             </div>
-            <div class="input-group">
-              <label class="update-role-layout-text contentForm-label">
-                Statut
-              </label>
-              <app-switch-input [isChecked]="roleObject.isActive" [isDisabled]="!isUpdating" (toggle)="handleChangeAction($event,'isActive')"></app-switch-input>
-            </div>
+          </div>
+
+          <div class="input-group">
+            <app-role-category-list [roleObject]="roleObject" [isDisabled]="!isUpdating"></app-role-category-list>
           </div>
         </div>
       </form>
     </div>
   </div>
 </div>
+<app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)"></app-confirmation-popup-message>
+

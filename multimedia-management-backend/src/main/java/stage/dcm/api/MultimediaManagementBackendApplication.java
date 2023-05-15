@@ -42,7 +42,7 @@ public class MultimediaManagementBackendApplication {
 	CommandLineRunner run(UserServices appUserService, RoleServices roleService){
 		return args -> {
 			try {
-				roleService.saveRole(new Role(null,"ADMIN","admin Role",new Action(null,true,true,true,true),true));
+				roleService.saveRole(new Role(null,"ADMIN","admin Role",new ArrayList<Action>(),true));
 
 				appUserService.saveUser(new User(null,"fartasanas","fartas@gmail.com","1234","fartas","anas","Digital marketing manager",new ArrayList<>(),new ArrayList<>()));
 

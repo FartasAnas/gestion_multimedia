@@ -3,6 +3,7 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import { Observable } from 'rxjs';
 import {UserStorageService} from "../../services/user-storage/user-storage.service";
 import Role from "../../entities/Role";
+import {Action} from "rxjs/internal/scheduler/Action";
 
 @Injectable({
   providedIn: 'root'
@@ -14,46 +15,51 @@ export class RoleGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     const path= next.routeConfig;
-
+    const parentPath=next.parent?.url[0].path
     return new Observable<boolean>((observer) => {
       this.userStorageService.getRole().subscribe((role: Role) => {
         if (role && role.isActive) {
-          switch (path?.path) {
-            case 'images':
-              if (!role.action.image) {
-                this.router.navigate(['']);
-                observer.next(false);
-              } else {
+          role.actions.filter(action=>{
+              return  action.category.path.toLowerCase()===parentPath?.toLowerCase()
+            }
+          ).map(action=>{
+            switch (path?.path) {
+              case 'images':
+                if (!action.image) {
+                  this.router.navigate(['']);
+                  observer.next(false);
+                } else {
+                  observer.next(true);
+                }
+                break;
+              case 'videos':
+                if (!action.video) {
+                  this.router.navigate(['']);
+                  observer.next(false);
+                } else {
+                  observer.next(true);
+                }
+                break;
+              case 'pictos':
+                if (!action.pictogram) {
+                  this.router.navigate(['']);
+                  observer.next(false);
+                } else {
+                  observer.next(true);
+                }
+                break;
+              case 'documents':
+                if (!action.document) {
+                  this.router.navigate(['']);
+                  observer.next(false);
+                } else {
+                  observer.next(true);
+                }
+                break;
+              default:
                 observer.next(true);
-              }
-              break;
-            case 'videos':
-              if (!role.action.video) {
-                this.router.navigate(['']);
-                observer.next(false);
-              } else {
-                observer.next(true);
-              }
-              break;
-            case 'pictos':
-              if (!role.action.pictogram) {
-                this.router.navigate(['']);
-                observer.next(false);
-              } else {
-                observer.next(true);
-              }
-              break;
-            case 'documents':
-              if (!role.action.document) {
-                this.router.navigate(['']);
-                observer.next(false);
-              } else {
-                observer.next(true);
-              }
-              break;
-            default:
-              observer.next(true);
-          }
+            }
+          })
         } else {
           this.userStorageService.signOut()
           this.router.navigate(['']);
