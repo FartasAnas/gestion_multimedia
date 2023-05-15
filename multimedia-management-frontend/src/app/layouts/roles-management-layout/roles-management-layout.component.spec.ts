@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RolesManagementLayoutComponent } from './roles-management-layout.component';
+import {RolesManagementLayoutComponent} from './roles-management-layout.component';
 
 describe('RolesManagementLayoutComponent', () => {
   let component: RolesManagementLayoutComponent;

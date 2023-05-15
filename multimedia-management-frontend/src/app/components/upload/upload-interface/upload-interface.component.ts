@@ -6,7 +6,6 @@ import {UploadInterfaceStep1Component} from "../upload-interface-step1/upload-in
 import KeywordObject from "../../../entities/KeywordObject";
 import Category from "../../../entities/Category";
 import {CategoryService} from "../../../services/category/category.service";
-import {ConfirmationPopupMessageComponent} from "../../confirmation-popup-message/confirmation-popup-message.component";
 
 @Component({
   selector: 'app-upload-interface',

@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import Category from "../../entities/Category";
 import Role from "../../entities/Role";
-import {RoleService} from "../../services/role/role.service";
 import {CategoryService} from "../../services/category/category.service";
 import Action from "../../entities/Action";
 

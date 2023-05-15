@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UpdateRoleLayoutComponent } from './update-role-layout.component';
+import {UpdateRoleLayoutComponent} from './update-role-layout.component';
 
 describe('UpdateRoleLayoutComponent', () => {
   let component: UpdateRoleLayoutComponent;

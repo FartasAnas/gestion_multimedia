@@ -1,9 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import Role from "../../entities/Role";
 import {RoleService} from "../../services/role/role.service";
 import Category from "../../entities/Category";
 import {CategoryService} from "../../services/category/category.service";
-import {Action} from "rxjs/internal/scheduler/Action";
 
 @Component({
   selector: 'app-add-role',

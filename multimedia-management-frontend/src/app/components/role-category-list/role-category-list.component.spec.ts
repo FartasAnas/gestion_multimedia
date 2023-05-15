@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RoleCategoryListComponent } from './role-category-list.component';
+import {RoleCategoryListComponent} from './role-category-list.component';
 
 describe('RoleCategoryListComponent', () => {
   let component: RoleCategoryListComponent;

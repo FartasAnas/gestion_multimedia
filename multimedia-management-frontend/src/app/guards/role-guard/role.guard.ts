@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {Observable} from 'rxjs';
 import {UserStorageService} from "../../services/user-storage/user-storage.service";
 import Role from "../../entities/Role";
-import {Action} from "rxjs/internal/scheduler/Action";
 
 @Injectable({
   providedIn: 'root'
