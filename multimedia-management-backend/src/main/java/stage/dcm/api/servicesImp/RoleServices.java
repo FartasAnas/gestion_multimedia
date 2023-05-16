@@ -62,7 +62,6 @@ public class RoleServices {
         roleToUpdate.setDescription(role.getDescription() != null ? role.getDescription() : roleToUpdate.getDescription());
         roleToUpdate.setIsActive(role.getIsActive() != null ? role.getIsActive() : roleToUpdate.getIsActive());
 
-        // Iterate through roleToUpdate actions and remove any that are not present in role actions
         List<Action> actionsToRemove = new ArrayList<>();
         for (Action action : roleToUpdate.getActions()) {
             if (!role.getActions().contains(action)) {

@@ -2,7 +2,7 @@
   <app-side-bar></app-side-bar>
   <div class="role-management-head">
     <app-page-title title="Gestion des rôles"></app-page-title>
-    <app-button [btnText]="'Ajouter un nouveau rôle'" [btnIconUrl]="'assets/PlusSign.svg'" (click)="showAddRoleInterface=!showAddRoleInterface"></app-button>
+    <app-button [btnText]="'Ajouter un nouveau rôle'" [btnIconUrl]="'assets/PlusSign.svg'" (click)="handleCreateRole()"></app-button>
   </div>
   <div class="categories-management-body">
     <app-table-list [tableListTitle]="'Liste des catégories'" [columns]="['name','description','isActive']" [data]="roles" path="roles"></app-table-list>

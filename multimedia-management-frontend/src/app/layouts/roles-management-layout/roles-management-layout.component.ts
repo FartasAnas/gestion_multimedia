@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import Role from "../../entities/Role";
 import {RoleService} from "../../services/role/role.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-roles-management-layout',
@@ -10,7 +11,7 @@ import {RoleService} from "../../services/role/role.service";
 export class RolesManagementLayoutComponent implements OnInit{
   showAddRoleInterface=false;
   roles: Role[] = [];
-  constructor(private roleService:RoleService) {
+  constructor(private roleService:RoleService,private router:Router) {
   }
   ngOnInit(): void {
     this.loadRoles();
@@ -31,4 +32,7 @@ export class RolesManagementLayoutComponent implements OnInit{
     this.loadRoles()
   }
 
+  handleCreateRole() {
+    this.router.navigate(['/roles/create'])
+  }
 }

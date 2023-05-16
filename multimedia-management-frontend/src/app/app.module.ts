@@ -72,6 +72,7 @@ import {AddRoleComponent} from './components/add-role/add-role.component';
 import {UpdateRoleLayoutComponent} from './layouts/update-role-layout/update-role-layout.component';
 import {GoBackComponent} from './components/go-back/go-back.component';
 import {RoleCategoryListComponent} from './components/role-category-list/role-category-list.component';
+import { CreateRoleLayoutComponent } from './layouts/create-role-layout/create-role-layout.component';
 
 
 @NgModule({
@@ -128,7 +129,8 @@ import {RoleCategoryListComponent} from './components/role-category-list/role-ca
     AddRoleComponent,
     UpdateRoleLayoutComponent,
     GoBackComponent,
-    RoleCategoryListComponent
+    RoleCategoryListComponent,
+    CreateRoleLayoutComponent
   ],
   imports: [
     BrowserModule,

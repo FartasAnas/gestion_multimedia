@@ -1,20 +1,20 @@
-.update-category-layout{
+.add-role-interface{
   display: flex;
   flex-direction: column;
   gap: 50px;
   overflow: hidden;
   margin: 0px 50px 0px 261px;
 }
-.update-category-layout-head{
+.add-role-interface-header{
   display: flex;
   justify-content: space-between;
 }
-.update-category-layout-body{
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+.add-role-interface-txt{
+  font-family: 'Inter';
+  font-style: normal;
+  color: #0B2866;
 }
-.update-category-layout-body-content{
+.add-role-interface-body{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,41 +25,40 @@
   box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
   border-radius: 8px;
 }
-.update-category-layout-text{
-  font-family: 'Inter';
-  font-style: normal;
-  color: #0B2866;
-}
-.body-head{
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 25px;
-}
-.update-category-layout-body-input{
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  width: 100%;
-}
-.row-grp{
+.row-grp {
   display: flex;
   flex-direction: row;
   width: 100%;
   gap: 50px;
 }
+.col-grp{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 25px;
+}
 .input-group{
   display: flex;
   flex-direction: column;
   gap: 6px;
-  position: relative;
   width: 100%;
 }
 .contentForm-label{
+  font-family: 'Inter';
+  font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 20px;
+  letter-spacing: -0.1px;
+  color: #0B2866;
+}
+.contentForm-label .subtxt{
+  color: #8D9CAD;
+  font-weight: 400;
 }
 .contentForm-input{
+  font-family: 'Inter';
+  color: #0B2866;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -68,14 +67,29 @@
   background: #FFFFFF;
   border: 1px solid #C6CED6;
   border-radius: 4px;
-  pointer-events: none;
-  width: 100%;
 }
-.active-input{
-  pointer-events: auto;
+#description{
+  height: 104px;
 }
-
-.update-category-layout-head-btn button{
+.switch-input{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.switch-input-grp{
+  display: flex;
+  flex-direction: row;
+}
+.switch-input-grp .contentForm-label{
+  font-weight: 500;
+}
+.add-role-interface-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap:10px;
+}
+.add-role-interface-btn{
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -85,40 +99,32 @@
   box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
   border-radius: 5px;
   gap: 8px;
+  background: #105DFB;
+  border: 1px solid #105DFB;
 }
-.cancelBtn {
+.add-role-interface-btn:hover:not(.cancelBtn , .disabled){
+  background: #1650CF;
+  cursor: pointer;
+}
+.cancelBtn{
   background: #FFFFFF;
   border: 1px solid #105DFB;
 }
-.deleteBtn {
-  background: #de3b3b;
-  border: 1px solid #de3b3b;
-}
-
-.cancelBtn:hover {
+.cancelBtn:hover{
   background: #D7E3FC;
-  cursor: pointer;
 }
-.deleteBtn:hover {
-  background: #da2525;
-  cursor: pointer;
-}
-.cancelTxt {
+.cancelTxt{
   font-weight: 500;
   color: #105DFB;
 }
-.deleteBtnTxt{
+.add-role-interface-btn-txt{
   font-weight: 500;
   color: #FFFFFF;
 }
-.update-category-layout-head-btn{
-  display: flex;
-  flex-direction: row;
-  gap: 11px;
+.disabled{
+  background: #8D9CAD;
+  border: none;
 }
-.update-category-layout-text.cancelTxt{
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  color: #105DFB;
+.category-actions-list{
+  width: 100%;
 }

@@ -1,7 +1,7 @@
 .update-role-layout {
   display: flex;
   flex-direction: column;
-  gap: 75px;
+  gap: 50px;
   overflow: hidden;
   margin: 0px 50px 0px 261px;
 }
