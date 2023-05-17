@@ -31,7 +31,6 @@ public class ActionServicesImp implements ActionServices {
 
     @Override
     public Action updateAction(Action actionToUpdate, Action newAction) {
-        log.info("I Entered in updateAction the methode");
         actionToUpdate.setImage(updateAccess(newAction.getImage()!=null ? newAction.getImage() : actionToUpdate.getImage()));
         actionToUpdate.setVideo(newAction.getVideo()!=null ? newAction.getVideo() : actionToUpdate.getVideo());
         actionToUpdate.setPictogram(newAction.getPictogram()!=null ? newAction.getPictogram() : actionToUpdate.getPictogram());
@@ -40,27 +39,26 @@ public class ActionServicesImp implements ActionServices {
     }
 
     private Access updateAccess(Access access){
-        log.info("I Entered in the updateAccess methode");
-        if (access.getIsActive() && !access.isRead() && !access.isWrite()) {
-            access.setRead(true);
-            access.setWrite(true);
-        }
-        if(access.isRead() && !access.isWrite() && access.getIsActive()){
-            access.setWrite(true);
-            access.setIsActive(true);
-        }
-        if(access.isWrite() && !access.getIsActive() && !access.isRead()){
-            access.setRead(true);
-            access.setIsActive(true);
-        }
-        if(!access.getIsActive()){
-            access.setRead(false);
-            access.setWrite(false);
-        }
-        if (!access.isRead()) {
-            access.setIsActive(false);
-            access.setWrite(false);
-        }
+//        if (access.getIsActive() && !access.isRead() && !access.isWrite()) {
+//            access.setRead(true);
+//            access.setWrite(true);
+//        }
+//        if(access.isRead() && !access.isWrite() && access.getIsActive()){
+//            access.setWrite(true);
+//            access.setIsActive(true);
+//        }
+//        if(access.isWrite() && !access.getIsActive() && !access.isRead()){
+//            access.setRead(true);
+//            access.setIsActive(true);
+//        }
+//        if(!access.getIsActive()){
+//            access.setRead(false);
+//            access.setWrite(false);
+//        }
+//        if (!access.isRead()) {
+//            access.setIsActive(false);
+//            access.setWrite(false);
+//        }
         return access;
     }
 

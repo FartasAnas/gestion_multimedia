@@ -17,6 +17,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service @Transactional @RequiredArgsConstructor @Slf4j
 public class RoleServices {
@@ -60,27 +61,24 @@ public class RoleServices {
     //put Methods
     public Role updateRole(Long id, Role role) throws NotFoundException {
         Role roleToUpdate = roleRepository.findById(id).orElse(null);
+        if(roleToUpdate==null){
+            throw new NotFoundException("Role not found");
+        }
         roleToUpdate.setName(role.getName() != null ? role.getName() : roleToUpdate.getName());
         roleToUpdate.setDescription(role.getDescription() != null ? role.getDescription() : roleToUpdate.getDescription());
         roleToUpdate.setIsActive(role.getIsActive() != null ? role.getIsActive() : roleToUpdate.getIsActive());
 
-        List<Action> actionsToRemove = new ArrayList<>();
-        for (Action action : roleToUpdate.getActions()) {
-            if (!role.getActions().contains(action)) {
-                actionsToRemove.add(action);
-            }
+        log.info("role actions : {}", role.getActions());
+        log.info("roleToUpdate actions : {}", roleToUpdate.getActions());
 
-        }
-        log.info("actions to remove: {}", actionsToRemove);
+        List<Action> actionsToRemove = roleToUpdate.getActions().stream().filter(actionToUpdate -> role.getActions().stream().noneMatch(action -> action.getId().equals(actionToUpdate.getId()))).collect(Collectors.toList());
         roleToUpdate.getActions().removeAll(actionsToRemove);
         actionRepository.deleteAll(actionsToRemove);
 
         if (!role.getActions().isEmpty()) {
             for (Action action : role.getActions()) {
-                log.info("action to update: {}", action);
                 Action actionToUpdate = actionRepository.findById(action.getId()).orElse(null);
                 if (actionToUpdate != null) {
-                    log.info("updating action: {}", actionToUpdate);
                     actionServices.updateAction(actionToUpdate,action);
                 } else {
                     if (action.getCategory() == null) {

@@ -84,13 +84,13 @@ public class FileServicesImp implements FileServices {
                     if(action.getCategory().getId().equals(category.getId())){
                         switch (fileType) {
                             case IMAGE:
-                                return action.getImage().getIsActive();
+                                return action.getImage().isWrite();
                             case VIDEO:
-                                return action.getVideo().getIsActive();
+                                return action.getVideo().isWrite();
                             case PICTOGRAM:
-                                return action.getPictogram().getIsActive();
+                                return action.getPictogram().isWrite();
                             case DOCUMENT:
-                                return action.getDocument().getIsActive();
+                                return action.getDocument().isWrite();
                             default:
                                 break;
                         }
@@ -183,6 +183,10 @@ public class FileServicesImp implements FileServices {
     @Override
     public File updateFile(Long id, File file) throws NotFoundException {
         File fileToUpdate=getFileById(id);
+        User createdBy=userServices.getUserByUsername(fileToUpdate.getCreatedBy());
+        if (!hasPermissionToAddFileType(createdBy.getRoles(), fileToUpdate.getType(), fileToUpdate.getCategory())) {
+            throw new IllegalStateException("User does not have permission to Modify this file type");
+        }
         fileToUpdate.setFileName(file.getFileName()!=null ? file.getFileName() : fileToUpdate.getFileName());
         fileToUpdate.setDescription( file.getDescription()!=null ? file.getDescription() : fileToUpdate.getDescription() );
         fileToUpdate.setState( file.getState()!=null ? file.getState() : fileToUpdate.getState() );
@@ -194,6 +198,10 @@ public class FileServicesImp implements FileServices {
     @Override
     public void deleteFile(Long id) throws NotFoundException {
         File file=getFileById(id);
+        User createdBy=userServices.getUserByUsername(file.getCreatedBy());
+        if (!hasPermissionToAddFileType(createdBy.getRoles(), file.getType(), file.getCategory())) {
+            throw new IllegalStateException("User does not have permission to Delete this file type");
+        }
         try {
             if(file!=null){
                 minioService.remove(file.getFilepath());
