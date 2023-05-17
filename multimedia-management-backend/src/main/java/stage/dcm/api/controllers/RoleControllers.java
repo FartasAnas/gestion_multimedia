@@ -3,8 +3,10 @@ package stage.dcm.api.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import stage.dcm.api.entities.Action;
 import stage.dcm.api.entities.Role;
 import stage.dcm.api.exceptions.NotFoundException;
+import stage.dcm.api.repositories.ActionRepository;
 import stage.dcm.api.servicesImp.RoleServices;
 
 import java.util.List;
@@ -13,6 +15,9 @@ import java.util.List;
 public class RoleControllers {
     @Autowired
     private RoleServices roleServices;
+
+    @Autowired
+    private ActionRepository actionRepository;
 
     @PostMapping("/add")
     public Role saveRole(@RequestBody Role role) throws NotFoundException {
@@ -32,6 +37,11 @@ public class RoleControllers {
     @GetMapping("")
     public List<Role> getAllRoles() {
         return roleServices.getAllRoles();
+    }
+
+    @GetMapping("/actions")
+    public List<Action> getAllActions() {
+        return actionRepository.findAll();
     }
 
     @PutMapping("/update/{id}")

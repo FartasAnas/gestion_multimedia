@@ -9,44 +9,134 @@
       </div>
       <app-switch-input [isChecked]="isCategorySelected(category)" [isDisabled]="isDisabled" (toggle)="handleSelectedCategories($event,category)"></app-switch-input>
     </div>
-
     <div class="action-grp" [ngClass]="{'selected':hoveredCategory===category}">
-      <div class="row-grp">
-        <div class="input-group switch-input-grp">
+      <div class="input-group switch-input-grp" (click)="handleHoveredAction()">
+        <div class="row-grp">
+          <img src="assets/ArrowLineRightLightBlue.svg">
           <label class="contentForm-label">
             Images
           </label>
+        </div>
+        <div class="switch-input">
+          <app-switch-input [isChecked]="isActionSelected(category,'image')" [isDisabled]="isDisabled" (toggle)="handleChangeStatus($event,'imageAction',category)"></app-switch-input>
+        </div>
+      </div>
+      <ng-container *ngIf="hoveredCategory===category && hoveredAction==='image'">
+        <hr class="horizontal-line">
+        <div class="access-grp">
+          <label class="contentForm-label">
+            Consulter les Fichiers
+          </label>
           <div class="switch-input">
-            <app-switch-input [isChecked]="isActionSelected(category,'image')" [isDisabled]="isDisabled" (toggle)="handleChangeStatus($event,'imageAction',category)"></app-switch-input>
+            <app-switch-input [isChecked]="isAccessSelected(category,'image','read')" (toggle)="handleChangeAccess($event,category,'image','read')" [isDisabled]="isDisabled"></app-switch-input>
           </div>
         </div>
-        <div class="input-group switch-input-grp">
+        <hr class="horizontal-line">
+        <div class="access-grp">
+          <label class="contentForm-label">
+            Crée les Fichiers
+          </label>
+          <div class="switch-input">
+            <app-switch-input [isChecked]="isAccessSelected(category,'image','write')" (toggle)="handleChangeAccess($event,category,'image','write')" [isDisabled]="isDisabled"></app-switch-input>
+          </div>
+        </div>
+      </ng-container>
+      <hr class="horizontal-line">
+      <div class="input-group switch-input-grp" (click)="hoveredAction=hoveredAction!='video'?'video':''">
+        <div class="row-grp">
+          <img src="assets/ArrowLineRightLightBlue.svg">
           <label class="contentForm-label">
             Vidéos
           </label>
-          <div class="switch-input">
-            <app-switch-input [isChecked]="isActionSelected(category,'video')" [isDisabled]="isDisabled" (toggle)="handleChangeStatus($event,'videoAction',category)"></app-switch-input>
-          </div>
+        </div>
+        <div class="switch-input">
+          <app-switch-input [isChecked]="isActionSelected(category,'video')" [isDisabled]="isDisabled" (toggle)="handleChangeStatus($event,'videoAction',category)"></app-switch-input>
         </div>
       </div>
-      <div class="row-grp">
-        <div class="input-group switch-input-grp">
+      <ng-container *ngIf="hoveredCategory===category && hoveredAction==='video'">
+        <hr class="horizontal-line">
+        <div class="access-grp">
+          <label class="contentForm-label">
+            Consulter les Fichiers
+          </label>
+          <div class="switch-input">
+            <app-switch-input [isChecked]="isAccessSelected(category,'video','read')" (toggle)="handleChangeAccess($event,category,'video','read')" [isDisabled]="isDisabled"></app-switch-input>
+          </div>
+        </div>
+        <hr class="horizontal-line">
+        <div class="access-grp">
+          <label class="contentForm-label">
+            Crée les Fichiers
+          </label>
+          <div class="switch-input">
+            <app-switch-input [isChecked]="isAccessSelected(category,'video','write')" (toggle)="handleChangeAccess($event,category,'video','write')" [isDisabled]="isDisabled"></app-switch-input>
+          </div>
+        </div>
+      </ng-container>
+      <hr class="horizontal-line">
+      <div class="input-group switch-input-grp" (click)="hoveredAction=hoveredAction!='pictogram'?'pictogram':''">
+        <div class="row-grp">
+          <img src="assets/ArrowLineRightLightBlue.svg">
           <label class="contentForm-label">
             Pictogrammes
           </label>
+        </div>
+        <div class="switch-input">
+          <app-switch-input [isChecked]="isActionSelected(category,'pictogram')" [isDisabled]="isDisabled" (toggle)="handleChangeStatus($event,'pictogramAction',category)"></app-switch-input>
+        </div>
+      </div>
+      <ng-container *ngIf="hoveredCategory===category && hoveredAction==='pictogram'">
+        <hr class="horizontal-line">
+        <div class="access-grp">
+          <label class="contentForm-label">
+            Consulter les Fichiers
+          </label>
           <div class="switch-input">
-            <app-switch-input [isChecked]="isActionSelected(category,'pictogram')" [isDisabled]="isDisabled" (toggle)="handleChangeStatus($event,'pictogramAction',category)"></app-switch-input>
+            <app-switch-input [isChecked]="isAccessSelected(category,'pictogram','read')" (toggle)="handleChangeAccess($event,category,'pictogram','read')" [isDisabled]="isDisabled"></app-switch-input>
           </div>
         </div>
-        <div class="input-group switch-input-grp">
+        <hr class="horizontal-line">
+        <div class="access-grp">
+          <label class="contentForm-label">
+            Modifier les Fichiers
+          </label>
+          <div class="switch-input">
+            <app-switch-input [isChecked]="isAccessSelected(category,'pictogram','write')" (toggle)="handleChangeAccess($event,category,'pictogram','write')" [isDisabled]="isDisabled"></app-switch-input>
+          </div>
+        </div>
+      </ng-container>
+      <hr class="horizontal-line">
+      <div class="input-group switch-input-grp" (click)="hoveredAction=hoveredAction!='document'?'document':''">
+        <div class="row-grp">
+          <img src="assets/ArrowLineRightLightBlue.svg">
           <label class="contentForm-label">
             Documents
           </label>
-          <div class="switch-input">
-            <app-switch-input [isChecked]="isActionSelected(category,'document')" [isDisabled]="isDisabled" (toggle)="handleChangeStatus($event,'documentAction',category)"></app-switch-input>
-          </div>
+        </div>
+        <div class="switch-input">
+          <app-switch-input [isChecked]="isActionSelected(category,'document')" [isDisabled]="isDisabled" (toggle)="handleChangeStatus($event,'documentAction',category)"></app-switch-input>
         </div>
       </div>
+      <ng-container *ngIf="hoveredCategory===category && hoveredAction==='document'">
+        <hr class="horizontal-line">
+        <div class="access-grp">
+          <label class="contentForm-label">
+            Consulter les Fichiers
+          </label>
+          <div class="switch-input">
+            <app-switch-input [isChecked]="isAccessSelected(category,'document','read')" (toggle)="handleChangeAccess($event,category,'document','read')" [isDisabled]="isDisabled"></app-switch-input>
+          </div>
+        </div>
+        <hr class="horizontal-line">
+        <div class="access-grp">
+          <label class="contentForm-label">
+            Modifier les Fichiers
+          </label>
+          <div class="switch-input">
+            <app-switch-input [isChecked]="isAccessSelected(category,'document','write')" (toggle)="handleChangeAccess($event,category,'document','write')" [isDisabled]="isDisabled"></app-switch-input>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

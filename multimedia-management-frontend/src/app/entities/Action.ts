@@ -1,10 +1,11 @@
 import Category from "./Category";
+import Access from "./Access";
 
 export default interface Action {
   id?:number
   category:Category
-  image:boolean
-  video:boolean
-  pictogram:boolean
-  document:boolean
+  image:Access
+  video:Access
+  pictogram:Access
+  document:Access
 }

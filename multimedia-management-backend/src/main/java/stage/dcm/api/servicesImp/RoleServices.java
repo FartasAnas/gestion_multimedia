@@ -4,11 +4,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import stage.dcm.api.entities.Access;
 import stage.dcm.api.entities.Action;
 import stage.dcm.api.entities.Role;
 import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.repositories.ActionRepository;
 import stage.dcm.api.repositories.RoleRepository;
+import stage.dcm.api.services.ActionServices;
 import stage.dcm.api.services.CategoryServices;
 
 import javax.transaction.Transactional;
@@ -22,25 +24,25 @@ public class RoleServices {
     private final ActionRepository actionRepository;
 
     private final CategoryServices categoryServices;
+
+    private final ActionServices actionServices;
     //post Methods
     public Role saveRole(Role role) throws NotFoundException {
         log.info("Saving new role: {}", role.getActions());
-        if(role.getActions().size()>0){
+        if(!role.getActions().isEmpty()){
             Collection<Action> newActions = new ArrayList<>();
             for(Action action : role.getActions()){
                 log.info("Saving new action: {}", action);
                 if(action!=null){
-                    if (action.getCategory()==null){
-                        throw new NotFoundException("Category not found");
-                    }
                     action.setCategory(categoryServices.getCategory(action.getCategory()));
-                    newActions.add(actionRepository.save(action));
+                    newActions.add(actionServices.createAction(action));
                 }
             }
             role.setActions(newActions);
         }
         return roleRepository.save(role);
     }
+
 
     //get Methods
     public Role getRoleById(Long id) {
@@ -67,19 +69,19 @@ public class RoleServices {
             if (!role.getActions().contains(action)) {
                 actionsToRemove.add(action);
             }
+
         }
+        log.info("actions to remove: {}", actionsToRemove);
         roleToUpdate.getActions().removeAll(actionsToRemove);
         actionRepository.deleteAll(actionsToRemove);
 
-        if (role.getActions().size() > 0) {
+        if (!role.getActions().isEmpty()) {
             for (Action action : role.getActions()) {
+                log.info("action to update: {}", action);
                 Action actionToUpdate = actionRepository.findById(action.getId()).orElse(null);
                 if (actionToUpdate != null) {
-                    actionToUpdate.setImage(action.isImage());
-                    actionToUpdate.setVideo(action.isVideo());
-                    actionToUpdate.setPictogram(action.isPictogram());
-                    actionToUpdate.setDocument(action.isDocument());
-                    actionRepository.save(actionToUpdate);
+                    log.info("updating action: {}", actionToUpdate);
+                    actionServices.updateAction(actionToUpdate,action);
                 } else {
                     if (action.getCategory() == null) {
                         throw new NotFoundException("Category not found");

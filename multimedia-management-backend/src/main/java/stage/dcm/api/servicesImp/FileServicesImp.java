@@ -84,13 +84,13 @@ public class FileServicesImp implements FileServices {
                     if(action.getCategory().getId().equals(category.getId())){
                         switch (fileType) {
                             case IMAGE:
-                                return action.isImage();
+                                return action.getImage().getIsActive();
                             case VIDEO:
-                                return action.isVideo();
+                                return action.getVideo().getIsActive();
                             case PICTOGRAM:
-                                return action.isPictogram();
+                                return action.getPictogram().getIsActive();
                             case DOCUMENT:
-                                return action.isDocument();
+                                return action.getDocument().getIsActive();
                             default:
                                 break;
                         }

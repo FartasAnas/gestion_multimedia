@@ -24,7 +24,7 @@ export class RoleGuard implements CanActivate {
           ).map(action=>{
             switch (path?.path) {
               case 'images':
-                if (!action.image) {
+                if (!action.image.isActive) {
                   this.router.navigate(['']);
                   observer.next(false);
                 } else {
@@ -32,7 +32,7 @@ export class RoleGuard implements CanActivate {
                 }
                 break;
               case 'videos':
-                if (!action.video) {
+                if (!action.video.isActive) {
                   this.router.navigate(['']);
                   observer.next(false);
                 } else {
@@ -40,7 +40,7 @@ export class RoleGuard implements CanActivate {
                 }
                 break;
               case 'pictos':
-                if (!action.pictogram) {
+                if (!action.pictogram.isActive) {
                   this.router.navigate(['']);
                   observer.next(false);
                 } else {
@@ -48,7 +48,7 @@ export class RoleGuard implements CanActivate {
                 }
                 break;
               case 'documents':
-                if (!action.document) {
+                if (!action.document.isActive) {
                   this.router.navigate(['']);
                   observer.next(false);
                 } else {

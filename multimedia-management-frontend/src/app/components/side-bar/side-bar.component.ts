@@ -43,16 +43,16 @@ export class SideBarComponent implements OnInit{
       role.actions.forEach(action=>{
         if(action.category.isActive){
           const children = [];
-            if (action.image) {
+            if (action.image.isActive) {
               children.push({ content: { id: action.category.id, label: 'Images', icon: 'assets/ImageSquare.svg', url: `${action.category.path}/images` } });
             }
-            if (action.video) {
+            if (action.video.isActive) {
               children.push({ content: { id: action.category.id, label: 'Vidéos', icon: 'assets/Video.svg', url: `${action.category.path}/videos` } });
             }
-            if (action.pictogram) {
+            if (action.pictogram.isActive) {
               children.push({ content: { id: action.category.id, label: 'Pictos', icon: 'assets/Person.svg', url: `${action.category.path}/pictos` } });
             }
-            if (action.document) {
+            if (action.document.isActive) {
               children.push({ content: { id: action.category.id, label: 'Documents', icon: 'assets/FileDoc.svg', url: `${action.category.path}/documents` } });
             }
           sidebarItems.push({
