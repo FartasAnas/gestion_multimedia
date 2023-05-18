@@ -1,21 +1,25 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FileService} from "../../services/file/file.service";
 import {Router} from "@angular/router";
 import FileObject from "../../entities/FileObject";
 import {EditFileComponent} from "../edit-file/edit-file.component";
+import {UserStorageService} from "../../services/user-storage/user-storage.service";
 
 @Component({
   selector: 'app-file-details-bar',
   templateUrl: './file-details-bar.component.html',
   styleUrls: ['./file-details-bar.component.css']
 })
-export class FileDetailsBarComponent {
+export class FileDetailsBarComponent implements OnInit{
   @Input() fileObject?: FileObject;
   @ViewChild(EditFileComponent) editFileComponent!: EditFileComponent;
   showEditInterface = false;
   showConfirmation = false;
-
-  constructor(private router: Router,private fileService:FileService) {
+  hasWriteAccess=false;
+  async ngOnInit(){
+    this.hasWriteAccess=await this.checkWriteAccess();
+  }
+  constructor(private router: Router,private fileService:FileService,private userStorage: UserStorageService) {
   }
   handelCloseDetailsClick() {
     const type = this.fileObject?.type;
@@ -77,4 +81,12 @@ export class FileDetailsBarComponent {
     }
     this.showConfirmation = false;
   }
+  async checkWriteAccess(): Promise<boolean> {
+    const categoryPath = window.location.pathname.split('/')[1];
+    const action = this.fileObject?.type?.toLowerCase();
+
+    console.log(categoryPath, action)
+    return await this.userStorage.isWriteAllowed(categoryPath, action as string);
+  }
+
 }

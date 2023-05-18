@@ -5,6 +5,7 @@ import FileObject from "../../entities/FileObject";
 import FileInterfaceInput from "../../entities/FileInterfaceInput";
 import KeywordObject from "../../entities/KeywordObject";
 import {PaginationBarComponent} from "../pagination-bar/pagination-bar.component";
+import {UserStorageService} from "../../services/user-storage/user-storage.service";
 
 @Component({
   selector: 'app-file-interface',
@@ -13,7 +14,7 @@ import {PaginationBarComponent} from "../pagination-bar/pagination-bar.component
 })
 export class FileInterfaceComponent implements OnInit{
   @Input() fileInterfaceInput?:FileInterfaceInput
-  constructor(private fileService: FileService) {}
+  constructor(private fileService: FileService,private userStorage: UserStorageService) {}
   fileObjects$: Observable<FileObject[]> = new Observable<FileObject[]>();
   displayedFileObjects:FileObject[]=[];
   filteredFileObjects:FileObject[]=[];
@@ -22,7 +23,8 @@ export class FileInterfaceComponent implements OnInit{
 
   @ViewChild(PaginationBarComponent) paginationBar?:PaginationBarComponent
   showConfirmation=false;
-  ngOnInit(): void {
+  hasWriteAccess=false;
+   async ngOnInit() {
     if(this.fileInterfaceInput) {
       this.fileInterfaceInput.fileCategory = window.location.pathname.split('/')[1]
       this.getUserFiles()
@@ -32,6 +34,9 @@ export class FileInterfaceComponent implements OnInit{
     } else if (this.fileInterfaceInput?.fileType==='DOCUMENT') {
       this.sizeOptionIncrement = 4;
     }
+
+    this.hasWriteAccess=await this.checkWriteAccess();
+    console.log(this.hasWriteAccess)
   }
 
   onFileUploaded(): void {
@@ -115,5 +120,11 @@ export class FileInterfaceComponent implements OnInit{
     } else {
       this.showConfirmation = false;
     }
+  }
+
+  async checkWriteAccess(): Promise<boolean> {
+    const categoryPath = window.location.pathname.split('/')[1];
+    const action = window.location.pathname.split('/')[2];
+    return await this.userStorage.isWriteAllowed(categoryPath, action);
   }
 }

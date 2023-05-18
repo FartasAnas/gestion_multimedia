@@ -12,9 +12,19 @@ export class UserStorageService {
 
   constructor(private roleService:RoleService) { }
 
-  public saveUser(user:StorageObject):void{
+  private roles$:Observable<Role>=new Observable<Role>();
+
+  public saveUser(user:StorageObject):void {
     window.sessionStorage.removeItem(USER_KEY)
-    window.sessionStorage.setItem(USER_KEY,JSON.stringify(user))
+    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user))
+    this.stockRoles();
+  }
+  private stockRoles():void {
+    const user = sessionStorage.getItem(USER_KEY);
+    if (user) {
+      console.log(this.roleService.getRoleByName(JSON.parse(user as string).roles[0].authority))
+      this.roles$ = this.roleService.getRoleByName(JSON.parse(user as string).roles[0].authority)
+    }
   }
   public getUser(): any {
     const user = sessionStorage.getItem(USER_KEY);
@@ -37,7 +47,7 @@ export class UserStorageService {
   }
   public getRole():Observable<Role>{
     const user = sessionStorage.getItem(USER_KEY);
-    return  this.roleService.getRoleByName(JSON.parse(user as string).roles[0].authority)
+    return this.roleService.getRoleByName(JSON.parse(user as string).roles[0].authority)
   }
   public getFullName():string{
     const user = sessionStorage.getItem(USER_KEY);
@@ -63,5 +73,21 @@ export class UserStorageService {
       }
     }
     return ""
+  }
+  public async isWriteAllowed(categoryPath: string, action: string): Promise<boolean> {
+    const role = await this.getRole().toPromise();
+    const actionObj = (role as Role).actions.find(actionObj => actionObj.category.path.toLowerCase() === categoryPath.toLowerCase());
+    if (actionObj) {
+      if (action === 'images' || action === 'image') {
+        return actionObj.image.write;
+      } else if (action === 'videos' || action === 'video') {
+        return actionObj.video.write;
+      } else if (action === 'pictos' || action ==='pictogram') {
+        return actionObj.pictogram.write;
+      } else if (action === 'documents' || action ==='document') {
+        return actionObj.document.write;
+      }
+    }
+    return false;
   }
 }
