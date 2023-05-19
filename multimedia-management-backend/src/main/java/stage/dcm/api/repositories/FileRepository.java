@@ -7,4 +7,5 @@ import stage.dcm.api.enums.FileType;
 public interface FileRepository extends JpaRepository<File,Long> {
     File findByFileName(String filename);
     Long countByCreatedByAndType(String createdBy,FileType fileType);
+    Long countByCreatedByAndTypeAndCategoryIsActive(String createdBy, FileType fileType, Boolean isActive);
 }

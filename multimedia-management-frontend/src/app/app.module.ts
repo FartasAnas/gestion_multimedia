@@ -21,7 +21,6 @@ import {
   UploadInterfaceStep2Component
 } from './components/upload/upload-interface-step2/upload-interface-step2.component';
 import {UploadInterfaceComponent} from './components/upload/upload-interface/upload-interface.component';
-import {WebLayoutComponent} from './layouts/web-layout/web-layout.component';
 import {PageTitleComponent} from './components/page-title/page-title.component';
 import {HomeCardComponent} from './components/home-card/home-card.component';
 import {KeywordsSelectorComponent} from './components/keywords-selector/keywords-selector.component';
@@ -44,10 +43,7 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
 import {PreviewUnavailableComponent} from './components/preview-unavailable/preview-unavailable.component';
 import {DocumentViewerComponent} from './components/document-viewer/document-viewer.component';
 import {PictosLayoutComponent} from './layouts/pictos-layout/pictos-layout.component';
-import {MobileLayoutComponent} from './layouts/mobile-layout/mobile-layout.component';
 import {LibraryInterfaceComponent} from './components/library-interface/library-interface.component';
-import {SmLayoutComponent} from './layouts/sm-layout/sm-layout.component';
-import {PlvLayoutComponent} from './layouts/plv-layout/plv-layout.component';
 import {CampagnesLayoutComponent} from './layouts/campagnes-layout/campagnes-layout.component';
 import {ProfileLayoutComponent} from './layouts/profile-layout/profile-layout.component';
 import {ButtonComponent} from './components/button/button.component';
@@ -72,7 +68,7 @@ import {AddRoleComponent} from './components/add-role/add-role.component';
 import {UpdateRoleLayoutComponent} from './layouts/update-role-layout/update-role-layout.component';
 import {GoBackComponent} from './components/go-back/go-back.component';
 import {RoleCategoryListComponent} from './components/role-category-list/role-category-list.component';
-import { CreateRoleLayoutComponent } from './layouts/create-role-layout/create-role-layout.component';
+import {CreateRoleLayoutComponent} from './layouts/create-role-layout/create-role-layout.component';
 
 
 @NgModule({
@@ -89,7 +85,6 @@ import { CreateRoleLayoutComponent } from './layouts/create-role-layout/create-r
     UploadProgressComponent,
     UploadInterfaceStep2Component,
     UploadInterfaceComponent,
-    WebLayoutComponent,
     PageTitleComponent,
     HomeCardComponent,
     KeywordsSelectorComponent,
@@ -107,10 +102,7 @@ import { CreateRoleLayoutComponent } from './layouts/create-role-layout/create-r
     PreviewUnavailableComponent,
     DocumentViewerComponent,
     PictosLayoutComponent,
-    MobileLayoutComponent,
     LibraryInterfaceComponent,
-    SmLayoutComponent,
-    PlvLayoutComponent,
     CampagnesLayoutComponent,
     ProfileLayoutComponent,
     ButtonComponent,

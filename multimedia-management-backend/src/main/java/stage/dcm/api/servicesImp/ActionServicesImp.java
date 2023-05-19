@@ -39,10 +39,10 @@ public class ActionServicesImp implements ActionServices {
     }
 
     private Access updateAccess(Access access){
-//        if (access.getIsActive() && !access.isRead() && !access.isWrite()) {
-//            access.setRead(true);
-//            access.setWrite(true);
-//        }
+        if (!access.getIsActive() && (access.isRead() || access.isWrite())) {
+            access.setRead(false);
+            access.setWrite(false);
+        }
 //        if(access.isRead() && !access.isWrite() && access.getIsActive()){
 //            access.setWrite(true);
 //            access.setIsActive(true);

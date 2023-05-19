@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import Role from "../../entities/Role";
 import Category from "../../entities/Category";
 import {RoleService} from "../../services/role/role.service";

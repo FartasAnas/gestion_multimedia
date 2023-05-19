@@ -24,6 +24,7 @@ export class FileInterfaceComponent implements OnInit{
   @ViewChild(PaginationBarComponent) paginationBar?:PaginationBarComponent
   showConfirmation=false;
   hasWriteAccess=false;
+  uploadingFile=false;
    async ngOnInit() {
     if(this.fileInterfaceInput) {
       this.fileInterfaceInput.fileCategory = window.location.pathname.split('/')[1]
@@ -36,11 +37,11 @@ export class FileInterfaceComponent implements OnInit{
     }
 
     this.hasWriteAccess=await this.checkWriteAccess();
-    console.log(this.hasWriteAccess)
   }
 
   onFileUploaded(): void {
     this.getUserFiles()
+    this.uploadingFile=false
   }
   getUserFiles(){
     this.fileObjects$ = this.fileService.getUserFiles(this.fileInterfaceInput?.fileType as string,this.fileInterfaceInput?.fileCategory as string);
@@ -58,7 +59,6 @@ export class FileInterfaceComponent implements OnInit{
   }
 
   handleSearchEvent(event: {fileId: string, fileName: string, fileKeywords: KeywordObject[],fileStatus:any[],fileVersion:any[],fileExtension:any[],startDate:Date,endDate:Date}) {
-    console.log(event.startDate)
     this.fileObjects$.subscribe((fileObjects) => {
       this.filteredFileObjects = fileObjects.filter(fileObject => {
         const idMatches = (fileObject.id as number).toString().startsWith(event.fileId);
@@ -67,7 +67,7 @@ export class FileInterfaceComponent implements OnInit{
         const statusMatches = Object.values(event.fileStatus).length === 0 || Object.values(event.fileStatus).some(status => status.name === fileObject.state);
         const versionMatches = Object.values(event.fileVersion).length === 0 || Object.values(event.fileVersion).some(version => version.id === fileObject.version);
         const extensionMatches= Object.values(event.fileExtension).length === 0 || Object.values(event.fileExtension).some(extension => extension.name.toLowerCase() === (fileObject.fileName as string).split(".")[1]);
-        const dateMatches = (!event.startDate || !event.endDate || !fileObject.creationDate) ? true : (new Date(fileObject.creationDate as Date).getTime() >= event.startDate.getTime() && new Date(fileObject.creationDate as Date).getTime() <= event.endDate.getTime());
+        const dateMatches = (!event.startDate || !event.endDate || !fileObject.creationDate) ? true : (new Date(fileObject.creationDate as Date).getTime() >= event.startDate.getTime() && new Date(fileObject.creationDate as Date).getTime() <= event.endDate.getTime() + 86400000);
 
         return idMatches && nameMatches && keywordMatches && statusMatches && versionMatches && extensionMatches && dateMatches;
       });
@@ -87,7 +87,6 @@ export class FileInterfaceComponent implements OnInit{
   }
 
   handleActionClick(action: 'delete' | 'download') {
-    console.log(action);
     if (action === 'delete') {
       this.showConfirmation = !this.showConfirmation;
     } else if (action === 'download') {
@@ -99,7 +98,7 @@ export class FileInterfaceComponent implements OnInit{
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-        }, index * 50);
+        }, index * 75);
       });
       this.checkedFiles = [];
     }
@@ -112,9 +111,11 @@ export class FileInterfaceComponent implements OnInit{
           () => {
             this.displayedFileObjects=this.displayedFileObjects.filter(fileObject => fileObject.id !== checkedFile.id)
             this.filteredFileObjects=this.filteredFileObjects.filter(fileObject => fileObject.id !== checkedFile.id)
+
           },
           error => console.error(`Error deleting file with ID ${checkedFile.id as number}: ${error}`)
         );
+        this.showConfirmation = false;
       })
       this.checkedFiles = [];
     } else {

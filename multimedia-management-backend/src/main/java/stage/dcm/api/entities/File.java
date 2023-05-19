@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import stage.dcm.api.enums.FileCategory;
 import stage.dcm.api.enums.FileState;
 import stage.dcm.api.enums.FileType;
 import stage.dcm.api.enums.FileVersion;
@@ -46,7 +45,7 @@ public class File {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIncludeProperties(value = {"id","path"})
+    @JsonIncludeProperties(value = {"id","label","path"})
     private Category category;
 
     private String filepath;

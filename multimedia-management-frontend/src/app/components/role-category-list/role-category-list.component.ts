@@ -91,18 +91,18 @@ export class RoleCategoryListComponent implements OnInit{
         break;
       case 'videoAction':
         actions[actionIndex].video.isActive = status;
-        actions[actionIndex].image.read = status;
-        actions[actionIndex].image.write = status;
+        actions[actionIndex].video.read = status;
+        actions[actionIndex].video.write = status;
         break;
       case 'pictogramAction':
         actions[actionIndex].pictogram.isActive = status;
-        actions[actionIndex].image.read = status;
-        actions[actionIndex].image.write = status;
+        actions[actionIndex].pictogram.read = status;
+        actions[actionIndex].pictogram.write = status;
         break;
       case 'documentAction':
         actions[actionIndex].document.isActive = status;
-        actions[actionIndex].image.read = status;
-        actions[actionIndex].image.write = status;
+        actions[actionIndex].document.read = status;
+        actions[actionIndex].document.write = status;
         break;
       default:
         break;

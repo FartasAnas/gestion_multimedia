@@ -64,7 +64,7 @@ export class KeywordsSelectorComponent implements OnInit{
             }
           }
         }
-        if(event.key==='Enter'){
+        if(event.key==='Enter' || event.key==='Control'){
           if(!(this.selectedKeywords.find(key => key.name?.toLowerCase() === this.searchedKeyword.toLowerCase()))){
             const newKeyword = {id: new Date().getTime(),name: this.searchedKeyword};
             this.addKeyword(newKeyword);

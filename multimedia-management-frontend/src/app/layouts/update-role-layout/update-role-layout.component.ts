@@ -13,6 +13,7 @@ export class UpdateRoleLayoutComponent implements OnInit{
   roleObject?:Role;
   roleObjectInitialValue?:Role;
   showConfirmation = false;
+  updateSideBar=false;
   constructor(private roleService:RoleService,private activatedRoute: ActivatedRoute,private router:Router) {
   }
   ngOnInit(): void {
@@ -28,19 +29,20 @@ export class UpdateRoleLayoutComponent implements OnInit{
   }
   handleCancelBtn() {
     this.isUpdating=false
-    this.roleObject={...this.roleObjectInitialValue} as Role
+    this.getRole((this.roleObject as Role).id as number)
   }
 
   handleUpdateBtn() {
 
     if(this.isUpdating){
-      console.log(this.roleObject)
-      console.table(this.roleObject?.actions)
         this.roleService.updateRole(this.roleObject as Role).subscribe(data=>{
             this.isUpdating=false
+            this.updateSideBar=true;
             this.roleObjectInitialValue= {...this.roleObject} as Role;
+
         })
     }
+    this.updateSideBar=false;
     this.isUpdating=true
   }
 

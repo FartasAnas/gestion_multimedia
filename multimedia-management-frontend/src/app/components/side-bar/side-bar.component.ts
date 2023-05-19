@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {UserStorageService} from "../../services/user-storage/user-storage.service";
 import {Router} from "@angular/router";
 import SideBarItemObject from "../../entities/SideBarItemObject";
@@ -11,7 +11,7 @@ import Category from "../../entities/Category";
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.css']
 })
-export class SideBarComponent implements OnInit{
+export class SideBarComponent implements OnInit,OnChanges{
   readonly homePage={ label: 'Accueil', icon: 'assets/House.svg', url: 'home' }
   readonly userManagement = { label: 'Utilisateurs', icon: 'assets/Users.svg' };
   readonly rolesManagement = { label: 'Roles', icon: 'assets/GearSix.svg' ,url:'roles' };
@@ -20,6 +20,7 @@ export class SideBarComponent implements OnInit{
   sidebarItems: SideBarItemObject[] = [];
   showFooterChild:boolean=false
   categories$:Observable<Category[]>=new Observable<Category[]>()
+  @Input() updateSideBar:boolean=false;
 
   constructor(private userStorage: UserStorageService, private router: Router, private categoryService:CategoryService) {}
 
@@ -73,6 +74,12 @@ export class SideBarComponent implements OnInit{
     else if(action==='logout'){
       this.userStorage.signOut();
       this.router.navigate(['']);
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.updateSideBar){
+      this.sidebarItems = this.createSidebarItems();
     }
   }
 }

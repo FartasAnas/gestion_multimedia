@@ -1,6 +1,5 @@
 package stage.dcm.api.controllers;
 
-import lombok.AllArgsConstructor;
 import ma.indh.minio.exception.MinioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

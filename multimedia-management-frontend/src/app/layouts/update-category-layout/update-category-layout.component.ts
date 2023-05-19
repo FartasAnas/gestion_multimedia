@@ -13,6 +13,7 @@ export class UpdateCategoryLayoutComponent implements OnInit{
   btnText = 'Modifier la catégorie';
   btnIconUrl = 'assets/PencilSimpleLineWhite.svg';
   isUpdating:boolean=false
+  updateSideBar=false;
   categoryObject?:Category
   categoryStatus:boolean=false
   @ViewChild('updateCategoryForm') updateCategoryForm!: NgForm;
@@ -29,16 +30,15 @@ export class UpdateCategoryLayoutComponent implements OnInit{
         description:this.updateCategoryForm.value.description,
         isActive:this.categoryStatus
       }
-      console.log(updatedCategory)
       this.categoryService.updateCategory(this.categoryObject?.id,updatedCategory).subscribe(
             ()=>{
-                this.isUpdating=false
-                window.location.reload();
+              this.isUpdating=false
+              this.updateSideBar=true;
             }
         )
     }
     this.isUpdating=true
-
+    this.updateSideBar=false;
   }
 
   ngOnInit(): void {

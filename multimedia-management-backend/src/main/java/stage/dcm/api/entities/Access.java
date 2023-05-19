@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
 
 @Embeddable @NoArgsConstructor @AllArgsConstructor @Data
 public class Access {

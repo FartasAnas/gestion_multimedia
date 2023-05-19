@@ -1,4 +1,14 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import FileObject from "../../entities/FileObject";
 import {Router} from "@angular/router";
 
@@ -7,7 +17,7 @@ import {Router} from "@angular/router";
   templateUrl: './file-card.component.html',
   styleUrls: ['./file-card.component.css']
 })
-export class FileCardComponent implements OnInit{
+export class FileCardComponent implements OnInit,OnChanges{
   hostname=window.location.hostname
   fileUrl:string=''
   fileExtension:string=''
@@ -16,7 +26,7 @@ export class FileCardComponent implements OnInit{
   @Input() cardWidth?:string
   @Input() cardHeight?:string
   @ViewChild('videoElement') myVideo?: ElementRef;
-  isChecked:boolean=false
+  @Input() isChecked:boolean=false
   @Output() checkedFilesEvent = new EventEmitter<{isChecked:boolean;checkedFile:FileObject}>();
   constructor(private router: Router) {
   }
@@ -38,5 +48,9 @@ export class FileCardComponent implements OnInit{
   fileChecked() {
     this.isChecked=!this.isChecked
     this.checkedFilesEvent.emit({isChecked:this.isChecked,checkedFile:this.fileObject as FileObject})
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("changes")
   }
 }

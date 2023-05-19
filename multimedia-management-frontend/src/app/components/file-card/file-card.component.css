@@ -94,7 +94,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 225px;
+  max-width: 195px;
 }
 .supInfo-txt{
   font-weight: 500;

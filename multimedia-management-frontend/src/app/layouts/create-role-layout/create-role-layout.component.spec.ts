@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateRoleLayoutComponent } from './create-role-layout.component';
+import {CreateRoleLayoutComponent} from './create-role-layout.component';
 
 describe('CreateRoleLayoutComponent', () => {
   let component: CreateRoleLayoutComponent;

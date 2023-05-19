@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import stage.dcm.api.entities.Access;
 import stage.dcm.api.entities.Action;
 import stage.dcm.api.entities.Role;
 import stage.dcm.api.exceptions.NotFoundException;
@@ -29,11 +28,9 @@ public class RoleServices {
     private final ActionServices actionServices;
     //post Methods
     public Role saveRole(Role role) throws NotFoundException {
-        log.info("Saving new role: {}", role.getActions());
         if(!role.getActions().isEmpty()){
             Collection<Action> newActions = new ArrayList<>();
             for(Action action : role.getActions()){
-                log.info("Saving new action: {}", action);
                 if(action!=null){
                     action.setCategory(categoryServices.getCategory(action.getCategory()));
                     newActions.add(actionServices.createAction(action));
@@ -68,9 +65,6 @@ public class RoleServices {
         roleToUpdate.setDescription(role.getDescription() != null ? role.getDescription() : roleToUpdate.getDescription());
         roleToUpdate.setIsActive(role.getIsActive() != null ? role.getIsActive() : roleToUpdate.getIsActive());
 
-        log.info("role actions : {}", role.getActions());
-        log.info("roleToUpdate actions : {}", roleToUpdate.getActions());
-
         List<Action> actionsToRemove = roleToUpdate.getActions().stream().filter(actionToUpdate -> role.getActions().stream().noneMatch(action -> action.getId().equals(actionToUpdate.getId()))).collect(Collectors.toList());
         roleToUpdate.getActions().removeAll(actionsToRemove);
         actionRepository.deleteAll(actionsToRemove);
@@ -89,6 +83,12 @@ public class RoleServices {
                     roleToUpdate.getActions().add(action);
                 }
             }
+//            List<Action> sortedActions = roleToUpdate.getActions().stream()
+//                    .sorted(Comparator.comparing(a -> a.getCategory().getCreationDate()))
+//                    .collect(Collectors.toList());
+//            log.info("sorted actions :{}",sortedActions);
+//            roleToUpdate.getActions().clear();
+//            roleToUpdate.setActions(sortedActions);
         } else {
             roleToUpdate.getActions().clear();
             actionRepository.deleteAll(roleToUpdate.getActions());

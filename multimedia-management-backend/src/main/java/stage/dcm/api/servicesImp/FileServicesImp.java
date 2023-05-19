@@ -16,7 +16,6 @@ import stage.dcm.api.repositories.KeywordRepository;
 import stage.dcm.api.services.CategoryServices;
 import stage.dcm.api.services.FileServices;
 
-
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.IOException;
@@ -103,7 +102,23 @@ public class FileServicesImp implements FileServices {
     }
     @Override
     public Long countFilesByType(String createdBy,String type) {
-        return fileRepository.countByCreatedByAndType(createdBy,FileType.valueOf(type.toUpperCase()));
+        return fileRepository.countByCreatedByAndTypeAndCategoryIsActive(createdBy, FileType.valueOf(type.toUpperCase()), true);
+//        User user = userServices.getUserByUsername(createdBy);
+//        for (Role role:user.getRoles()) {
+//            for (Action action: role.getActions()) {
+//                if(type.equals("image") && action.getImage().isRead()){
+//                    return fileRepository.countByCreatedByAndTypeAndCategoryIsActive(createdBy, FileType.valueOf(type.toUpperCase()), true);
+//                } else if(type.equals("video") && action.getVideo().isRead()){
+//                    return fileRepository.countByCreatedByAndTypeAndCategoryIsActive(createdBy, FileType.valueOf(type.toUpperCase()), true);
+//                } else if (type.equals("pictogram") && action.getPictogram().isRead()){
+//                    return fileRepository.countByCreatedByAndTypeAndCategoryIsActive(createdBy, FileType.valueOf(type.toUpperCase()), true);
+//                } else if (type.equals("document") && action.getDocument().isRead()){
+//                    return fileRepository.countByCreatedByAndTypeAndCategoryIsActive(createdBy, FileType.valueOf(type.toUpperCase()), true);
+//                }
+//                return 0L;
+//            }
+//        }
+//        return 0L;
     }
 
     @Override
@@ -191,7 +206,14 @@ public class FileServicesImp implements FileServices {
         fileToUpdate.setDescription( file.getDescription()!=null ? file.getDescription() : fileToUpdate.getDescription() );
         fileToUpdate.setState( file.getState()!=null ? file.getState() : fileToUpdate.getState() );
         fileToUpdate.setVersion( file.getVersion()!=null ? file.getVersion() : fileToUpdate.getVersion() );
-        fileToUpdate.setKeywords(file.getKeywords());
+        Collection<Keyword> newKeywords=new ArrayList<>();
+        for (Keyword keyword:file.getKeywords()){
+            if(keywordRepository.findById(keyword.getId()).orElse(null)==null){
+                keywordServices.saveKeyword(keyword);
+            }
+            newKeywords.add(keyword);
+        }
+        fileToUpdate.setKeywords(newKeywords);
         return fileRepository.save(fileToUpdate);
     }
 

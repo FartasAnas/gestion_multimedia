@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
 
 @Entity @Data @Table(name = "action")
 @NoArgsConstructor @AllArgsConstructor
@@ -20,13 +19,6 @@ public class Action {
     @JsonIncludeProperties(value = {"id","label","path","isActive"})
     @AttributeOverride(name = "isActive", column = @Column(name = "category_is_active"))
     private Category category;
-
-
-//    private Boolean image;
-//    private Boolean video;
-//    private Boolean pictogram;
-//    private Boolean document;
-
 
     @Embedded
     @AttributeOverride(name = "isActive", column = @Column(name = "image_is_active"))
