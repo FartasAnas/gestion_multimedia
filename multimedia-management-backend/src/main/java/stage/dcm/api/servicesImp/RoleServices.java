@@ -15,6 +15,7 @@ import stage.dcm.api.services.CategoryServices;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,7 @@ public class RoleServices {
     //post Methods
     public Role saveRole(Role role) throws NotFoundException {
         if(!role.getActions().isEmpty()){
-            Collection<Action> newActions = new ArrayList<>();
+            List<Action> newActions = new ArrayList<>();
             for(Action action : role.getActions()){
                 if(action!=null){
                     action.setCategory(categoryServices.getCategory(action.getCategory()));
@@ -48,7 +49,9 @@ public class RoleServices {
     }
 
     public Role getRoleByName(String name) {
-        return roleRepository.findByNameIgnoreCase(name);
+        Role role=roleRepository.findByNameIgnoreCase(name);
+        role.getActions().sort(Comparator.comparing(a -> a.getCategory().getCreationDate()));
+        return role;
     }
 
     public List<Role> getAllRoles() {
@@ -67,6 +70,7 @@ public class RoleServices {
 
         List<Action> actionsToRemove = roleToUpdate.getActions().stream().filter(actionToUpdate -> role.getActions().stream().noneMatch(action -> action.getId().equals(actionToUpdate.getId()))).collect(Collectors.toList());
         roleToUpdate.getActions().removeAll(actionsToRemove);
+        log.info("Actions to remove: {}", actionsToRemove);
         actionRepository.deleteAll(actionsToRemove);
 
         if (!role.getActions().isEmpty()) {
@@ -83,12 +87,6 @@ public class RoleServices {
                     roleToUpdate.getActions().add(action);
                 }
             }
-//            List<Action> sortedActions = roleToUpdate.getActions().stream()
-//                    .sorted(Comparator.comparing(a -> a.getCategory().getCreationDate()))
-//                    .collect(Collectors.toList());
-//            log.info("sorted actions :{}",sortedActions);
-//            roleToUpdate.getActions().clear();
-//            roleToUpdate.setActions(sortedActions);
         } else {
             roleToUpdate.getActions().clear();
             actionRepository.deleteAll(roleToUpdate.getActions());

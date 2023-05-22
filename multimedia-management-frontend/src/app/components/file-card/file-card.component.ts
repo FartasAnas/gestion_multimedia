@@ -17,7 +17,7 @@ import {Router} from "@angular/router";
   templateUrl: './file-card.component.html',
   styleUrls: ['./file-card.component.css']
 })
-export class FileCardComponent implements OnInit,OnChanges{
+export class FileCardComponent implements OnInit{
   hostname=window.location.hostname
   fileUrl:string=''
   fileExtension:string=''
@@ -26,9 +26,20 @@ export class FileCardComponent implements OnInit,OnChanges{
   @Input() cardWidth?:string
   @Input() cardHeight?:string
   @ViewChild('videoElement') myVideo?: ElementRef;
-  @Input() isChecked:boolean=false
-  @Output() checkedFilesEvent = new EventEmitter<{isChecked:boolean;checkedFile:FileObject}>();
+  @Input() check=false
+  @Output() checkedFilesEvent = new EventEmitter<{checkedFile:FileObject}>();
   constructor(private router: Router) {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['check'].currentValue === true) {
+      setTimeout(() => {
+        (this.fileObject as FileObject).isChecked = true;
+        this.checkedFilesEvent.emit({ checkedFile: this.fileObject as FileObject });
+      }, 0);
+    } else {
+      (this.fileObject as FileObject).isChecked = false;
+    }
   }
   handleDisplayFile() {
     this.router.navigate([this.fileObject?.category?.path,'file',this.fileObject?.id]);
@@ -37,6 +48,7 @@ export class FileCardComponent implements OnInit,OnChanges{
   ngOnInit(): void {
     this.fileUrl=`http://${this.hostname}:8100/files/object/${this.fileObject?.id}/`
     this.fileExtension=this.fileObject?.fileName?.split(".")[1] as string
+    (this.fileObject as FileObject).isChecked=false
   }
   nameText():string{
     if(this.fileObject?.type=="DOCUMENT")
@@ -46,11 +58,7 @@ export class FileCardComponent implements OnInit,OnChanges{
 
 
   fileChecked() {
-    this.isChecked=!this.isChecked
-    this.checkedFilesEvent.emit({isChecked:this.isChecked,checkedFile:this.fileObject as FileObject})
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log("changes")
+    (this.fileObject as FileObject).isChecked=!(this.fileObject as FileObject).isChecked
+    this.checkedFilesEvent.emit({checkedFile:this.fileObject as FileObject})
   }
 }

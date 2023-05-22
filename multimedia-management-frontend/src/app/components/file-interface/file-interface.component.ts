@@ -20,6 +20,7 @@ export class FileInterfaceComponent implements OnInit{
   filteredFileObjects:FileObject[]=[];
   checkedFiles:FileObject[]=[];
   sizeOptionIncrement:number=5
+  checkAllFiles=false;
 
   @ViewChild(PaginationBarComponent) paginationBar?:PaginationBarComponent
   showConfirmation=false;
@@ -77,9 +78,12 @@ export class FileInterfaceComponent implements OnInit{
   }
 
 
-  handleCheckedFiles(event: { isChecked: boolean; checkedFile: FileObject }) {
-    if(event.isChecked){
-      this.checkedFiles.push(event.checkedFile)
+  handleCheckedFiles(event: { checkedFile: FileObject }) {
+    if(event.checkedFile.isChecked){
+      if(!this.checkedFiles.find(checkedFile => checkedFile.id === event.checkedFile.id)){
+        this.checkedFiles.push(event.checkedFile)
+      }
+      console.log(this.checkedFiles)
     }
     else {
       this.checkedFiles = this.checkedFiles.filter(checkedFile => checkedFile.id !== event.checkedFile.id)
@@ -98,9 +102,20 @@ export class FileInterfaceComponent implements OnInit{
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-        }, index * 75);
+        }, index * 350);
       });
+      this.checkedFiles.forEach((checkedFile) => {
+        checkedFile.isChecked = false;
+      });
+      this.checkAllFiles = false;
       this.checkedFiles = [];
+    }
+  }
+
+  handleSelectAll() {
+    this.checkAllFiles=!this.checkAllFiles
+    if(!this.checkAllFiles){
+      this.checkedFiles=[]
     }
   }
 
@@ -128,4 +143,6 @@ export class FileInterfaceComponent implements OnInit{
     const action = window.location.pathname.split('/')[2];
     return await this.userStorage.isWriteAllowed(categoryPath, action);
   }
+
+
 }

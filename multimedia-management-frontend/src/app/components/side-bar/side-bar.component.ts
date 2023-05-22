@@ -37,33 +37,33 @@ export class SideBarComponent implements OnInit,OnChanges{
     this.sidebarItems = this.createSidebarItems();
   }
   private createSidebarItems(): SideBarItemObject[] {
-
     const role = this.userStorage.getRole();
-    const sidebarItems: SideBarItemObject[] = []
+    const sidebarItems: SideBarItemObject[] = [];
+
     role.subscribe(role => {
-      role.actions.forEach(action=>{
-        if(action.category.isActive){
+      role.actions.forEach(action => {
+        if (action.category.isActive) {
           const children = [];
-            if (action.image.isActive) {
-              children.push({ content: { id: action.category.id, label: 'Images', icon: 'assets/ImageSquare.svg', url: `${action.category.path}/images` } });
-            }
-            if (action.video.isActive) {
-              children.push({ content: { id: action.category.id, label: 'Vidéos', icon: 'assets/Video.svg', url: `${action.category.path}/videos` } });
-            }
-            if (action.pictogram.isActive) {
-              children.push({ content: { id: action.category.id, label: 'Pictos', icon: 'assets/Person.svg', url: `${action.category.path}/pictos` } });
-            }
-            if (action.document.isActive) {
-              children.push({ content: { id: action.category.id, label: 'Documents', icon: 'assets/FileDoc.svg', url: `${action.category.path}/documents` } });
-            }
+          if (action.image.isActive) {
+            children.push({ content: { id: action.category.id, label: 'Images', icon: 'assets/ImageSquare.svg', url: `${action.category.path}/images` } });
+          }
+          if (action.video.isActive) {
+            children.push({ content: { id: action.category.id, label: 'Vidéos', icon: 'assets/Video.svg', url: `${action.category.path}/videos` } });
+          }
+          if (action.pictogram.isActive) {
+            children.push({ content: { id: action.category.id, label: 'Pictos', icon: 'assets/Person.svg', url: `${action.category.path}/pictos` } });
+          }
+          if (action.document.isActive) {
+            children.push({ content: { id: action.category.id, label: 'Documents', icon: 'assets/FileDoc.svg', url: `${action.category.path}/documents` } });
+          }
+
           sidebarItems.push({
-              content: { id: action.category.id, label: action.category.label, icon: this.getCategoryIconUrl(action.category.id as number), url: action.category.path },
-              hasChildren: true,
-              children: children,
-            }
-          )
+            content: { id: action.category.id, label: action.category.label, icon: this.getCategoryIconUrl(action.category.id as number), url: action.category.path },
+            hasChildren: true,
+            children: children,
+          });
         }
-      })
+      });
     });
     return sidebarItems;
   }

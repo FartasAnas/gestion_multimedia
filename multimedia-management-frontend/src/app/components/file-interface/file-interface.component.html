@@ -12,13 +12,14 @@
         <div class="fileInterface-body-title">
           <p>{{fileInterfaceInput.fileListTitle}}</p>
         </div>
-        <div class="fileInterface-body-actions" *ngIf="checkedFiles.length!==0">
-          <app-list-action-button *ngIf="hasWriteAccess" imageUrl="assets/Trash.svg" (click)="handleActionClick('delete')"></app-list-action-button>
-          <app-list-action-button imageUrl="assets/DownloadDarkBlue.svg" (click)="handleActionClick('download')"></app-list-action-button>
+        <div class="fileInterface-body-actions">
+          <app-list-action-button [imageUrl]="checkAllFiles?'assets/FilledCheckbox.svg':'assets/EmptyCheckbox.svg'" (click)="handleSelectAll()"></app-list-action-button>
+          <app-list-action-button *ngIf="hasWriteAccess && checkedFiles.length!==0" imageUrl="assets/Trash.svg" (click)="handleActionClick('delete')"></app-list-action-button>
+          <app-list-action-button *ngIf="checkedFiles.length!==0" imageUrl="assets/DownloadDarkBlue.svg" (click)="handleActionClick('download')"></app-list-action-button>
         </div>
       </div>
       <div class="fileInterface-body-card">
-        <app-file-card  *ngFor="let fileObject of displayedFileObjects"
+        <app-file-card  *ngFor="let fileObject of displayedFileObjects" [check]="checkAllFiles"
                         [fileObject]="fileObject" [cardWidth]="fileInterfaceInput.cardWidth"
                         [cardHeight]="fileInterfaceInput.cardHeight" (checkedFilesEvent)="handleCheckedFiles($event)">
         </app-file-card>

@@ -1,7 +1,7 @@
-<div class="file-card-checkBox" (click)="fileChecked()" [ngClass]="{'checked':isChecked}">
+<div class="file-card-checkBox" *ngIf="fileObject" (click)="fileChecked()" [ngClass]="{'checked':fileObject.isChecked}">
   <img src="assets/checked.svg" />
 </div>
-<div class="file-card" *ngIf="fileObject" [style.width]="cardWidth" [style.height]="cardHeight" (click)="handleDisplayFile()" [ngClass]="{'checked':isChecked}">
+<div class="file-card" *ngIf="fileObject" [style.width]="cardWidth" [style.height]="cardHeight" (click)="handleDisplayFile()" [ngClass]="{'checked':fileObject.isChecked}">
   <div class="fileCard-file" *ngIf="fileUrl!==''">
     <div class="image-file" *ngIf="fileObject.type==='IMAGE'">
       <img  [src]="fileUrl">

@@ -124,7 +124,6 @@ export class RoleCategoryListComponent implements OnInit{
       accessObject.isActive = status;
       accessObject.write = !status && accessObject.write? false:accessObject.write;
     } else if (access === 'write') {
-      console.log(status)
       accessObject.write = status;
       accessObject.read = status ? status : accessObject.read;
       accessObject.isActive = status ? status : accessObject.isActive;

@@ -103,22 +103,6 @@ public class FileServicesImp implements FileServices {
     @Override
     public Long countFilesByType(String createdBy,String type) {
         return fileRepository.countByCreatedByAndTypeAndCategoryIsActive(createdBy, FileType.valueOf(type.toUpperCase()), true);
-//        User user = userServices.getUserByUsername(createdBy);
-//        for (Role role:user.getRoles()) {
-//            for (Action action: role.getActions()) {
-//                if(type.equals("image") && action.getImage().isRead()){
-//                    return fileRepository.countByCreatedByAndTypeAndCategoryIsActive(createdBy, FileType.valueOf(type.toUpperCase()), true);
-//                } else if(type.equals("video") && action.getVideo().isRead()){
-//                    return fileRepository.countByCreatedByAndTypeAndCategoryIsActive(createdBy, FileType.valueOf(type.toUpperCase()), true);
-//                } else if (type.equals("pictogram") && action.getPictogram().isRead()){
-//                    return fileRepository.countByCreatedByAndTypeAndCategoryIsActive(createdBy, FileType.valueOf(type.toUpperCase()), true);
-//                } else if (type.equals("document") && action.getDocument().isRead()){
-//                    return fileRepository.countByCreatedByAndTypeAndCategoryIsActive(createdBy, FileType.valueOf(type.toUpperCase()), true);
-//                }
-//                return 0L;
-//            }
-//        }
-//        return 0L;
     }
 
     @Override
@@ -148,6 +132,9 @@ public class FileServicesImp implements FileServices {
     public List<File> userFilesList(String username, String type, String category) throws NotFoundException{
         User userDto = userServices.getUserByUsername(username);
         Category categoryDto = categoryServices.getCategory(new Category(null,null,null,category.toLowerCase(),null,null,null));
+        if(!hasPermissionToReadFileType(userDto.getRoles(),FileType.valueOf(type.toUpperCase()),categoryDto)){
+            throw new NotFoundException("User does not have permission to read this file type");
+        }
         if (userDto != null && categoryDto!=null) {
             List<File> userFiles = userDto.getFiles().stream()
                     .filter(file -> file.getType().toString().equals(type) && file.getCategory().equals(categoryDto))
@@ -157,6 +144,29 @@ public class FileServicesImp implements FileServices {
         } else {
             throw new NotFoundException("User Not Found");
         }
+    }
+    private boolean hasPermissionToReadFileType(Collection<Role> roles, FileType fileType , Category category){
+        for(Role role:roles){
+            if(role.getIsActive()){
+                for(Action action:role.getActions()){
+                    if(action.getCategory().getId().equals(category.getId())){
+                        switch (fileType){
+                            case IMAGE:
+                                return action.getImage().getIsActive();
+                            case VIDEO:
+                                return action.getVideo().getIsActive();
+                            case PICTOGRAM:
+                                return action.getPictogram().getIsActive();
+                            case DOCUMENT:
+                                return action.getDocument().getIsActive();
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 
