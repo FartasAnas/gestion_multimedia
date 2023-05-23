@@ -10,6 +10,7 @@ import {UpdateCategoryLayoutComponent} from "./layouts/update-category-layout/up
 import {RolesManagementLayoutComponent} from "./layouts/roles-management-layout/roles-management-layout.component";
 import {UpdateRoleLayoutComponent} from "./layouts/update-role-layout/update-role-layout.component";
 import {CreateRoleLayoutComponent} from "./layouts/create-role-layout/create-role-layout.component";
+import {UserManagementLayoutComponent} from "./layouts/user-management-layout/user-management-layout.component";
 
 const routes: Routes = [
   { path: '', component: LoginLayoutComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'roles', component: RolesManagementLayoutComponent },
   { path: 'roles/update/:id', component: UpdateRoleLayoutComponent },
   { path: 'roles/create', component: CreateRoleLayoutComponent },
+  { path: 'users', component: UserManagementLayoutComponent },
   { path: '**', redirectTo: '' },
 ];
 

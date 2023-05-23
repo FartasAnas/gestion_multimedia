@@ -5,14 +5,20 @@
   <div class="table-list-body">
     <div class="table-list-columns" *ngIf="columns.length!==0">
       <div class="table-list-columns-thead" *ngFor="let column of columns" [style.width]="100/columns.length+'%'">
-        <p class="table-list-text">{{ column === 'isActive'? 'Statut' : column==='icon' ? '' : column | uppercase}}</p>
+        <p class="table-list-text">
+          {{ getTableTile(column) | uppercase}}
+        </p>
       </div>
     </div>
     <hr class="horizontal-line">
     <div class="table-list-tr" *ngFor="let item of data">
-      <div class="table-list-columns body"  (click)="displayCategoryUpdateInterface(item.id)">
+      <div class="table-list-columns body">
         <div class="table-list-columns-tbody-td" *ngFor="let column of columns" [style.width]="100/columns.length+'%'">
-          <p class="table-list-text" *ngIf="column!=='isActive'">{{item[column]}}</p>
+          <div class="table-list-actions" *ngIf="column==='action'">
+            <app-list-action-button imageUrl="assets/PencilSimpleLine.svg" (click)="displayCategoryUpdateInterface(item.id)" btnBorder="1.5px solid #0B2866"> </app-list-action-button>
+            <app-list-action-button imageUrl="assets/Trash.svg" btnBorder="1.5px solid #0B2866" (click)="handleDeleteBtn(item.id)"></app-list-action-button>
+          </div>
+          <p class="table-list-text" *ngIf="column!=='isActive'">{{getTableContent(item,column)}}</p>
           <div class="table-list-tag-box" *ngIf="column==='isActive'" [ngClass]="{'active':item[column],'inactive':!item[column] }">
             <p class="table-list-text" [ngClass]="{'active':item[column],'inactive':!item[column] }">
               {{item[column]?'Activé':'Désactivé'}}
@@ -21,8 +27,10 @@
           <div class="table-list-icon" *ngIf="column==='icon'">
             <img [src]="getCategoryIconUrl(item.id)">
           </div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
+<app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)"></app-confirmation-popup-message>

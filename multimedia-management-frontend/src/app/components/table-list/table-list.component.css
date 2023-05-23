@@ -28,9 +28,9 @@
   width: 100%;
   align-items: center;
 }
-.table-list-columns.body:hover{
-  background: #D7E3FC;
-}
+/*.table-list-columns.body:hover{*/
+/*  background: #D7E3FC;*/
+/*}*/
 .table-list-columns-thead,
 .table-list-columns-tbody-td{
   display: flex;
@@ -87,4 +87,12 @@
 .table-list-icon img{
   height: 30px;
   width: 40px;
+}
+.table-list-actions{
+  width: 2000%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
 }

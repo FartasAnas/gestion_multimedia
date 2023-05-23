@@ -30,6 +30,6 @@ export class CategoriesManagementLayoutComponent implements OnInit{
 
   onFileUploaded() {
     this.loadCategories();
-    window.location.reload()
+    // window.location.reload()
   }
 }

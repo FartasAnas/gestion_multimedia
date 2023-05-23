@@ -69,6 +69,8 @@ import {UpdateRoleLayoutComponent} from './layouts/update-role-layout/update-rol
 import {GoBackComponent} from './components/go-back/go-back.component';
 import {RoleCategoryListComponent} from './components/role-category-list/role-category-list.component';
 import {CreateRoleLayoutComponent} from './layouts/create-role-layout/create-role-layout.component';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
+import { UserManagementLayoutComponent } from './layouts/user-management-layout/user-management-layout.component';
 
 
 @NgModule({
@@ -122,7 +124,9 @@ import {CreateRoleLayoutComponent} from './layouts/create-role-layout/create-rol
     UpdateRoleLayoutComponent,
     GoBackComponent,
     RoleCategoryListComponent,
-    CreateRoleLayoutComponent
+    CreateRoleLayoutComponent,
+    ErrorMessageComponent,
+    UserManagementLayoutComponent
   ],
   imports: [
     BrowserModule,

@@ -4,8 +4,8 @@
     <app-page-title title="Gestion des rôles"></app-page-title>
     <app-button [btnText]="'Ajouter un nouveau rôle'" [btnIconUrl]="'assets/PlusSign.svg'" (click)="handleCreateRole()"></app-button>
   </div>
-  <div class="categories-management-body">
-    <app-table-list [tableListTitle]="'Liste des catégories'" [columns]="['name','description','isActive']" [data]="roles" path="roles"></app-table-list>
+  <div>
+    <app-table-list [tableListTitle]="'Liste des catégories'" [columns]="['name','description','isActive','action']" [data]="roles" path="roles" (reloadItems)="onRoleAdded()">></app-table-list>
   </div>
 </div>
 <app-add-role *ngIf="showAddRoleInterface" (closeInterface)="handleCloseAddInterfaceEvent($event)"></app-add-role>

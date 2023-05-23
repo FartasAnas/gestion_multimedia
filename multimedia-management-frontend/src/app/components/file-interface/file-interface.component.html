@@ -13,9 +13,9 @@
           <p>{{fileInterfaceInput.fileListTitle}}</p>
         </div>
         <div class="fileInterface-body-actions">
-          <app-list-action-button [imageUrl]="checkAllFiles?'assets/FilledCheckbox.svg':'assets/EmptyCheckbox.svg'" (click)="handleSelectAll()"></app-list-action-button>
           <app-list-action-button *ngIf="hasWriteAccess && checkedFiles.length!==0" imageUrl="assets/Trash.svg" (click)="handleActionClick('delete')"></app-list-action-button>
           <app-list-action-button *ngIf="checkedFiles.length!==0" imageUrl="assets/DownloadDarkBlue.svg" (click)="handleActionClick('download')"></app-list-action-button>
+          <app-list-action-button [imageUrl]="checkAllFiles?'assets/FilledCheckbox.svg':'assets/EmptyCheckbox.svg'" (click)="handleSelectAll()"></app-list-action-button>
         </div>
       </div>
       <div class="fileInterface-body-card">

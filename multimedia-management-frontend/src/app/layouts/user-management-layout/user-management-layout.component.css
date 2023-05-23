@@ -1,0 +1,10 @@
+.user-management{
+  display: flex;
+  flex-direction: column;
+  gap: 75px;
+  margin: 0px 50px 0px 261px;
+}
+.user-management-head{
+  display: flex;
+  justify-content: space-between;
+}

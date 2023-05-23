@@ -8,6 +8,7 @@
       <input id="email" type="email" name="email" [(ngModel)]="loginObject.email" [ngClass]="emailNotValid()" required />
       <label for="password" class="form-label" >Mot de passe</label>
       <input id="password" type="password" name="password" [(ngModel)]="loginObject.password"  required/>
+      <app-error-message message="E-mail et/ou mot de passe non valide." class="error-message" *ngIf="isLoginFailed"></app-error-message>
       <button type="submit" class="btn-form-empty" [ngClass]="isDisabled()"  [disabled]="isDisabled()['btn-form-empty']">Je me connecte</button>
       <p class="forgot-password" >Mot de passe oublié ?</p>
     </form>

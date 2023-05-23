@@ -7,5 +7,6 @@ import {Component, Input} from '@angular/core';
 })
 export class ListActionButtonComponent {
   @Input() imageUrl: string='';
+  @Input() btnBorder: string='';
 
 }

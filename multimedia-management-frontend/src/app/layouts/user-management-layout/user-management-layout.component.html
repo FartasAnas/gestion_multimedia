@@ -1,0 +1,10 @@
+<div class="user-management">
+  <app-side-bar></app-side-bar>
+  <div class="user-management-head">
+    <app-page-title title="Gestion des utilisateurs"></app-page-title>
+    <app-button [btnText]="'Ajouter un nouvel utilisateur'" [btnIconUrl]="'assets/PlusSign.svg'"></app-button>
+  </div>
+  <div>
+    <app-table-list [tableListTitle]="'Liste des utilisateurs '" [columns]="['nom & prénom','function','email','username','roles','action']" [data]="users" path="users" (reloadItems)="reloadUser()"></app-table-list>
+  </div>
+</div>

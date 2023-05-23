@@ -100,6 +100,9 @@
   font-weight: 500;
   color: #2A4379;
 }
+.error-message{
+  margin-bottom: 30px;
+}
 
 .login-image-content{
 
