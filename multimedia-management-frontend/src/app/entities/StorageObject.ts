@@ -5,5 +5,6 @@ export default interface StorageObject {
   username:String;
   fullName:string;
   token:String;
-  roles:Role[]
+  roles:Role[];
+  isActive:boolean
 }

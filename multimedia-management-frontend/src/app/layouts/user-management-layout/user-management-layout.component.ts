@@ -9,6 +9,7 @@ import {UserService} from "../../services/user/user.service";
 })
 export class UserManagementLayoutComponent implements OnInit{
   users: UserObject[]=[];
+  showAddUserInterface= false;
   constructor(private userService:UserService) {
   }
   ngOnInit(): void {

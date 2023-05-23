@@ -2,6 +2,7 @@ package stage.dcm.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,10 +36,14 @@ public class User {
     private String function;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @AttributeOverride(name = "isActive", column = @Column(name = "role_is_active"))
     private Collection<Role> roles=new ArrayList<>();
 
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade=CascadeType.ALL)
     @JsonIncludeProperties(value = {"id","fileName","type","filepath"})
     @JsonIgnore
     private Collection<File> files=new ArrayList<>();
+
+    @JsonProperty("isActive")
+    private Boolean isActive;
 }

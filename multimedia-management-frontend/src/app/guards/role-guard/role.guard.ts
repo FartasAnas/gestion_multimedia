@@ -17,7 +17,7 @@ export class RoleGuard implements CanActivate {
     const parentPath=next.parent?.url[0].path
     return new Observable<boolean>((observer) => {
       this.userStorageService.getRole().subscribe((role: Role) => {
-        if (role && role.isActive) {
+        if (role && role.isActive && this.userStorageService.isUserActive()) {
           role.actions.filter(action=>{
               return  action.category.path.toLowerCase()===parentPath?.toLowerCase()
             }

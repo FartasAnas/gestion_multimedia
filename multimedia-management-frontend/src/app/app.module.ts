@@ -71,6 +71,7 @@ import {RoleCategoryListComponent} from './components/role-category-list/role-ca
 import {CreateRoleLayoutComponent} from './layouts/create-role-layout/create-role-layout.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { UserManagementLayoutComponent } from './layouts/user-management-layout/user-management-layout.component';
+import { AddUserInterfaceComponent } from './components/add-user/add-user-interface/add-user-interface.component';
 
 
 @NgModule({
@@ -126,7 +127,8 @@ import { UserManagementLayoutComponent } from './layouts/user-management-layout/
     RoleCategoryListComponent,
     CreateRoleLayoutComponent,
     ErrorMessageComponent,
-    UserManagementLayoutComponent
+    UserManagementLayoutComponent,
+    AddUserInterfaceComponent
   ],
   imports: [
     BrowserModule,

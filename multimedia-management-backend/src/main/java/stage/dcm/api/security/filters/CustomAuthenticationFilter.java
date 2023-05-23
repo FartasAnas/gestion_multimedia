@@ -47,13 +47,16 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         try {
 
             Map<String, String> requestBody = objectMapper.readValue(request.getInputStream(), Map.class);
-            log.info("requestBody : {}", requestBody);
             String email = requestBody.get("email").trim().toLowerCase();
             String password = requestBody.get("password");
             log.info("email: {}", email);
             log.info("password: {}", password);
-            if (email == null || password == null) {
+            if (email == "" || password == "") {
                 throw new AuthenticationServiceException("Email or Password not provided");
+            }
+            stage.dcm.api.entities.User loggedUser=userServices.getUserByEmail(email);
+            if(!loggedUser.getIsActive()){
+                throw new AuthenticationServiceException("Account not Activated");
             }
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
             return authenticationManager.authenticate(authenticationToken);
@@ -80,6 +83,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         tokens.put("fullName",appUser.getFirstName()+" "+appUser.getLastName());
         tokens.put("email",appUser.getEmail());
         tokens.put("roles",user.getAuthorities());
+        tokens.put("isActive",appUser.getIsActive());
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(),tokens);
     }

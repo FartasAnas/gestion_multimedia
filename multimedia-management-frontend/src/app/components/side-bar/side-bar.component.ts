@@ -39,7 +39,6 @@ export class SideBarComponent implements OnInit,OnChanges{
   private createSidebarItems(): SideBarItemObject[] {
     const role = this.userStorage.getRole();
     const sidebarItems: SideBarItemObject[] = [];
-
     role.subscribe(role => {
       role.actions.forEach(action => {
         if (action.category.isActive) {
@@ -81,5 +80,9 @@ export class SideBarComponent implements OnInit,OnChanges{
     if(this.updateSideBar){
       this.sidebarItems = this.createSidebarItems();
     }
+  }
+
+  isUserActive() {
+    return this.userStorage.isUserActive()
   }
 }

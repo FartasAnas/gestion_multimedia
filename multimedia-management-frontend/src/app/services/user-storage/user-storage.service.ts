@@ -22,14 +22,13 @@ export class UserStorageService {
   private stockRoles():void {
     const user = sessionStorage.getItem(USER_KEY);
     if (user) {
-      console.log(this.roleService.getRoleByName(JSON.parse(user as string).roles[0].authority))
       this.roles$ = this.roleService.getRoleByName(JSON.parse(user as string).roles[0].authority)
     }
   }
   public getUser(): any {
     const user = sessionStorage.getItem(USER_KEY);
     if (!user) {
-      return null;
+      return undefined;
     }
     return {
       ...JSON.parse(user),
@@ -39,37 +38,27 @@ export class UserStorageService {
     window.sessionStorage.clear();
   }
   public getUsername():String{
-    const user = sessionStorage.getItem(USER_KEY);
-    if (user) {
-      return JSON.parse(user).username;
-    }
-    return ""
+    return this.getUser().username;
   }
   public getRole():Observable<Role>{
     const user = sessionStorage.getItem(USER_KEY);
     return this.roleService.getRoleByName(JSON.parse(user as string).roles[0].authority)
   }
   public getFullName():string{
-    const user = sessionStorage.getItem(USER_KEY);
-    if (user) {
-      return JSON.parse(user).fullName;
-    }
-    return ""
+    return this.getUser().fullName;
   }
   public getUserEmail():string{
-    const user = sessionStorage.getItem(USER_KEY);
-    if (user) {
-      return JSON.parse(user).email;
-    }
-    return ""
+    return this.getUser().email;
+  }
+  public isUserActive():boolean{
+    return this.getUser().isActive;
   }
   public getUserInfo():any{
-    const user = sessionStorage.getItem(USER_KEY);
-    if (user) {
+    if(this.getUser()!== undefined){
       return {
-        "fullName":JSON.parse(user).fullName,
-        "email":JSON.parse(user).email,
-        "role":JSON.parse(user).role
+        "fullName":this.getUser().fullName,
+        "email":this.getUser().email,
+        "role":this.getUser().role
       }
     }
     return ""

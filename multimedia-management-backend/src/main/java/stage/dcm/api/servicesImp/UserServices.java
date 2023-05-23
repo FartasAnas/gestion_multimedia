@@ -56,13 +56,14 @@ public class UserServices {
     }
 
     //put Methods
-    public User updateUser(Long id, User User) {
+    public User updateUser(Long id, User user) {
         User userToUpdate = userRepository.findById(id).orElse(null);
-        userToUpdate.setUsername( User.getUsername()!=null ? User.getUsername() : userToUpdate.getUsername() );
-        userToUpdate.setEmail( User.getEmail()!=null ? User.getEmail() : userToUpdate.getEmail() );
-        userToUpdate.setFunction( User.getFunction()!=null ? User.getFunction() : userToUpdate.getFunction() );
-        userToUpdate.setFirstName( User.getFirstName()!=null ? User.getFirstName() : userToUpdate.getFirstName() );
-        userToUpdate.setLastName( User.getLastName()!=null ? User.getLastName() : userToUpdate.getLastName() );
+        userToUpdate.setUsername( user.getUsername()!=null ? user.getUsername() : userToUpdate.getUsername() );
+        userToUpdate.setEmail( user.getEmail()!=null ? user.getEmail() : userToUpdate.getEmail() );
+        userToUpdate.setFunction( user.getFunction()!=null ? user.getFunction() : userToUpdate.getFunction() );
+        userToUpdate.setFirstName( user.getFirstName()!=null ? user.getFirstName() : userToUpdate.getFirstName() );
+        userToUpdate.setLastName( user.getLastName()!=null ? user.getLastName() : userToUpdate.getLastName() );
+        userToUpdate.setIsActive( user.getIsActive()!=null ? user.getIsActive() : userToUpdate.getIsActive());
         return userRepository.save(userToUpdate);
     }
 

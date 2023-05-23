@@ -2,7 +2,7 @@
   <div class="sidebarHeader">
     <img src="assets/logo.svg" alt="" class="sidebar-logo">
   </div>
-  <div class="sidebarBody">
+  <div class="sidebarBody" *ngIf="isUserActive()">
     <app-sidebar-button [content]="homePage"></app-sidebar-button>
     <h1 class="sidebar-title-txt">Librairie</h1>
     <ng-container *ngFor="let item of sidebarItems">

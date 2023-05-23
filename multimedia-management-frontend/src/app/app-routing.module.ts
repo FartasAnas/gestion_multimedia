@@ -11,6 +11,7 @@ import {RolesManagementLayoutComponent} from "./layouts/roles-management-layout/
 import {UpdateRoleLayoutComponent} from "./layouts/update-role-layout/update-role-layout.component";
 import {CreateRoleLayoutComponent} from "./layouts/create-role-layout/create-role-layout.component";
 import {UserManagementLayoutComponent} from "./layouts/user-management-layout/user-management-layout.component";
+import {RoleGuard} from "./guards/role-guard/role.guard";
 
 const routes: Routes = [
   { path: '', component: LoginLayoutComponent},

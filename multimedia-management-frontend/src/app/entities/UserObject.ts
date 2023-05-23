@@ -6,6 +6,7 @@ export default interface UserObject {
   username:string;
   firstName:string;
   lastName:string;
-  function:string
-  roles:Role[]
+  function:string;
+  roles:Role[];
+  isActive:boolean;
 }

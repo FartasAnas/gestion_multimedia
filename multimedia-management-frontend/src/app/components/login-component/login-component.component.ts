@@ -40,7 +40,8 @@ export class LoginComponentComponent  implements OnInit {
             username: data.username,
             token: data.token,
             roles: data.roles,
-            fullName:data.fullName
+            fullName:data.fullName,
+            isActive:data.isActive
           };
           this.userStorage.saveUser(storageObject);
           this.isLoginFailed = false;
