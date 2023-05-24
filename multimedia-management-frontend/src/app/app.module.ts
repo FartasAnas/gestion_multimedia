@@ -75,6 +75,7 @@ import { AddUserInterfaceComponent } from './components/add-user/add-user-interf
 import { AddUserInterfaceStep1Component } from './components/add-user/add-user-interface-step1/add-user-interface-step1.component';
 import { AddUserInterfaceStep2Component } from './components/add-user/add-user-interface-step2/add-user-interface-step2.component';
 import { AddUserInterfaceStep3Component } from './components/add-user/add-user-interface-step3/add-user-interface-step3.component';
+import { UpdateUserLayoutComponent } from './layouts/update-user-layout/update-user-layout.component';
 
 
 @NgModule({
@@ -134,7 +135,8 @@ import { AddUserInterfaceStep3Component } from './components/add-user/add-user-i
     AddUserInterfaceComponent,
     AddUserInterfaceStep1Component,
     AddUserInterfaceStep2Component,
-    AddUserInterfaceStep3Component
+    AddUserInterfaceStep3Component,
+    UpdateUserLayoutComponent
   ],
   imports: [
     BrowserModule,

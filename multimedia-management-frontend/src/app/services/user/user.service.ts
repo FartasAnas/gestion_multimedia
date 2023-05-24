@@ -21,4 +21,16 @@ export class UserService {
   saveUser(userObject: AddUserObject):Observable<AddUserObject>{
     return this.http.post<AddUserObject>(`${this.apiUrl}/add`,userObject);
   }
+
+  getUserById(id: number):Observable<UserObject> {
+    return this.http.get<UserObject>(`${this.apiUrl}/${id}`)
+  }
+
+  deleteUser(id: number):Observable<UserObject> {
+    return this.http.delete<UserObject>(`${this.apiUrl}/delete/${id}`)
+  }
+
+  updateUser(userObject: UserObject):Observable<UserObject> {
+    return this.http.put<UserObject>(`${this.apiUrl}/update/${userObject.id}`,userObject);
+  }
 }

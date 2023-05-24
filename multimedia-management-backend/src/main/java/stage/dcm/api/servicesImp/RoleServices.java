@@ -58,6 +58,15 @@ public class RoleServices {
         return roleRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
+    public Role findRole(Role role){
+        if(role.getId()!=null){
+            return roleRepository.findById(role.getId()).orElse(null);
+        } else if (role.getName()!=null) {
+            return roleRepository.findByNameIgnoreCase(role.getName());
+        }
+        return null;
+    }
+
     //put Methods
     public Role updateRole(Long id, Role role) throws NotFoundException {
         Role roleToUpdate = roleRepository.findById(id).orElse(null);

@@ -1,0 +1,78 @@
+<div class="update-user-layout">
+  <app-side-bar [updateSideBar]="updateSideBar"></app-side-bar>
+  <app-go-back url="/users"></app-go-back>
+  <div class="update-user-layout-head">
+    <app-page-title [title]="!isUpdating ? 'Profil de l’utilisateur' : 'Modifier le profil de l’utilisateur'"></app-page-title>
+    <div class="update-user-layout-head-btn">
+      <button class="cancelBtn" *ngIf="isUpdating" (click)="handleCancelBtn()">
+        <img src="assets/Close.svg">
+        <p class="update-user-layout-txt cancelTxt">Annuler</p>
+      </button>
+      <button class="deleteBtn" *ngIf="isUpdating" (click)="showConfirmation=true">
+        <img src="assets/TrashWhite.svg">
+        <p class="update-user-layout-txt deleteBtnTxt">Delete</p>
+      </button>
+      <app-button [btnText]="!isUpdating ?'Modifier le profil':'Enregistrer'"
+                  [btnIconUrl]="!isUpdating ? 'assets/PencilSimpleLineWhite.svg':'assets/Check.svg'" (click)="handleUpdateBtn()"></app-button>
+    </div>
+  </div>
+  <div class="update-user-layout-body" *ngIf="userObject">
+    <div class="update-user-layout-body-content">
+      <p class="update-user-layout-txt">Profil</p>
+      <div class="row-grp">
+        <div class="input-group">
+          <label class="update-user-layout-txt" for="firstName">
+            Nom
+          </label>
+          <input type="text" id="firstName" name="name" class="form-input" [(ngModel)]="userObject.firstName" [ngClass]="{'unActive-input':!isUpdating}"/>
+        </div>
+        <div class="input-group">
+          <label class="update-user-layout-txt" for="lastName">
+            Prénom
+          </label>
+          <input type="text" id="lastName" name="name" class="form-input" [(ngModel)]="userObject.lastName" [ngClass]="{'unActive-input':!isUpdating}"/>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="update-user-layout-txt" for="email">
+          E-mail
+        </label>
+        <input type="email" id="email" name="email" class="form-input" [(ngModel)]="userObject.email" [ngClass]="{'unActive-input':!isUpdating}"/>
+      </div>
+      <div class="row-grp">
+        <div class="input-group">
+          <label class="update-user-layout-txt" for="username">
+            Nom d'utilisateur
+          </label>
+          <input type="text" id="username" name="username" class="form-input" [(ngModel)]="userObject.username" [ngClass]="{'unActive-input':!isUpdating}"/>
+        </div>
+        <div class="input-group">
+          <label class="update-user-layout-txt" for="function">
+            Fonction
+          </label>
+          <input type="text" id="function" name="function" class="form-input" [(ngModel)]="userObject.function" [ngClass]="{'unActive-input':!isUpdating}"/>
+        </div>
+      </div>
+    </div>
+    <div class="update-user-layout-body-content">
+      <p class="update-user-layout-txt">Rôle</p>
+      <div class="row-grp" *ngIf="roles.length>0">
+        <div class="input-group">
+          <select id="role" name="version" class="form-input" (change)="handleSelectRole($event)" [ngClass]="{'unActive-input':!isUpdating}">
+            <option selected class="select-placeholder">Sélectionnez un rôle</option>
+            <option *ngFor="let role of roles" [value]="role.id" [selected]="userObject.roles[0]?.name===role.name">{{role.name}}</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <div class="row-grp">
+            <label class="update-user-layout-txt">
+              Statut
+            </label>
+            <app-switch-input [isChecked]="userObject.isActive" (toggle)="userObject.isActive = $event" [isDisabled]="!isUpdating"></app-switch-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)"></app-confirmation-popup-message>

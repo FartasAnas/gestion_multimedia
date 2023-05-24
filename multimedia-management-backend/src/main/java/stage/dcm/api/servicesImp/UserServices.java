@@ -9,6 +9,8 @@ import stage.dcm.api.repositories.RoleRepository;
 import stage.dcm.api.repositories.UserRepository;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service @Transactional @RequiredArgsConstructor
@@ -18,6 +20,8 @@ public class UserServices {
     private final PasswordEncoder passwordEncoder;
 
     private final RoleRepository roleRepository;
+
+    private final RoleServices roleServices;
 
     //post Methods
     public User saveUser(User user){
@@ -64,6 +68,16 @@ public class UserServices {
         userToUpdate.setFirstName( user.getFirstName()!=null ? user.getFirstName() : userToUpdate.getFirstName() );
         userToUpdate.setLastName( user.getLastName()!=null ? user.getLastName() : userToUpdate.getLastName() );
         userToUpdate.setIsActive( user.getIsActive()!=null ? user.getIsActive() : userToUpdate.getIsActive());
+
+        if(!user.getRoles().isEmpty()){
+            Collection<Role> newRoles=new ArrayList<>();
+            for (Role role:user.getRoles()){
+                if(roleServices.findRole(role)!=null){
+                    newRoles.add(role);
+                }
+            }
+            userToUpdate.setRoles(newRoles);
+        }
         return userRepository.save(userToUpdate);
     }
 

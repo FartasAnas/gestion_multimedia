@@ -1,0 +1,109 @@
+.update-user-layout{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  overflow: hidden;
+  margin: 0px 50px 0px 261px;
+}
+.update-user-layout-txt {
+  font-family: 'Inter';
+  font-style: normal;
+  color: #0B2866;
+}
+.update-user-layout-head{
+  display: flex;
+  justify-content: space-between;
+}
+.update-user-layout-head-btn {
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+}
+.update-user-layout-head-btn button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: 40px;
+  box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
+  border-radius: 5px;
+  gap: 8px;
+}
+.cancelBtn {
+  background: #FFFFFF;
+  border: 1px solid #105DFB;
+}
+.cancelBtn:hover {
+  background: #D7E3FC;
+  cursor: pointer;
+}
+.deleteBtn {
+  background: #de3b3b;
+  border: 1px solid #de3b3b;
+}
+.deleteBtn:hover {
+  background: #da2525;
+  cursor: pointer;
+}
+.cancelTxt {
+  font-weight: 500;
+  color: #105DFB;
+}
+.deleteBtnTxt{
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.update-user-layout-body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.update-user-layout-body-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  gap: 25px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px -4px rgba(24, 24, 28, 0.02), 0px 1px 2px rgba(24, 24, 28, 0.06);
+  border-radius: 8px;
+}
+.update-user-layout-body-content .update-user-layout-txt{
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+}
+.row-grp{
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  width: 100%;
+}
+.unActive-input{
+  pointer-events: none;
+}
+.input-group{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+}
+.input-group .update-user-layout-txt{
+  font-weight: 600;
+  font-size: 14px;
+}
+.form-input{
+  color: #0B2866;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 8px 16px;
+  background: #FFFFFF;
+  border: 1px solid #C6CED6;
+  border-radius: 4px;
+  height: 40px;
+}
