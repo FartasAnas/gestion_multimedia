@@ -1,0 +1,34 @@
+<div class="add-user-interface2">
+  <div class="add-user-interface2-header">
+    <div class="add-user-interface2-step">
+      <img src="assets/StepDoneIcon.svg">
+      <p class="add-user-interface1-txt">Profil</p>
+    </div>
+    <div class="add-user-interface2-step current-step">
+      <img src="assets/Step2Icon.png">
+      <p class="add-user-interface1-txt">Rôle</p>
+    </div>
+    <div class="add-user-interface2-step ">
+      <img src="assets/IncompleteStep3.svg">
+      <p class="add-user-interface1-txt">Mot de passe</p>
+    </div>
+  </div>
+  <div class="add-user-interface2-form" *ngIf="userObject">
+    <div class="input-group">
+      <label class="add-user-interface2-txt" for="role">
+        Rôle
+      </label>
+      <select id="role" name="version" class="form-input" (change)="handleSelectRole($event)" >
+        <option selected class="select-placeholder">Sélectionnez un rôle</option>
+        <option *ngFor="let role of roles" [value]="role.id" [selected]="userObject.roles[0]?.name===role.name">{{role.name}}</option>
+      </select>
+    </div>
+    <div class="row-grp">
+      <label class="add-user-interface2-txt">
+        Statut
+      </label>
+      <app-switch-input [isChecked]="userObject.isActive" (toggle)="userObject.isActive = $event"></app-switch-input>
+    </div>
+
+  </div>
+</div>

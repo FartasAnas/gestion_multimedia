@@ -1,0 +1,32 @@
+<div class="add-user-interface3">
+  <div class="add-user-interface3-header">
+    <div class="add-user-interface3-step">
+      <img src="assets/StepDoneIcon.svg">
+      <p class="add-user-interface3-txt">Profil</p>
+    </div>
+    <div class="add-user-interface3-step">
+      <img src="assets/StepDoneIcon.svg">
+      <p class="add-user-interface3-txt">Rôle</p>
+    </div>
+    <div class="add-user-interface3-step current-step">
+      <img src="assets/Step3.png">
+      <p class="add-user-interface3-txt">Mot de passe</p>
+    </div>
+  </div>
+  <div class="add-user-interface3-form" *ngIf="userObject">
+    <div class="input-group">
+      <label class="add-user-interface3-txt" for="password">
+        Mot de passe
+      </label>
+      <input type="password" id="password" name="password" class="form-input" [(ngModel)]="userObject.password"/>
+      <p *ngIf="userObject.password && !validatePassword(userObject.password)" class="pwd-not-valid">Le mot de passe doit comporter au moins 8 caractères avec une lettre majuscule et un chiffre</p>
+    </div>
+    <div class="input-group">
+      <label class="add-user-interface3-txt" for="confirm-password">
+        Confirmer le mot de passe
+      </label>
+      <input type="password" id="confirm-password" name="confirm-password" class="form-input" [(ngModel)]="confirmPassword" (ngModelChange)="emitConfirmPassword.emit(confirmPassword)"/>
+      <p *ngIf="validatePassword(userObject.password) && userObject.password!==confirmPassword" class="pwd-not-valid">Le mot de passe ne correspond pas à la confirmation du mot de passe</p>
+    </div>
+  </div>
+</div>

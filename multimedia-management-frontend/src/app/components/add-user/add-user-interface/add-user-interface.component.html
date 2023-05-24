@@ -6,8 +6,33 @@
         <img src="assets/XIcon.svg" class="svg-icon" >
       </div>
     </div>
-    <div class="add-user-interface-stepper">
-
+    <div *ngIf="currentStep==1">
+      <app-add-user-interface-step1 [userObject]="userObject"></app-add-user-interface-step1>
+    </div>
+    <div *ngIf="currentStep==2">
+      <app-add-user-interface-step2 [userObject]="userObject"></app-add-user-interface-step2>
+    </div>
+    <div *ngIf="currentStep==3">
+      <app-add-user-interface-step3 [userObject]="userObject" [confirmPassword]="confirmPassword" (emitConfirmPassword)="confirmPassword=$event"></app-add-user-interface-step3>
+    </div>
+    <div class="add-user-interface-footer">
+      <button class="add-user-interface-btn cancelBtn" (click)="handelCloseInterfaceClick()">
+        <img src="assets/Close.svg">
+        <p class="add-user-interface-txt cancelTxt">Annuler</p>
+      </button>
+      <button class="add-user-interface-btn" (click)="handleSwitchStep('previous')" *ngIf="currentStep>1">
+        <img src="assets/ArrowLeft.svg">
+        <p class="add-user-interface-txt">Précédent</p>
+      </button>
+      <button class="add-user-interface-btn" (click)="handleSwitchStep('next')" *ngIf="currentStep<3">
+        <p class="add-user-interface-txt">Suivant</p>
+        <img src="assets/ArrowRight.svg">
+      </button>
+      <button class="add-user-interface-btn" *ngIf="currentStep===3" [disabled]="handleDisableSaveBtn()" (click)="showConfirmation=!showConfirmation">
+        <img src="assets/Check.svg">
+        <p class="add-user-interface-txt">Enregistrer</p>
+      </button>
     </div>
   </div>
 </div>
+<app-confirmation-popup-message *ngIf="showConfirmation" (confirmed)="handleConfirmation($event)"></app-confirmation-popup-message>

@@ -8,4 +8,4 @@
     <app-table-list [tableListTitle]="'Liste des utilisateurs '" [columns]="['nom & prénom','function','username','email','roles','isActive','action']" [data]="users" path="users" (reloadItems)="reloadUser()"></app-table-list>
   </div>
 </div>
-<app-add-user-interface *ngIf="showAddUserInterface" (closeInterface)="showAddUserInterface=false"></app-add-user-interface>
+<app-add-user-interface *ngIf="showAddUserInterface" (closeInterface)="showAddUserInterface=false" (reloadList)="reloadUser()"></app-add-user-interface>

@@ -72,6 +72,9 @@ import {CreateRoleLayoutComponent} from './layouts/create-role-layout/create-rol
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { UserManagementLayoutComponent } from './layouts/user-management-layout/user-management-layout.component';
 import { AddUserInterfaceComponent } from './components/add-user/add-user-interface/add-user-interface.component';
+import { AddUserInterfaceStep1Component } from './components/add-user/add-user-interface-step1/add-user-interface-step1.component';
+import { AddUserInterfaceStep2Component } from './components/add-user/add-user-interface-step2/add-user-interface-step2.component';
+import { AddUserInterfaceStep3Component } from './components/add-user/add-user-interface-step3/add-user-interface-step3.component';
 
 
 @NgModule({
@@ -128,7 +131,10 @@ import { AddUserInterfaceComponent } from './components/add-user/add-user-interf
     CreateRoleLayoutComponent,
     ErrorMessageComponent,
     UserManagementLayoutComponent,
-    AddUserInterfaceComponent
+    AddUserInterfaceComponent,
+    AddUserInterfaceStep1Component,
+    AddUserInterfaceStep2Component,
+    AddUserInterfaceStep3Component
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,82 @@
+.add-user-interface3{
+  display: flex;
+  flex-direction: column;
+  gap:25px
+}
+.add-user-interface3-txt{
+  font-weight: 500;
+  font-style: normal;
+  color: #0B2866;
+}
+.add-user-interface3-header{
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+}
+.add-user-interface3-step{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 20px;
+  width: calc(100%/3);
+  background: #ECEFF1;
+}
+.add-user-interface3-step .add-user-interface3-txt{
+  font-size: 12px;
+  color: #8D9CAD;
+}
+.current-step{
+  background: #D7E3FC;
+}
+.current-step .add-user-interface3-txt{
+  font-size: 12px;
+  color: #0B2866;
+}
+.add-user-interface3-form{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: 157px;
+}
+.input-group{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  width: 100%;
+}
+.input-group .add-user-interface3-txt{
+  font-weight: 600;
+  font-size: 14px;
+}
+.form-input{
+  color: #0B2866;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 8px 16px;
+  background: #FFFFFF;
+  border: 1px solid #C6CED6;
+  border-radius: 4px;
+  height: 40px;
+}
+.select-placeholder{
+  font-weight: 400;
+  font-size: 14px;
+  color: #8D9CAD;
+}
+.row-grp{
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  width: 100%;
+}
+.pwd-not-valid{
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: red;
+}

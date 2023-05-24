@@ -1,0 +1,52 @@
+<div class="add-user-interface1">
+  <div class="add-user-interface1-header">
+    <div class="add-user-interface1-step current-step">
+      <img src="assets/Step1Icon.png">
+      <p class="add-user-interface1-txt">Profil</p>
+    </div>
+    <div class="add-user-interface1-step">
+      <img src="assets/IncompleteStepIcon.svg">
+      <p class="add-user-interface1-txt">Rôle</p>
+    </div>
+    <div class="add-user-interface1-step ">
+      <img src="assets/IncompleteStep3.svg">
+      <p class="add-user-interface1-txt">Mot de passe</p>
+    </div>
+  </div>
+  <div class="add-user-interface1-form" *ngIf="userObject">
+    <div class="row-grp">
+      <div class="input-group">
+        <label class="add-user-interface1-txt" for="firstName">
+          Nom
+        </label>
+        <input type="text" id="firstName" name="name" class="form-input" [(ngModel)]="userObject.firstName" placeholder="Saisissez un nom"/>
+      </div>
+      <div class="input-group">
+        <label class="add-user-interface1-txt" for="lastName">
+          Prénom
+        </label>
+        <input type="text" id="lastName" name="name" class="form-input" [(ngModel)]="userObject.lastName" placeholder="Saisissez un prénom"/>
+      </div>
+    </div>
+    <div class="input-group">
+      <label class="add-user-interface1-txt" for="email">
+        E-mail
+      </label>
+      <input type="email" id="email" name="email" class="form-input" [(ngModel)]="userObject.email" placeholder="Saisissez un e-mail"/>
+    </div>
+    <div class="row-grp">
+      <div class="input-group">
+        <label class="add-user-interface1-txt" for="username">
+          Nom d'utilisateur
+        </label>
+        <input type="text" id="username" name="username" class="form-input" [(ngModel)]="userObject.username" placeholder="Saisissez un nom d'utilisateur"/>
+      </div>
+      <div class="input-group">
+        <label class="add-user-interface1-txt" for="function">
+          Fonction
+        </label>
+        <input type="text" id="function" name="function" class="form-input" [(ngModel)]="userObject.function" placeholder="Saisissez une fonction"/>
+      </div>
+    </div>
+  </div>
+</div>

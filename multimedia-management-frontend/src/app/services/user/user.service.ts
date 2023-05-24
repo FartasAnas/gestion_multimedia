@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import UserObject from "../../entities/UserObject";
+import AddUserObject from "../../entities/AddUserObject";
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,9 @@ export class UserService {
   }
   getUsers():Observable<UserObject[]>{
     return this.http.get<UserObject[]>(this.apiUrl)
+  }
+
+  saveUser(userObject: AddUserObject):Observable<AddUserObject>{
+    return this.http.post<AddUserObject>(`${this.apiUrl}/add`,userObject);
   }
 }
