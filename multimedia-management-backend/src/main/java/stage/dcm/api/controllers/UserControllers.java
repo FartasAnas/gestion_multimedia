@@ -1,8 +1,10 @@
 package stage.dcm.api.controllers;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import stage.dcm.api.entities.User;
+import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.servicesImp.UserServices;
 
 import java.util.List;
@@ -45,5 +47,19 @@ public class UserControllers {
     @DeleteMapping("/delete/{id}")
     public void deleteUser(@PathVariable Long id) {
         userServices.deleteUser(id);
+    }
+
+    @GetMapping("/forgotPassword/{email}")
+    public void forgotPassword(@PathVariable String email) throws NotFoundException {
+        userServices.forgotPassword(email);
+    }
+    @PostMapping("/updatePassword")
+    public void updatePassword(@RequestBody UpdatePasswordForm form) throws NotFoundException {
+        userServices.updatePassword(form.email, form.newPassword);
+    }
+    @Data
+    public static class UpdatePasswordForm {
+        private String email;
+        private String newPassword;
     }
 }

@@ -46,4 +46,7 @@ public class User {
 
     @JsonProperty("isActive")
     private Boolean isActive;
+
+    @JsonProperty("forgotPassword")
+    private Boolean forgotPassword=false;
 }

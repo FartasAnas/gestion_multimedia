@@ -17,7 +17,10 @@ export class UserStorageService {
   public saveUser(user:StorageObject):void {
     window.sessionStorage.removeItem(USER_KEY)
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user))
-    this.stockRoles();
+    if(!user.forgotPassword){
+      this.stockRoles();
+    }
+
   }
   private stockRoles():void {
     const user = sessionStorage.getItem(USER_KEY);

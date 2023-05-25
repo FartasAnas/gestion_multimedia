@@ -6,11 +6,13 @@
       <p class="form-title">Bienvenue sur votre espace<br> de gestion de contenue multimédia !</p>
       <label for="email" class="form-label">E-mail</label>
       <input id="email" type="email" name="email" [(ngModel)]="loginObject.email" [ngClass]="emailNotValid()" required />
-      <label for="password" class="form-label" >Mot de passe</label>
-      <input id="password" type="password" name="password" [(ngModel)]="loginObject.password"  required/>
-      <app-error-message message="E-mail et/ou mot de passe non valide." class="error-message" *ngIf="isLoginFailed"></app-error-message>
-      <button type="submit" class="btn-form-empty" [ngClass]="isDisabled()"  [disabled]="isDisabled()['btn-form-empty']">Je me connecte</button>
-      <p class="forgot-password" >Mot de passe oublié ?</p>
+      <label for="password" class="form-label" *ngIf="!forgotPassword">Mot de passe</label>
+      <input id="password" type="password" name="password" [(ngModel)]="loginObject.password"  required *ngIf="!forgotPassword"/>
+      <app-error-message message="E-mail et/ou mot de passe non valide." class="error-message" *ngIf="isLoginFailed && !forgotPassword"></app-error-message>
+      <button type="submit" class="btn-form-empty" [ngClass]="isDisabled()"  [disabled]="isDisabled()['btn-form-empty']" *ngIf="!forgotPassword">Je me connecte</button>
+      <button type="submit"  *ngIf="forgotPassword">Réinitialiser mon mot de passe</button>
+      <button type="submit" class="forgot-password-connect-btn" (click)="forgotPassword=!forgotPassword"  *ngIf="forgotPassword">Je me connecte</button>
+      <p class="forgot-password" (click)="forgotPassword=!forgotPassword" *ngIf="!forgotPassword">Mot de passe oublié ?</p>
     </form>
   </div>
   <div class="login-image">

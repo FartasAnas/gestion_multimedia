@@ -68,22 +68,28 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
         User user = (User) authentication.getPrincipal();
-        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
-        String accessToken = JWT.create()
-                .withSubject(user.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 300000*6))//expire in 5min
-                .withIssuer(request.getRequestURL().toString())
-                .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
-                .sign(algorithm);
-
-        Map<String,Object> tokens =new HashMap<>();
         stage.dcm.api.entities.User appUser=userServices.getUserByUsername(user.getUsername());
-        tokens.put("token",accessToken);
-        tokens.put("username",user.getUsername());
-        tokens.put("fullName",appUser.getFirstName()+" "+appUser.getLastName());
-        tokens.put("email",appUser.getEmail());
-        tokens.put("roles",user.getAuthorities());
-        tokens.put("isActive",appUser.getIsActive());
+        Map<String,Object> tokens =new HashMap<>();
+        if(!appUser.getForgotPassword()) {
+            Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+            String accessToken = JWT.create()
+                    .withSubject(user.getUsername())
+                    .withExpiresAt(new Date(System.currentTimeMillis() + 300000 * 6))//expire in 5min
+                    .withIssuer(request.getRequestURL().toString())
+                    .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
+                    .sign(algorithm);
+
+
+            tokens.put("token", accessToken);
+            tokens.put("username", user.getUsername());
+            tokens.put("fullName", appUser.getFirstName() + " " + appUser.getLastName());
+            tokens.put("email", appUser.getEmail());
+            tokens.put("roles", user.getAuthorities());
+            tokens.put("isActive", appUser.getIsActive());
+            tokens.put("forgotPassword",appUser.getForgotPassword());
+        }else {
+            tokens.put("forgotPassword",appUser.getForgotPassword());
+        }
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(),tokens);
     }

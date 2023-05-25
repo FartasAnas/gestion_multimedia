@@ -5,8 +5,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import stage.dcm.api.entities.Role;
 import stage.dcm.api.entities.User;
+import stage.dcm.api.exceptions.NotFoundException;
 import stage.dcm.api.repositories.RoleRepository;
 import stage.dcm.api.repositories.UserRepository;
+import stage.dcm.api.util.PasswordValidator;
+import stage.dcm.api.util.RandomPasswordGenerator;
+import stage.dcm.api.util.sendmail.EmailDetails;
+import stage.dcm.api.util.sendmail.EmailService;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -22,6 +27,8 @@ public class UserServices {
     private final RoleRepository roleRepository;
 
     private final RoleServices roleServices;
+
+    private final EmailService emailService;
 
     //post Methods
     public User saveUser(User user){
@@ -68,6 +75,7 @@ public class UserServices {
         userToUpdate.setFirstName( user.getFirstName()!=null ? user.getFirstName() : userToUpdate.getFirstName() );
         userToUpdate.setLastName( user.getLastName()!=null ? user.getLastName() : userToUpdate.getLastName() );
         userToUpdate.setIsActive( user.getIsActive()!=null ? user.getIsActive() : userToUpdate.getIsActive());
+        userToUpdate.setForgotPassword(user.getForgotPassword()!=null ? user.getForgotPassword() : userToUpdate.getForgotPassword());
 
         if(!user.getRoles().isEmpty()){
             Collection<Role> newRoles=new ArrayList<>();
@@ -84,5 +92,30 @@ public class UserServices {
     //delete Methods
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public void forgotPassword(String email) throws NotFoundException {
+        User user=userRepository.findByEmail(email);
+        if(user==null){
+            throw new NotFoundException("User not found");
+        }
+        String newPassword= RandomPasswordGenerator.generate();
+        user.setForgotPassword(true);
+        user.setPassword(passwordEncoder.encode(newPassword));
+        emailService.sendSimpleMail(new EmailDetails(user.getEmail(), newPassword));
+    }
+
+    public void updatePassword(String email,String newPassword) throws NotFoundException {
+        User user=userRepository.findByEmail(email);
+        if(user==null){
+            throw new NotFoundException("User not found");
+        }
+        if(user.getForgotPassword()){
+            if(!PasswordValidator.isValid(newPassword)){
+                throw new IllegalStateException("Password not Valid");
+            }
+            user.setPassword(passwordEncoder.encode(newPassword));
+            user.setForgotPassword(false);
+        }
     }
 }

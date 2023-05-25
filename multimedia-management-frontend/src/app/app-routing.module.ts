@@ -13,6 +13,7 @@ import {CreateRoleLayoutComponent} from "./layouts/create-role-layout/create-rol
 import {UserManagementLayoutComponent} from "./layouts/user-management-layout/user-management-layout.component";
 import {RoleGuard} from "./guards/role-guard/role.guard";
 import {UpdateUserLayoutComponent} from "./layouts/update-user-layout/update-user-layout.component";
+import {UpdatePasswordLayoutComponent} from "./layouts/update-password-layout/update-password-layout.component";
 
 const routes: Routes = [
   { path: '', component: LoginLayoutComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'roles/create', component: CreateRoleLayoutComponent },
   { path: 'users', component: UserManagementLayoutComponent },
   { path: 'users/update/:id', component: UpdateUserLayoutComponent },
+  { path: 'update-password',component:UpdatePasswordLayoutComponent},
   { path: '**', redirectTo: '' },
 ];
 

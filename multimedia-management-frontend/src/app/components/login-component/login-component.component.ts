@@ -12,37 +12,56 @@ import {Router} from "@angular/router";
   styleUrls: ['./login-component.component.css']
 })
 export class LoginComponentComponent  implements OnInit {
-    loginObject: LoginObject = {
-      email:"",
-      password:""
-    };
+  loginObject: LoginObject = {
+    email:"",
+    password:""
+  };
   isLoggedIn = false;
   isLoginFailed = false;
+  forgotPassword=false
+  showForgotPasswordTxt=true;
 
-    constructor(private authenticationService:AuthenticationService, private userStorage:UserStorageService , private route:Router) {
-    }
+  constructor(private authenticationService:AuthenticationService, private userStorage:UserStorageService , private route:Router) {
+  }
 
   ngOnInit(): void {
-    if (this.userStorage.getUser()) {
+    const user=this.userStorage.getUser()
+    if (user) {
       this.isLoggedIn = true;
-      this.route.navigate(['/home'])
+      this.route.navigate(user.forgotPassword ? ['/update-password'] : ['/home'])
     }
   }
   reloadPage(): void {
     window.location.reload();
   }
 
-    onSubmit(form :NgForm) {
+  onSubmit(form :NgForm) {
+    if(this.forgotPassword){
+      if(this.loginObject.email!=''){
+        this.authenticationService.forgotPassword(this.loginObject.email).subscribe(
+          data=>{
+            this.forgotPassword=false
+            this.loginObject.password=''
+            this.isLoginFailed=false
+            this.showForgotPasswordTxt=false
+          }
+        )
+        alert("Un e-mail est en cours d'envoi à "+this.loginObject.email+".\nCeci peut prendre un peu de temps, veuillez patienter.");
+      }
+    }
+    else {
       this.authenticationService.login(this.loginObject).subscribe(
         data=>{
           const storageObject: StorageObject = {
-            email: data.email,
-            username: data.username,
-            token: data.token,
-            roles: data.roles,
-            fullName:data.fullName,
-            isActive:data.isActive
+            email: this.loginObject.email,
+            username: data?.username,
+            token: data?.token,
+            roles: data?.roles,
+            fullName:data?.fullName,
+            isActive:data?.isActive,
+            forgotPassword:data.forgotPassword
           };
+          console.log(data)
           this.userStorage.saveUser(storageObject);
           this.isLoginFailed = false;
           this.isLoggedIn = true;
@@ -55,6 +74,8 @@ export class LoginComponentComponent  implements OnInit {
       )
     }
 
+  }
+
     isEmailValid(email: string) {
       return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
     }
@@ -66,6 +87,5 @@ export class LoginComponentComponent  implements OnInit {
     isDisabled() {
       return { 'btn-form-empty': this.loginObject.email === '' || this.loginObject.password === '' || !this.isEmailValid(this.loginObject.email.valueOf()) };
     }
-
 
 }

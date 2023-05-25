@@ -44,7 +44,7 @@ public class MultimediaManagementBackendApplication {
 			try {
 				roleService.saveRole(new Role(null,"ADMIN","admin Role",new ArrayList<Action>(),true));
 
-				appUserService.saveUser(new User(null,"fartasanas","fartas@gmail.com","1234","fartas","anas","Digital marketing manager",new ArrayList<>(),new ArrayList<>(),true));
+				appUserService.saveUser(new User(null,"fartasanas","fartas@gmail.com","1234","fartas","anas","Digital marketing manager",new ArrayList<>(),new ArrayList<>(),true,false));
 
 
 				appUserService.addRoleToUser("fartasanas","ADMIN");

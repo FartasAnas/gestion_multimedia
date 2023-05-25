@@ -76,6 +76,8 @@ import { AddUserInterfaceStep1Component } from './components/add-user/add-user-i
 import { AddUserInterfaceStep2Component } from './components/add-user/add-user-interface-step2/add-user-interface-step2.component';
 import { AddUserInterfaceStep3Component } from './components/add-user/add-user-interface-step3/add-user-interface-step3.component';
 import { UpdateUserLayoutComponent } from './layouts/update-user-layout/update-user-layout.component';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+import { UpdatePasswordLayoutComponent } from './layouts/update-password-layout/update-password-layout.component';
 
 
 @NgModule({
@@ -136,7 +138,9 @@ import { UpdateUserLayoutComponent } from './layouts/update-user-layout/update-u
     AddUserInterfaceStep1Component,
     AddUserInterfaceStep2Component,
     AddUserInterfaceStep3Component,
-    UpdateUserLayoutComponent
+    UpdateUserLayoutComponent,
+    UpdatePasswordComponent,
+    UpdatePasswordLayoutComponent
   ],
   imports: [
     BrowserModule,
