@@ -14,19 +14,20 @@ import {UserManagementLayoutComponent} from "./layouts/user-management-layout/us
 import {RoleGuard} from "./guards/role-guard/role.guard";
 import {UpdateUserLayoutComponent} from "./layouts/update-user-layout/update-user-layout.component";
 import {UpdatePasswordLayoutComponent} from "./layouts/update-password-layout/update-password-layout.component";
+import {LoginGuard} from "./guards/login-guard/login.guard";
 
 const routes: Routes = [
   { path: '', component: LoginLayoutComponent},
-  { path: 'home', component: HomePageComponent },
-  { path: 'profile', component: ProfileLayoutComponent },
-  { path: 'categories', component: CategoriesManagementLayoutComponent },
-  { path: 'categories/update/:id', component: UpdateCategoryLayoutComponent },
-  { path: 'roles', component: RolesManagementLayoutComponent },
-  { path: 'roles/update/:id', component: UpdateRoleLayoutComponent },
-  { path: 'roles/create', component: CreateRoleLayoutComponent },
-  { path: 'users', component: UserManagementLayoutComponent },
-  { path: 'users/update/:id', component: UpdateUserLayoutComponent },
-  { path: 'update-password',component:UpdatePasswordLayoutComponent},
+  { path: 'home', component: HomePageComponent ,canActivate: [LoginGuard]},
+  { path: 'profile', component: ProfileLayoutComponent ,canActivate: [LoginGuard]},
+  { path: 'categories', component: CategoriesManagementLayoutComponent ,canActivate: [LoginGuard]},
+  { path: 'categories/update/:id', component: UpdateCategoryLayoutComponent ,canActivate: [LoginGuard]},
+  { path: 'roles', component: RolesManagementLayoutComponent ,canActivate: [LoginGuard]},
+  { path: 'roles/update/:id', component: UpdateRoleLayoutComponent ,canActivate: [LoginGuard]},
+  { path: 'roles/create', component: CreateRoleLayoutComponent ,canActivate: [LoginGuard]},
+  { path: 'users', component: UserManagementLayoutComponent ,canActivate: [LoginGuard]},
+  { path: 'users/update/:id', component: UpdateUserLayoutComponent ,canActivate: [LoginGuard]},
+  { path: 'update-password',component:UpdatePasswordLayoutComponent,canActivate: [LoginGuard]},
   { path: '**', redirectTo: '' },
 ];
 
