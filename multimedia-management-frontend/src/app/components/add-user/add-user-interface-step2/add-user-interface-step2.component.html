@@ -19,8 +19,8 @@
         Rôle
       </label>
       <select id="role" name="version" class="form-input" (change)="handleSelectRole($event)" >
-        <option selected class="select-placeholder">Sélectionnez un rôle</option>
-        <option *ngFor="let role of roles" [value]="role.id" [selected]="userObject.roles[0].name===role.name">{{role.name}}</option>
+        <option selected>Sélectionnez un rôle</option>
+        <option class="select-options" *ngFor="let role of roles" [value]="role.id" [selected]="userObject.roles[0]?.name===role?.name">{{role?.name}}</option>
       </select>
     </div>
     <div class="row-grp">
@@ -29,6 +29,5 @@
       </label>
       <app-switch-input [isChecked]="userObject.isActive" (toggle)="userObject.isActive = $event"></app-switch-input>
     </div>
-
   </div>
 </div>

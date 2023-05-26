@@ -13,14 +13,17 @@ export class LoginGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     const user=this.userStorageService.getUser()
-    if(!user || !user.isActive){
-      this.userStorageService.signOut()
-      this.router.navigate([''])
-      return false
-    }else if(user.forgotPassword){
+    // if(!user){
+    //   this.userStorageService.signOut()
+    //   this.router.navigate([''])
+    //   return false
+    // }
+    console.log(user.forgotPassword)
+    if(user.forgotPassword){
       this.router.navigate(['update-password'])
+      return false
     }
-    return true;
+    return true
   }
 
 }

@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'roles/create', component: CreateRoleLayoutComponent ,canActivate: [LoginGuard]},
   { path: 'users', component: UserManagementLayoutComponent ,canActivate: [LoginGuard]},
   { path: 'users/update/:id', component: UpdateUserLayoutComponent ,canActivate: [LoginGuard]},
-  { path: 'update-password',component:UpdatePasswordLayoutComponent,canActivate: [LoginGuard]},
+  { path: 'update-password',component:UpdatePasswordLayoutComponent},
   { path: '**', redirectTo: '' },
 ];
 
